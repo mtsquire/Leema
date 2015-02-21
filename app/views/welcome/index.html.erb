@@ -14,21 +14,34 @@
 	<div class="container"
 		<div class="row">
 			<h2 class="text-center">Explore The Most Popular Treats On The Market</h2>
-			<% @products.first(6).each do |product| %>
-			<div class="col-md-4 col-sm-6 col-xs-12 welcome-product">
-				<%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
-					<% if product.images.count > 0 %>
-						<%= image_tag product.images.first.attachment.url(:large), :class => 'img-responsive center-block' %>
-					<% else %>
-						<%= image_tag("leema-product-placeholder.jpg", :class => 'img-responsive center-block') %>
-					<% end %>
-				<div class="seller-info">
-					<h3 class="seller-name"><%= product.name %></h3>
-					<p class="product-descr"><%= truncate(product.leema_description, :length => 200) %></p>
-				</div>
+
+			<div id="featured-products" class="owl-carousel">
+				<% @products.first(9).each do |product| %>
+				  <div class="welcome-product">
+				  	<%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+					  	<div class="product-card">
+								<% if product.images.count > 0 %>
+
+									<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+
+								<% else %>
+
+									<div class="product-image background-image" style="background-image: url(<%= image_url "leema-product-placeholder.jpg" %>)"></div>
+
+								<% end %>
+								<div class="product-info">
+									<h3><%= product.name %></h3>
+									<p class="product-description"><%= truncate(product.leema_description, :length => 150) %></p>
+                  <p class="product-price" itemprop="price"><%= product.display_price %></p>
+                  <% if product.suppliers.first.users.first.store_logo_file_name? %>
+		                <%= image_tag product.suppliers.first.users.first.store_logo(:default), :class => 'seller-logo-mini' %>
+		              <% end %>
+								</div><!-- close .product-info -->
+							</div><!-- close .product-card -->
+						<% end %>
+				  </div>
 				<% end %>
 			</div>
-			<% end %>
 		</div>
 	</div>
 </section><!-- /#welcome-product-grid -->

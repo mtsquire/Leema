@@ -26,12 +26,14 @@
 
 
             <%#-= large_image(product, :itemprop => "image", :class => 'img-responsive center-block') -%>
+            <div class="product-image-container">
+              <% if product.images.count > 0 %>
+                <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+              <% else %>
+                <div class="product-image background-image" style="background-image: url(<%= image_url ("leema-product-placeholder.jpg") %>)"></div>
+              <% end %>
 
-            <% if product.images.count > 0 %>
-              <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
-            <% else %>
-              <div class="product-image background-image" style="background-image: url(<%= image_url ("leema-product-placeholder.jpg") %>)"></div>
-            <% end %>
+            </div><!-- close .product-image-container -->
 
             <div class="product-info">
 
@@ -43,6 +45,12 @@
 
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
+
+              <% if product.suppliers.first.users.first.store_logo_file_name? %>
+
+                <%= image_tag product.suppliers.first.users.first.store_logo(:default), :class => 'seller-logo-mini' %>
+
+              <% end %>
             </div>
 
 
