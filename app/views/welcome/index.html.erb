@@ -18,7 +18,7 @@
 			<div id="featured-products" class="owl-carousel">
 				<% @products.first(9).each do |product| %>
 				  <div class="welcome-product">
-				  	<%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+				  	<%= link_to 'store/products/' + product.slug, :class => 'product-link', :itemprop => "name", :title => product.name do %>
 					  	<div class="product-card">
 								<% if product.images.count > 0 %>
 
