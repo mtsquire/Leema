@@ -1,0 +1,33 @@
+<div class="review row" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
+  <div class="col-lg-1 col-md-2 col-sm-3">
+    <% if review.user.avatar_file_name? %>
+      <%= image_tag review.user.avatar, class: 'img-circle center-block img-responsive' %>
+    <% else %>
+      <%= image_tag "leema-seller-logo.jpg", class: 'img-circle img-thumbnail img-responsive' %>
+    <% end %>
+  </div>
+  <div class="col-lg-11 col-md-10 col-sm-9">
+
+    <meta itemprop="reviewRating" content="<%= review.rating %>" />
+    <div class="reviewer-info">
+      <% if Spree::Reviews::Config[:show_email] && review.user %>
+        <h6 class="review-author" itemprop="author"><%= review.user.email %></h6>
+      <% else %>
+        <h6 class="review-author" itemprop="author"><a href="/<%= review.user.id %>"><%= review.user.full_name%></a></h6>
+      <% end %>
+
+      <span class="review-date"><%= Spree.t(:Posted) %> <%= time_ago_in_words(l review.created_at) %> ago</span>
+      <meta itemprop="datePublished" content="<%= review.created_at.to_date.to_s %>" />
+    </div><!-- close .reviewer-info -->
+
+    <p class="lead" itemprop="name"><span class="reviews-rating" title="<%= txt_stars(review.rating) %>"><%= render "spree/reviews/stars", :stars => review.rating %></span> <%= review.title %></p>
+      <%= simple_format(review.review) %>
+
+  </div>
+
+  <% if Spree::Reviews::Config[:feedback_rating] && (!Spree::Reviews::Config[:require_login] || spree_current_user) %>
+    <div class="feedback_review" id="feedback_review_<%= review.id %>">
+      <%= render "spree/feedback_reviews/form", :review => review %>
+    </div>
+  <% end %>
+</div><!-- close .review.row -->

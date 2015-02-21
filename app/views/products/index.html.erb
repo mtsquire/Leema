@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Products</h1>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= link_to image_tag(product.photo.url), controller: 'products', action: 'show', id: product %>
+          <div class="caption">
+            <h3><%= product.title %></h3>
+            <% if current_user == product.user %>
+              <p><em>You posted this product <%= time_ago_in_words(product.created_at) %> ago.</em></p>
+              <p><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_product_path(product), :class => 'btn btn-default btn-xs' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          product_path(product),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-xs btn-danger' %></p>
+            <% else %>
+              <p><%= product.description %></p>
+              <p><%= link_to "Add to cart", product_path(product), class: 'btn btn-primary' %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+            
+
+    <% end %>
+  </div>
+</div>

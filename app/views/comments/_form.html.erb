@@ -1,0 +1,11 @@
+<%= form_for([@product, @product.comments.build]) do |f| %>
+  <p>
+    
+    <%= f.text_area :body %>
+  </p>
+    <%= f.hidden_field :product_id %>
+  <p>
+    <%= f.submit %>
+  </p>
+  
+<% end %>

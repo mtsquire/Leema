@@ -1,0 +1,36 @@
+<% stars = @product.stars %>
+<% reviews_count = @product.reviews_count %>
+<div class="ratings">
+  <p><%= Spree.t('average_customer_rating') %>: </p>
+  <p class="ratings-stars">
+    <span title="<%= txt_stars(stars) %>">
+      <%= render 'spree/reviews/stars', :stars => stars %>
+    </span>
+  </p>
+  <p class="ratings-basedupon">(<%= Spree.t('based_upon_review_count', :count => reviews_count) %>)</p>
+  <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+    <meta itemprop="ratingValue" content="<%= stars %>" />
+    <meta itemprop="reviewCount" content="<%= reviews_count %>" />
+  </div>
+</div>
+<div class="share-product">
+  <!-- Facebook Like/Share Buttons -->
+  <div class="fb-like" data-share="true" data-width="300px" data-show-faces="false" data-layout="button"></div>
+</div><!-- close .share-product -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '778387892228096',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>

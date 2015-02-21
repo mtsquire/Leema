@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="logo" href="/"><%= image_tag "leema-logo.png", class: 'img-responsive' %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <%= form_tag spree_path, :class => "navbar-form navbar-left", :method => "get" do %>
+          <div class="input-group">
+            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Search" %>
+            <span class="input-group-btn">
+              <%= button_tag(type: 'submit', class: 'btn btn-primary', :name => nil) do %>
+                <i class="fa fa-search"></i>
+              <% end %>
+            </span>
+          </div><!-- /input-group -->
+          <% end %>
+          <li><%= link_to "Browse", spree_path %></li>
+          <li id="link-to-cart" data-hook><%= link_to_cart %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <% if current_user.avatar_file_name? %>
+                <%= image_tag current_user.avatar.url(:mini), class: 'gravatar' %>
+              <% else %>
+                <%= image_tag "leema-nav-logo.jpg", class: 'gravatar' %>
+              <% end %><%= current_user.first_name %> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/<%= current_user.id %>">Profile</a></li>
+              <% if current_user.supplier? %>
+                <li><%= link_to "My Store", "/store/admin" %></li>
+                <li><%= link_to "New Product", "/store/admin/products/new" %></li>
+              <% end %>
+              <li class="divider"></li>
+              <li><%= link_to "Edit Profile", edit_path(@user) %></li>
+              <li><%= link_to "Log Out", logout_path %></li>
+            </ul>
+          </li>
+
+        <% else %>
+          <li><%= link_to "Browse", spree_path %></li>
+          <li id="link-to-cart" data-hook><%= link_to_cart %></li>
+          <li><%= link_to "Log In", signin_path %></li>
+          <li><%= link_to "Register", register_path %></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

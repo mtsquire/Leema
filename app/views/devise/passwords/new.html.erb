@@ -1,0 +1,36 @@
+
+
+
+
+
+
+
+
+<div class="sign-in-reg">
+  <div class="container form">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+        <div class="form-header logo-inverse">
+          <a href="/"><%= image_tag "leema-logo-white.png", class: 'img-responsive signin-logo' %></a>
+        </div>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), :class => "well", html: { method: :post }) do |f| %>
+  				<%= devise_error_messages! %>
+          <fieldset>
+            <legend>
+              <h2>Forgot your password?</h2>
+            </legend>
+            <div class="form-group">
+            	<div><%= f.label :email %>
+  						<%= f.email_field :email, autofocus: true, class: 'form-control input_wide' %></div>
+            </div>
+           </fieldset>
+          <div><%= f.submit "Reset Password", :class => "btn btn-primary" %></div>
+
+          <div class="other-links">
+            <%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+      </div><!-- close col -->
+    </div><!-- close row -->
+  </div><!-- close container -->
+</div><!-- close sign-in-reg -->

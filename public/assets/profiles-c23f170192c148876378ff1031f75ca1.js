@@ -1,0 +1,1 @@
+$(document).ready(function(){if($(".section-cover").length>0){var e=$(".section-cover").width(),c=e/3;$(".section-cover").css("height",c)}});

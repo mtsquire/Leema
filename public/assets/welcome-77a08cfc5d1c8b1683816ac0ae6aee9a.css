@@ -1,0 +1,223 @@
+/* line 3, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.homepage .navbar-default {
+  background: transparent;
+}
+
+/* line 7, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.masthead {
+  position: relative;
+  padding: 30px 15px;
+  color: #cdbfe3;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: url(/assets/masthead.jpg);
+  background-repeat: no-repeat;
+  z-index: 1;
+  min-height: 300px;
+  background-color: transparent;
+  background-attachment: scroll;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-transition: background-image 1s ease-in-out;
+  transition: background-image 1s ease-in-out;
+}
+
+/* line 31, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.input-group .form-control.main-search {
+  background: none !important;
+  border-color: #e91e63;
+  border-style: none none solid none;
+  border-width: 3px;
+  border-radius: 0;
+  outline: none;
+  color: #1a1a1a;
+  padding: 15px 0 0 0;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+/* Placeholder text color for browsers */
+/* line 45, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.input-group .form-control.main-search::-webkit-input-placeholder {
+  color: #666;
+}
+
+/* line 48, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.input-group .form-control.main-search:-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* line 52, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.input-group .form-control.main-search::-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* line 56, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.input-group .form-control.main-search::-ms-input-placeholder {
+  color: #666;
+}
+
+/* line 60, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+.search-leema .btn {
+  border-radius: 0px;
+  padding: 10px;
+}
+
+/* line 65, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome {
+  padding: 30px 0;
+}
+
+/* line 69, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome h1 {
+  font-size: 30px;
+}
+
+/* line 73, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome p.lead {
+  font-size: 18px;
+}
+
+@media (min-width: 990px) {
+  /* line 78, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  .input-group .form-control.main-search {
+    font-size: 70px;
+    height: 110px;
+    line-height: 90px;
+    margin: 0px;
+    padding-top: 25px;
+  }
+
+  /* line 86, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  .search-leema .btn {
+    border-radius: 0px;
+    height: 110px;
+    padding: 10px 30px;
+  }
+
+  /* line 92, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome {
+    padding: 60px 0;
+  }
+
+  /* line 96, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome h1 {
+    font-size: 55px;
+  }
+
+  /* line 100, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome p.lead {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  /* line 107, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  .masthead {
+    padding: 80px 0;
+  }
+
+  /* line 111, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  .input-group .form-control.main-search {
+    font-size: 50px;
+    height: 90px;
+    line-height: 70px;
+    margin: 0px;
+    padding-top: 25px;
+  }
+
+  /* line 119, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  .search-leema .btn {
+    border-radius: 0px;
+    height: 90px;
+    padding: 10px 20px;
+  }
+
+  /* line 124, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome {
+    padding: 60px 0;
+  }
+
+  /* line 128, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome h1 {
+    font-size: 55px;
+  }
+
+  /* line 132, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+  #welcome p.lead {
+    font-size: 30px;
+  }
+}
+/* line 138, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+/* line 144, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product a {
+  display: block;
+}
+
+/* line 148, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product:hover img {
+  opacity: .4;
+  -webkit-transition: opacity .2s ease-in;
+  transition: opacity .2s ease-in;
+}
+
+/* line 154, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product img {
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 9;
+}
+
+/* line 161, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product .seller-info {
+  position: absolute;
+  text-align: left;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  opacity: 0;
+  color: #333;
+}
+
+/* line 171, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product .seller-info h3 {
+  font-size: 30px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+/* line 177, /Users/bhay/Code/Leema/app/assets/stylesheets/welcome/welcome.css.scss */
+#welcome-product-grid .welcome-product:hover .seller-info {
+  opacity: 1;
+  -webkit-transition: opacity .2s ease-in;
+  transition: opacity .2s ease-in;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+ */
+/* This is for the divs for sign-in/sign-up. Can we make them centered? */
+

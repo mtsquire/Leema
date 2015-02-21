@@ -1,0 +1,61 @@
+<%
+  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+  paginated_products ||= products
+%>
+
+<% content_for :head do %>
+  <% if paginated_products.respond_to?(:num_pages) %>
+    <%= rel_next_prev_link_tags paginated_products %>
+  <% end %>
+<% end %>
+
+<% if products.empty? %>
+  <%= Spree.t(:no_products_found) %>
+<% elsif params.key?(:keywords) %>
+  <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
+<% end %>
+
+<% if products.any? %>
+<div id="products" class="row" data-hook>
+  <% products.each do |product| %>
+    <% url = product_url(product, :taxon_id => @taxon.try(:id)) %>
+    <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 product-list-item" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+      <%= link_to product, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+        <div class="product-card">
+          <% cache(@taxon.present? ? [current_currency, @taxon, product] : [current_currency, product]) do %>
+
+
+            <%#-= large_image(product, :itemprop => "image", :class => 'img-responsive center-block') -%>
+
+            <% if product.images.count > 0 %>
+              <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+            <% else %>
+              <div class="product-image background-image" style="background-image: url(<%= image_url ("leema-product-placeholder.jpg") %>)"></div>
+            <% end %>
+
+            <div class="product-info">
+
+
+                <h3><%= truncate(product.name, :length => 50) %></h3>
+
+
+              <p class="product-description"><%= truncate(product.leema_description, :length => 70) %></p>
+
+
+              <p class="product-price" itemprop="price"><%= display_price(product) %></p>
+            </div>
+
+
+
+          <% end %>
+        </div><!-- close .product-card -->
+      <% end %>
+    </div>
+  <% end %>
+  <% reset_cycle("classes") %>
+</div>
+<% end %>
+
+<% if paginated_products.respond_to?(:num_pages) %>
+  <%= paginate paginated_products, theme: 'twitter-bootstrap-3' %>
+<% end %>

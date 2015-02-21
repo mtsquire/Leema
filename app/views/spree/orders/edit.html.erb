@@ -1,0 +1,63 @@
+<% @body_id = 'cart' %>
+<div data-hook="cart_container">
+  <h1><%= Spree.t(:shopping_cart) %></h1>
+
+  <% if @order.line_items.empty? %>
+
+    <div data-hook="empty_cart">
+      <div class="alert alert-info"><%= Spree.t(:your_cart_is_empty) %></div>
+      <p><%= link_to Spree.t(:continue_shopping), products_path, :class => 'btn btn-default' %></p>
+    </div>
+
+  <% else %>
+
+    <div data-hook="outside_cart_form">
+      <%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
+        <div data-hook="inside_cart_form">
+
+          <div data-hook="cart_items">
+            <%= render :partial => 'form', :locals => { :order_form => order_form } %>
+          </div>
+
+          <div class="row">
+
+            <div class="links col-md-6 col-xs-12 pull-right alpha omega" data-hook="cart_buttons">
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12 coupon-code">
+                      <%= order_form.text_field :coupon_code, :class => 'form-control', :placeholder => Spree.t(:coupon_code) %>
+                  </div><!-- close col-xs-8 -->
+                  <div class="col-sm-3 col-xs-6">
+                    <span class="input-group-btn">
+                      <%= button_tag  :class => 'btn btn-primary', :id => 'update-button' do %>
+                      <i class="fa fa-refresh"></i> <%= Spree.t(:update_cart) %>
+                    </span>
+                  <% end %>
+                  </div>
+                  <div class="col-sm-3 col-xs-6">
+                    <%= button_tag :class => 'checkout btn btn-success button', :id => 'checkout-link', :name => 'checkout' do %>
+                      <%= Spree.t(:checkout) %>
+                    <% end %>
+                  </div><!-- close .col-xs-4 -->
+              </div><!-- close .row -->
+            </div><!-- close col-xs-6 -->
+    <% end %>
+            <div id="empty-cart" class="col-md-6 col-xs-12 pull-left" data-hook>
+              <%= form_tag empty_cart_path, :method => :put do %>
+                <%= submit_tag Spree.t(:empty_cart), :class => 'btn btn-danger' %>
+                <%= Spree.t(:or) %>
+                <%= link_to Spree.t(:continue_shopping), root_path, :class => 'continue btn btn-primary' %>
+              <% end %>
+            </div>
+
+          </div><!-- close .row -->
+
+        </div>
+
+    </div>
+
+
+
+  <% end %>
+</div>
+
+

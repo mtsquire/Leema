@@ -1,0 +1,38 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_product) %> &ldquo;<%= @product.name %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="name"><%= @product.name %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_product_tabs">
+      <%= content_tag :li, :class => ('active' if current == 'Product Details') do %>
+        <%= link_to_with_icon 'edit', Spree.t(:product_details), edit_admin_product_url(@product) %>
+        <% end %>
+
+      <%= content_tag :li, :class => ('active' if current == 'Images') do %>
+        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_product_images_url(@product) %>
+        <% end %>
+
+      <!-- Begin Leema Admin only submenu -->
+      <% if spree_current_user.leema_admin? == true %>
+        <%= content_tag :li, :class => ('active' if current == 'Variants') do %>
+          <%= link_to_with_icon 'th-large', Spree.t(:variants),  admin_product_variants_url(@product) %>
+          <% end %>
+
+        <%= content_tag :li, :class => ('active' if current == 'Product Properties') do %>
+          <%= link_to_with_icon 'tasks', Spree.t(:product_properties), admin_product_product_properties_url(@product) %>
+          <% end %>
+
+        <%= content_tag :li, :class => ('active' if current == 'Stock Management') do %>
+          <%= link_to_with_icon 'tasks', Spree.t(:stock_management), stock_admin_product_url(@product) %>
+          <% end %>
+      <% end %>
+      </li>
+    </ul>
+  </nav>
+
+<% end %>

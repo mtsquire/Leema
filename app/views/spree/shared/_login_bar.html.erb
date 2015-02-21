@@ -1,0 +1,16 @@
+<% if spree_current_user %>
+  <li>
+    <a href="/<%= spree_current_user.id %>">Welcome, <%= spree_current_user.first_name %></a>
+  </li>
+  <li>
+    <%= link_to Spree.t(:logout), spree_logout_path, :method => :get %>
+  </li>
+  
+<% else %>
+  <li>
+    <%= link_to Spree.t(:signin), spree_login_path %>
+  </li>
+  <li>
+    <%= link_to Spree.t(:register), spree_signup_path %>
+  </li>
+<% end %>

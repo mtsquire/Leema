@@ -1,0 +1,10 @@
+<!-- insert_bottom "[data-hook='admin_tabs']" -->
+
+<% if spree_current_user.leema_admin? == true %>
+
+  <%= tab :suppliers, label: Spree.t(:suppliers), match_path: '/suppliers', icon: 'building' %>
+
+  <%= tab :shipments, label: Spree.t(:shipments), match_path: '/shipments', icon: 'truck' %>
+
+  <%= tab :stock_locations, label: Spree.t(:stock_locations), match_path: '/stock_locations', icon: 'map-marker' %>
+<% end %>

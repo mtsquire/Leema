@@ -1,0 +1,25 @@
+<ul class="media-list comments">
+  <li class="media">
+    <a class="pull-left" href="#">
+    <%= image_tag @user.gravatar_url, class: 'media-object img-circle img-thumbnail' %>
+    </a>
+    <div class="media-body">
+      <h5 class="media-heading pull-left"><%= @user.full_name %></h5>
+      <div class="comment-info pull-left">
+        <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+        <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+        <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted <%= time_ago_in_words(comment.created_at) %> ago</div>
+      </div>
+      <br class="clearfix">
+      <p class="well"><%= comment.body %></p>
+    </div>
+  </li>
+  <% if current_user == comment.user %>
+    <p>
+      <%= link_to 'Delete Comment', [comment.product, comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+                   <% else %>
+    </p>
+  <% end %>
+</ul>

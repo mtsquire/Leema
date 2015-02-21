@@ -1,0 +1,115 @@
+<section class="masthead home" id="content" role="main">
+  <div class="container">
+		<div class="row">
+			 <div class="col-xs-12 intro">
+				 	<h1 class="text-center">The marketplace that connects culinary artists to people with great taste.</h1>
+			  	<%= link_to "Browse Our Products", spree_path, class: "btn btn-lg btn-primary" %>
+		  </div>
+		</div>
+  </div><!-- /.container -->
+</section><!-- /.masthead -->
+
+
+<section id="welcome-product-grid">
+	<div class="container"
+		<div class="row">
+			<h2 class="text-center">Explore The Most Popular Treats On The Market</h2>
+			<% @products.first(6).each do |product| %>
+			<div class="col-md-4 col-sm-6 col-xs-12 welcome-product">
+				<%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+					<% if product.images.count > 0 %>
+						<%= image_tag product.images.first.attachment.url(:large), :class => 'img-responsive center-block' %>
+					<% else %>
+						<%= image_tag("leema-product-placeholder.jpg", :class => 'img-responsive center-block') %>
+					<% end %>
+				<div class="seller-info">
+					<h3 class="seller-name"><%= product.name %></h3>
+					<p class="product-descr"><%= truncate(product.leema_description, :length => 200) %></p>
+				</div>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</section><!-- /#welcome-product-grid -->
+
+<section id="reindeer" class="image-break">
+
+</section>
+
+<section id="features-benefits">
+	<div class="container">
+		<h2 class="text-center">Exceptional Creations</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<i class="fa fa-spoon"></i>
+				<h4>Designed To Eat</h4>
+				<p>Leema Artisans only make the most mouthwatering, unique, and creative food items. From savory Cookie Nut Butter to sweet Gluten Free Cake Bites, if it’s delicious, you’ll find it on Leema.</p>
+			</div>
+			<div class="col-sm-4">
+				<i class="fa fa-heart"></i>
+				<h4>Made With Love</h4>
+				<p>Every product that our Artisans create is prepared to be of the highest quality. Putting their hearts and souls into creating the best, you can feel confident that you are receiving a truly exceptional creation.</p>
+			</div>
+			<div class="col-sm-4">
+				<i class="fa fa-child"></i>
+				<h4>Something For Everyone</h4>
+				<p>Keeping Kosher? Allergic to wheat, soy, peanuts, milk, or your creepy neighbors cat? Not a problem! Leema Artisans offer tasty treats that tend to any Food Sensitivity you may have. Eat with confidence, not an EpiPen&reg;.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<i class="fa fa-truck"></i>
+				<h4>At Your Door</h4>
+				<p>Whether you’re 2 or 200 miles away, our network of local and national delivery services will ensure that you always receive your product fresh and undamaged.</p>
+			</div>
+			<div class="col-sm-4">
+				<i class="fa fa-users"></i>
+				<h4>Better With Friends</h4>
+				<p>Leema’s community revolves around exceptional creations that are bought and sold, allowing Artisans to share stories, recipes, secrets, and ideas. This community truly sees food for what it is, an expression of the person who created it.</p>
+			</div>
+			<div class="col-sm-4">
+				<i class="fa fa-shield"></i>
+				<h4>Highly Guarded Checkout</h4>
+				<p>Using Stripe to process all transactions, we give you the peace of mind that you are safe when you make a purchase or sell a product. Whether paying by credit card, debit card, doubloons, sheckles, or shillings, your information is safe and secure.</p>
+				<p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section id="get-started">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h2>How It Works</h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="circle">
+							<%= image_tag "shop-icon.png", class: 'img-responsive center-block' %>
+						</div>
+						<h4>Shop our products</h4>
+					</div><!-- close .col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="circle">
+							<%= image_tag "money-icon.png", class: 'img-responsive center-block' %>
+						</div>
+						<h4>Make your purchase</h4>
+					</div><!-- close .col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="circle">
+							<%= image_tag "smile-icon.png", class: 'img-responsive center-block' %>
+						</div>
+						<h4>Enjoy Deliciousness</h4>
+					</div><!-- close .col-sm-4 -->
+				</div><!-- close .row -->
+				<% if signed_in? %>
+					<%= link_to "Start Shopping", spree_path, class: "btn btn-primary" %>
+				<% else %>
+					<a href="/register" class="btn btn-primary">Create Your Account</a>
+				<% end %>
+			</div>
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</section>

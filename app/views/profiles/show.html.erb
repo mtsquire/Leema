@@ -1,0 +1,101 @@
+<body>
+  <div class="section-cover">
+    <% if @user.cover_photo_file_name? %>
+      <%= image_tag @user.cover_photo.url(:large), class: "section-cover-image img-responsive" %>
+    <% else %>
+      <%= image_tag("profile-placeholder.jpg", :alt => "Leema Cover Photo", :class => "section-cover-image img-responsive") %>
+    <% end %>
+    <h1>
+      <% if @user.store_name != nil %>
+        <%= @user.store_name %>
+      <% else %>
+        <%= @user.full_name %>
+      <% end %>
+    </h1>
+  </div>
+  <div class="container">
+    <% if @user == current_user %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="edit-profile">
+            <%= link_to "Edit Profile", edit_path(@user), class: 'btn btn-primary' %>
+          </div>
+        </div><!-- close .col-xs-12 -->
+      </div><!-- close .row -->
+    <% end %>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="profile-image">
+        <% if @user.avatar_file_name? %>
+          <%= image_tag @user.avatar.url(:medium), class: 'img-thumbnail img-responsive' %>
+        <% elsif @user.store_logo_file_name? %>
+          <%= image_tag @user.store_logo, class: 'img-thumbnail img-responsive' %>
+        <% else %>
+          <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive' %>
+        <% end %>
+        </div>
+        <h3><%= @user.full_name %></h3>
+        <% if @user.city? && @user.state? %>
+          <p class="text-muted"><i class="fa fa-map-marker"></i>  <%= @user.city %>, <%= @user.state %></p>
+        <% end %>
+        <p class="text-muted"><i class="fa fa-clock-o"></i> Joined <%= @user.created_at.strftime('%B %Y') %></p>
+        <% if @user.supplier? %>
+          <p class="text-muted"><%= @supplier.products.count %> Products Listed</p>
+          <!-- <a href="#" class="btn btn-favorite"> Favorite</a> -->
+        <% end %>
+      </div>
+
+      <div id="profile-about" class="col-sm-8">
+        <% if @user.about? %>
+          <div class="about-user"><%= simple_format(@user.about, class: 'lead') %></div>
+        <% else %>
+          <p class="lead">Say something about yourself...<%= link_to "add your bio", edit_path(@user) %>!</p>
+        <% end %>
+      </div>
+
+    </div><!-- close .row -->
+  </div><!-- close .container -->
+
+  <% if @user.supplier? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h3><%= @user.first_name %>'s Products</h3>
+        </div>
+        <% if @supplier.products.count > 0 %>
+          <div id="products" class="row">
+            <% @supplier.products.each do |product| %>
+            <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 product-list-item">
+              <%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+              <div class="product-card">
+                <% if product.photo_file_name? %>
+                  <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+                <% elsif image_url product.images.count > 0 %>
+                  <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+                <% else %>
+                  <div class="product-image background-image" style="background-image: url(<%= image_tag("profile-placeholder.jpg")%>"></div>
+                <% end %>
+                <div class="product-info">
+                  <h3><%= truncate(product.name, :length => 50) %></h3>
+                  <p class="product-description"><%= truncate(product.leema_description, :length => 70) %></p>
+                  <p class="product-price" itemprop="price"><%= product.display_price %></p>
+                </div><!-- close .product-info -->
+
+              </div><!-- close .product-card -->
+              <% end %>
+            </div><!-- close .product-list-item -->
+            <% end %>
+          </div><!-- close #products.row -->
+        <% else %>
+          <p>No products added yet.</p>
+        <% end %>
+      </div><!-- close .col-xs-12 -->
+    </div><!-- close .row -->
+  </div><!-- close .container -->
+  <% end %>
+
+
+
+</body>

@@ -1,0 +1,144 @@
+<% cache [current_currency, @product] do %>
+ <div id="product-brand" class="row">
+    <div class="col-xs-12">
+      <a href="/<%= @product.suppliers.first.users.first.id %>">
+        <% if @product.suppliers.first.users.first.store_logo_file_name? %>
+          <%= image_tag @product.suppliers.first.users.first.store_logo(:default), class: "seller-logo" %>
+        <% else %>
+          <%= image_tag("leema-seller-logo.jpg", :class => "seller-logo") %>
+        <% end %>
+      </a>
+        <div class="seller-info">
+          <a href= "/<%= @product.suppliers.first.users.first.id %>">
+            <h3 class="seller-name"><%= @product.suppliers.first.users.first.store_name %></h3>
+          </a>
+          <p class="seller-location"><i class="fa fa-map-marker"></i> <%= @product.suppliers.first.users.first.city %>, <%= @product.suppliers.first.users.first.state %></p>
+        </div>
+    </div>
+    <!-- <div class="col-sm-2 col-xs-4">
+        <a href="#" class="btn btn-favorite">
+          Favorite
+        </a>
+   </div> -->
+  </div>
+  <div data-hook="product_show" itemscope itemtype="http://schema.org/Product">
+    <% @body_id = 'product-details' %>
+    <div class="row" id="product-info-page">
+      <div class="col-sm-6" data-hook="product_left_part">
+        <div data-hook="product_left_part_wrap">
+
+          <div id="product-images" data-hook="product_images">
+            <div id="main-image" data-hook>
+              <div class="text-center">
+                <%= render :partial => 'image' %>
+              </div>
+            </div>
+          </div>
+
+          <div data-hook="product_properties">
+            <%= render :partial => 'properties' %>
+          </div>
+
+          <div data-hook="promotions">
+            <%= render :partial => 'promotions' %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6" data-hook="product_right_part">
+        <div data-hook="product_right_part_wrap">
+
+          <h1 class="product-title" itemprop="name"><%= accurate_title %></h1>
+
+          <div id="product-description" data-hook="product_description">
+
+            <div itemprop="description" data-hook="description">
+              <%= @product.leema_description %>
+            </div>
+
+            <div id="cart-form" data-hook="cart_form">
+              <%= render :partial => 'cart_form' %>
+            </div>
+
+            <!-- <div id="custom-order">
+              <a href="#" class="btn btn-info" data-toggle="modal" data-target="#customOrder">Custom Order</a>
+              <div class="modal fade" id="customOrder" tabindex="-1" role="dialog" aria-labelledby="customOrder" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="exampleModalLabel">Leema Custom Order</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="quantity" class="control-label">Quantity:</label>
+                          <input type="number" value="1" class="form-control" id="quantity">
+                        </div>
+                        <div class="form-group">
+                          <label for="message-text" class="control-label">Description:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputFile">Photo</label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Photo should be at least 500px by 500px.</p>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send Custom Order</button>
+                    </div>
+                  </div>
+                </div>
+              </div><
+            </div> -->
+
+          </div><!-- close .produt-description -->
+
+          <div id="more-info">
+            <div role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                <li role="presentation"><a href="#ingredients" aria-controls="ingredients" role="tab" data-toggle="tab">Ingredients</a></li>
+                <li role="presentation"><a href="#shipping-info" aria-controls="shipping-info" role="tab" data-toggle="tab">Shipping Info</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="about">
+                  <% if @product.suppliers.first.users.first.about != "" %>
+                    <%= simple_format(@product.suppliers.first.users.first.about) %>
+                  <% else %>
+                    <p>This seller has no info.</p>
+                  <% end %>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="ingredients">
+                  <ul>
+                    <li>This</li>
+                    <li>Is</li>
+                    <li>Where</li>
+                    <li>We</li>
+                    <li>List</li>
+                    <li>Ingredients</li>
+                  </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="shipping-info">
+                  <p>This is where we list the user's shipping information.  Prices, places they ship, etc.</p>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- close #more-info -->
+
+          <%= render :partial => 'taxons' %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+

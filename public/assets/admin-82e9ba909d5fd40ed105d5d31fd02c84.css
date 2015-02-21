@@ -1,0 +1,59 @@
+/* Admin Styles */
+/* line 3, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+fieldset .filter-actions {
+  margin-bottom: 32px;
+}
+
+/* line 7, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+#admin-menu ul {
+  margin-bottom: 0px;
+}
+
+/* line 11, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 16, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+table th.actions [class*='fa-'].no-text, table td.actions [class*='fa-'].no-text {
+  height: 30px;
+  width: 30px;
+  padding-top: 7px;
+  padding-left: 3px;
+}
+
+/* line 23, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+#content-header {
+  border-bottom: none;
+}
+
+/* line 27, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+.pagination {
+  display: block;
+  text-align: left;
+}
+
+/* line 32, /Users/bhay/Code/Leema/app/assets/stylesheets/admin/admin.css.scss */
+fieldset .filter-actions button, fieldset .filter-actions .button, fieldset .filter-actions input[type="submit"], fieldset .filter-actions input[type="button"], fieldset .filter-actions span.or {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  -moz-box-shadow: none;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+ */
+
+

@@ -1,0 +1,1 @@
+$(document).ready(function(){function e(){var e=getViewport()[0],o=getViewport()[1];if(e!=t){var r=e/3;$(".section-cover").css("height",r)}i=o,t=e}if($(".section-cover").length>0){var t=getViewport()[0],i=getViewport()[1],o=t/3;$(".section-cover").css("height",o);var r;$(window).on("resize",function(){clearTimeout(r),r=setTimeout(e,1e3)})}});

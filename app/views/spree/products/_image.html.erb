@@ -1,0 +1,19 @@
+<% if @product.images.count > 0 %>
+	<% if (@product.images + @product.variant_images).uniq.size > 1 %>
+	  <div class="flexslider">
+		  <ul class="slides">
+		  	<% @product.images.each do |i| %>
+			    <li data-thumb="<%= image_path i.attachment.url(:product) %>">
+			      <%= image_tag(i.attachment.url(:large)) %>
+			    </li>
+		    <% end %>
+		  </ul>
+		</div>
+	<% else %>
+		<%= image_tag @product.images.first.attachment.url(:large), :itemprop => "image", :class => "img-responsive center-block single" %>
+	<% end %>
+
+<% else %>
+  <%= image_tag("leema-product-placeholder.jpg", :class => "img-responsive center-block single") %>
+<% end %>
+

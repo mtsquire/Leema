@@ -1,0 +1,33 @@
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= csrf_meta_tags %>
+
+<title>
+  <% if content_for? :title %>
+    <%= yield :title %>
+  <% else %>
+    <%= "Leema #{Spree.t('administration')}: " %>
+    <%= Spree.t(controller.controller_name, :default => controller.controller_name.titleize) %>
+  <% end %>
+</title>
+
+<%= favicon_link_tag 'favicon.ico' %>
+
+
+<%= stylesheet_link_tag 'application', :media => 'all' %>
+<%= stylesheet_link_tag 'spree/backend/all' %>
+<%= stylesheet_link_tag 'admin', :media => 'all' %>
+
+
+<%= javascript_include_tag 'spree/backend/all' %>
+<%= javascript_include_tag "bootstrap" %>
+
+<%= render "spree/admin/shared/translations" %>
+
+<%= javascript_tag do -%>
+  jQuery.alerts.dialogClass = 'spree';
+  <%== "var AUTH_TOKEN = #{form_authenticity_token.inspect};" %>
+<% end -%>
+
+<%= yield :head %>
