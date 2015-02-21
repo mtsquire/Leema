@@ -68,7 +68,7 @@
           <div id="products" class="row">
             <% @supplier.products.each do |product| %>
             <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 product-list-item">
-              <%= link_to 'store/products/' + product.id.to_s, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+              <%= link_to 'store/products/' + product.slug, :class => 'product-link', :itemprop => "name", :title => product.name do %>
               <div class="product-card">
                 <% if product.images.count > 0 %>
                   <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
