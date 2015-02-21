@@ -242,6 +242,7 @@ textarea {
 	}
 }
 
+
 .navbar {
 	z-index: 1000;
 }
@@ -531,6 +532,18 @@ footer .container {
 footer {
 	background: darken(@body-bg, 15%);
 
+	a {
+		color: @link-color;
+
+		&:hover {
+			color: @link-hover-color;
+		}
+
+		&:visited {
+			color: @link-color;
+		}
+	}
+
 	.top {
 		padding: 20px 0;
 		background: darken(@body-bg, 5%);
@@ -574,6 +587,22 @@ footer {
 	.row {
 		margin-bottom: 0px;
 	}
+
+
+	input[type="submit"], input[type="button"], button, .button {
+		background: @brand-primary;
+		color: #fff;
+		font-weight: normal !important;
+
+		&:hover {
+			background: #076aff !important;
+			border-top: none;
+		}
+	}
+
+	.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+		margin-left: 0px;
+	}
 }
 
 footer ul.social {
@@ -587,7 +616,7 @@ footer ul.social li a {
 	width: 50px;
 	height: 50px;
 	padding: 5px;
-	border: 3px solid #212121;
+	border: 3px solid @link-color;
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
 	border-radius: 50px;
@@ -595,10 +624,12 @@ footer ul.social li a {
 	margin-top: 0;
 	margin-right: 0;
 	margin-left: 13px;
+	color: @link-color;
 }
 
 footer ul.social li a:hover {
-	border: 3px solid @brand-primary;
+	border: 3px solid @link-hover-color;
+	color: @link-hover-color;
 }
 
 .footer-links {
@@ -613,6 +644,7 @@ footer ul.social li a:hover {
 	.btn.btn-primary {
 		color: #fff;
 		font-size: 13px;
+		font-weight: normal;
 	}
 
 }
