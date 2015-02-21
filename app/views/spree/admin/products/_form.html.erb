@@ -20,10 +20,16 @@
     <div data-hook="admin_product_form_description">
       <%= f.field_container :description do %>
         <%= f.label :description, Spree.t(:description) %>
-        <%= f.text_area :leema_description, {:rows => "#{unless @product.has_variants? then '20' else '13' end}", :class => 'fullwidth'} %>
+        <%= f.text_area :leema_description, {:rows => "7", :class => 'fullwidth'} %>
         <%= f.error_message_on :leema_description %>
       <% end %>
     </div>
+
+    <%= f.field_container :ingredients do %>
+      <%= f.label :ingredients, Spree.t(:ingredients) %>
+      <%= f.text_area :ingredients, {:rows => "7", :class => 'fullwidth title'} %>
+      <%= f.error_message_on :ingredients %>
+    <% end %>
   </div>
 
   <div class="right four columns omega" data-hook="admin_product_form_right">

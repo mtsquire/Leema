@@ -20,6 +20,12 @@
       <%= f.error_message_on :leema_description %>
     <% end %>
 
+    <%= f.field_container :ingredients do %>
+      <%= f.label :ingredients, Spree.t(:ingredients) %> <span class="required">*</span><br />
+      <%= f.text_area :ingredients, {:rows => "7", :class => 'fullwidth title'} %>
+      <%= f.error_message_on :ingredients %>
+    <% end %>
+
 
     <div data-hook="new_product_attrs" class="row">
       <% unless @product.has_variants? %>

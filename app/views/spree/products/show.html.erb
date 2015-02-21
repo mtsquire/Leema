@@ -12,7 +12,9 @@
           <a href= "/<%= @product.suppliers.first.users.first.id %>">
             <h3 class="seller-name"><%= @product.suppliers.first.users.first.store_name %></h3>
           </a>
+          <% if @product.suppliers.first.users.first.state != "" && @product.suppliers.first.users.first.city != "" %>
           <p class="seller-location"><i class="fa fa-map-marker"></i> <%= @product.suppliers.first.users.first.city %>, <%= @product.suppliers.first.users.first.state %></p>
+          <% end %>
         </div>
     </div>
     <!-- <div class="col-sm-2 col-xs-4">
@@ -117,14 +119,9 @@
                   <% end %>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="ingredients">
-                  <ul>
-                    <li>This</li>
-                    <li>Is</li>
-                    <li>Where</li>
-                    <li>We</li>
-                    <li>List</li>
-                    <li>Ingredients</li>
-                  </ul>
+                <% if @product.ingredients %>
+                  <%= simple_format(@product.ingredients) %>
+                <% end %>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="shipping-info">
                   <p>This is where we list the user's shipping information.  Prices, places they ship, etc.</p>
