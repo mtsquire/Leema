@@ -34,7 +34,7 @@
 
   get '/sell' => 'sell#index'
 
-  get '/:id', to: 'profiles#show'
+  get '/:id', to: 'profiles#show', as: :profile
 
   root 'welcome#index'
   

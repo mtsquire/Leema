@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :display_name, presence: true, uniqueness: true
 
   has_many :ratings
   has_many :comments, dependent: :destroy
@@ -25,7 +26,12 @@ class User < ActiveRecord::Base
   #callbacks
   after_save :create_admin
 
+  #instance methods
 
+  def to_param
+    display_name
+  end
+  
   def full_name
     first_name + " " + last_name
   end
