@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
   end
 
   def slugify
-    self.display_name = self.display_name.downcase.gsub(" ","-")
+    if display_name
+      self.display_name = self.display_name.downcase.gsub(" ","-")
+    end
   end
 
   def full_name
