@@ -53,6 +53,11 @@
         <% end %>
       </div>
 
+      <!-- Hidden and automatically sets to today's date-->
+    <div data-hook="admin_product_form_available_on">
+      <%= f.hidden_field :available_on, :value => Date.today %>
+    </div>
+
     </div>
 
     <div class="row">
