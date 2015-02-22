@@ -9,20 +9,20 @@
     <legend align="center"><%= Spree.t(:new_product) %></legend>
 
     <%= f.field_container :name do %>
-      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span><br />
-      <%= f.text_field :name, :class => 'fullwidth title' %>
+      <%= f.label :name, Spree.t(:product_name) %> <span class="required">*</span><br />
+      <%= f.text_field :name, :class => 'fullwidth title', :placeholder => 'Product Name' %>
       <%= f.error_message_on :name %>
     <% end %>
 
     <%= f.field_container :leema_description do %>
-      <%= f.label :leema_description, Spree.t(:description) %> <span class="required">*</span><br />
-      <%= f.text_area :leema_description, {:rows => "7", :class => 'fullwidth title'} %>
+      <%= f.label :leema_description, Spree.t(:product_description) %> <span class="required">*</span><br />
+      <%= f.text_area :leema_description, {:rows => "7", :class => 'fullwidth title', :placeholder => "Tell the item's story and explain why it's special.  Try to answer questions your buyers will have."} %>
       <%= f.error_message_on :leema_description %>
     <% end %>
 
     <%= f.field_container :ingredients do %>
       <%= f.label :ingredients, Spree.t(:ingredients) %> <span class="required">*</span><br />
-      <%= f.text_area :ingredients, {:rows => "7", :class => 'fullwidth title'} %>
+      <%= f.text_area :ingredients, {:rows => "7", :class => 'fullwidth title', :placeholder => 'Please list all ingredients contained in your product.'} %>
       <%= f.error_message_on :ingredients %>
     <% end %>
 
@@ -47,20 +47,18 @@
 
       <div data-hook="new_product_price" class="col-sm-3">
         <%= f.field_container :price do %>
-          <%= f.label :price, Spree.t(:master_price) %> <span class="required">*</span><br />
+          <%= f.label :price, Spree.t(:product_price) %> <span class="required">*</span><br />
           <%= f.text_field :price, :value => number_to_currency(@product.price, :unit => ''), :class => 'fullwidth' %>
           <%= f.error_message_on :price %>
         <% end %>
       </div>
 
-      <div data-hook="new_product_available_on" class="omega col-sm-3">
-        <%= f.field_container :available_on do %>
-          <%= f.label :available_on, Spree.t(:available_on) %>
-          <%= f.error_message_on :available_on %>
-          <%= f.text_field :available_on, :class => 'datepicker fullwidth' %>
-        <% end %>
-      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Your take: <span class="net-price"></span></p>
+      </div>
     </div>
 
     <div class='row'>
@@ -102,4 +100,21 @@
     }
   })(jQuery);
 //]]>
+
+  $(document).ready(function(){
+    $( "#product_price" ).keyup(function() {
+
+        var value = $( this ).val(),
+            percent = (90/100),
+            netPrice = Math.round(value * percent).toFixed(2);
+
+            if (isNaN(netPrice)) {
+              $( ".net-price" ).text( "Please enter a numeric value." );
+            } else {
+              $( ".net-price" ).text( netPrice );
+            }
+
+      }).keyup();
+  });
+
 </script>
