@@ -12,7 +12,7 @@
           <a href= "/<%= @product.suppliers.first.users.first.display_name %>">
             <h3 class="seller-name"><%= @product.suppliers.first.users.first.store_name %></h3>
           </a>
-          <% if @product.suppliers.first.users.first.state && @product.suppliers.first.users.first.city %>
+          <% if @product.suppliers.first.users.first.state != "" || nil && @product.suppliers.first.users.first.city != "" || nil %>
           <p class="seller-location"><i class="fa fa-map-marker"></i> <%= @product.suppliers.first.users.first.city %>, <%= @product.suppliers.first.users.first.state %></p>
           <% end %>
         </div>

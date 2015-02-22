@@ -25,13 +25,19 @@ class User < ActiveRecord::Base
 
   #callbacks
   after_save :create_admin
+  before_save :slugify
+  before_update :slugify
 
   #instance methods
 
   def to_param
     display_name
   end
-  
+
+  def slugify
+    self.display_name = self.display_name.downcase.gsub(" ","-")
+  end
+
   def full_name
     first_name + " " + last_name
   end
