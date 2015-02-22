@@ -58,15 +58,6 @@
 
     <div class="clear"></div>
 
-    <!-- Hidden and automatically sets to today's date-->
-    <div data-hook="admin_product_form_available_on">
-      <%= f.field_container :available_on do %>
-        <%= f.label :available_on, Spree.t(:available_on) %>
-        <%= f.error_message_on :available_on %>
-        <%= f.text_field :available_on, :value => Date.today, :class => 'datepicker' %>
-      <% end %>
-    </div>
-
     <% if @product.has_variants? %>
       <div data-hook="admin_product_form_multiple_variants">
         <%= f.label :skus, Spree.t(:sku).pluralize %>

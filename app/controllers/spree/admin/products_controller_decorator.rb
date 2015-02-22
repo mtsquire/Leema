@@ -28,8 +28,6 @@ Spree::Admin::ProductsController.class_eval do
     
   end
 
-  
-
   def get_suppliers
     @suppliers = Spree::Supplier.order(:name)
   end
@@ -47,11 +45,5 @@ Spree::Admin::ProductsController.class_eval do
       @product.add_supplier!(try_spree_current_user.supplier_id)
     end
   end
-
-    def load_product
-      puts "Loading products"
-      @products = Spree::Product.all
-      @product = @products.friendly.find(params[:id])
-    end
 
 end
