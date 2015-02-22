@@ -48,4 +48,10 @@ Spree::Admin::ProductsController.class_eval do
     end
   end
 
+    def load_product
+      puts "Loading products"
+      @products = Spree::Product.all
+      @product = @products.friendly.find(params[:id])
+    end
+
 end
