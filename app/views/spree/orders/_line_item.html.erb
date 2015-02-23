@@ -3,10 +3,10 @@
   <tr class="<%= cycle('', 'alt') %> line-item">
     <td class="cart-item-image" data-hook="cart_item_image">
       <% if variant.images.length == 0 %>
-        <%= link_to small_image(variant.product), variant.product %>
+        <%= link_to image_tag "leema-seller-logo.jpg" %>
       <% else %>
         <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
-      <% end %>
+      <% end %>       
     </td>
     <td class="cart-item-description" data-hook="cart_item_description">
       <h4><%= link_to line_item.name, product_path(variant.product) %></h4>
@@ -17,7 +17,7 @@
         </span>
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
-        <%= variant.product.leema_description %>
+        <!-- removed the description here -->
       </span>
     </td>
     <td class="cart-item-price" data-hook="cart_item_price">
