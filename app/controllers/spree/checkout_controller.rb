@@ -47,15 +47,17 @@ module Spree
           #     :recipient => product.suppliers.first.token
           #   )
           # end
-          transfer = Stripe::Transfer.create(
-            #Take 10% for ourselves
-            :amount => (@order.products.each do |product|
-                          (product.price * 90).floor
-                        end
-                        + @order.shipment_total),
-            :currency => "usd",
-            :recipient => product.suppliers.first.token
-          )
+          if Rails.env.production?
+            transfer = Stripe::Transfer.create(
+              #Take 10% for ourselves
+              :amount => (@order.products.each do |product|
+                            (product.price * 90).floor
+                          end
+                          + @order.shipment_total),
+              :currency => "usd",
+              :recipient => product.suppliers.first.token
+            )
+          end
         else
           redirect_to checkout_state_path(@order.state)
           flash.notice = Spree.t(:something_bad_happened)
