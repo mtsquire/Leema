@@ -48,6 +48,7 @@ module Spree
           #   )
           # end
           if Rails.env.production?
+            #Transfer money to supplier bank account
             transfer = Stripe::Transfer.create(
               #Take 10% for ourselves
               :amount => (@order.products.each do |product|
