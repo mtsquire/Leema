@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   def show  
     @user = User.find_by_display_name(params[:id])
     @supplier = @user.supplier
+    @orders = @user.spree_orders.all
 
     if @user
       render action: :show
