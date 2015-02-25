@@ -37,6 +37,7 @@
             <ul class="dropdown-menu" role="menu">
               
               <% if current_user.supplier? %>
+                <li><%= link_to "Profile", "/" + spree_current_user.to_param %></li>
                 <li><%= link_to "My Store", "/store/admin" %></li>
                 <li><%= link_to "New Product", "/store/admin/products/new" %></li>
               <% end %>
