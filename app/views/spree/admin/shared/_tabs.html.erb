@@ -13,7 +13,5 @@
 
   <%= tab :configurations, :general_settings, :tax_categories, :tax_rates, :zones, :countries, :states, :payment_methods, :shipping_methods, :shipping_categories, :stock_transfers, :stock_locations, :trackers, :label => 'configuration', :icon => 'wrench', :url => spree.edit_admin_general_settings_path %>
 
-  <%= tab(:promotions, :url => spree.admin_promotions_path, :icon => 'bullhorn') %>
-
   <%= tab(:users, :url => spree.admin_users_path, :icon => 'user') %>
 <% end %>
