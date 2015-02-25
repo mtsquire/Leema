@@ -37,27 +37,17 @@ module Spree
           flash.notice = Spree.t(:order_processed_successfully)
           flash['order_completed'] = true
           redirect_to completion_route
-          #Transfer money to supplier bank account
-          # @order.products.each do |product|
-          #   puts "Initiating Stripe transfer"
-          #   transfer = Stripe::Transfer.create(
-          #     #Take 10% for ourselves
-          #     :amount => (product.price * 90).floor,
-          #     :currency => "usd",
-          #     :recipient => product.suppliers.first.token
-          #   )
-          # end
+          # Transfer money to supplier bank account
           if Rails.env.production?
-            #Transfer money to supplier bank account
-            transfer = Stripe::Transfer.create(
-              #Take 10% for ourselves
-              :amount => (@order.products.each do |product|
-                            (product.price * 90).floor
-                          end
-                          + @order.shipment_total),
-              :currency => "usd",
-              :recipient => product.suppliers.first.token
-            )
+            @order.products.each do |product|
+              puts "Initiating Stripe transfer"
+              transfer = Stripe::Transfer.create(
+                #Take 10% for ourselves
+                :amount => (product.price * 90).floor,
+                :currency => "usd",
+                :recipient => product.suppliers.first.token
+              )
+            end
           end
         else
           redirect_to checkout_state_path(@order.state)
