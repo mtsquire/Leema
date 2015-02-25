@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   after_save :create_admin
   before_save :slugify
   before_update :slugify
+  after_update :slugify
 
   #instance methods
 
