@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
-  
+  #Used for rendering 404 pages
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 
   protected
     #Added so a user can edit their profile page.
