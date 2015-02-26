@@ -16,7 +16,7 @@
 			<h2 class="text-center">Explore The Most Popular Treats On The Market</h2>
 
 			<div id="featured-products" class="owl-carousel">
-				<% @products.shuffle.first(9) do |product| %>
+				<% @products.first(9) do |product| %>
 				  <div class="welcome-product">
 				  	<%= link_to 'store/products/' + product.slug, :class => 'product-link', :itemprop => "name", :title => product.name do %>
 					  	<div class="product-card">
