@@ -905,12 +905,21 @@ h6.review-author {
   }
 }
 
+
+
 #billing, #shipping, #shipping_method,
 #payment, #order_details, #order_summary, #checkout-summary {
 
   /* border: $default_border; */
   padding: 10px;
 
+  #line-items {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
 
   legend {
     text-transform: uppercase;
@@ -958,13 +967,21 @@ h6.review-author {
     &#order-total {
       text-transform: uppercase;
       font-size: $base_font_size + 4;
-      color: $body_text_color;
+      color: #fff;
 
       tr {
         border-top: $default_border;
 
         td {
           padding: 10px;
+          background: $leema_blue;
+          color: #fff;
+
+          span {
+            &#order_total {
+              color: #fff !important;
+            }
+          }
         }
       }
     }
