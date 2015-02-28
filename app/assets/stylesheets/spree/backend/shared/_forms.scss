@@ -134,7 +134,6 @@ span.info {
 }
 
 .field {
-  padding: 10px 0;
 
   &.checkbox {
     min-height: 73px;
@@ -192,6 +191,23 @@ span.info {
   color: very-light($color-error, 30);
   font-style: italic;
   font-size: 85%;
+}
+
+legend.title {
+  background-color: $color-1;
+  color: $color-2;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 15px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  i {
+    color: $color-link;
+  }
 }
 
 
