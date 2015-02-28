@@ -28,8 +28,8 @@
       <% end %>
       <%= f.field_container :country do %>
       <div class="form-group">
-        <%= f.label :country, Spree.t(:country) %>:<br />
-        <%= f.collection_select :country, available_countries, :iso, :name, {selected: 'US'}, {class: 'select2'} %>
+        <%= f.label :country_iso, Spree.t(:country) %>:<br />
+        <%= f.collection_select :country_iso, available_countries, :iso, :name, {selected: 'US'}, {class: 'select2'} %>
       </div>
       <% end %>
       <%= f.hidden_field :masked_number %>
