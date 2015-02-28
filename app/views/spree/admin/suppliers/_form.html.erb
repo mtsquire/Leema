@@ -1,6 +1,5 @@
 <div data-hook="supplier_address_wrapper" class="alpha six columns">
   <fieldset class="no-border-bottom">
-    <legend align="center"><%= Spree.t('contact_address') %></legend>
     <%= form.fields_for :address do |contact_form| %>
       <%= render :partial => 'spree/admin/shared/address_form', :locals => { :f => contact_form, :name => Spree.t(:contact_address), :type => "shipping" } %>
     <% end %>
@@ -9,23 +8,16 @@
 
 <div data-hook="supplier_details_wrapper" class="alpha six columns">
   <fieldset class="no-border-bottom">
-    <legend><%= Spree.t('supplier_details') %></legend>
     <!-- auto populate name and email if user is a new supplier -->
-    <% if spree_current_user.supplier? == false %>
-      <%= form.field_container :name do %>
-        <%= form.label :full_name, Spree::Supplier.human_attribute_name(:full_name) %>:<br />
-        <%= form.text_field :name, :class => 'fullwidth title', :value => spree_current_user.full_name %>
-      <% end %>
+    <% if spree_current_user.supplier? == false %>  
+      <%= form.hidden_field :name, :class => 'fullwidth title', :value => spree_current_user.full_name %>
       <%= form.field_container :email do %>
         <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:<br />
         <%= form.email_field :email, :class => 'fullwidth text', :value => spree_current_user.email %>
       <% end %>
     <!-- when editing or viewing another supplier dont auto populate name/email -->
     <% else %>
-      <%= form.field_container :name do %>
-        <%= form.label :full_name, Spree::Supplier.human_attribute_name(:full_name) %>:<br />
-        <%= form.text_field :name, :class => 'fullwidth title' %>
-      <% end %>
+        <%= form.hidden_field :name, :class => 'fullwidth title' %>
       <%= form.field_container :email do %>
         <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:<br />
         <%= form.email_field :email, :class => 'fullwidth text' %>
@@ -35,19 +27,7 @@
       <%= form.label :url, Spree::Supplier.human_attribute_name(:url) %>:<br />
       <%= form.text_field :url, :class => 'fullwidth text' %>
     <% end %>
-    <%= form.field_container :tax_id do %>
-      <%= form.label :tax_id, Spree::Supplier.human_attribute_name(:tax_id) %>:<br />
-      <%= form.text_field :tax_id, :class => 'fullwidth text' %>
-    <% end %>
     <% if spree_current_user.leema_admin? == true %>
-      <%= form.field_container :commission_flat_rate do %>
-        <%= form.label :commission_flat_rate, Spree::Supplier.human_attribute_name(:commission_flat_rate) %>:<br />
-        <%= form.text_field :commission_flat_rate, :class => 'fullwidth text' %>
-      <% end %>
-      <%= form.field_container :commission_percentage do %>
-        <%= form.label :commission_percentage, Spree::Supplier.human_attribute_name(:commission_percentage) %>:<br />
-        <%= form.text_field :commission_percentage, :class => 'fullwidth text', :value => '10' %>
-      <% end %>
       <%= form.field_container :users do %>
         <%= form.label :users %><br/>
         <%= hidden_field_tag 'supplier[user_ids_string]', form.object.user_ids.join(','), class: 'fullwidth user_picker' %>

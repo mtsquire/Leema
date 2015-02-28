@@ -33,12 +33,12 @@
       <%= render :partial => 'spree/admin/shared/header' %>
       <%= render :partial => 'spree/admin/shared/menu' %>
       <%= render :partial => 'spree/admin/shared/sub_menu' %>
-      <%= render :partial => 'spree/admin/shared/content_header' %>
+      <%-# render :partial => 'spree/admin/shared/content_header' -%>
 
       <div class="container">
         <div class="row">
           <div class="<%= 'with-sidebar ' if content_for?(:sidebar) %>" id="content" data-hook>
-            <%= render :partial => 'spree/admin/shared/table_filter' %>
+            <%-# render :partial => 'spree/admin/shared/table_filter' -%>
 
             <div class="<%= if content_for?(:sidebar) then 'twelve' else 'sixteen' end %> columns">
               <%= yield %>
