@@ -58,9 +58,8 @@ gem 'aws-sdk' #For using S3 to store images
 gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship'
 gem 'spree_marketplace', github: 'jdutil/spree_marketplace'
 gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings', branch: '2-3-stable'
-group :development do #TESTING
-  gem "braintree" #For payment processing
-end
+# custom shipping
+gem 'easypost'
 
 #For Heroku deployment
 gem 'rails_12factor', group: :production
