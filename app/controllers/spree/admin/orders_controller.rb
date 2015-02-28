@@ -38,9 +38,7 @@ module Spree
         # lazyoading other models here (via includes) may result in an invalid query
         # e.g. SELECT  DISTINCT DISTINCT "spree_orders".id, "spree_orders"."created_at" AS alias_0 FROM "spree_orders"
         # see https://github.com/spree/spree/pull/3919 
-        @orders = @search.result(distinct: true).
-          page(params[:page]).
-          per(params[:per_page] || Spree::Config[:orders_per_page])
+        
 
         # Restore dates
         params[:q][:created_at_gt] = created_at_gt
@@ -49,7 +47,11 @@ module Spree
         # For scoping orders to suppliers , add the leema admin conditional later
         @user = spree_current_user
         @supplier = @user.supplier
-        
+        if @user.leema_admin? == true
+          @orders = Spree::Order.all
+        else
+          @orders = @user.supplier.products.orders
+        end        
       end
 
       def new
