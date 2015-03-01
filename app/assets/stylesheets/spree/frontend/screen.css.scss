@@ -914,6 +914,7 @@ h6.review-author {
   padding: 10px;
 
   #line-items {
+    margin-bottom: 0px;
     tr {
       td {
         vertical-align: middle;
@@ -936,6 +937,18 @@ h6.review-author {
   input[type="tel"], input[type="number"],
   select, textarea {
     width: 100%;
+  }
+}
+
+#order-total {
+  tr {
+    background: $leema_blue;
+    text-align: right;
+    td.total {
+      span {
+        color: #fff;
+      }
+    }
   }
 }
 
