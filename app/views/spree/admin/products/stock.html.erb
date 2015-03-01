@@ -59,7 +59,7 @@
               </thead>
               <tbody>
               <% if spree_current_user.leema_admin? == true %>
-                <% variant.stock_items.each do |item| %>             
+                <% variant.stock_items.each do |item| %>
                   <% next unless @stock_locations.include?(item.stock_location) %>
                   <tr id="stock-item-<%= item.id %>" class="<%= cycle('odd', 'even', :name => 'stock_locations')%>">
                     <td class="align-center"><%= item.stock_location.name %></td>
