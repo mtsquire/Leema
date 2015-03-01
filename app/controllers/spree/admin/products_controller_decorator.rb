@@ -15,8 +15,11 @@ Spree::Admin::ProductsController.class_eval do
   def index
     @user = spree_current_user
     @supplier = @user.supplier
-    @products = Spree::Product.search(params[:search])
-
+    if @user.leema_admin? == true
+      @collection = Spree::Product.all
+    else
+      @collection = @user.supplier.products.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
