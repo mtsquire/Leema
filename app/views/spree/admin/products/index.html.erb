@@ -56,8 +56,6 @@
 
 <div id="new_product_wrapper" data-hook></div>
 
-<%= paginate @collection %>
-
 <% if @collection.any? %>
   <table class="index" id="listing_products">
     <colgroup>
@@ -75,8 +73,6 @@
       </tr>
     </thead>
     <tbody>
-    <!-- Show all products for Leema Admins -->
-    <% if spree_current_user.leema_admin? == true %>
       <% @collection.each do |product| %>
         <tr <%== "style='color: red;'" if product.deleted? %> id="<%= spree_dom_id product %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
           <td class="align-center"><%= product.sku rescue '' %></td>
@@ -90,22 +86,6 @@
           </td>
         </tr>
       <% end %>
-    <% else %>
-      <!-- Show only the supplier products for non Leema Admins -->
-      <% @user.supplier.products.each do |product| %>
-        <tr <%== "style='color: red;'" if product.deleted? %> id="<%= spree_dom_id product %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
-          <td class="align-center"><%= product.sku rescue '' %></td>
-          <td class="align-center"></td>
-          <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-          <td class="align-center"><%= product.display_price.to_html rescue '' %></td>
-          <td class="actions" data-hook="admin_products_index_row_actions">
-            <%= link_to_edit product, :no_text => true, :class => 'edit' if can?(:edit, product) && !product.deleted? %>
-            &nbsp;
-            <%= link_to_delete product, :no_text => true if can?(:delete, product) && !product.deleted? %>
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
     </tbody>
   </table>
 <% else %>
@@ -114,5 +94,3 @@
     <%= link_to Spree.t(:add_one), spree.new_admin_product_path %>!
   </div>
 <% end %>
-
-<%= paginate @collection %>
