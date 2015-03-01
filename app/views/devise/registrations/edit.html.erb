@@ -5,84 +5,106 @@
       <h2>Edit Profile</h2>
         <%= devise_error_messages! %>
 
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, autocomplete: "off", class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, autocomplete: "off", class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :display_name %>
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">www.leemaeats.com/</span>
-            <%= f.text_field :display_name, class: 'form-control input_wide' %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, autocomplete: "off", class: 'form-control' %>
           </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :about_me %>
-          <%= f.text_area :about, placeholder: "Tell us about yourself.", class: 'form-control', rows: '4' %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, autocomplete: "off", class: 'form-control' %>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :your_face %>
-          <%= f.file_field :avatar %>
-          <p class="help-block">Recommended size 200px x 200px.</p>
-          <% if @user.avatar_file_name? %>
-            <p class="icon-title">Current Profile Photo:</p>
-            <%= image_tag @user.avatar.url(:medium), class: "img-responsive" %>
-          <% else %>
-            <p class="icon-title">Current Profile Photo:</p>
-            <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive profile-photo-admin' %>
-          <% end %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :City %>
-          <%= f.text_field :city, class: 'form-control' %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :display_name %>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">www.leemaeats.com/</span>
+              <%= f.text_field :display_name, class: 'form-control input_wide' %>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :State %>
-          <%= f.text_field :state, class: 'form-control' %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :City %>
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
         </div>
 
-        <div><%= f.submit "Update Profile", :class => "btn btn-primary" %></div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :State %>
+            <%= f.text_field :state, class: 'form-control' %>
+          </div>
+        </div>
 
-        <hr>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.label :about_me %>
+            <%= f.text_area :about, placeholder: "Tell us about yourself.", class: 'form-control', rows: '4' %>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.label :your_face %>
+            <%= f.file_field :avatar %>
+            <p class="help-block">Recommended size 200px x 200px.</p>
+            <% if @user.avatar_file_name? %>
+              <p class="icon-title">Current Profile Photo:</p>
+              <%= image_tag @user.avatar.url(:medium), class: "img-responsive" %>
+            <% else %>
+              <p class="icon-title">Current Profile Photo:</p>
+              <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive profile-photo-admin' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-xs-12 text-center"><%= f.submit "Update Profile", :class => "btn btn-primary" %></div>
+    </div>
+    <hr>
+    <div class="row">
 
         <h2>Update Password</h2>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-
-        <div class="form-group">
-          <%= f.label :new_password %>
-          <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-          <p class="help-block">(leave blank if you don't want to change it)</p>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.label :new_password %>
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+            <p class="help-block">(leave blank if you don't want to change it)</p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.label :new_password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.label :current_password %>
+            <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+            <p class="help-block">(we need your current password to confirm your changes)</p>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :new_password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-        </div>
+        <div class="col-xs-12 text-center"><%= f.submit "Update Password", :class => "btn btn-primary" %></div>
 
-        <div class="form-group">
-          <%= f.label :current_password %>
-          <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
-          <p class="help-block">(we need your current password to confirm your changes)</p>
-        </div>
-
-        <div><%= f.submit "Update Password", :class => "btn btn-primary" %></div>
-        <div class="text-right">
+        <div class="col-xs-12 text-right">
           <p><small>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></small></p>
         </div>
 

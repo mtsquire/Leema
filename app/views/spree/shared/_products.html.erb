@@ -46,9 +46,9 @@
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
 
-              <% if product.suppliers.first.users.first.store_logo_file_name? %>
+              <% if product.suppliers.first.store_logo_file_name? %>
 
-                <%= image_tag product.suppliers.first.users.first.store_logo(:default), :class => 'seller-logo-mini' %>
+                <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
 
               <% end %>
             </div>
