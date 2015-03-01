@@ -14,35 +14,63 @@
         <% if spree_current_user.supplier? == false %>
           <%= form.hidden_field :name, :class => 'fullwidth title', :value => spree_current_user.full_name %>
           <%= form.field_container :email do %>
-            <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:<br />
-            <%= form.email_field :email, :class => 'fullwidth text', :value => spree_current_user.email %>
+            <div class="form-group">
+              <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:
+              <%= form.email_field :email, :class => 'form-control', :value => spree_current_user.email %>
+            </div>
           <% end %>
         <!-- when editing or viewing another supplier dont auto populate name/email -->
         <% else %>
             <%= form.hidden_field :name, :class => 'fullwidth title' %>
           <%= form.field_container :email do %>
-            <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:<br />
-            <%= form.email_field :email, :class => 'fullwidth text' %>
+            <div class="form-group">
+              <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:
+              <%= form.email_field :email, :class => 'form-control' %>
+            </div>
           <% end %>
         <% end %>
         <%= form.field_container :url do %>
-          <%= form.label :url, Spree::Supplier.human_attribute_name(:url) %>:<br />
-          <%= form.text_field :url, :class => 'fullwidth text' %>
+          <div class="form-group">
+            <%= form.label :url, Spree::Supplier.human_attribute_name(:url) %>:
+            <%= form.text_field :url, :class => 'form-control' %>
+          </div>
         <% end %>
         <%= form.field_container :store_name do %>
-          <%= form.label :store_name, Spree::Supplier.human_attribute_name(:store_name) %><br />
-          <%= form.text_field :store_name, :class => 'fullwidth text' %>
+          <div class="form-group">
+            <%= form.label :store_name, Spree::Supplier.human_attribute_name(:store_name) %>
+            <%= form.text_field :store_name, :class => 'form-control' %>
+          </div>
         <% end %>
-        <%= form.field_container :cover_photo do %>
-          <%= form.label :cover_photo, Spree::Supplier.human_attribute_name(:cover_photo) %><br />
-          <%= form.file_field :cover_photo %>
-        <% end %>
-        <p class="help-block">Brandable image that appears at the top of your profile page. Recommended size: 1900px x 665px</p>
-        <%= form.field_container :store_logo do %>
-          <%= form.label :store_logo, Spree::Supplier.human_attribute_name(:store_logo) %><br />
-          <%= form.file_field :store_logo %>
-        <% end %>
-        <p class="help-block">Recommended size 200px x 200px.</p>
+
+        <div class="form-group">
+          <%= form.field_container :cover_photo do %>
+            <%= form.label :cover_photo, Spree::Supplier.human_attribute_name(:cover_photo) %>
+            <%= form.file_field :cover_photo %>
+          <% end %>
+          <p class="help-block">Brandable image that appears at the top of your profile page. Recommended size: 1900px x 665px</p>
+          <% if spree_current_user.supplier.cover_photo_file_name? %>
+            <p class="icon-title">Current Cover Photo:</p>
+            <%= image_tag spree_current_user.supplier.cover_photo.url(:large), class: "img-responsive" %>
+          <% else %>
+            <p class="icon-title">Current Cover Photo:</p>
+            <%= image_tag("profile-placeholder.jpg", :alt => "Leema Cover Photo", :class => "img-responsive") %>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= form.field_container :store_logo do %>
+            <%= form.label :store_logo, Spree::Supplier.human_attribute_name(:store_logo) %><br />
+            <%= form.file_field :store_logo %>
+          <% end %>
+          <p class="help-block">Recommended size 200px x 200px.</p>
+          <% if spree_current_user.supplier.store_logo_file_name? %>
+            <p class="icon-title">Current Store Logo:</p>
+            <%= image_tag spree_current_user.supplier.store_logo.url(:default), class: "img-responsive" %>
+          <% else %>
+            <p class="icon-title">Current Store Logo:</p>
+            <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive seller-logo-admin' %>
+          <% end %>
+        </div>
 
         <% if spree_current_user.leema_admin? == true %>
           <%= form.field_container :users do %>
