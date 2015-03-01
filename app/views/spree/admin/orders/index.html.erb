@@ -1,12 +1,9 @@
-<div class="page-header">
-  <h2>Listing Orders</h2>
-</div>
 <% content_for :page_title do %>
   <%= Spree.t(:listing_orders) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  
+
 <% end if can? :edit, Spree::Order.new %>
 
 <% content_for :table_filter_title do %>

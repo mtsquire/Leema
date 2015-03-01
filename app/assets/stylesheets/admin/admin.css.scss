@@ -21,6 +21,10 @@ table th.actions [class*='fa-'].no-text, table td.actions [class*='fa-'].no-text
 
 #content-header {
 	border-bottom: none;
+
+	.row {
+		margin-bottom: 0px;
+	}
 }
 
 .pagination {
