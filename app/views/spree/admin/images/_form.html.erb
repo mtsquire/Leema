@@ -1,8 +1,8 @@
 <div data-hook="admin_image_form_fields">
-  <div class="four columns alpha">
-    <div data-hook="file" class="field">
-      <%= f.label Spree.t(:filename) %><br>
-      <%= f.file_field :attachment %>
+  <div class="col-sm-6">
+    <div data-hook="file" class="form-group">
+      <%= f.label Spree.t(:filename) %>
+      <%= f.file_field :attachment%>
     </div>
     <!-- Hiding this made the images not work, so using CSS to hide -->
     <div data-hook="variant" class="field" style="display:none;">
@@ -10,9 +10,11 @@
       <%= f.select :viewable_id, @variants, {}, {:class => 'select2 fullwidth'} %>
     </div>
   </div>
-  <div data-hook="alt_text" class="field omega five columns">
-    <%= f.label Spree.t(:alt_text) %><br>
-    <%= f.text_area :alt, :rows => 4, :class => 'fullwidth' %>
+  <div class="col-sm-6">
+    <div class="form-group" data-hook="alt_text" >
+      <%= f.label Spree.t(:alt_text) %>
+      <%= f.text_area :alt, :rows => 4, :class => 'form-control' %>
+    </div>
   </div>
 </div>
 
