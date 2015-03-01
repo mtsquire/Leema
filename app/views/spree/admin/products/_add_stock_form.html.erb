@@ -3,21 +3,25 @@
     <legend align="center"><%= Spree.t(:add_stock_management) %></legend>
 
     <div data-hook="admin_stock_movements_form_fields" class="row">
-      <div class="alpha two columns">
+      <div class="col-sm-6">
         <%= f.field_container :quantity do %>
-          <%= f.label :quantity, Spree.t(:quantity) %>
-          <%= f.number_field :quantity, class: 'fullwidth', value: 1 %>
+          <div class="form-group">
+            <%= f.label :quantity, Spree.t(:quantity) %>
+            <%= f.number_field :quantity, class: 'form-control', value: 1 %>
+          </div>
         <% end %>
       </div>
-      <div class="five columns">
+      <div class="col-sm-6">
         <%= f.field_container :stock_location do %>
-          <%= label_tag :stock_location_id, Spree.t(:stock_location) %>
-          <%= select_tag 'stock_location_id', options_from_collection_for_select(@stock_locations, :id, :name, "#{spree_current_user.supplier.stock_locations.first.id.to_i}"),
-            class: 'select2 fullwidth' %>
+          <div class="form-group">
+            <%= label_tag :stock_location_id, Spree.t(:stock_location) %>
+            <%= select_tag 'stock_location_id', options_from_collection_for_select(@stock_locations, :id, :name, "#{spree_current_user.supplier.stock_locations.first.id.to_i}"),
+              class: 'select2 fullwidth' %>
+          </div>
         <% end %>
       </div>
 
-      <div class="five columns omega">
+      <div class="hidden">
         <%= f.field_container :variant_id do %>
           <%= label_tag 'variant_id', Spree.t(:variant) %>
           <%= select_tag 'variant_id', options_from_collection_for_select(@variants, :id, :sku_and_options_text),
