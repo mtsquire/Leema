@@ -20,14 +20,15 @@
           <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
         </div>
 
-      <div class="row">
-          <div id="content" class="col-xs-12" data-hook>
-            <%= yield %>
-          </div>
+        <div class="row">
+            <div id="content" class="col-xs-12" data-hook>
+              <%= yield %>
+            </div>
 
-        <%= yield :templates %>
+          <%= yield :templates %>
 
-      </div><!-- close .row -->
+        </div><!-- close .row -->
+      </div><!-- close #wrapper -->
 
     </div><!-- close .container -->
 
