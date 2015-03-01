@@ -905,12 +905,21 @@ h6.review-author {
   }
 }
 
+
+
 #billing, #shipping, #shipping_method,
 #payment, #order_details, #order_summary, #checkout-summary {
 
-  border: $default_border;
+  /* border: $default_border; */
   padding: 10px;
 
+  #line-items {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
 
   legend {
     text-transform: uppercase;
@@ -933,10 +942,6 @@ h6.review-author {
 #order_details, #order_summary {
   padding: 0;
 
-  div:last-child {
-    margin-left: -1px;
-  }
-
   .payment-info {
     .cc-type {
       img {
@@ -945,7 +950,7 @@ h6.review-author {
     }
   }
 
-  td.price, td.total {
+  td.price, td.total, td.quantity {
     span {
       @extend span.price;
     }
@@ -962,13 +967,21 @@ h6.review-author {
     &#order-total {
       text-transform: uppercase;
       font-size: $base_font_size + 4;
-      color: $body_text_color;
+      color: #fff;
 
       tr {
         border-top: $default_border;
 
         td {
           padding: 10px;
+          background: $leema_blue;
+          color: #fff;
+
+          span {
+            &#order_total {
+              color: #fff !important;
+            }
+          }
         }
       }
     }
@@ -1212,6 +1225,8 @@ div[data-hook="inside_cart_form"] {
   margin-top: 0;
 }
 #order {
+  margin-top: 40px;
+
   p[data-hook="links"] {
     margin-left: 10px;
     overflow: auto;

@@ -41,7 +41,7 @@ module Spree
           if Rails.env.production?
             @order.products.each do |product|
               puts "Initiating Stripe transfer"
-              transfer = Stripe::Transfer.create(
+              transfer_amount = Stripe::Transfer.create(
                 #Take 10% for ourselves
                 :amount => (product.price * 90).floor,
                 :currency => "usd",

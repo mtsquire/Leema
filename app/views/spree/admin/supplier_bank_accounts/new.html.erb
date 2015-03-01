@@ -8,21 +8,31 @@
 
 <div id='stripeError' class='errorExplanation' style='display:none;'></div>
 
-<%= form_for @object, url: spree.admin_supplier_bank_accounts_path(@supplier) do |f| %>
-  <%= f.field_container :account_number do %>
-    <%= f.label :account_number %>:<br />
-    <%= f.text_field :account_number %>
-  <% end %>
-  <%= f.field_container :routing_number do %>
-    <%= f.label :routing_number %>:<br />
-    <%= f.text_field :routing_number %>
-  <% end %>
-  <%= f.field_container :country do %>
-    <%= f.label :country, Spree.t(:country) %>:<br />
-    <%= f.collection_select :country, available_countries, :iso, :name, {selected: 'US'}, {class: 'select2'} %>
-  <% end %>
-  <%= f.hidden_field :masked_number %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :token %>
-  <%= f.submit Spree.t(:save) %>
-<% end %>
+<div class="row">
+  <div class="col-sm-4">
+    <%= form_for @object, url: spree.admin_supplier_bank_accounts_path(@supplier) do |f| %>
+      <%= f.field_container :account_number do %>
+      <div class="form-group">
+        <%= f.label :account_number %>:
+        <%= f.text_field :account_number, :class => 'form-control' %>
+      </div>
+      <% end %>
+      <%= f.field_container :routing_number do %>
+      <div class="form-group">
+        <%= f.label :routing_number %>:
+        <%= f.text_field :routing_number, :class => 'form-control' %>
+      </div>
+      <% end %>
+      <%= f.field_container :country do %>
+      <div class="form-group">
+        <%= f.label :country, Spree.t(:country) %>:<br />
+        <%= f.collection_select :country, available_countries, :iso, :name, {selected: 'US'}, {class: 'select2'} %>
+      </div>
+      <% end %>
+      <%= f.hidden_field :masked_number %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :token %>
+      <%= f.submit Spree.t(:save) %>
+    <% end %>
+  </div>
+</div><!-- close .row -->

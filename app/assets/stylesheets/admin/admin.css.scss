@@ -21,6 +21,10 @@ table th.actions [class*='fa-'].no-text, table td.actions [class*='fa-'].no-text
 
 #content-header {
 	border-bottom: none;
+
+	.row {
+		margin-bottom: 0px;
+	}
 }
 
 .pagination {
@@ -370,3 +374,12 @@ $fourth_level: #cbcbc9;
 		width: 19.9%;
 	}
 }
+
+.your-take {
+	font-size: 14px;
+	background: #5cb85c;
+	color: #fff;
+	display: inline-block;
+	padding: 8px;
+}
+

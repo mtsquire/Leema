@@ -1,5 +1,7 @@
   Rails.application.routes.draw do
 
+  get 'orders/index'
+  resources "orders", :controller => :my_orders, :as => :orders
   get 'faq/index'
   resources "faq", :controller => :faq, :as => :faq
   get 'guidelines/index'
@@ -37,7 +39,7 @@
   get '/:id', to: 'profiles#show', as: :profile
 
   root 'welcome#index'
-  
+
   #for setting up the stripe webhook
   post '/hooks/stripe' => 'hooks#stripe'
 
