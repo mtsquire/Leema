@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301200114) do
+ActiveRecord::Schema.define(version: 20150303010008) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -660,11 +660,14 @@ ActiveRecord::Schema.define(version: 20150301200114) do
   create_table "spree_shipping_rates", force: true do |t|
     t.integer  "shipment_id"
     t.integer  "shipping_method_id"
-    t.boolean  "selected",                                   default: false
-    t.decimal  "cost",               precision: 8, scale: 2, default: 0.0
+    t.boolean  "selected",                                      default: false
+    t.decimal  "cost",                  precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tax_rate_id"
+    t.string   "name"
+    t.string   "easy_post_shipment_id"
+    t.string   "easy_post_rate_id"
   end
 
   add_index "spree_shipping_rates", ["selected"], name: "index_spree_shipping_rates_on_selected"
