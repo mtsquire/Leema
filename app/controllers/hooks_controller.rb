@@ -14,7 +14,6 @@ skip_before_filter  :verify_authenticity_token
         #   :recipient => recipient_id,
         #   :bank_account => bank_account_id,
         #   :statement_descriptor => "JULY SALES"
-)
       end
   end
 end
