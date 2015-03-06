@@ -33,8 +33,6 @@
         <div class="profile-image">
         <% if @user.avatar_file_name? %>
           <%= image_tag @user.avatar.url(:medium), class: 'img-thumbnail img-responsive' %>
-        <% elsif @user.supplier.store_logo_file_name? %>
-          <%= image_tag @user.supplier.store_logo, class: 'img-thumbnail img-responsive' %>
         <% else %>
           <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive' %>
         <% end %>

@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
     def layout_by_resource
       if devise_controller? && action_name != "edit"
         "signin"
+      elsif action_name == "edit"
+        "editprofile"
       else
         "interior"
       end
