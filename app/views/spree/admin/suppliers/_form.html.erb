@@ -48,7 +48,7 @@
             <%= form.file_field :cover_photo %>
           <% end %>
           <p class="help-block">Brandable image that appears at the top of your profile page. Recommended size: 1900px x 665px</p>
-          <% if spree_current_user.supplier.cover_photo_file_name? %>
+          <% if spree_current_user.supplier? && spree_current_user.supplier.cover_photo_file_name? %>
             <p class="icon-title">Current Cover Photo:</p>
             <%= image_tag spree_current_user.supplier.cover_photo.url(:large), class: "img-responsive" %>
           <% else %>
@@ -63,7 +63,7 @@
             <%= form.file_field :store_logo %>
           <% end %>
           <p class="help-block">Recommended size 200px x 200px.</p>
-          <% if spree_current_user.supplier.store_logo_file_name? %>
+          <% if spree_current_user.supplier? && spree_current_user.supplier.store_logo_file_name? %>
             <p class="icon-title">Current Store Logo:</p>
             <%= image_tag spree_current_user.supplier.store_logo.url(:default), class: "img-responsive" %>
           <% else %>
