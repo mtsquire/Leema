@@ -35,7 +35,7 @@ Spree::Stock::Estimator.class_eval do
     ep_address_attrs[:company] = if address.respond_to?(:company)
       address.company
     else
-      Spree::Config[:site_name]
+      "Leema, LLC"
     end
     ep_address_attrs[:name] = address.full_name if address.respond_to?(:full_name)
     ep_address_attrs[:street1] = address.address1
@@ -50,11 +50,12 @@ Spree::Stock::Estimator.class_eval do
 
   def build_parcel(package)
     total_weight = package.contents.sum do |item|
-      item.quantity * 5
+      # item = Spree::Stock::Package::ContentItem
+      item.quantity * item.variant.weight
     end
 
     parcel = ::EasyPost::Parcel.create(
-      :weight => total_weight
+      :weight => total_weight + 5
     )
   end
 
