@@ -64,7 +64,7 @@
                 <li><%= link_to "Listed Products", "/store/admin/products" %></li>
                 <li><%= link_to "New Product", "/store/admin/products/new" %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Edit Store Details", "#" %></li>
+                <li><%= link_to "Edit Store Details", "/store/admin/suppliers/" + spree_current_user.supplier.id.to_s + "/edit" %></li>
                 <li><%= link_to "Log Out", spree_logout_path %></li>
               </ul>
             </li>
