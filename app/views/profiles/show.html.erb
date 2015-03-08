@@ -1,18 +1,22 @@
 <body>
-  <div class="section-cover">
-    <% if @user.cover_photo_file_name? %>
-      <%= image_tag @user.cover_photo.url(:large), class: "section-cover-image img-responsive" %>
-    <% else %>
-      <%= image_tag("profile-placeholder.jpg", :alt => "Leema Cover Photo", :class => "section-cover-image img-responsive") %>
-    <% end %>
-    <h1>
-      <% if @user.store_name != nil %>
-        <%= @user.store_name %>
+
+  <% if @user.supplier? %>
+    <div class="section-cover">
+      <% if @user.supplier.cover_photo_file_name? %>
+        <%= image_tag @user.supplier.cover_photo.url(:large), class: "section-cover-image img-responsive" %>
       <% else %>
-        <%= @user.full_name %>
+        <%= image_tag("profile-placeholder.jpg", :alt => "Leema Cover Photo", :class => "section-cover-image img-responsive") %>
       <% end %>
-    </h1>
-  </div>
+      <h1>
+        <% if @user.supplier.store_name != nil %>
+          <%= @user.supplier.store_name %>
+        <% else %>
+          <%= @user.full_name %>
+        <% end %>
+      </h1>
+    </div>
+  <% end %>
+
   <div class="container">
     <% if @user == current_user %>
       <div class="row">
@@ -29,8 +33,8 @@
         <div class="profile-image">
         <% if @user.avatar_file_name? %>
           <%= image_tag @user.avatar.url(:medium), class: 'img-thumbnail img-responsive' %>
-        <% elsif @user.store_logo_file_name? %>
-          <%= image_tag @user.store_logo, class: 'img-thumbnail img-responsive' %>
+        <% elsif @user.supplier? && @user.supplier.store_logo_file_name? %>
+            <%= image_tag @user.supplier.store_logo, class: 'img-thumbnail img-responsive' %>
         <% else %>
           <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive' %>
         <% end %>
@@ -62,7 +66,11 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="page-header">
-          <h3><%= @user.first_name %>'s Products</h3>
+          <% if @user.supplier.store_name != nil %>
+            <h3><%= @user.supplier.store_name %> Products</h3>
+          <% else %>
+            <h3><%= @user.full_name %>'s Products</h3>
+          <% end %>
         </div>
         <% if @supplier.products.count > 0 %>
           <div id="products" class="row">

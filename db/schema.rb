@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222195918) do
+ActiveRecord::Schema.define(version: 20150303010008) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -660,11 +660,14 @@ ActiveRecord::Schema.define(version: 20150222195918) do
   create_table "spree_shipping_rates", force: true do |t|
     t.integer  "shipment_id"
     t.integer  "shipping_method_id"
-    t.boolean  "selected",                                   default: false
-    t.decimal  "cost",               precision: 8, scale: 2, default: 0.0
+    t.boolean  "selected",                                      default: false
+    t.decimal  "cost",                  precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tax_rate_id"
+    t.string   "name"
+    t.string   "easy_post_shipment_id"
+    t.string   "easy_post_rate_id"
   end
 
   add_index "spree_shipping_rates", ["selected"], name: "index_spree_shipping_rates_on_selected"
@@ -816,10 +819,10 @@ ActiveRecord::Schema.define(version: 20150222195918) do
   add_index "spree_supplier_variants", ["variant_id"], name: "index_spree_supplier_variants_on_variant_id"
 
   create_table "spree_suppliers", force: true do |t|
-    t.boolean  "active",                                        default: false, null: false
+    t.boolean  "active",                                           default: false, null: false
     t.integer  "address_id"
-    t.decimal  "commission_flat_rate",  precision: 8, scale: 2, default: 0.0,   null: false
-    t.float    "commission_percentage",                         default: 0.0,   null: false
+    t.decimal  "commission_flat_rate",     precision: 8, scale: 2, default: 0.0,   null: false
+    t.float    "commission_percentage",                            default: 0.0,   null: false
     t.string   "email"
     t.string   "name"
     t.string   "url"
@@ -830,6 +833,14 @@ ActiveRecord::Schema.define(version: 20150222195918) do
     t.string   "token"
     t.string   "slug"
     t.string   "store_name"
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
+    t.string   "store_logo_file_name"
+    t.string   "store_logo_content_type"
+    t.integer  "store_logo_file_size"
+    t.datetime "store_logo_updated_at"
   end
 
   add_index "spree_suppliers", ["active"], name: "index_spree_suppliers_on_active"

@@ -55,7 +55,10 @@
         <%= f.field_container :price do %>
           <div class="form-group">
             <%= f.label :price, Spree.t(:product_price) %> <span class="required">*</span>
-            <%= f.text_field :price, :value => number_to_currency(@product.price, :unit => ''), :class => 'form-control' %>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <%= f.text_field :price, :value => number_to_currency(@product.price, :unit => ''), :class => 'form-control' %>
+            </div>
             <%= f.error_message_on :price %>
           </div>
         <% end %>
