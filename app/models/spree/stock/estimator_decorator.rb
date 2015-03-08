@@ -1,13 +1,11 @@
 Spree::Stock::Estimator.class_eval do
   def shipping_rates(package)
     order = package.order
-
     from_address = process_address(package.stock_location)
     to_address = process_address(order.ship_address)
     parcel = build_parcel(package)
     shipment = build_shipment(from_address, to_address, parcel)
     rates = shipment.rates.sort_by { |r| r.rate.to_i }
-
     if rates.any?
       rates.each do |rate|
         package.shipping_rates << Spree::ShippingRate.new(
@@ -37,6 +35,7 @@ Spree::Stock::Estimator.class_eval do
     else
       "Leema, LLC"
     end
+  
     ep_address_attrs[:name] = address.full_name if address.respond_to?(:full_name)
     ep_address_attrs[:street1] = address.address1
     ep_address_attrs[:street2] = address.address2
@@ -48,17 +47,11 @@ Spree::Stock::Estimator.class_eval do
     ::EasyPost::Address.create(ep_address_attrs)
   end
 
-  def build_parcel(package)
-    package_weight = 0
-    order.products.each do |product|
-      package_weight += product.shipping_category.name.to_i
-    end
-
-    puts "#{package_weight}"  
-
+  def build_parcel(package) 
     total_weight = package.contents.sum do |item|
       # item = Spree::Stock::Package::ContentItem
-      item.quantity * item.variant.weight + package_weight
+      # shipping category is tied to the weight in lbs
+      item.quantity * item.variant.shipping_category.name.to_i
     end
 
     parcel = ::EasyPost::Parcel.create(
@@ -66,7 +59,7 @@ Spree::Stock::Estimator.class_eval do
     )
   end
 
-  def build_shipment(from_address, to_address, parcel)
+  def build_shipment(from_address, to_address, parcel) 
     shipment = ::EasyPost::Shipment.create(
       :to_address => to_address,
       :from_address => from_address,

@@ -54,6 +54,7 @@ gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :bran
 gem 'spree_bootstrap_frontend', github: '200Creative/spree_bootstrap_frontend', branch: '2-3-stable'
 gem 'spree_reviews', github: 'spree-contrib/spree_reviews', branch: '2-3-stable'
 gem 'aws-sdk' #For using S3 to store images
+
 #multi-tenancy
 gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship'
 gem 'spree_marketplace', github: 'jdutil/spree_marketplace'

@@ -1,6 +1,8 @@
 Spree::Shipment.class_eval do
   state_machine.before_transition :to => :shipped, :do => :buy_easypost_rate
 
+  has_many :products, class_name: Spree::Product.to_s
+
   def tracking_url
     nil # TODO: Work out how to properly generate this
   end
