@@ -32,8 +32,8 @@
 									<h3><%= product.name %></h3>
 									<p class="product-description"><%= truncate(product.leema_description, :length => 150) %></p>
                   <p class="product-price" itemprop="price"><%= product.display_price %></p>
-                  <% if product.suppliers.first.users.first.store_logo_file_name? %>
-		                <%= image_tag product.suppliers.first.users.first.store_logo(:default), :class => 'seller-logo-mini' %>
+                  <% if product.suppliers.first.store_logo_file_name? %>
+		                <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
 		              <% end %>
 								</div><!-- close .product-info -->
 							</div><!-- close .product-card -->
