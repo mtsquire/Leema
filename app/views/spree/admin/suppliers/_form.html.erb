@@ -87,9 +87,10 @@
     </div>
     </div>
 
-      <div class='center'>
+      <div class='text-center'>
         <% if form.object.new_record? %>
-          <%= button Spree.t('create_profile') %>
+          <p><small>By becoming a seller, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p><br>
+          <%= button Spree.t('become_a_seller') %>
         <% else %>
           <%= button Spree.t('update_profile') %>
         <% end %>
