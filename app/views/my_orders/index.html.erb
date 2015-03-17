@@ -34,7 +34,7 @@
               <tr>
                 <th><%= item.created_at %></th>
                 <th><%= item.order.number %></th>
-                <th><%= item.product.name + item %></th>
+                <th><%= item.product.name %></th>
                 <th><%= item.price %></th>
                 <th><%= item.order.shipment_state %></th>
                 <th><%= link_to "#{item.product.suppliers.first.name}", "/" + item.product.suppliers.first.users.first.display_name %>
