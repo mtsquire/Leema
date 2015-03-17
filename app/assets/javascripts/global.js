@@ -1,4 +1,4 @@
-var getViewport = function() {
+getViewport = function() {
     var viewPortWidth;
     var viewPortHeight;
     if (typeof window.innerWidth != 'undefined') {
@@ -16,6 +16,7 @@ var getViewport = function() {
     return [viewPortWidth, viewPortHeight];
 }
 
+
 function getInternetExplorerVersion() {
     var a = -1;
     if ("Microsoft Internet Explorer" == navigator.appName) {
@@ -27,4 +28,6 @@ function getInternetExplorerVersion() {
     }
     return a
 }
+
+var MSIE = false;
 
