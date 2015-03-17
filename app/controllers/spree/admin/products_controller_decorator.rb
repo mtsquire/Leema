@@ -49,4 +49,24 @@ Spree::Admin::ProductsController.class_eval do
     end
   end
 
+  #added this to fix the unknown method "per" problem deriving from this method in spree backend
+  private 
+  def collection
+          return @collection if @collection.present?
+          params[:q] ||= {}
+          params[:q][:deleted_at_null] ||= "1"
+
+          params[:q][:s] ||= "name asc"
+          @collection = super
+          @collection = @collection.with_deleted if params[:q].delete(:deleted_at_null) == '0'
+          # @search needs to be defined as this is passed to search_form_for
+          @search = @collection.ransack(params[:q])
+          @collection = @search.result.
+                distinct_by_product_ids(params[:q][:s]).
+                includes(product_includes).
+                page(params[:page])
+
+          @collection
+        end
+
 end
