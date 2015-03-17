@@ -15,37 +15,41 @@
     <div class="page-header">
       <h3>Recent Orders</h3>
     </div>
-    <div class="table-responsive">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Order #</th>
-            <th>Product</th>
-            <th>Cost</th>
-            <th>Shipment State</th>
-            <th>Leema Seller</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orders.each do |order| %>
-            <% order.line_items.each do |item| %>
-              <tr>
-                <th><%= item.created_at %></th>
-                <th><%= item.order.number %></th>
-                <th><%= item.product.name %></th>
-                <th><%= item.price %></th>
-                <th><%= item.order.shipment_state %></th>
-                <th><%= link_to "#{item.product.suppliers.first.name}", "/" + item.product.suppliers.first.users.first.display_name %>
-                </th>                
-                <th><a href="#">Track</a> | <a href="#">Details</a></th>
-              </tr>
+    <% if @orders.any? %>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Order #</th>
+              <th>Product</th>
+              <th>Cost</th>
+              <th>Shipment State</th>
+              <th>Leema Seller</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <% order.line_items.each do |item| %>
+                <tr>
+                  <th><%= item.created_at %></th>
+                  <th><%= item.order.number %></th>
+                  <th><%= item.product.name %></th>
+                  <th><%= item.price %></th>
+                  <th><%= item.order.shipment_state %></th>
+                  <th><%= link_to "#{item.product.suppliers.first.name}", "/" + item.product.suppliers.first.users.first.display_name %>
+                  </th>                
+                  <th><a href="#">Track</a> | <a href="#">Details</a></th>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p>Your orders will show up here once you buy some stuff.</p>
+    <% end %>
   </div>
 
 
