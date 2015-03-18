@@ -29,5 +29,6 @@ function getInternetExplorerVersion() {
     return a
 }
 
-var MSIE = false;
+var MSIE = false,
+    widthIsWide = !1;
 

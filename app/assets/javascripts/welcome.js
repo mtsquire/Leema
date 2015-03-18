@@ -28,7 +28,7 @@ function doneResizing() {
         }
     }
 
-var widthIsWide = !1;
+
 $(document).ready(function() {
     // define viewport vairables
         viewPortWidth = getViewport()[0],

@@ -1,5 +1,38 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// You can use CoffeeScript in this file: http://coffeescript.org/
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// You can use CoffeeScript in this file: http://coffeescript.org/
+
+
 $(document).ready(function() {
 
+// define viewport vairables
+    viewPortWidth = getViewport()[0],
+    viewPortHeight = getViewport()[1],
+    widthIsWide = (viewPortWidth > 768),
+    IEVersion = getInternetExplorerVersion();
+
+    //parrallax covers
+    // requestAnimationFrame method:
+    window.requestAnimationFrame = window.requestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function(f){setTimeout(f, 1000/60)}
+
+    var isInViewport = function(element,scrolled,offset,callback) {
+        var elementTop = element.offset().top,
+            elementHeight = element.outerHeight(),
+            elementVisibleAt = elementTop - viewPortHeight + offset,
+            elementBottom = elementTop + elementHeight;
+        if ( (scrolled >= elementVisibleAt) && (scrolled <= elementBottom) ) {
+            callback(elementVisibleAt,elementBottom);
+        }
+    }
+
+ //parrallax covers
     //set up section cover as variable
     var $sectionCover = $('.section-cover');
 
@@ -98,3 +131,4 @@ $(document).ready(function() {
     }
 
 });
+
