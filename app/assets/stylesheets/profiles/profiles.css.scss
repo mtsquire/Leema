@@ -3,22 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Profile Page Section Covers */
+
 .section-cover{
 	position: relative;
 	overflow: hidden;
 	background: #000;
+	-webkit-backface-visibility: hidden;
 }
 
 .section-cover .section-cover-image {
 	width: 100%;
 	display: block;
-}
-
-.section-cover .section-cover-image {
-	width: 100%;
-	display: block;
+	-webkit-backface-visibility: hidden;
+	position: relative;
 	vertical-align: top;
+	overflow: hidden;
 }
+
 
 .section-cover h1 {
 	position: absolute;
@@ -29,6 +30,7 @@
 	background: #000;
 	font-size: 45px;
 	padding: 15px;
+	-webkit-backface-visibility: hidden;
 }
 
 

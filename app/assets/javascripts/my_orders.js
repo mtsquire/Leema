@@ -11,8 +11,7 @@ $(document).ready(function() {
 // define viewport vairables
     viewPortWidth = getViewport()[0],
     viewPortHeight = getViewport()[1],
-    widthIsWide = (viewPortWidth > 768),
-    IEVersion = getInternetExplorerVersion();
+    widthIsWide = (viewPortWidth > 768);
 
     //parrallax covers
     // requestAnimationFrame method:
@@ -22,22 +21,14 @@ $(document).ready(function() {
         || window.msRequestAnimationFrame
         || function(f){setTimeout(f, 1000/60)}
 
-    var isInViewport = function(element,scrolled,offset,callback) {
-        var elementTop = element.offset().top,
-            elementHeight = element.outerHeight(),
-            elementVisibleAt = elementTop - viewPortHeight + offset,
-            elementBottom = elementTop + elementHeight;
-        if ( (scrolled >= elementVisibleAt) && (scrolled <= elementBottom) ) {
-            callback(elementVisibleAt,elementBottom);
-        }
-    }
 
- //parrallax covers
     //set up section cover as variable
     var $sectionCover = $('.section-cover');
 
     // If width is wide
-    if ((widthIsWide) && ($sectionCover.length > 0)) {
+if ((widthIsWide) && ($sectionCover.length > 0)) {
+
+    $sectionCover = $sectionCover.first();
 
     // calculate height of profile container after resize of browser window
     function doneResizingProfile(){
@@ -81,22 +72,23 @@ $(document).ready(function() {
     // set up the section-cover parallax
 
     var $nav = $('nav'),
-    navHeight = $nav.outerHeight(),
-    scrolled = 0,
-    $coverImage = $sectionCover.find('.section-cover-image'),
-    $coverHeader = $sectionCover.find('h1');
+        navHeight = $nav.outerHeight(),
+        scrolled = 0,
+        $coverImage = $sectionCover.find('.section-cover-image'),
+        $coverHeader = $sectionCover.find('h1');
 
 
     parallaxBackground = function(){
         var scrolled = window.pageYOffset - navHeight,
-        scrolledOffset = scrolled,
-        coverTop = $sectionCover.offset().top,
-        coverHeight = $sectionCover.outerHeight(),
-        coverBottom = coverTop + coverHeight + navHeight;
+            scrolledOffset = scrolled - 10,
+            coverTop = $sectionCover.offset().top,
+            coverHeight = $sectionCover.outerHeight(),
+            coverBottom = coverTop + coverHeight + navHeight;
+
         if ( (scrolled > 0) && (scrolled <= coverBottom) ) {
-            var translateYImage = ( scrolledOffset / 2 ) + 'px',
-            translateYTitle = ( scrolledOffset / 5 ) + 'px',
-            opacity = ( 1 - (scrolledOffset / coverHeight) );
+            var translateYImage = ( scrolledOffset / 3 ) + 'px',
+                translateYTitle = ( scrolledOffset / 5 ) + 'px',
+                opacity = ( 1 - (scrolledOffset / coverHeight) );
             $coverImage.css({
                 'transform' : 'translateY(' + translateYImage + ')',
                 'opacity' : opacity

@@ -86,7 +86,7 @@ if ((widthIsWide) && ($sectionCover.length > 0)) {
             coverBottom = coverTop + coverHeight + navHeight;
 
         if ( (scrolled > 0) && (scrolled <= coverBottom) ) {
-            var translateYImage = ( scrolledOffset / 2 ) + 'px',
+            var translateYImage = ( scrolledOffset / 3 ) + 'px',
                 translateYTitle = ( scrolledOffset / 5 ) + 'px',
                 opacity = ( 1 - (scrolledOffset / coverHeight) );
             $coverImage.css({
