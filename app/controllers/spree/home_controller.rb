@@ -6,7 +6,7 @@ module Spree
     def index
       @searcher = build_searcher(params.merge(include_images: true))
       @taxonomies = Spree::Taxonomy.includes(root: :children)
-      @products = Spree::Product.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
+      @products = Spree::Product.search(params[:search])
 
       respond_to do |format|
         format.html # index.html.erb

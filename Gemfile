@@ -66,8 +66,5 @@ gem 'rails_12factor', group: :production
 gem 'pg', group: :production
 ruby "2.1.2"
 
-#For pagination
-gem 'will_paginate', '~> 3.0.6'
-
 
 
