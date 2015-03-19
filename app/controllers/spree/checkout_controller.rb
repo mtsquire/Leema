@@ -35,7 +35,7 @@ module Spree
         if @order.completed?
           @current_order = nil
           # Transfer money to supplier bank account
-          if Rails.env.production?
+          #if Rails.env.production?
             @order.shipments.each do |shipment|
               puts "Initiating Stripe transfer"
               item_total = 0
@@ -46,12 +46,12 @@ module Spree
                 # Take 10% for ourselves from the total cost
                 # of items per supplier(shipment)
                 # shipment.final_price is shipping cost plus tax
-                :amount => (item_total * 90).floor,
+                :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
                 :currency => "usd",
                 :recipient => shipment.supplier.token
               )
             end
-          end
+          #end
           flash.notice = Spree.t(:order_processed_successfully)
           flash['order_completed'] = true
           redirect_to completion_route
