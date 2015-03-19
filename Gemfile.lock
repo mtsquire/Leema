@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/200Creative/spree_bootstrap_frontend.git
-  revision: 9372217c3538c2b9b846e944f18bb21220917285
+  revision: 621fcbbdae5658ec050422d3399527daa5053804
   branch: 2-3-stable
   specs:
     spree_bootstrap_frontend (2.3.0)
