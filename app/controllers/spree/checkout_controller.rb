@@ -39,13 +39,15 @@ module Spree
           redirect_to completion_route
           # Transfer money to supplier bank account
           if Rails.env.production?
-            @order.products.each do |product|
+            @order.shipments.each do |shipment|
               puts "Initiating Stripe transfer"
               transfer = Stripe::Transfer.create(
-                #Take 10% for ourselves
-                :amount => (product.price * 90).floor,
+                # Take 10% for ourselves from the total cost
+                # of items per supplier(shipment)
+                # shipment.final_price is shipping cost plus tax
+                :amount => (shipment.item_cost * 90).floor + shipment.final_price,
                 :currency => "usd",
-                :recipient => product.suppliers.first.token
+                :recipient => shipment.supplier.token
               )
             end
           end
