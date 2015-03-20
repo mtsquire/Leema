@@ -3,31 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Profile Page Section Covers */
+
 .section-cover{
 	position: relative;
 	overflow: hidden;
 	background: #000;
-/* 	.picture-gradient {
-		content:"";
-		position: absolute;
-		top:50%;
-		right:0;
-		bottom:0;
-		left:0;
-		background: -moz-linear-gradient(top,  rgba(150,150,150,0) 28%, rgba(150,150,150,0.22) 52%, rgba(124,124,124,0.45) 78%, rgba(73,73,73,0.65) 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(28%,rgba(150,150,150,0)), color-stop(52%,rgba(150,150,150,0.22)), color-stop(78%,rgba(124,124,124,0.45)), color-stop(100%,rgba(73,73,73,0.65)));
-		background: -webkit-linear-gradient(top,  rgba(150,150,150,0) 28%,rgba(150,150,150,0.22) 52%,rgba(124,124,124,0.45) 78%,rgba(73,73,73,0.65) 100%);
-		background: -o-linear-gradient(top,  rgba(150,150,150,0) 28%,rgba(150,150,150,0.22) 52%,rgba(124,124,124,0.45) 78%,rgba(73,73,73,0.65) 100%);
-		background: -ms-linear-gradient(top,  rgba(150,150,150,0) 28%,rgba(150,150,150,0.22) 52%,rgba(124,124,124,0.45) 78%,rgba(73,73,73,0.65) 100%);
-		background: linear-gradient(to bottom,  rgba(150,150,150,0) 28%,rgba(150,150,150,0.22) 52%,rgba(124,124,124,0.45) 78%,rgba(73,73,73,0.65) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00969696', endColorstr='#a6494949',GradientType=0 );
-	} */
+	-webkit-backface-visibility: hidden;
 }
 
 .section-cover .section-cover-image {
 	width: 100%;
 	display: block;
+	-webkit-backface-visibility: hidden;
+	position: relative;
+	vertical-align: top;
+	overflow: hidden;
 }
+
 
 .section-cover h1 {
 	position: absolute;
@@ -38,6 +30,7 @@
 	background: #000;
 	font-size: 45px;
 	padding: 15px;
+	-webkit-backface-visibility: hidden;
 }
 
 

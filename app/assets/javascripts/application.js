@@ -17,3 +17,7 @@
 //= require_tree .
 //= require autoNumeric
 //= stub spree/backend/admin
+//= stub profiles
+//= stub my_orders
+//= stub welcome
+

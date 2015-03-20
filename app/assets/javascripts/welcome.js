@@ -28,7 +28,7 @@ function doneResizing() {
         }
     }
 
-var widthIsWide = !1;
+
 $(document).ready(function() {
     // define viewport vairables
         viewPortWidth = getViewport()[0],
@@ -37,7 +37,7 @@ $(document).ready(function() {
         IEVersion = getInternetExplorerVersion();
 
     if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 768, IEVersion = getInternetExplorerVersion(), widthIsWide) {
-        var a = (viewPortHeight * .66666667) + "px",
+        var a = (viewPortHeight * .75) + "px",
             b = $(".navbar").outerHeight();
         $(".masthead").each(function() {
             $(this).css("height", a), $(this).css("visibility", "visible").css("opacity", "1");

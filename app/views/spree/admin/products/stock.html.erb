@@ -54,7 +54,7 @@
               <thead>
                 <th><%= Spree.t(:stock_location) %></th>
                 <th><%= Spree.t(:count_on_hand) %></th>
-                <th><%= Spree.t(:backorderable) %></th>
+                <th><span data-toggle="tooltip" data-placement="top" title="Checking this box means orders will go through even if there is no stock on hand"><%= Spree.t(:made_to_order) %></span></th>
                 <th class="actions"></th>
               </thead>
               <tbody>
@@ -115,3 +115,10 @@
     <% end %>
   </tbody>
 </table>
+
+
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

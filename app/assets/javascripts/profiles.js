@@ -1,111 +1,126 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// You can use CoffeeScript in this file: http://coffeescript.org/
+
 
 $(document).ready(function() {
 
-	// calculate height of profile container after resize of browser window
-	function doneResizingProfile(){
+// define viewport vairables
+    viewPortWidth = getViewport()[0],
+    viewPortHeight = getViewport()[1],
+    widthIsWide = (viewPortWidth > 768);
 
-		var newWidth = getViewport()[0],
-				newHeight = getViewport()[1];
-
-		// after resizing, does the new width match the old one?
-		if (newWidth != viewPortWidth) {
-
-
-				var sectionCoverHeight = newWidth / 3;
-
-				$(".section-cover").css("height", sectionCoverHeight);
-
-		}
-
-		// reset globals
-		viewPortHeight = newHeight;
-		viewPortWidth = newWidth;
-
-	}
+    //parrallax covers
+    // requestAnimationFrame method:
+    window.requestAnimationFrame = window.requestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function(f){setTimeout(f, 1000/60)}
 
 
+    //set up section cover as variable
+    var $sectionCover = $('.section-cover');
 
-	// calculate height of profile container at width/3 ratio
-	if ($(".section-cover").length > 0) {
+    // If width is wide
+if ((widthIsWide) && ($sectionCover.length > 0)) {
 
-	  var viewPortWidth = getViewport()[0],
-	    	viewPortHeight = getViewport()[1],
-				sectionCoverHeight = viewPortWidth / 3;
+    $sectionCover = $sectionCover.first();
 
-			$(".section-cover").css("height", sectionCoverHeight);
+    // calculate height of profile container after resize of browser window
+    function doneResizingProfile(){
 
-			var profileResizeTimeout;
-	    $(window).on('resize',function(){
-	      clearTimeout(profileResizeTimeout);
-	      profileResizeTimeout = setTimeout(doneResizingProfile, 1000);
-	    });
+        var newWidth = getViewport()[0],
+        newHeight = getViewport()[1];
 
-	  } else {
-
-	  }
+        // after resizing, does the new width match the old one?
+        if (newWidth != viewPortWidth) {
 
 
-	// set up the section-cover parallax
-	if (widthIsWide) {
+            var sectionCoverHeight = newWidth / 3;
 
-		var nav = $('nav'),
-				navHeight = nav.outerHeight(),
-				scrolled = 0;
+            $sectionCover.css("height", sectionCoverHeight);
+
+        }
+
+        // reset globals
+        viewPortHeight = newHeight;
+        viewPortWidth = newWidth;
+
+    }
 
 
-		// set up the section-cover parallax
-		if ($('.section-cover').length > 0) {
 
-			parallaxBackground = function(){
-				var scrolled = window.pageYOffset;
-				$('.section-cover').each(function(){
-					var $this = $(this),
-						scrolledOffset = scrolled - navHeight,
-						thisTop = $this.offset().top,
-						thisHeight = $this.outerHeight(),
-						thisBottom = thisTop + thisHeight,
-						translateYImage = ( scrolledOffset / 2 ) + 'px',
-						translateYTitle = ( scrolledOffset / 5 ) + 'px',
-						opacity = ( 1 - (scrolledOffset / thisHeight) );
-					if ( (scrolled >= navHeight ) && (scrolled <= thisBottom) ) {
-						$this.find('.section-cover-image').css({
-							'transform' : 'translateY(' + translateYImage + ')',
-							'opacity' : opacity
-						});
-						$this.find('h1').css({
-							'transform' : 'translateY(' + translateYTitle + ')',
-							'opacity' : opacity
-						});
-					} else {
-						$this.find('.section-cover-image').css({
-							'transform' : '',
-							'opacity' : ''
-						});
-						$this.find('h1').css({
-							'transform' : '',
-							'opacity' : ''
-						});
-					}
-				});
-			}
+    // calculate height of profile container at width/3 ratio
+        var viewPortWidth = getViewport()[0],
+        viewPortHeight = getViewport()[1],
+        sectionCoverHeight = viewPortWidth / 3;
 
-			parallaxBackground();
+        $sectionCover.css("height", sectionCoverHeight);
 
-			// fire parallax functions on scroll through requestAnimationFrame if not oldIE
-			window.addEventListener('scroll', function(){
-				requestAnimationFrame(parallaxBackground)
-			}, false)
+        var profileResizeTimeout;
+        $(window).on('resize',function(){
+            clearTimeout(profileResizeTimeout);
+            profileResizeTimeout = setTimeout(doneResizingProfile, 1000);
+        });
 
-		} else {
-			parallaxBackground = function(){}
-		}
 
-	} else {
-		parallaxBackground = function(){}
-	}
 
+    // set up the section-cover parallax
+
+    var $nav = $('nav'),
+        navHeight = $nav.outerHeight(),
+        scrolled = 0,
+        $coverImage = $sectionCover.find('.section-cover-image'),
+        $coverHeader = $sectionCover.find('h1');
+
+
+    parallaxBackground = function(){
+        var scrolled = window.pageYOffset - navHeight,
+            scrolledOffset = scrolled - 10,
+            coverTop = $sectionCover.offset().top,
+            coverHeight = $sectionCover.outerHeight(),
+            coverBottom = coverTop + coverHeight + navHeight;
+
+        if ( (scrolled > 0) && (scrolled <= coverBottom) ) {
+            var translateYImage = ( scrolledOffset / 3 ) + 'px',
+                translateYTitle = ( scrolledOffset / 5 ) + 'px',
+                opacity = ( 1 - (scrolledOffset / coverHeight) );
+            $coverImage.css({
+                'transform' : 'translateY(' + translateYImage + ')',
+                'opacity' : opacity
+            });
+            $coverHeader.css({
+                'transform' : 'translateY(' + translateYTitle + ')',
+                'opacity' : opacity
+            });
+        } else {
+            $coverImage.css({
+                'transform' : '',
+                'opacity' : ''
+            });
+            $coverHeader.css({
+                'transform' : '',
+                'opacity' : ''
+            });
+        }
+    }
+
+    parallaxBackground();
+
+} else {
+    parallaxBackground = function(){}
+}
+
+    // fire parallax functions on scroll through requestAnimationFrame if not oldIE
+    if ( !(MSIE) && !(/(iPad|iPhone|iPod|Android)/g.test(navigator.userAgent)) ) {
+        window.addEventListener('scroll', function(){
+            requestAnimationFrame(parallaxBackground)
+        }, false)
+    }
 
 });
+

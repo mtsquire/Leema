@@ -31,3 +31,13 @@
 <% end -%>
 
 <%= yield :head %>
+
+<script type="text/javascript">
+
+//TODO add rails conditional tags to check if current supplier has a bank account
+$(window).load(function(){
+	var bankAccountLink = "/store/admin/suppliers/<%= spree_current_user.supplier.slug %>/bank_accounts/new";
+
+	$('#content-header').after('<div class="alert alert-warning" role="alert">Pssst! You still need to <a href="'+ bankAccountLink +'">add your bank account</a> info in order to get paid!</div>');
+});
+</script>

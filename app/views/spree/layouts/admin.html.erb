@@ -11,16 +11,6 @@
   <body class='admin'>
     <div id='wrapper' data-hook>
 
-      <% if flash[:error] %>
-        <div class="flash error"><%= flash[:error] %></div>
-      <% end %>
-      <% if notice %>
-        <div class="flash notice"><%= notice %></div>
-      <% end %>
-      <% if flash[:success] %>
-        <div class="flash success"><%= flash[:success] %></div>
-      <% end %>
-
       <div id="progress">
         <div class="wrapper">
           <div id="spinner"></div>
@@ -34,6 +24,15 @@
       <%= render :partial => 'spree/admin/shared/menu' %>
       <%= render :partial => 'spree/admin/shared/sub_menu' %>
       <%= render :partial => 'spree/admin/shared/content_header' %>
+      <% if flash[:error] %>
+        <div class="flash alert alert-danger error"><%= flash[:error] %></div>
+      <% end %>
+      <% if notice %>
+        <div class="flash alert alert-info notice"><%= notice %></div>
+      <% end %>
+      <% if flash[:success] %>
+        <div class="flash alert alert-success success"><%= flash[:success] %></div>
+      <% end %>
 
       <div class="container">
         <div class="row">

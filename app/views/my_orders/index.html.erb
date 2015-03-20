@@ -13,44 +13,73 @@
     <p class="email"><%= current_user.email %></p>
 
     <div class="page-header">
-      <h3>Recent Orders</h3>
+      <h3>Order History</h3>
     </div>
-    <% if @orders.any? %>
-      <div class="table-responsive">
-        <table class="table table-hover table-striped">
-          <thead>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Order Completed on</th>
+            <th>Order #</th>
+            <th>Product(s)</th>
+            <th>Leema Seller(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
             <tr>
-              <th>Date</th>
-              <th>Order #</th>
-              <th>Product</th>
-              <th>Cost</th>
-              <th>Shipment State</th>
-              <th>Leema Seller</th>
-              <th>Action</th>
+              <th><%= order.completed_at %></th>
+              <th><%= order.number %></th>
+              <th>
+                <% order.shipments.each do |shipment| %>
+                  <% shipment.line_items.each do |item| %>
+                    <%= item.name %><br>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
+                <% order.suppliers.each do |supplier| %>
+                  <%= supplier.name %><br>
+                <% end %>
+              <th>
+
+
+              </th>
+              <th><%= order.total %></th>
             </tr>
-          </thead>
-          <tbody>
-            <% @orders.each do |order| %>
-              <% order.line_items.each do |item| %>
-                <tr>
-                  <th><%= item.created_at %></th>
-                  <th><%= item.order.number %></th>
-                  <th><%= item.product.name %></th>
-                  <th><%= item.price %></th>
-                  <th><%= item.order.shipment_state %></th>
-                  <th><%= link_to "#{item.product.suppliers.first.name}", "/" + item.product.suppliers.first.users.first.display_name %>
-                  </th>                
-                  <th><a href="#">Track</a> | <a href="#">Details</a></th>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <p>Your orders will show up here once you buy some stuff.</p>
-    <% end %>
-  </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!-- Shipments Table -->
+    <div class="page-header">
+      <h3>Shipments</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Date Completed</th>
+            <th>Order #</th>
+            <th>Total Paid</th>
+            <th>Leema Seller(s)</th>
+            <th>Shipment Cost</th>
+            <th>Tracking</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <% order.shipments.each do |shipment| %>
+              <tr>
+                <th><%= shipment.created_at %></th>
+                <th><% shipment.line_items.each do |item| %><%= item.name %><br> <% end %></th>
+                <th><%= shipment.order.number %></th>
+                <th><%= shipment.tracking %></th>
+                <th><%= shipment.supplier.name %></th>
+                <th><%= shipment.supplier.name %></th>
+                <th><%= shipment.supplier.name %></th>
+              </tr>
 
 
 
