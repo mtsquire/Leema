@@ -21,8 +21,12 @@
           <tr>
             <th>Order Completed on</th>
             <th>Order #</th>
+            <th>Order Total</th>
             <th>Product(s)</th>
+            <th>Product Price</th>
             <th>Leema Seller(s)</th>
+            <th>Shipment Price</th>
+            <th>Provider</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +34,7 @@
             <tr>
               <th><%= order.completed_at %></th>
               <th><%= order.number %></th>
+              <th><%= order.total %></th>
               <th>
                 <% order.shipments.each do |shipment| %>
                   <% shipment.line_items.each do |item| %>
@@ -38,49 +43,32 @@
                 <% end %>
               </th>
               <th>
+                <% order.shipments.each do |shipment| %>
+                  <% shipment.line_items.each do |item| %>
+                    <%= item.price %><br>
+                  <% end %>
+                <% end %>
+              </th>
+              <th>
                 <% order.suppliers.each do |supplier| %>
                   <%= supplier.name %><br>
                 <% end %>
-              <th>
-
-
               </th>
-              <th><%= order.total %></th>
+              <th>
+                <% order.shipments.each do |shipment| %>
+                  <%= shipment.cost %><br>
+                <% end %>
+              </th>
+              <th>
+                <% order.shipments.each do |shipment| %>
+                  <%= shipment.shipping_rates.first.name %>
+                  <% if shipment.tracking == "" %>
+                    | <%= link_to "Track", shipment.tracking %>
+                  <% end %>
+                  <br>
+                <% end %>
+              </th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <!-- Shipments Table -->
-    <div class="page-header">
-      <h3>Shipments</h3>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Date Completed</th>
-            <th>Order #</th>
-            <th>Total Paid</th>
-            <th>Leema Seller(s)</th>
-            <th>Shipment Cost</th>
-            <th>Tracking</th>
-            <th>State</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orders.each do |order| %>
-            <% order.shipments.each do |shipment| %>
-              <tr>
-                <th><%= shipment.created_at %></th>
-                <th><% shipment.line_items.each do |item| %><%= item.name %><br> <% end %></th>
-                <th><%= shipment.order.number %></th>
-                <th><%= shipment.tracking %></th>
-                <th><%= shipment.supplier.name %></th>
-                <th><%= shipment.supplier.name %></th>
-                <th><%= shipment.supplier.name %></th>
-              </tr>
-            <% end %>
           <% end %>
         </tbody>
       </table>
