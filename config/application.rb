@@ -8,7 +8,11 @@ Bundler.require(*Rails.groups)
 
 module Leema
   class Application < Rails::Application
-    
+
+    Spree.config do |config|
+      config.logo = "footer-logo-horizontal.png"
+    end
+
     config.to_prepare do
       # Load application's model / class decorators
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
