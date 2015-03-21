@@ -842,21 +842,6 @@ h6.review-author {
           background-color: $link_text_color;
         }
       }
-
-      &:after {
-        left: 100%;
-        top: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-color: rgba(58, 137, 255, 0);
-        border-left-color: #3a89ff;
-        border-width: 21px;
-        margin-top: -21px;
-      }
     }
 
     &.completed-first, &.completed {
@@ -877,6 +862,30 @@ h6.review-author {
           &:hover {
             color: $layout_background_color;
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .progress-steps {
+    li {
+      &.current-first, &.current {
+
+        &:after {
+          left: 100%;
+          top: 50%;
+          border: solid transparent;
+          content: " ";
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+          border-color: rgba(58, 137, 255, 0);
+          border-left-color: #3a89ff;
+          border-width: 21px;
+          margin-top: -21px;
         }
       }
     }
