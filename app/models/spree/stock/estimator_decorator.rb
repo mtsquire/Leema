@@ -18,7 +18,6 @@ Spree::Stock::Estimator.class_eval do
 
       # Sets cheapest rate to be selected by default
       package.shipping_rates.first.selected = true
-
       package.shipping_rates
     else
       []

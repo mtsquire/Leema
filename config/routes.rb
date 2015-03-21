@@ -43,6 +43,9 @@
   #for setting up the stripe webhook
   post '/hooks/stripe' => 'hooks#stripe'
 
+  #easypost webhook
+  post '/shipments/easypost_webhook' => 'spree/admin/shipments#easypost_webhook'
+
   resources :postmates do
       member do
           post 'get_delivery'
