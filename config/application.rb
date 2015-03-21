@@ -6,12 +6,12 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Spree.config do |config|
+  config.logo = "footer-logo-horizontal.png"
+end
+
 module Leema
   class Application < Rails::Application
-
-    Spree.config do |config|
-      config.logo = "footer-logo-horizontal.png"
-    end
 
     config.to_prepare do
       # Load application's model / class decorators
