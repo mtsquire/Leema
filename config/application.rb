@@ -34,9 +34,4 @@ module Leema
     # config.i18n.default_locale = :de
 
   end
-
-  Spree.config do |config|
-    config.logo = "footer-logo-horizontal.png"
-  end
-
 end
