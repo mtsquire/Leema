@@ -6,10 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Spree.config do |config|
-  config.logo = "footer-logo-horizontal.png"
-end
-
 module Leema
   class Application < Rails::Application
 
@@ -38,4 +34,9 @@ module Leema
     # config.i18n.default_locale = :de
 
   end
+
+  Spree.config do |config|
+    config.logo = "footer-logo-horizontal.png"
+  end
+
 end
