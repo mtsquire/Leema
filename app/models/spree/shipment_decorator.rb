@@ -4,7 +4,7 @@ Spree::Shipment.class_eval do
   has_many :products, class_name: Spree::Product.to_s
 
   def tracking_url
-    self.tracking
+    nil
   end
 
   private

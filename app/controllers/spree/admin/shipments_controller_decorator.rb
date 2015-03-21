@@ -36,6 +36,7 @@ Spree::Admin::ShipmentsController.class_eval do
   end
 
   def approve
+    @shipment.state
   end
 
   def easypost_webhook
