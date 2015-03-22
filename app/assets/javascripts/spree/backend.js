@@ -16,9 +16,7 @@
 //= require equalize
 //= require responsive-tables
 //= require spree
-//= require spree/backend/shipments
-//= stub spree/backend/user_picker
-//= stub spree/backend/product_picker
+//= require spree/backend/spree-select2
 //= require_tree .
 
 
