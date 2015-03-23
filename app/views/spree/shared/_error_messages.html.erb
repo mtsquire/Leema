@@ -1,0 +1,11 @@
+<% if target && target.errors.any? %>
+  <div id="errorExplanation" class="errorExplanation" data-hook>
+    <h5><%= Spree.t(:errors_on_this_page, :count => target.errors.count) %>:</h5>
+    <p><strong><%= Spree.t(:there_were_problems_with_the_following_fields) %>:</strong></p>
+     <ul class="list-unstyled">
+     <% target.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+  </div>
+<% end %>
