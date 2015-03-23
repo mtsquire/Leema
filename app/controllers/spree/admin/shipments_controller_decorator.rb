@@ -1,6 +1,8 @@
 Spree::Admin::ShipmentsController.class_eval do
   require 'json'
 
+  skip_before_action :verify_authenticity_token
+
   def index
     params[:q] ||= {}
     # params[:q][:completed_at_null] ||= '1'
@@ -35,11 +37,4 @@ Spree::Admin::ShipmentsController.class_eval do
     params[:q][:created_at_lt] = created_at_lt
   end
 
-  def approve
-    @shipment.state
-  end
-
-  def easypost_webhook
-    data_json = JSON.parse request.body.read
-  end
 end

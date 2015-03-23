@@ -1,4 +1,4 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
 
   get 'orders/index'
   resources "orders", :controller => :my_orders, :as => :orders
@@ -42,9 +42,6 @@
 
   #for setting up the stripe webhook
   post '/hooks/stripe' => 'hooks#stripe'
-
-  #easypost webhook
-  post '/shipments/easypost_webhook' => 'spree/admin/shipments#easypost_webhook'
 
   resources :postmates do
       member do
