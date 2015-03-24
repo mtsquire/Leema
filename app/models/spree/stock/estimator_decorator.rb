@@ -32,7 +32,7 @@ Spree::Stock::Estimator.class_eval do
     ep_address_attrs[:company] = if address.respond_to?(:company)
       address.company
     else
-      "Leema, LLC"
+      ep_address_attrs[:company] = address.supplier.store_name
     end
   
     ep_address_attrs[:name] = address.full_name if address.respond_to?(:full_name)
