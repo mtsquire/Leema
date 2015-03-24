@@ -91,7 +91,8 @@ class Spree::Supplier < Spree::Base
           country_id: self.address.try(:country_id),
           name: self.name,
           state_id: self.address.try(:state_id),
-          zipcode: self.address.try(:zipcode)
+          zipcode: self.address.try(:zipcode),
+          phone: self.address.try(:phone).gsub("-"/"")
         )
         # It's important location is always created.  Some apps add validations that shouldn't break this.
         location.save validate: false

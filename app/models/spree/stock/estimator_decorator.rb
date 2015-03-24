@@ -12,12 +12,13 @@ Spree::Stock::Estimator.class_eval do
           :name => "#{rate.carrier} #{rate.service}",
           :cost => rate.rate,
           :easy_post_shipment_id => rate.shipment_id,
-          :easy_post_rate_id => rate.id
+          :easy_post_rate_id => rate.id,
+          :easy_post_delivery_days => rate.delivery_days
         )
       end
 
       # Sets cheapest rate to be selected by default
-      package.shipping_rates.first.selected = true
+      # package.shipping_rates.first.selected = true
       package.shipping_rates
     else
       []

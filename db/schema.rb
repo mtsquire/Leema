@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323025347) do
+ActiveRecord::Schema.define(version: 20150324155659) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -616,8 +616,6 @@ ActiveRecord::Schema.define(version: 20150323025347) do
     t.decimal  "pre_tax_amount",       precision: 8,  scale: 2, default: 0.0
     t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0, null: false
     t.string   "postage_label"
-    t.string   "delivery_days"
-    t.date     "delivery_date"
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id"
@@ -663,14 +661,16 @@ ActiveRecord::Schema.define(version: 20150323025347) do
   create_table "spree_shipping_rates", force: true do |t|
     t.integer  "shipment_id"
     t.integer  "shipping_method_id"
-    t.boolean  "selected",                                      default: false
-    t.decimal  "cost",                  precision: 8, scale: 2, default: 0.0
+    t.boolean  "selected",                                        default: false
+    t.decimal  "cost",                    precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tax_rate_id"
     t.string   "name"
     t.string   "easy_post_shipment_id"
     t.string   "easy_post_rate_id"
+    t.integer  "easy_post_delivery_days"
+    t.string   "easy_post_delivery_date"
   end
 
   add_index "spree_shipping_rates", ["selected"], name: "index_spree_shipping_rates_on_selected"

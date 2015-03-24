@@ -45,16 +45,15 @@
               <li class="list-group-item shipping-method">
                 <label>
                   <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
-                  <% if rate.name == "Postmates" %>
-                    <%= image_tag "postmates.png", class: 'img-responsive center' %>
-                    <span class="badge rate-cost"><%= rate.display_cost %></span>
-                  <% else %>
                     <span class="rate-name"><%= rate.name %></span>
                     <span class="badge rate-cost">
-
                       $<%= rate.cost %>
                     </span>
-                  <% end %>
+                    <% if rate.easy_post_delivery_days %>
+                      <span>
+                        Delivery within <%= rate.easy_post_delivery_days %> days
+                      </span>
+                    <% end %>
                 </label>
               </li>
             <% end %>
