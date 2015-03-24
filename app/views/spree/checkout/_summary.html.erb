@@ -7,7 +7,7 @@
     <tbody>
       <tr data-hook="item_total">
         <td><strong><%= Spree.t(:item_total) %>:</strong></td>
-        <td><strong><%= order.display_item_total.to_html %></strong></td>
+        <td class="summary-item-total"><strong><%= order.display_item_total.to_html %></strong></td>
       </tr>
 
       <% if order.line_item_adjustments.exists? %>
