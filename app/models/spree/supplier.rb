@@ -61,6 +61,10 @@ class Spree::Supplier < Spree::Base
     self.user_ids = s.to_s.split(',').map(&:strip)
   end
 
+  def has_bank_account?
+    true if self.bank_accounts
+  end
+
   #==========================================
   # Protected Methods
 
