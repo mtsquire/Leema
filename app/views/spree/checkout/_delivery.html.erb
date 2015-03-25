@@ -109,3 +109,29 @@
 <div class="well text-right form-buttons" data-hook="buttons">
   <%= submit_tag Spree.t(:save_and_continue), :class => 'btn btn-lg btn-success' %>
 </div>
+
+<script type="text/javascript">
+var shippingRadio = $('.shipping-methods li input');
+$( shippingRadio ).click(function() {
+
+  var selectedShipping = $('.shipping-methods li input:checked'),
+      itemTotal = Number( $('.summary-item-total').text().replace(/[^0-9\.]+/g,"")),
+      shippingPrices = [];
+
+  $(selectedShipping).each(function(){
+    var shippingPrice = $(this).siblings('.rate-cost').text(),
+        cleanPrice = Number( shippingPrice.replace(/[^0-9\.]+/g,"")),
+        rateName = $(this).siblings('.rate-name').text();
+
+        shippingPrices.push(cleanPrice);
+  });
+
+  var shippingSum = shippingPrices.reduce( function(total, num){ return total + num }, 0),
+      shippingTotal = Math.round(shippingSum * 100) / 100,
+      orderTotal = itemTotal + shippingTotal;
+
+  $('.summary-shipping-price').text(shippingTotal);
+  $('.summary-order-total').html('<strong>'+ orderTotal +'</strong>');
+
+});
+</script>
