@@ -29,7 +29,6 @@ Spree::Shipment.class_eval do
     easypost_shipment.buy(rate)
     self.tracking = easypost_shipment.tracking_code
     self.postage_label = easypost_shipment.postage_label.label_url
-    self.delivery_date = easypost_shipment.rates[0].delivery_date
   end
 
   def easypost_tracker

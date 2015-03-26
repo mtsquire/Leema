@@ -113,7 +113,6 @@
     <tfoot id='shipment-total'>
       <% order.shipments.each do |shipments| %>
         <tr class="total" data-hook='shipment-row'>
-          <td colspan="8" align="left" class="text-muted">Shipping Instructions:<strong> <%= shipments.special_instructions %></strong></td>
           <td colspan="4" align="right" class="text-muted"><%= Spree.t(:shipping) %>: <strong><%= shipments.selected_shipping_rate.name %></strong></td>
           <td><span><%= Spree::Money.new(shipments.cost(&:discounted_cost)).to_html %></span></td>
         </tr>
