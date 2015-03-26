@@ -95,12 +95,13 @@
       <% end %>
 
     </div>
-    <% if Spree::Config[:shipping_instructions] %>
+    <!-- removing shipping instructions config conditional -->
+    <!-- #if Spree::Config[:shipping_instructions] -->
       <p id="minstrs" data-hook>
         <h4><%= Spree.t(:shipping_instructions) %></h4>
-        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control" %>
+        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control", :placeholder => "Have any special instructions for this shipment?" %>
       </p>
-    <% end %>
+    <!--# end -->
   </div>
 </div>
 
