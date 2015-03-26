@@ -1,6 +1,6 @@
 <div class="panel panel-default" id='shipping_method' data-hook>
   <div class="panel-heading">
-    <h3 class="panel-title"><%= Spree.t(:delivery) %></h3>
+    <h3 class="panel-title"><%= Spree.t(:delivery) %> (<%= @order.shipments.count %> <%= "Shipments".pluralize(@order.shipments.count) %>)</h3>
   </div>
   <div class="panel-body" data-hook="shipping_method_inner">
     <div id="methods">
@@ -98,8 +98,8 @@
     <!-- removing shipping instructions config conditional -->
     <!-- #if Spree::Config[:shipping_instructions] -->
       <p id="minstrs" data-hook>
-        <h4><%= Spree.t(:shipping_instructions) %></h4>
-        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control", :placeholder => "Have any special instructions for this shipment?" %>
+        <h4><%= Spree.t(:special_instructions) %></h4>
+        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control", :placeholder => "Have any special instructions for this order?" %>
       </p>
     <!--# end -->
   </div>
