@@ -3,7 +3,7 @@ module Spree
     validate :no_attachment_errors
 
     has_attached_file :attachment,
-                      styles: { mini: '48', small: '100', product: '240', large: '700' },
+                      styles: { mini: '48', small: '100', product: '240', large: '700', facebook: '600x315#' },
                       default_style: :product,
                       url: '/spree/products/:id/:style/:basename.:extension',
                       path: ':rails_root/public/spree/products/:id/:style/:basename.:extension',
