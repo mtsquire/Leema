@@ -1,0 +1,9 @@
+<% if content_for?(:image) %>
+  <meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
+<% else %>
+  <meta property="og:image" content="<%= image_url('leema-og-image.jpg') %>" />
+<% end %>
+
+<meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "" %>Leema: Let Everyone Eat My Art" />
+<meta property="og:site_name" content="Leema: Let Everyone Eat My Art" />
+<meta property="og:url" content="<%= request.original_url %>" />
