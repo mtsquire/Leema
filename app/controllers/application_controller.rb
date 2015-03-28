@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def original_url
+    base_url + original_fullpath
+  end
+
   protected
     #Added so a user can edit their profile page.
     def configure_permitted_parameters
