@@ -1,6 +1,6 @@
 <div class="panel panel-default" id='shipping_method' data-hook>
   <div class="panel-heading">
-    <h3 class="panel-title"><%= Spree.t(:delivery) %></h3>
+    <h3 class="panel-title"><%= Spree.t(:delivery) %> (<%= @order.shipments.count %> <%= "Shipments".pluralize(@order.shipments.count) %>)</h3>
   </div>
   <div class="panel-body" data-hook="shipping_method_inner">
     <div id="methods">
@@ -45,16 +45,15 @@
               <li class="list-group-item shipping-method">
                 <label>
                   <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
-                  <% if rate.name == "Postmates" %>
-                    <%= image_tag "postmates.png", class: 'img-responsive center' %>
-                    <span class="badge rate-cost"><%= rate.display_cost %></span>
-                  <% else %>
                     <span class="rate-name"><%= rate.name %></span>
                     <span class="badge rate-cost">
-                    
-                      <%= rate.cost %>
+                      $<%= rate.cost %>
                     </span>
-                  <% end %>
+                    <% if rate.easy_post_delivery_days %>
+                      <span>
+                        Delivery within <%= rate.easy_post_delivery_days %> days
+                      </span>
+                    <% end %>
                 </label>
               </li>
             <% end %>
@@ -96,12 +95,13 @@
       <% end %>
 
     </div>
-    <% if Spree::Config[:shipping_instructions] %>
+    <!-- removing shipping instructions config conditional -->
+    <!-- #if Spree::Config[:shipping_instructions] -->
       <p id="minstrs" data-hook>
-        <h4><%= Spree.t(:shipping_instructions) %></h4>
-        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control" %>
+        <h4><%= Spree.t(:special_instructions) %></h4>
+        <%= form.text_area :special_instructions, :cols => 40, :rows => 4, :class => "form-control", :placeholder => "Have any special instructions for this order?" %>
       </p>
-    <% end %>
+    <!--# end -->
   </div>
 </div>
 
@@ -110,3 +110,29 @@
 <div class="well text-right form-buttons" data-hook="buttons">
   <%= submit_tag Spree.t(:save_and_continue), :class => 'btn btn-lg btn-success' %>
 </div>
+
+<script type="text/javascript">
+var shippingRadio = $('.shipping-methods li input');
+$( shippingRadio ).click(function() {
+
+  var selectedShipping = $('.shipping-methods li input:checked'),
+      itemTotal = Number( $('.summary-item-total').text().replace(/[^0-9\.]+/g,"")),
+      shippingPrices = [];
+
+  $(selectedShipping).each(function(){
+    var shippingPrice = $(this).siblings('.rate-cost').text(),
+        cleanPrice = Number( shippingPrice.replace(/[^0-9\.]+/g,"")),
+        rateName = $(this).siblings('.rate-name').text();
+
+        shippingPrices.push(cleanPrice);
+  });
+
+  var shippingSum = shippingPrices.reduce( function(total, num){ return total + num }, 0),
+      shippingTotal = Math.round(shippingSum * 100) / 100,
+      orderTotal = itemTotal + shippingTotal;
+
+  $('.summary-shipping-price').text(shippingTotal);
+  $('.summary-order-total').html('<strong>'+ orderTotal +'</strong>');
+
+});
+</script>

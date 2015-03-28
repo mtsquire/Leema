@@ -4,7 +4,7 @@ Spree::Shipment.class_eval do
   has_many :products, class_name: Spree::Product.to_s
 
   def tracking_url
-    nil # TODO: Work out how to properly generate this
+    nil
   end
 
   private
@@ -28,5 +28,12 @@ Spree::Shipment.class_eval do
 
     easypost_shipment.buy(rate)
     self.tracking = easypost_shipment.tracking_code
+    self.postage_label = easypost_shipment.postage_label.label_url
   end
+
+  def easypost_tracker
+    EasyPost::Tracker.retrieve(self.tracking)
+  end
+
+
 end

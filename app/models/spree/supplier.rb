@@ -41,6 +41,7 @@ class Spree::Supplier < Spree::Base
 
   after_create :assign_user
   after_create :create_stock_location
+  after_save :update_stock_location 
   after_create :send_welcome, if: -> { SpreeDropShip::Config[:send_supplier_email] }
   before_create :set_commission
   before_validation :check_url
@@ -59,6 +60,10 @@ class Spree::Supplier < Spree::Base
 
   def user_ids_string=(s)
     self.user_ids = s.to_s.split(',').map(&:strip)
+  end
+
+  def has_bank_account?
+    true if self.bank_accounts
   end
 
   #==========================================
@@ -85,16 +90,32 @@ class Spree::Supplier < Spree::Base
       if self.stock_locations.empty?
         location = self.stock_locations.build(
           active: true,
-          address1: self.address.try(:address_1),
-          address2: self.address.try(:address_2),
+          address1: self.address.try(:address1),
+          address2: self.address.try(:address2),
           city: self.address.try(:city),
           country_id: self.address.try(:country_id),
           name: self.name,
           state_id: self.address.try(:state_id),
-          zipcode: self.address.try(:zipcode)
+          zipcode: self.address.try(:zipcode),
+          phone: self.address.try(:phone)
         )
         # It's important location is always created.  Some apps add validations that shouldn't break this.
         location.save validate: false
+      end
+    end
+
+    def update_stock_location
+      if self.stock_locations.empty? == false
+        location = self.stock_locations.first.update(
+          address1: self.address.try(:address1),
+          address2: self.address.try(:address2),
+          city: self.address.try(:city),
+          country_id: self.address.try(:country_id),
+          name: self.name,
+          state_id: self.address.try(:state_id),
+          zipcode: self.address.try(:zipcode),
+          phone: self.address.try(:phone)
+        )
       end
     end
 

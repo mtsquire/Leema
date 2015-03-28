@@ -1,4 +1,4 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
 
   get 'orders/index'
   resources "orders", :controller => :my_orders, :as => :orders

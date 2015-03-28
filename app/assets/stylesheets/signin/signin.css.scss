@@ -1,5 +1,13 @@
 /* Login/Registration Pages */
+html, body {
+	height: 100%;
+}
 
+.signin {
+	background-image: image-url("colorfuldonuts.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+}
 .signin .form {
 	padding: 0px;
 	overflow: hidden;
@@ -21,21 +29,6 @@
 }
 
 @media (min-width: 768px) {
-	.signin:after {
-		content: "";
-		background-image: image-url("login-bg-alt.jpg");
-		background-position: top center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		opacity: .5;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		z-index: -1;
-	}
-
 	.signin .form {
 		padding: 50px 0;
 	}

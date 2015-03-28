@@ -12,13 +12,13 @@ Spree::Stock::Estimator.class_eval do
           :name => "#{rate.carrier} #{rate.service}",
           :cost => rate.rate,
           :easy_post_shipment_id => rate.shipment_id,
-          :easy_post_rate_id => rate.id
+          :easy_post_rate_id => rate.id,
+          :easy_post_delivery_days => rate.delivery_days
         )
       end
 
-      # Sets cheapest rate to be selected by default
+      # Set cheapest rate to be selected by default
       package.shipping_rates.first.selected = true
-
       package.shipping_rates
     else
       []
@@ -33,7 +33,7 @@ Spree::Stock::Estimator.class_eval do
     ep_address_attrs[:company] = if address.respond_to?(:company)
       address.company
     else
-      "Leema, LLC"
+      ep_address_attrs[:company] = address.supplier.store_name
     end
   
     ep_address_attrs[:name] = address.full_name if address.respond_to?(:full_name)
