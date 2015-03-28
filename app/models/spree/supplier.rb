@@ -41,7 +41,7 @@ class Spree::Supplier < Spree::Base
 
   after_create :assign_user
   after_create :create_stock_location
-  after_save :update_stock_location
+  after_update :update_stock_location
   after_create :send_welcome, if: -> { SpreeDropShip::Config[:send_supplier_email] }
   before_create :set_commission
   before_validation :check_url
