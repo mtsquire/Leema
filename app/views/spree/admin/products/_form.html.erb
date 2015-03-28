@@ -139,7 +139,7 @@
     <div data-hook="admin_product_form_taxons">
       <%= f.field_container :taxons do %>
         <div class="form-group">
-          <%= f.label :taxon_ids, Spree.t(:taxons) %><br />
+          <%= f.label :taxon_ids, Spree.t(:product_tags) %><br />
           <%= f.hidden_field :taxon_ids, :value => @product.taxon_ids.join(',') %>
         </div>
       <% end %>
@@ -156,19 +156,19 @@
   </div>
 
   <div data-hook="admin_product_form_meta" class="col-xs-12">
-    <div data-hook="admin_product_form_meta_keywords">
+<!--     <div data-hook="admin_product_form_meta_keywords">
       <%= f.field_container :meta_keywords do %>
         <div class="form-group">
           <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
           <%= f.text_field :meta_keywords, :class => 'form-control' %>
         </div>
       <% end %>
-    </div>
+    </div> -->
 
     <div data-hook="admin_product_form_meta_description">
       <%= f.field_container :meta_description do %>
         <div class="form-group">
-          <%= f.label :meta_description, Spree.t(:meta_description) %>
+          <%= f.label :meta_description, Spree.t(:seo_description) %>
           <%= f.text_field :meta_description, :class => 'form-control' %>
         </div>
       <% end %>
