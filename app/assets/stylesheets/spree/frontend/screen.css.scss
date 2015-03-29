@@ -852,6 +852,10 @@ h6.review-author {
         color: $layout_background_color;
       }
 
+      a:first-of-type {
+        color: $layout_background_color;
+      }
+
       &:hover {
         background-color: $table_head_color;
         color: $layout_background_color;
