@@ -26,7 +26,8 @@ Spree.config do |config|
           mini:     "48",
           small:    "100",
           product:  "240",
-          large:    "720"
+          large:    "720",
+          facebook: "600x315#"
         },
 
         path:          ":rails_root/public/spree/products/:id/:style/:basename.:extension",
