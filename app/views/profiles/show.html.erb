@@ -9,6 +9,8 @@
   <%= title "#{@user.full_name} - ".html_safe %>
 <% end %>
 
+<%= ogtype "profile" %>
+
 <body>
   <% if @user.supplier? %>
     <div class="section-cover">

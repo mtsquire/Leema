@@ -8,6 +8,9 @@ module ApplicationHelper
     content_for(:image) { og_image }
   end
 
+  def ogtype(og_type)
+    content_for(:ogtype) { og_type }
+  end
 
   def link_to_cart(text = nil)
     return "" if current_spree_page?(spree.cart_path)
