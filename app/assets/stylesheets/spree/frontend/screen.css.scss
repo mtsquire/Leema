@@ -853,7 +853,7 @@ h6.review-author {
       }
 
       a:first-of-type {
-        color: $layout_background_color;
+        display: none;
       }
 
       &:hover {
