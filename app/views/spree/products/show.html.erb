@@ -1,4 +1,11 @@
 <% cache [current_currency, @product] do %>
+
+<% if @product.images.count > 0 %>
+  <%= image image_url (@product.images.first.attachment.url(:facebook)) %>
+<% end %>
+
+<%= ogtype "product" %>
+
  <div id="product-brand" class="row">
     <div class="col-xs-12">
       <a href="/<%= @product.suppliers.first.users.first.display_name %>">

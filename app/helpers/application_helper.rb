@@ -1,5 +1,17 @@
 module ApplicationHelper
-  
+
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
+  def image(og_image)
+    content_for(:image) { og_image }
+  end
+
+  def ogtype(og_type)
+    content_for(:ogtype) { og_type }
+  end
+
   def link_to_cart(text = nil)
     return "" if current_spree_page?(spree.cart_path)
 

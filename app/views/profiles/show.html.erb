@@ -1,5 +1,17 @@
-<body>
+<% if @user.supplier.store_name != nil %>
+  <%= title "#{@user.supplier.store_name} - ".html_safe %>
 
+  <% if @user.supplier.cover_photo_file_name? %>
+    <%= image image_url (@user.supplier.cover_photo.url(:large)) %>
+  <% end %>
+
+<% else %>
+  <%= title "#{@user.full_name} - ".html_safe %>
+<% end %>
+
+<%= ogtype "profile" %>
+
+<body>
   <% if @user.supplier? %>
     <div class="section-cover">
       <% if @user.supplier.cover_photo_file_name? %>
