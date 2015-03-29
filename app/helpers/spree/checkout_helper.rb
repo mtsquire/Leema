@@ -15,7 +15,7 @@ module Spree
 
         if state_index < current_index
           css_classes << 'completed'
-          text = link_to text, checkout_state_path(state)
+          text = text, checkout_state_path(state)
         end
 
         css_classes << 'next' if state_index == current_index + 1
@@ -23,7 +23,7 @@ module Spree
         css_classes << 'first' if state_index == 0
         css_classes << 'last' if state_index == states.length - 1
         # It'd be nice to have separate classes but combining them with a dash helps out for IE6 which only sees the last class
-        content_tag('li', class: css_classes.join('-'))
+        content_tag('li', content_tag('a', text), class: css_classes.join('-'))
       end
       content_tag('ol', raw(items.join("\n")), class: 'progress-steps nav nav-pills nav-justified', id: "checkout-step-#{@order.state}")
     end
