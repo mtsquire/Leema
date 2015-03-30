@@ -32,6 +32,14 @@
       </div>
     <% end %>
 
+    <%= f.field_container :shipping_information do %>
+      <div class="form-group">
+        <%= f.label :shipping_information, Spree.t(:shipping_information) %> <span class="required">*</span><br />
+        <%= f.text_area :shipping_information, {:rows => "7", :class => 'form-control', :placeholder => 'Please list any important shipping information here. How long does it take you to fill orders? When can customers expect their shipments?'} %>
+        <%= f.error_message_on :shipping_information %>
+      </div>
+    <% end %>
+
 
     <div data-hook="new_product_attrs" class="row">
       <% unless @product.has_variants? %>
@@ -74,7 +82,7 @@
     <div class="row">
       <div class="col-xs-12">
         <p class="your-take">Your take: <span class="net-price"></span></p>
-        <p class="help-block">This is approxamately what you will make after Leema takes 10% of the sale.</p>
+        <p class="help-block">This is approximately what you will make after Leema takes 10% of the sale.</p>
       </div>
     </div>
 
