@@ -58,6 +58,7 @@
                 <th class="actions"></th>
               </thead>
               <tbody>
+              <!-- Allow Leema admins to modify stock for every supplier, if necessary -->
               <% if spree_current_user.leema_admin? == true %>
                 <% variant.stock_items.each do |item| %>
                   <% next unless @stock_locations.include?(item.stock_location) %>

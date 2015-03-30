@@ -16,7 +16,7 @@
           <div class="form-group">
             <%= label_tag :stock_location_id, Spree.t(:stock_location) %>
             <%= select_tag 'stock_location_id', options_from_collection_for_select(@stock_locations, :id, :name, "#{spree_current_user.supplier.stock_locations.first.id.to_i}"),
-              class: 'select2 fullwidth' %>
+              class: 'fullwidth', :disabled => true %>
           </div>
         <% end %>
       </div>
