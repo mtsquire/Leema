@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324155659) do
+ActiveRecord::Schema.define(version: 20150329183928) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -445,6 +445,7 @@ ActiveRecord::Schema.define(version: 20150324155659) do
     t.datetime "photo_updated_at"
     t.text     "leema_description"
     t.text     "ingredients",          limit: 255
+    t.text     "shipping_information"
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
