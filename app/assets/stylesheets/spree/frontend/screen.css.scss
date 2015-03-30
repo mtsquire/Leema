@@ -852,6 +852,10 @@ h6.review-author {
         color: $layout_background_color;
       }
 
+      a:first-of-type {
+        display: none;
+      }
+
       &:hover {
         background-color: $table_head_color;
         color: $layout_background_color;
@@ -1083,10 +1087,12 @@ h6.review-author {
 
   .shipment {
     margin-bottom: 30px;
+    padding: 10px;
+    background: #f8f8f8;
   }
 
   .stock-shipping-method-title {
-    background-color: lighten($body_text_color, 70);
+    background-color: #fff;
     text-align: center;
     text-transform: uppercase;
     font-weight: normal;

@@ -3,6 +3,7 @@ class Spree::SuppliersController < Spree::StoreController
   before_filter :check_if_supplier, only: [:create, :new]
   ssl_required
 
+
   def create
     authorize! :create, Spree::Supplier
 

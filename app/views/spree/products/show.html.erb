@@ -1,9 +1,10 @@
 <% cache [current_currency, @product] do %>
 
 <% if @product.images.count > 0 %>
-  <%= image image_url (@product.images.first.attachment.url(:large)) %>
+  <%= image image_url (@product.images.first.attachment.url(:facebook)) %>
 <% end %>
 
+<%= ogtype "product" %>
 
  <div id="product-brand" class="row">
     <div class="col-xs-12">
@@ -130,7 +131,7 @@
                 <% end %>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="shipping-info">
-                  <p>This is where we list the user's shipping information.  Prices, places they ship, etc.</p>
+                  <p><%= @product.shipping_information %></p>
                 </div>
               </div>
 

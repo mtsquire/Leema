@@ -58,6 +58,7 @@
                 <th class="actions"></th>
               </thead>
               <tbody>
+              <!-- Allow Leema admins to modify stock for every supplier, if necessary -->
               <% if spree_current_user.leema_admin? == true %>
                 <% variant.stock_items.each do |item| %>
                   <% next unless @stock_locations.include?(item.stock_location) %>
@@ -116,6 +117,9 @@
   </tbody>
 </table>
 
+<div class="form-buttons filter-actions actions" data-hook="buttons">
+  <%= button Spree.t('actions.update'), 'refresh' %>
+</div>
 
 <script type="text/javascript">
 $(function () {
