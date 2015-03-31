@@ -169,15 +169,15 @@ span.info {
   &.withError {
     .field_with_errors {
       label {
-        color: very-light($color-error, 30);
+        color: #a94442;
       }
 
       input {
-        border-color: very-light($color-error, 15);
+        border-color: #a94442;
       }
     }
     .formError {
-      color: very-light($color-error, 30);
+      color: #a94442;
       font-style: italic;
       font-size: 85%;
     }
@@ -185,7 +185,7 @@ span.info {
 }
 
 .formError {
-  color: very-light($color-error, 30);
+  color: #a94442;
   font-style: italic;
   font-size: 85%;
 }

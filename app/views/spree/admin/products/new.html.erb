@@ -87,12 +87,13 @@
     </div>
 
     <div class='row'>
-      <div data-hook="new_product_shipping_category" class="alpha col-sm-3">
+      <div data-hook="new_product_shipping_category" class="col-sm-5">
         <%= f.field_container :shipping_category do %>
           <div class="form-group">
-            <%= f.label :shipping_category_id, Spree.t(:shipping_categories) %><span class="required">*</span>
+            <%= f.label :shipping_category_id, Spree.t(:select_shipping_weight_in_ounces) %><span class="required">*</span>
             <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2 fullwidth' }) %>
             <%= f.error_message_on :shipping_category_id %>
+            <p class="help-block">Please select the total weight in ounces for 1 order. (i.e. if one order is 4 cookies, the total weight of 4 cookies).</p>
           </div>
         <% end %>
       </div>
