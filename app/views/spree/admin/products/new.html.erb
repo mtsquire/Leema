@@ -167,7 +167,7 @@
 
     $(".pounds-to-ounces .convert").click(function(){
       var pounds = $(".pounds").val(),
-          ounces = Math.round(pounds * 16);
+          ounces = Math.ceil(pounds * 16);
 
       $(".pounds-to-ounces .oz-number").text(ounces);
     });
