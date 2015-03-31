@@ -7,7 +7,7 @@
         <%= f.field_container :quantity do %>
           <div class="form-group">
             <%= f.label :quantity, Spree.t(:quantity) %>
-            <%= f.number_field :quantity, class: 'form-control', value: 1, min: 1 %>
+            <%= f.number_field :quantity, class: 'form-control', value: 1 %>
           </div>
         <% end %>
       </div>
@@ -31,7 +31,7 @@
     </div>
     <p class="help-block text-center">To remove stock, input a negative amount and click "Adjust Stock".</p>
     <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= button Spree.t(:add_stock), 'plus' %>
+      <%= button Spree.t(:adjust_stock), 'arrows-v' %>
     </div>
   </fieldset>
 <% end %>
