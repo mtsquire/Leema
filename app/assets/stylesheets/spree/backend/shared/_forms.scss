@@ -191,13 +191,13 @@ span.info {
 }
 
 legend.title {
-  background-color: $color-1;
-  color: $color-2;
+  color: $color-3;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  text-align: center;
-  padding: 8px 15px;
+  text-align: left;
+  padding: 8px 0px;
+  border-bottom: 1px solid $color-3;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -235,13 +235,13 @@ fieldset {
   }
 
   legend {
-    background-color: $color-1;
-    color: $color-2;
+    color: $color-3;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    text-align: center;
-    padding: 8px 15px;
+    text-align: left;
+    padding: 8px 0px;
+    border-bottom: 1px solid $color-3;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
