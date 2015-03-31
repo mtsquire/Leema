@@ -3,20 +3,20 @@
     <legend align="center"><%= Spree.t(:add_stock_management) %></legend>
 
     <div data-hook="admin_stock_movements_form_fields" class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-4 col-sm-offset-4">
         <%= f.field_container :quantity do %>
           <div class="form-group">
             <%= f.label :quantity, Spree.t(:quantity) %>
-            <%= f.number_field :quantity, class: 'form-control', value: 1, min: 1 %>
+            <%= f.number_field :quantity, class: 'form-control', value: 1 %>
           </div>
         <% end %>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 hidden">
         <%= f.field_container :stock_location do %>
           <div class="form-group">
             <%= label_tag :stock_location_id, Spree.t(:stock_location) %>
             <%= select_tag 'stock_location_id', options_from_collection_for_select(@stock_locations, :id, :name, "#{spree_current_user.supplier.stock_locations.first.id.to_i}"),
-              class: 'fullwidth', :disabled => true %>
+              class: 'fullwidth' %>
           </div>
         <% end %>
       </div>
@@ -29,11 +29,9 @@
         <% end %>
       </div>
     </div>
-
+    <p class="help-block text-center">To remove stock, input a negative amount and click "Adjust Stock".</p>
     <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= button Spree.t(:add_stock), 'plus' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= button Spree.t(:remove_stock), 'minus' %>
+      <%= button Spree.t(:adjust_stock), 'arrows-v' %>
     </div>
   </fieldset>
 <% end %>

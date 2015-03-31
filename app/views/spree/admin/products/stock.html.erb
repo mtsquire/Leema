@@ -17,7 +17,7 @@
     <col style="width: 25%" />
     <col style="width: 25%" />
   </colgroup>
-  <thead>
+  <thead class="hidden">
     <tr data-hook="admin_product_stock_management_index_headers">
       <th><%= Spree.t(:variant) %></th>
       <th colspan="4"><%= Spree.t(:stock_location_info) %></th>
@@ -27,7 +27,7 @@
     <% @variants.each do |variant| %>
       <% if variant.stock_items.present? %>
         <tr id="<%= spree_dom_id variant %>" data-hook="admin_product_stock_management_index_rows" class="<%= cycle('odd', 'even') %>">
-          <td class="align-center">
+          <td class="align-center hidden">
             <%= variant.sku_and_options_text %>
             <br>
             <% if variant.images.present? %>
@@ -116,10 +116,6 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="form-buttons filter-actions actions" data-hook="buttons">
-  <%= button Spree.t('actions.update'), 'refresh' %>
-</div>
 
 <script type="text/javascript">
 $(function () {

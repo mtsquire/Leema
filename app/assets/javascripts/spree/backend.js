@@ -17,6 +17,7 @@
 //= require responsive-tables
 //= require spree
 //= require spree/backend/spree-select2
+//= require spree/backend/stock_management
 //= require_tree .
 
 
