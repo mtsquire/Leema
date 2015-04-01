@@ -24,7 +24,7 @@
     <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 product-list-item" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
       <%= link_to product, :class => 'product-link', :itemprop => "name", :title => product.name do %>
         <div class="product-card">
-
+          <% cache(@taxon.present? ? [current_currency, @taxon, product] : [current_currency, product]) do %>
 
 
             <%#-= large_image(product, :itemprop => "image", :class => 'img-responsive center-block') -%>
@@ -57,6 +57,7 @@
 
 
 
+          <% end %>
         </div><!-- close .product-card -->
       <% end %>
     </div>
