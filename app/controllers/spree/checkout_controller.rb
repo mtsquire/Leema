@@ -36,22 +36,28 @@ module Spree
           @current_order = nil
           # Transfer money to supplier bank account
           if Rails.env.production?
+            charge_id = @order.payments.first.response_code
             @order.shipments.each do |shipment|
-              puts "Initiating Stripe transfer"
-              Stripe::Charge.retrieve
-              item_total = 0
-              shipment.line_items.each do |item|
-                item_total += item.product.price
-              end  
-              transfer = Stripe::Transfer.create(
-                # Take 10% for ourselves from the total cost
-                # of items per supplier(shipment)
-                # shipment.final_price is shipping cost plus tax
-                :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
-                :currency => "usd",
-                :recipient => shipment.supplier.token
-              )
+              shipment.stripe_charge_id = charge_id
+              puts "Set stripe charge id to #{charge_id}!"
             end
+            # moved this code to the webhook controller
+            # @order.shipments.each do |shipment|
+            #   shipment.stripe_charge_id = charge_id
+            #   puts "Set stripe charge id to #{charge_id}!"
+            #   item_total = 0
+            #   shipment.line_items.each do |item|
+            #     item_total += item.product.price
+            #   end  
+            #   transfer = Stripe::Transfer.create(
+            #     # Take 10% for ourselves from the total cost
+            #     # of items per supplier(shipment)
+            #     # shipment.final_price is shipping cost plus tax
+            #     :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
+            #     :currency => "usd",
+            #     :recipient => shipment.supplier.token
+            #   )
+            # end
           end
           flash.notice = Spree.t(:order_processed_successfully)
           flash['order_completed'] = true

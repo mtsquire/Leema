@@ -3,12 +3,11 @@ class HooksController < ApplicationController
 skip_before_filter  :verify_authenticity_token
 
   def stripe
-    @shipments = Spree::Shipment.all
     case params[:type]
       when 'balance.available'
-        @charge = Stripe::Charge.all
+        # only reference shipments that havent been transferred
+        @shipments = Spree::Shipment.where("transferred = false")
         @shipments.each do |shipment|
-          puts "Initiating Stripe transfer"
           item_total = 0
           shipment.line_items.each do |item|
             item_total += item.product.price
@@ -21,7 +20,7 @@ skip_before_filter  :verify_authenticity_token
             :currency => "usd",
             :recipient => shipment.supplier.token
           )
-          shipment.stripe_charge_id = 
+          shipment.transferred = true 
         end
       end
   end
