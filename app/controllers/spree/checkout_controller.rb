@@ -38,6 +38,7 @@ module Spree
           if Rails.env.production?
             @order.shipments.each do |shipment|
               puts "Initiating Stripe transfer"
+              Stripe::Charge.retrieve
               item_total = 0
               shipment.line_items.each do |item|
                 item_total += item.product.price
@@ -55,6 +56,7 @@ module Spree
           flash.notice = Spree.t(:order_processed_successfully)
           flash['order_completed'] = true
           redirect_to completion_route
+          # auto approve orders
           @order.approved_by(try_spree_current_user)
         else
           redirect_to checkout_state_path(@order.state)
