@@ -39,7 +39,8 @@ module Spree
             charge_id = @order.payments.first.response_code
             @order.shipments.each do |shipment|
               shipment.stripe_charge_id = charge_id
-              puts "Set stripe charge id to #{charge_id}!"
+              shipment.save!
+              puts "Set stripe charge id to #{shipment.stripe_charge_id}!"
             end
             # moved this code to the webhook controller
             # @order.shipments.each do |shipment|
