@@ -359,19 +359,111 @@ textarea {
 	margin: 0px 0 10px;
 }
 
+/* Page header cover */
+.page-cover {
+    position: relative;
+    padding: 30px 15px;
+    color: #cdbfe3;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: @brand-primary;
+}
+
+
+.page-cover {
+    margin-bottom: 60px;
+    font-size: 20px
+}
+
+.page-cover h1 {
+    margin-top: 0;
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+.page-cover p {
+    margin-bottom: 0;
+    font-weight: 300;
+    line-height: 1.4
+}
+
+.page-cover .container {
+    position: relative
+}
+
+@media (min-width: 768px) {
+    .page-cover {
+        padding-top:60px;
+        padding-bottom: 60px;
+        font-size: 24px;
+        text-align: left
+    }
+}
+
 /* Edit Profile */
 .profile-photo-admin {
 	max-width: 200px;
 }
 
+/* Affixed nav */
+@media (min-width: 992px) {
+	.leema-side-bar .nav>.active>ul {
+		display:block
+	}
+
+	.leema-side-bar ul li a {
+		background: #eeeeee;
+	}
+
+	.leema-side-bar ul li a:hover {
+		border-left: 1px solid @brand-primary;
+		padding-left: 14px;
+	}
+
+	.leema-side-bar.affix,.leema-side-bar.affix-bottom {
+		width: 213px;
+	}
+
+	.leema-side-bar.affix {
+		position: fixed;
+		top: 20px
+	}
+
+	.leema-side-bar.affix-bottom {
+		position: absolute
+	}
+
+	.leema-side-bar .leema-side-nav {
+		margin-top: 30px;
+	}
+
+	.leema-side-bar.affix .leema-side-nav,.leema-side-bar.affix-bottom .leema-side-nav {
+		margin-top: 0;
+		margin-bottom: 0
+	}
+}
+
+@media (min-width: 1200px) {
+	.leema-side-bar.affix,.leema-side-bar.affix-bottom {
+		width:263px
+	}
+}
+
+
 /* FAQ page */
 .question-answer + .question-answer {
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 #faq h3 {
 	margin-top: 30px;
 	margin-bottom: 20px;
+}
+
+.question-answer {
+	.lead {
+		margin-bottom: 10px;
+	}
 }
 
 /* Products Browse */
