@@ -81,7 +81,14 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 become-a-seller">
-          <a href="/sell/" class="btn btn-primary">Become a Seller</a>
+          <% if signed_in? %>
+            <% if current_user.supplier? %>
+            <% else %>
+              <a href="/sell/" class="btn btn-primary">Become a Seller</a>
+            <% end %>
+          <% else %>
+            <a href="/sell/" class="btn btn-primary">Become a Seller</a>
+          <% end %>
         </div><!-- close .col-sm-6 -->
         <div class="col-sm-6 legal">
           <ul class="list-inline footer-links">

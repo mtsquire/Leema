@@ -4,17 +4,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%== meta_data_tags %>
-<%== facebook_meta %>
-<meta property="og:title" content="<%= title.html_safe %>" />
-<meta property="og:site_name" content="<%= current_store.name %>" />
+
 <meta property="og:url" content="<%= canonical_href %>" />
+<meta property="og:title" content="<%= title.html_safe %>" />
+<%== facebook_meta %>
+<meta property="og:site_name" content="<%= current_store.name %>" />
 <% if content_for?(:image) %>
-  <meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
+<meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
 <% else %>
-  <meta property="og:image" content="<%= image_url('leema-og-image.jpg') %>" />
+<meta property="og:image" content="<%= image_url('leema-og-image.jpg') %>" />
 <% end %>
 <% if content_for?(:ogtype) %>
-  <meta property="og:type" content="<%= content_for?(:ogtype) ? yield(:ogtype) : "" %>" />
+<meta property="og:type" content="<%= content_for?(:ogtype) ? yield(:ogtype) : "" %>" />
 <% end %>
 <%= canonical_tag(current_store.url) %>
 <%= favicon_link_tag 'favicon.ico' %>

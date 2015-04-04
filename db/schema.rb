@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329183928) do
+ActiveRecord::Schema.define(version: 20150403220819) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -613,10 +613,12 @@ ActiveRecord::Schema.define(version: 20150329183928) do
     t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
     t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
     t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0,   null: false
     t.decimal  "pre_tax_amount",       precision: 8,  scale: 2, default: 0.0
-    t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0, null: false
+    t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0,   null: false
     t.string   "postage_label"
+    t.string   "stripe_charge_id"
+    t.boolean  "transferred",                                   default: false
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id"

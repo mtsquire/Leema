@@ -7,3 +7,16 @@
   z-index: 1000;
 
 }
+
+.alert.errorExplanation {
+	text-align: left;
+
+	ul {
+		margin-left: 30px;
+		margin-top: 5px;
+	}
+
+	p:first-of-type {
+		margin-top: 15px;
+	}
+}

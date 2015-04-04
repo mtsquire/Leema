@@ -25,8 +25,10 @@
       <% end %>
     </div>
     <% if @order.state != 'confirm' %>
-      <div id="checkout-summary" data-hook="checkout_summary_box" class="col-md-3 panel panel-default">
-        <%= render :partial => 'summary', :locals => { :order => @order } %>
+      <div class="col-md-3">
+        <div id="checkout-summary" data-hook="checkout_summary_box" class="panel panel-default">
+          <%= render :partial => 'summary', :locals => { :order => @order } %>
+        </div>
       </div>
     <% end %>
   </div>

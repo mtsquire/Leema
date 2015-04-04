@@ -5,15 +5,23 @@ skip_before_filter  :verify_authenticity_token
   def stripe
     case params[:type]
       when 'balance.available'
-        @charges = Stripe::Charge.all
-        #Transfer money to supplier bank account after balance is available.
-        puts "Initiating Stripe transfer"
-        # transfer = Stripe::Transfer.create(
-        #   :amount => 10000, # amount in cents
-        #   :currency => "usd",
-        #   :recipient => recipient_id,
-        #   :bank_account => bank_account_id,
-        #   :statement_descriptor => "JULY SALES"
+        # only reference shipments that havent been transferred
+        @shipments = Spree::Shipment.where("transferred = false")
+        @shipments.each do |shipment|
+          item_total = 0
+          shipment.line_items.each do |item|
+            item_total += item.product.price * item.quantity
+          end  
+          transfer = Stripe::Transfer.create(
+            # Take 10% for ourselves from the total cost
+            # of items per supplier(shipment)
+            :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
+            :currency => "usd",
+            :recipient => shipment.supplier.token
+          )
+          shipment.transferred = true 
+          shipment.save!
+        end
       end
   end
 end
