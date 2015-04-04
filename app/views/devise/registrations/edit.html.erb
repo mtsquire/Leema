@@ -59,9 +59,9 @@
 
         <div class="col-xs-12">
           <div class="form-group">
-            <%= f.label :your_face %>
+            <%= f.label :profile_picture %>
             <%= f.file_field :avatar %>
-            <p class="help-block">Recommended size 200px x 200px.</p>
+            <p class="help-block">Upload a picture of yourself! We find that adding a photo of yourself creates trust between buyers and sellers. <strong>Recommended size 200px x 200px.</strong></p>
             <% if @user.avatar_file_name? %>
               <p class="icon-title">Current Profile Photo:</p>
               <%= image_tag @user.avatar.url(:medium), class: "img-responsive" %>
