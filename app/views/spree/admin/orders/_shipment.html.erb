@@ -8,7 +8,7 @@
       <%= Spree.t(:package_from) %>
       <strong class="stock-location-name" data-hook="stock-location-name">'<%= shipment.stock_location.name %>'</strong>
 
-      <% if can? :update, shipment and shipment.selected_shipping_rate %>
+      <% if shipment.ready? and can? :update, shipment and shipment.selected_shipping_rate %>
         -
         <%= link_to Spree.t(:ship), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
       <% end %>
