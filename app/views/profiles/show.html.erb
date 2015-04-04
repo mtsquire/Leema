@@ -1,4 +1,4 @@
-<% if @user.supplier.store_name != nil %>
+<% if @user.supplier? and @user.supplier.store_name != nil %>
   <%= title "#{@user.supplier.store_name} - ".html_safe %>
 
   <% if @user.supplier.cover_photo_file_name? %>
