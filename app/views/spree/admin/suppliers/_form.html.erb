@@ -42,12 +42,17 @@
           </div>
         <% end %>
 
+        <div class="form-group">
+          <label>Looking to update your bio?</label>
+          <p><a href="/edit.<%= current_user.id %>" class="btn-primary button">Update Bio</a></p>
+        </div>
+
         <div class="form-group" style="margin-bottom:50px;">
           <%= form.field_container :cover_photo do %>
             <%= form.label :cover_photo, Spree::Supplier.human_attribute_name(:cover_photo) %>
             <%= form.file_field :cover_photo %>
           <% end %>
-          <p class="help-block">Brandable image that appears at the top of your profile page. Recommended size: 1900px x 665px</p>
+          <p class="help-block">Brandable image that appears at the top of your profile page. <strong>Recommended size: 1900px x 665px</strong></p>
           <% if spree_current_user.supplier? && spree_current_user.supplier.cover_photo_file_name? %>
             <p class="icon-title">Current Cover Photo:</p>
             <%= image_tag spree_current_user.supplier.cover_photo.url(:large), class: "img-responsive" %>
@@ -62,7 +67,7 @@
             <%= form.label :store_logo, Spree::Supplier.human_attribute_name(:store_logo) %><br />
             <%= form.file_field :store_logo %>
           <% end %>
-          <p class="help-block">Recommended size 200px x 200px.</p>
+          <p class="help-block"><strong>Recommended size 200px x 200px</strong>.</p>
           <% if spree_current_user.supplier? && spree_current_user.supplier.store_logo_file_name? %>
             <p class="icon-title">Current Store Logo:</p>
             <%= image_tag spree_current_user.supplier.store_logo.url(:default), class: "img-responsive" %>
