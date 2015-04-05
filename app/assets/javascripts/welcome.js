@@ -33,7 +33,7 @@ $(document).ready(function() {
     // define viewport vairables
         viewPortWidth = getViewport()[0],
         viewPortHeight = getViewport()[1],
-        widthIsWide = (viewPortWidth > 768),
+        widthIsWide = (viewPortWidth > 1024),
         IEVersion = getInternetExplorerVersion();
 
     if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 768, IEVersion = getInternetExplorerVersion(), widthIsWide) {
