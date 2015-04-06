@@ -26,9 +26,8 @@
               <th>Order #</th>
               <th>Order Total</th>
               <th>Product(s)</th>
-              <th>Product Price</th>
               <th>Leema Seller(s)</th>
-              <th>Shipment Price</th>
+              <th>Tracking Number</th>
               <th>Provider</th>
             </tr>
           </thead>
@@ -41,25 +40,18 @@
                 <td>
                   <% order.shipments.each do |shipment| %>
                     <% shipment.line_items.each do |item| %>
-                      <%= item.name %><br>
-                    <% end %>
-                  <% end %>
-                </td>
-                <td>
-                  <% order.shipments.each do |shipment| %>
-                    <% shipment.line_items.each do |item| %>
-                      <%= number_to_currency(item.price, :unit => "$") %><br>
+                      <a href="/store/products/<%= item.product.slug %>"><%= item.name %></a><br>
                     <% end %>
                   <% end %>
                 </td>
                 <td>
                   <% order.suppliers.each do |supplier| %>
-                    <%= supplier.name %><br>
+                    <a href="/<%= supplier.users.first.display_name %>"><%= supplier.store_name %></a><br>
                   <% end %>
                 </td>
                 <td>
                   <% order.shipments.each do |shipment| %>
-                    <%= number_to_currency(shipment.cost, :unit => "$") %><br>
+                    <%= shipment.tracking %><br>
                   <% end %>
                 </td>
                 <td>
