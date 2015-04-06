@@ -233,6 +233,10 @@ section {
         margin: 40px 0;
         font-size: 14px
     }
+
+    .col-sm-4 + .col-sm-4 {
+        margin-top: 40px;
+    }
 }
 
 .image-break {
