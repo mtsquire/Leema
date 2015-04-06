@@ -34,7 +34,7 @@
           <tbody>
             <% @orders.each do |order| %>
               <tr>
-                <td><%= pretty_time(order.completed_at) %></td>
+                <td><%= order.completed_at.strftime("%m/%d/%Y") %></td>
                 <td><%= order.number %></td>
                 <td><%= number_to_currency(order.total, :unit => "$") %></td>
                 <td>
