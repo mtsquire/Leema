@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :display_name, presence: true, uniqueness: true
 
-  has_many :products, class_name: Spree::Product.to_s, dependent: :destroy
-
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "/assets/leema-nav-logo.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 

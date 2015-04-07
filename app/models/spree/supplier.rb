@@ -35,6 +35,7 @@ class Spree::Supplier < Spree::Base
   validates :email,                  presence: true, email: true, uniqueness: true
   validates :name,                   presence: true, uniqueness: true
   validates :url,                    format: { with: URI::regexp(%w(http https)), allow_blank: true }
+  validates_presence_of :store_name
 
   #==========================================
   # Callbacks
