@@ -23,7 +23,7 @@ module Spree
     preference :address_requires_state, :boolean, default: true # should state/state_name be required
     preference :admin_interface_logo, :string, default: '/assets/footer-logo-horizontal.png'
     preference :admin_products_per_page, :integer, default: 10
-    preference :allow_backorder_shipping, :boolean, default: false # should only be true if you don't need to track inventory
+    preference :allow_backorder_shipping, :boolean, default: true # should only be true if you don't need to track inventory
     preference :allow_checkout_on_gateway_error, :boolean, default: false
     preference :allow_guest_checkout, :boolean, default: true
     preference :allow_ssl_in_development_and_test, :boolean, default: false
