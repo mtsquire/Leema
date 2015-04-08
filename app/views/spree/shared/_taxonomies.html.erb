@@ -1,14 +1,16 @@
 <% max_level = Spree::Config[:max_level_in_taxons_menu] || 1 %>
-<ul id="taxonomies" class="sidebar-item nav nav-pills" data-hook>
-		<li class="title">Filter By</li>
-  <% @taxonomies.each do |taxonomy| %>
-    <% cache [I18n.locale, taxonomy, max_level] do %>
-      <li class="dropdown">
-      	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= Spree.t(taxonomy.name) %> <span class="caret"></span></a>
+<% if @taxonomies.count > 0 %>
+	<ul id="taxonomies" class="sidebar-item nav nav-pills" data-hook>
+			<li class="title">Filter By</li>
+	  <% @taxonomies.each do |taxonomy| %>
+	    <% cache [I18n.locale, taxonomy, max_level] do %>
+	      <li class="dropdown">
+	      	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= Spree.t(taxonomy.name) %> <span class="caret"></span></a>
 
-      		<%= taxons_tree(taxonomy.root, @taxon, max_level) %>
+	      		<%= taxons_tree(taxonomy.root, @taxon, max_level) %>
 
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+	      </li>
+	    <% end %>
+	  <% end %>
+	</ul>
+<% end %>
