@@ -6,16 +6,24 @@
           <tbody>
             <tr>
               <td valign="top">
-                <h1><%= link_to Spree::Store.current.name, spree.root_url %></h1>
+                <figure id="logo" data-hook>
+                  <%= link_to spree.root_url do %>
+                    <img src="http://leemaeats.herokuapp.com/assets/leema-mail-logo.png">
+                  <% end %>
+                </figure>
               </td>
             </tr>
             <tr>
               <td valign="top">
                 <h1 style="font-size:22px;font-weight:normal;line-height:22px;"><%= Spree.t('supplier_mailer.welcome.hello', name: @supplier.name ) %></h1>
+                <p style="font-size:12px;line-height:16px;">Thanks for signing up to be a seller on Leema! We can almost taste your delicious products!</p>
+                <p style="font-size:12px;line-height:16px;">As a Leema seller you have exclusive access to a pool of buyers looking for unique and delicious food just like yours!</p>
+                <p style="font-size:12px;line-height:16px;">If you have any questions, comments, or concerns, feel free to reach out to me at any time, day or night.</p>
                 <p style="font-size:12px;line-height:16px;">
-                  <%= Spree.t('supplier_mailer.welcome.manage_your_account' ) %>
-                  You can log into your account <a href="https://leemaeats.com/signin" target="_blank">here</a>.
+                  <%= Spree.t('supplier_mailer.welcome.manage_your_account' ) %> logging into your account <a href="https://leemaeats.com/signin" target="_blank">here</a>.
                 </p>
+
+                <p style="font-size:12px;line-height:16px;">Scott Levy<br>Co-founder<br>Leema</p>
               </td>
             </tr>
             <tr>
