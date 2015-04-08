@@ -19,21 +19,21 @@
             </tr>
             <tr>
               <td valign="top">
-                <h1 style="font-size:22px;font-weight:normal;line-height:22px;font-family: 'Roboto Slab', serif;">Hey <%= Spree.t( name: @supplier.name ) %>!</h1>
-                <p style="font-size:12px;line-height:16px;font-family: 'Roboto', sans-serif;">Thanks for signing up to be a seller on Leema! We can almost taste your delicious products!</p>
-                <p style="font-size:12px;line-height:16px;font-family: 'Roboto', sans-serif;">As a Leema seller you have exclusive access to a pool of buyers looking for unique and delicious food just like yours!</p>
-                <p style="font-size:12px;line-height:16px;font-family: 'Roboto', sans-serif;">If you have any questions, comments, or concerns, feel free to reach out to me at any time, day or night.</p>
-                <p style="font-size:12px;line-height:16px;font-family: 'Roboto', sans-serif;">
+                <h1 style="font-size:22px;font-weight:normal;line-height:22px;font-family: 'Roboto Slab', serif;">Hey <%= @supplier.name %>!</h1>
+                <p style="font-size:14px;line-height:16px;font-family: 'Roboto', sans-serif;">Thanks for signing up to be a seller on Leema! We can almost taste your delicious products!</p>
+                <p style="font-size:14px;line-height:16px;font-family: 'Roboto', sans-serif;">As a Leema seller you have exclusive access to a pool of buyers looking for unique and delicious food just like yours!</p>
+                <p style="font-size:14px;line-height:16px;font-family: 'Roboto', sans-serif;">If you have any questions, comments, or concerns, feel free to reach out to me at any time, day or night.</p>
+                <p style="font-size:14px;line-height:16px;font-family: 'Roboto', sans-serif;">
                   <%= Spree.t('supplier_mailer.welcome.manage_your_account' ) %> logging into your account <a href="https://leemaeats.com/signin" target="_blank">here</a>.
                 </p>
 
-                <p style="font-size:12px;line-height:16px;font-family: 'Roboto', sans-serif;">Happy selling,<br>Scott Levy<br><br>Co-founder<br>Leema</p>
+                <p style="font-size:14px;line-height:16px;font-family: 'Roboto', sans-serif;">Happy selling,<br>Scott Levy<br><br>Co-founder<br>Leema</p>
               </td>
             </tr>
             <tr>
               <td bgcolor="#EAEAEA" align="center" style="background:#eaeaea;text-align:center">
                 <center>
-                  <p style="font-size:12px;margin:0;font-family: 'Roboto', sans-serif;"><%= raw Spree.t( name: Spree::Store.current.name) %></p>
+                  <p style="font-size:12px;margin:0;font-family: 'Roboto', sans-serif;"><%= Spree::Store.current.name %></p>
                 </center>
               </td>
             </tr>
