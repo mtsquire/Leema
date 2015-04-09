@@ -48,12 +48,17 @@
           <% end %>
         </div>
 
-        <div class="add-to-cart">
-          <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
-          <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
-            <%= Spree.t(:add_to_cart) %>
+          <% if @product.master.can_supply? %>
+
+            <div class="add-to-cart">
+              <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
+              <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
+                <%= Spree.t(:add_to_cart) %>
+              <% end %>
+            </div>
+          <% elsif @product.variants.empty? %>
+
           <% end %>
-        </div>
       </div>
     <% else %>
         <div id="product-price">
