@@ -90,33 +90,12 @@
       <div data-hook="new_product_shipping_category" class="col-sm-5">
         <%= f.field_container :shipping_category do %>
           <div class="form-group">
-            <%= f.label :shipping_category_id, Spree.t(:select_shipping_weight_in_ounces) %><span class="required">*</span>
-            <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2 fullwidth' }) %>
+            <%= f.label :shipping_category_id, Spree.t(:select_shipping_weight_in_pounds) %><span class="required">*</span>
+            <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, {  }, { :class => 'select2 fullwidth' }) %>
             <%= f.error_message_on :shipping_category_id %>
-            <p class="help-block">Please select the total weight in ounces for 1 order. (i.e. if one order is 4 cookies, the total weight of 4 cookies).</p>
+            <p class="help-block">Please select the total weight in pounds for 1 order. (i.e. if one order is 4 cookies, the total weight of 4 cookies).</p>
           </div>
         <% end %>
-      </div>
-      <div class="col-sm-6 col-sm-offset-1">
-        <label>Pounds to Ounces Calculator</label>
-        <div class="row pounds-to-ounces">
-          <div class="col-sm-7">
-            <div class="form-group">
-              <div class="input-group">
-                <input type="text" class="form-control pounds" placeholder="Enter Weight in Pounds">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary convert" type="button">Convert</button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <p class="text-center" style="font-size:20px;"><i class="fa fa-exchange"></i></p>
-          </div>
-          <div class="col-sm-3">
-            <p class="text-center" style="font-size:20px;"><span class="oz-number">0</span>oz</p>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -164,13 +143,6 @@
             }
 
       }).keyup();
-
-    $(".pounds-to-ounces .convert").click(function(){
-      var pounds = $(".pounds").val(),
-          ounces = Math.ceil(pounds * 16);
-
-      $(".pounds-to-ounces .oz-number").text(ounces);
-    });
   });
 
 </script>
