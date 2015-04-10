@@ -74,6 +74,13 @@ $(document).ready(function () {
       $('.shipment-loading').remove();
       window.location.reload();
     }).error(function (msg) {
+      $('.shipment-loading').remove();
+      var shipmentNumber = $('.shipment-number').text();
+      if ($('.shipping-error-alert').length > 0) {
+
+      } else {
+        $('#content-header').append('<div class="shipping-error-alert alert alert-danger">There seems to be an issue with your shipment. Please contact <a href="mailto:support@leemaeats.com?subject='+ shipmentNumber +' - Shipping Issue">support@leemaeats.com</a>.');
+      }
       console.log(msg);
     });
   });
