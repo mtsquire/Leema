@@ -65,7 +65,7 @@ $(document).ready(function () {
     var shipment_number = link.data('shipment-number');
     var url = Spree.url(Spree.routes.shipments_api + '/' + shipment_number + '/ship.json');
 
-    $('[data-hook=admin_shipment_supplier]').prepend('<div class="shipment-loading"><%= image_tag "loader.gif", :class => "img-responsive center-block" %></div>');
+    $('[data-hook=admin_shipment_supplier]').prepend('<div class="shipment-loading"><img src="/assets/loader.gif" class="img-responsive center-block"></div>');
 
     $.ajax({
       type: 'PUT',
