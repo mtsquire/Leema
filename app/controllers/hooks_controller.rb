@@ -5,8 +5,8 @@ skip_before_filter  :verify_authenticity_token
   def stripe
     case params[:type]
       when 'balance.available'
-        # only reference shipments that havent been transferred
-        @shipments = Spree::Shipment.where("transferred = false")
+        # only reference shipments that havent been transferred and are shipped
+        @shipments = Spree::Shipment.where("transferred = ? and state = ?", false, "shipped") 
         @shipments.each do |shipment|
           item_total = 0
           shipment.line_items.each do |item|
