@@ -593,6 +593,10 @@ textarea {
 
 
 /* Sell Page */
+#pricing {
+	background: #fff;
+}
+
 .icon-blurb {
 
 	overflow: hidden;
@@ -629,15 +633,7 @@ textarea {
 	float: right;
 }
 
-@media screen and (max-width: 990px) {
-	.icon-blurb {
-		.blurb {
-			padding: 20px 0 0 10px;
-		}
-	}
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 	.icon-blurb {
 		.icon, .blurb {
 			opacity: 1;
@@ -647,8 +643,19 @@ textarea {
 			float: none;
 		}
 	}
+
+	.icon-blurb:nth-of-type(even) .icon {
+		float: none;
+	}
 }
 
+@media screen and (max-width: 990px) {
+	.icon-blurb {
+		.blurb {
+			padding: 20px 0 0 10px;
+		}
+	}
+}
 
 
 .pricing-box {
@@ -673,7 +680,7 @@ textarea {
 	}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 	.pricing-box .pricing-percent{
 		opacity: 1;
 	}
