@@ -14,7 +14,7 @@ class Spree::Supplier < Spree::Base
     has_many :ckeditor_pictures
     has_many :ckeditor_attachment_files
   end
-  has_many   :products, through: :variants
+  has_many   :products, through: :variants 
   has_many   :shipments, through: :stock_locations
   has_many   :stock_locations
   has_many   :supplier_variants
@@ -46,6 +46,7 @@ class Spree::Supplier < Spree::Base
   before_create :set_commission
   after_save :update_stock_location
   before_validation :check_url
+  before_destroy :delete_stock_location
 
   #==========================================
   # Instance Methods
