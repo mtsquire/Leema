@@ -387,3 +387,17 @@ $fourth_level: #cbcbc9;
 	max-width: 80px;
 }
 
+
+/* Shipment Loading */
+.shipment-loading {
+	z-index: 10000;
+	background: rgba(248, 248, 248, .8);
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	img {
+		max-width: 200px;
+	}
+}

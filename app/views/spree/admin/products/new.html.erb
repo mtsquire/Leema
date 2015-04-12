@@ -19,7 +19,7 @@
     <%= f.field_container :leema_description do %>
       <div class="form-group">
         <%= f.label :leema_description, Spree.t(:product_description) %> <span class="required">*</span>
-        <%= f.text_area :leema_description, {:rows => "7", :class => 'form-control', :placeholder => "Tell the item's story and explain why it's special.  Try to answer questions your buyers will have."} %>
+        <%= f.text_area :leema_description, {:rows => "7", :class => 'form-control', :placeholder => "Tell the item's story and explain why it's special.  Try to answer questions your customers will have - What is your product's shelf life? How many items come in one order?"} %>
         <%= f.error_message_on :leema_description %>
       </div>
     <% end %>
@@ -27,7 +27,7 @@
     <%= f.field_container :ingredients do %>
       <div class="form-group">
         <%= f.label :ingredients, Spree.t(:ingredients) %> <span class="required">*</span><br />
-        <%= f.text_area :ingredients, {:rows => "7", :class => 'form-control', :placeholder => 'Please list all ingredients contained in your product.'} %>
+        <%= f.text_area :ingredients, {:rows => "7", :class => 'form-control', :placeholder => 'Please list ALL ingredients contained in your product. If your product is allergy friendly, you can also list that here....Gluten Free, Vegan, etc.'} %>
         <%= f.error_message_on :ingredients %>
       </div>
     <% end %>

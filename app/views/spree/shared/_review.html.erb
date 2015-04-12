@@ -1,12 +1,12 @@
 <div class="review row" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
-  <div class="col-lg-1 col-md-2 col-sm-3">
+  <div class="col-lg-1 col-md-2 col-xs-3">
     <% if review.user.avatar_file_name? %>
       <%= image_tag review.user.avatar, class: 'img-circle center-block img-responsive' %>
     <% else %>
       <%= image_tag "leema-seller-logo.jpg", class: 'img-circle img-thumbnail img-responsive' %>
     <% end %>
   </div>
-  <div class="col-lg-11 col-md-10 col-sm-9">
+  <div class="col-lg-11 col-md-10 col-xs-9">
 
     <meta itemprop="reviewRating" content="<%= review.rating %>" />
     <div class="reviewer-info">

@@ -18,7 +18,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .intro {
         opacity: 1;
 
@@ -186,30 +186,8 @@
 
 #features-benefits {
 
-    background: image-url("cupcake.jpg");
-    background-repeat: no-repeat;
-    background-position: top center;
-    text-align: center;
-    color: #fff;
-    min-height: 700px;
-    background-size: cover;
+    background: #fff;
 
-    .row + .row {
-        padding: 50px 0;
-    }
-
-    h2 {
-        margin: 0;
-        padding-bottom: 50px;
-    }
-
-    h2, h4{
-        color: #fff;
-    }
-
-    i {
-        font-size: 60px;
-    }
 }
 
 @media only screen and (max-width: 767px){
@@ -233,15 +211,16 @@ section {
         margin: 40px 0;
         font-size: 14px
     }
+}
 
-    .col-sm-4 + .col-sm-4 {
-        margin-top: 40px;
+@media only screen and (max-width: 767px){
+    #get-started {
+        .col-sm-4 + .col-sm-4 {
+            margin-top: 40px;
+        }
     }
 }
 
-.image-break {
-    min-height: 700px;
-}
 
 #reindeer {
     background: image-url("pretzel-reindeer.jpg");
@@ -249,6 +228,36 @@ section {
     background-position:0 0;
     background-repeat: no-repeat;
     position: relative;
+    z-index: 1;
+}
+
+#founding-sellers-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background:rgba(248, 248, 248, .9);
+    z-index: 2;
+}
+
+#founding-sellers {
+    z-index: 3;
+
+     h2 {
+        z-index: 4;
+        position: relative;
+    }
+
+    .col-sm-3.col-xs-4 {
+        margin-bottom: 20px;
+        z-index: 4;
+    }
+
+    .founding-seller-logo {
+        max-width: 200px;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 1024px){
@@ -256,7 +265,6 @@ section {
         background-attachment: scroll;
         background-position: center center;
         background-repeat: no-repeat;
-        height: 500px;
         position: relative;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -264,6 +272,7 @@ section {
         background-size: cover;
     }
 }
+
 
 #get-started {
 

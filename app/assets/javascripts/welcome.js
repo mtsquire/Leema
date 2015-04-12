@@ -36,7 +36,7 @@ $(document).ready(function() {
         widthIsWide = (viewPortWidth > 1024),
         IEVersion = getInternetExplorerVersion();
 
-    if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 768, IEVersion = getInternetExplorerVersion(), widthIsWide) {
+    if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 1024, IEVersion = getInternetExplorerVersion(), widthIsWide) {
         var a = (viewPortHeight * .75) + "px",
             b = $(".navbar").outerHeight();
         $(".masthead").each(function() {
@@ -139,6 +139,12 @@ $(document).ready(function() {
 
             iconBlurbRight();
 
+            //fade in blurb on intro panel
+            setTimeout(function(){
+                $(".intro").addClass("animated fadeInUp");
+            }, 500);
+
+
         } else {
             iconBlurbLeft = function(){}
             iconBlurbRight = function(){}
@@ -164,11 +170,6 @@ $(document).ready(function() {
             }
         }, false)
     }
-
-        //fade in blurb on intro panel
-    setTimeout(function(){
-        $(".intro").addClass("animated fadeInUp");
-    }, 500);
 
     // set up owl carousel for featured products
     if ($("#featured-products").length > 0){

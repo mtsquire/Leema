@@ -49,7 +49,6 @@ Spree::Stock::Estimator.class_eval do
 
   def build_parcel(package) 
     total_weight = package.contents.sum do |item|
-      # item = Spree::Stock::Package::ContentItem
       # shipping category is tied to the weight in lbs, convert to oz for easypost
       item.quantity * (item.variant.shipping_category.name.to_i * 16)
     end
