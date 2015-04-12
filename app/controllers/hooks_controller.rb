@@ -6,7 +6,7 @@ skip_before_filter  :verify_authenticity_token
     case params[:type]
       when 'balance.available'
         # only reference shipments that havent been transferred and are shipped
-        @shipments = Spree::Shipment.where("transferred = ? and state = ?", false, "shipped") 
+        @shipments = Spree::Shipment.where("transferred = ? and state = ?", false, "ready") 
         @shipments.each do |shipment|
           item_total = 0
           shipment.line_items.each do |item|
@@ -15,7 +15,7 @@ skip_before_filter  :verify_authenticity_token
           transfer = Stripe::Transfer.create(
             # Take 10% for ourselves from the total cost
             # of items per supplier(shipment)
-            :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
+            :amount => (item_total * 90).floor,
             :currency => "usd",
             :recipient => shipment.supplier.token
           )
