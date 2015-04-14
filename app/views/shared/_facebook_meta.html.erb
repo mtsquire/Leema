@@ -3,10 +3,12 @@
 <meta property="og:description" content="The online marketplace for buying and selling small batch and craft foods." />
 <meta property="og:site_name" content="Leema: Let Everyone Eat My Art" />
 <% if content_for?(:image) %>
-  <meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
+<meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
 <% else %>
-  <meta property="og:image" content="<%= image_url('leema-og-image.jpg') %>" />
+<meta property="og:image" content="<%= image_url('leema-og-image.jpg') %>" />
 <% end %>
 <% if content_for?(:ogtype) %>
 <meta property="og:type" content="<%= content_for?(:ogtype) ? yield(:ogtype) : "" %>" />
 <% end %>
+
+<link href="<%= request.original_url %>" rel="canonical" />
