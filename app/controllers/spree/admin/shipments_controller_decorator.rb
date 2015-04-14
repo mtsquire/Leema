@@ -23,8 +23,8 @@ Spree::Admin::ShipmentsController.class_eval do
       params[:q][:created_at_lt] = Time.zone.parse(params[:q][:created_at_lt]).end_of_day rescue ""
     end
     #Scoping shipments to the suppliers unless you're a badass leema admin
-    if spree_current_user.leema_admin? == false
-      @search = Spree::Shipment.where("stock_location_id = ?", spree_current_user.supplier.stock_locations.first.id).ransack(params[:q])
+    if spree_current_user.leema_admin? == true
+      @search = Spree::Shipment.where("stock_location_id = ? and state = ?", spree_current_user.supplier.stock_locations.first.id, "ready" or "shipped").ransack(params[:q])
     else
       @search = Spree::Shipment.accessible_by(current_ability, :index).ransack(params[:q])
     end
