@@ -82,6 +82,10 @@
             <%= form.check_box :active, :checked => true %>
           <% end %>
         <% end %>
+        <%= form.field_container :commission_percentage do %>
+          <%= form.label :commission_percentage %><br/>
+          <%= form.text_field :commission_percentage, :class => 'form-control' %>
+        <% end %>
 
       </fieldset>
     </div>
