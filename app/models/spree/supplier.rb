@@ -65,7 +65,7 @@ class Spree::Supplier < Spree::Base
   end
 
   def has_bank_account?
-    true if self.bank_accounts
+    self.bank_accounts.any?
   end
 
   #==========================================
