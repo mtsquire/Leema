@@ -13,7 +13,7 @@
           <b><%= Spree::Supplier.human_attribute_name(:name) %>:</b> <%= @shipment.order.user.full_name %><br/>       
           <b><%= Spree::Supplier.human_attribute_name(:email) %>:</b> <%= @shipment.order.user.email %><br/>
         <% else %>
-          <b><b><%= Spree::Supplier.human_attribute_name(:email) %>:</b> <%= @shipment.order.email, @shipment.supplier.url if @shipment.supplier.url.present? %><br/>
+          <b><%= Spree::Supplier.human_attribute_name(:email) %>:</b> <%= @shipment.order.email %><br/>
         <% end %>
       </div>
       <div>
