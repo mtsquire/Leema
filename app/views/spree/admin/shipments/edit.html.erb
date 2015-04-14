@@ -9,9 +9,10 @@
     <fieldset class="alpha twelve columns no-border-bottom">
       <legend align="center"><%= Spree.t(:customer_information) %></legend>
       <div><% if @shipment.order.user %>
-            <b><%= Spree::Supplier.human_attribute_name(:name) %>:</b> <%= @shipment.order.user.full_name %><br/>
-           <% end %>
-        <b><%= Spree::Supplier.human_attribute_name(:email) %>:</b> <%= @shipment.order.user.email %><br/>
+              <b><%= Spree::Supplier.human_attribute_name(:name) %>:</b> <%= @shipment.order.user.full_name %><br/>
+             
+              <b><%= Spree::Supplier.human_attribute_name(:email) %>:</b> <%= @shipment.order.user.email %><br/>
+            <% end %>
         <b><%= Spree::Supplier.human_attribute_name(:url) %>:</b> <%= link_to @shipment.supplier.url, @shipment.supplier.url if @shipment.supplier.url.present? %><br/>
       </div>
       <div>
