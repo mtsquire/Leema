@@ -51,15 +51,16 @@
                 </td>
                 <td>
                   <% order.shipments.each do |shipment| %>
-                    <%= shipment.tracking %><br>
+                    <% if shipment.tracking %>
+                      <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= shipment.tracking.to_s %>" target="_blank"><%= shipment.tracking %></a><br>
+                    <% else %>
+                      <p font-size= "small"><%= shipment.supplier.store_name %> has received your order, but hasn't shipped your product yet. Check back here once they do.</p>
+                    <% end %>
                   <% end %>
                 </td>
                 <td>
                   <% order.shipments.each do |shipment| %>
                     <%= shipment.shipping_rates.first.name %>
-                    <% if shipment.tracking == "" %>
-                      | <%= link_to "Track", shipment.tracking %>
-                    <% end %>
                     <br>
                   <% end %>
                 </td>
@@ -69,7 +70,7 @@
         </table>
       </div>
     <% else %>
-      <p class="lead">You haven't made any purchases yet. Buy something!</p>
+      <p>You haven't made any purchases yet. <%= link_to "Buy something!", spree_path %></p>
     <% end %>
   </div>
 

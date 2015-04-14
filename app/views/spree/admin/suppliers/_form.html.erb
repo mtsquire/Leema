@@ -81,7 +81,12 @@
             <%= form.label :active, Spree::Supplier.human_attribute_name(:active) %>:<br />
             <%= form.check_box :active, :checked => true %>
           <% end %>
+          <%= form.field_container :commission_percentage do %>
+            <%= form.label :commission_percentage %><br/>
+            <%= form.text_field :commission_percentage, :class => 'form-control' %>
+          <% end %>
         <% end %>
+        
 
       </fieldset>
     </div>
