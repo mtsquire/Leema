@@ -46,7 +46,6 @@ class Spree::Supplier < Spree::Base
   before_create :set_commission
   after_save :update_stock_location
   before_validation :check_url
-  before_destroy :delete_stock_location
 
   #==========================================
   # Instance Methods
@@ -65,7 +64,7 @@ class Spree::Supplier < Spree::Base
   end
 
   def has_bank_account?
-    true if self.bank_accounts
+    self.bank_accounts.any?
   end
 
   #==========================================

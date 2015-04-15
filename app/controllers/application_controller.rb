@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
     #Added so a user can edit their profile page.
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|
