@@ -15,11 +15,11 @@ skip_before_filter  :verify_authenticity_token
           transfer = Stripe::Transfer.create(
             # Take 10% for ourselves from the total cost
             # of items per supplier(shipment)
-            :amount => (item_total * 90).floor,
+            :amount => (item_total * (100 - shipment.supplier.commission_percentage)).floor,
             :currency => "usd",
             :recipient => shipment.supplier.token
           )
-          shipment.transferred = true 
+          shipment.transferred = true
           shipment.save!
         end
       end

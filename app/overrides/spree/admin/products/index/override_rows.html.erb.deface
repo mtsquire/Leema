@@ -3,7 +3,7 @@
 <td class="align-center"><%= mini_image(product) %></td>
 <td>
   <% if try_spree_current_user && try_spree_current_user.supplier? %>
-    <%= link_to product.try(:name), stock_admin_product_path(product) %>
+    <%= link_to product.try(:name), product_path(product) %>
   <% else %>
     <%= link_to product.try(:name), edit_admin_product_path(product) %>
   <% end %>
