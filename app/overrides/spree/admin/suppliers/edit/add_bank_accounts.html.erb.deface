@@ -20,5 +20,6 @@
   <legend>Additional Links</legend>
     <ul style="padding-left:25px;">
       <li><a href="/edit.<%= current_user.id %>">Update Seller Bio</a></li>
+      <li><a href="/store/admin/products/new">Add a New Product</a></li>
     </ul>
 </fieldset>
