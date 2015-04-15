@@ -711,6 +711,12 @@ ul#products {
   margin-top: 0px;
 }
 
+@media (max-width: 767px) {
+  .product-title {
+    margin-top: 20px;
+  }
+}
+
 .share-product {
   margin-bottom: 20px;
 }
