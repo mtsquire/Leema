@@ -69,7 +69,10 @@
           <% if @user == current_user %>
             <p class="lead">Say something about yourself...<%= link_to "add your bio", edit_path(@user) %>!</p>
           <% else %>
-            <p class="lead">This Leema'er has no bio...maybe they're shy.</p>
+          <div class="no-bio">
+            <p class="lead">This Leema'er has no bio...so here's a joke:</p>
+            <img src="" class="img-responsive food-joke">
+          </div>
           <% end %>
         <% end %>
       </div>
