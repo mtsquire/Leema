@@ -46,7 +46,6 @@ class Spree::Supplier < Spree::Base
   before_create :set_commission
   after_save :update_stock_location
   before_validation :check_url
-  before_destroy :delete_stock_location
 
   #==========================================
   # Instance Methods

@@ -3,7 +3,7 @@ module Spree
 
     attr_accessor :account_number, :routing_number, :country
 
-    belongs_to :supplier, dependent: :destroy
+    belongs_to :supplier
 
     validates :country,    presence: true
     validates :masked_number,  presence: true
