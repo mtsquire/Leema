@@ -122,5 +122,14 @@ if ((widthIsWide) && ($sectionCover.length > 0)) {
         }, false)
     }
 
+
+
+    if ($('.no-bio').length > 0) {
+        var selectJoke = ['/assets/food-joke-1.jpg', '/assets/food-joke-2.jpg', '/assets/food-joke-3.jpg' ],
+            joke = selectJoke[Math.floor(Math.random() * selectJoke.length)];
+
+        $('.food-joke').attr('src', joke);
+    }
+
 });
 
