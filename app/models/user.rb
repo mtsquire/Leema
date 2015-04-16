@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_attached_file :cover_photo, :styles => { :large => "1900"}, :default_url => "/assets/profile-placeholder.jpg"
   validates_attachment_content_type :cover_photo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment :cover_photo,
+  :size => { :in => 0..1.megabytes }
 
   has_attached_file :store_logo, :styles => { :default => "80x80>"}, :default_url => "/assets/leema-seller-logo.jpg"
   validates_attachment_content_type :store_logo, :content_type => /\Aimage\/.*\Z/
