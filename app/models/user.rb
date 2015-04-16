@@ -12,14 +12,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "/assets/leema-nav-logo.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-  has_attached_file :cover_photo, :styles => { :large => "1900"}, :default_url => "/assets/profile-placeholder.jpg"
-  validates_attachment_content_type :cover_photo, :content_type => /\Aimage\/.*\Z/
-  validates_attachment :cover_photo,
-  :size => { :in => 0..1.megabytes }
-
-  has_attached_file :store_logo, :styles => { :default => "80x80>"}, :default_url => "/assets/leema-seller-logo.jpg"
-  validates_attachment_content_type :store_logo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :avatar, :less_than => 1.megabytes
 
   #callbacks
   after_save :create_admin
