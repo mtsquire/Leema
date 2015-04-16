@@ -2,7 +2,8 @@ Spree::Admin::ProductsController.class_eval do
   before_filter :get_suppliers, only: [:edit, :update]
   before_filter :supplier_collection, only: [:index]
 
-  create.after :add_product_to_supplier
+  # added the code for this within the new create method
+  #create.after :add_product_to_supplier
 
   def show
     session[:return_to] ||= request.referer
@@ -19,6 +20,10 @@ Spree::Admin::ProductsController.class_eval do
       respond_with(@object) do |format|
         format.html { redirect_to stock_admin_product_path(@object) }
         format.js   { render :layout => false }
+      end
+      if try_spree_current_user && try_spree_current_user.supplier?
+        print "associating with supplier..."
+        @product.add_supplier!(try_spree_current_user.supplier_id)
       end
     else
       invoke_callbacks(:create, :fails)
@@ -63,12 +68,13 @@ Spree::Admin::ProductsController.class_eval do
     end
   end
 
-  # Newly added products by a Supplier are associated with it.
-  def add_product_to_supplier
-    if try_spree_current_user && try_spree_current_user.supplier?
-      @product.add_supplier!(try_spree_current_user.supplier_id)
-    end
-  end
+  # Added this in the create method
+  # def add_product_to_supplier
+  #   print "adding product to supplier"
+  #   if try_spree_current_user && try_spree_current_user.supplier?
+  #     @product.add_supplier!(try_spree_current_user.supplier_id)
+  #   end
+  # end
 
   #added this to fix the unknown method "per" problem deriving from this method in spree backend
   private 

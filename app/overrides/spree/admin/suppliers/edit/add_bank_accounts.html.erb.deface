@@ -1,25 +1,26 @@
 <!-- insert_bottom "[data-hook='supplier_right_column_wrapper']" -->
+  <fieldset class="no-border-bottom supplier-banks">
+    <legend><%= I18n.t('.bank_accounts') %></legend>
+    <ol>
+      <% @supplier.bank_accounts.each do |bank_account| %>
+        <li>
+          <%= bank_account.name %> - <%= bank_account.masked_number %>
+        </li>
+      <% end %>
+    </ol>
+    <% if spree_current_user.id == @supplier.users.first.id %>
+      <% if @supplier.bank_accounts.any? %>
+        <%= button_to "Remove Bank Account", admin_supplier_bank_account_path(@supplier.id, @supplier.bank_accounts.first.id), :confirm => "Are you sure to remove this bank account?", :method => :delete, :class => 'btn btn-danger remove-bank-account' %>
+      <% else %>
+        <%= button_link_to t('.add_bank_account'), spree.new_admin_supplier_bank_account_path(@supplier) %>
+      <% end %>
+  </fieldset>
 
-<fieldset class="no-border-bottom supplier-banks">
-  <legend><%= I18n.t('.bank_accounts') %></legend>
-  <ol>
-    <% @supplier.bank_accounts.each do |bank_account| %>
-      <li>
-        <%= bank_account.name %> - <%= bank_account.masked_number %>
-      </li>
-    <% end %>
-  </ol>
-    <% if @supplier.bank_accounts.any? %>
-      <%= button_to "Remove Bank Account", admin_supplier_bank_account_path(@supplier.id, @supplier.bank_accounts.first.id), :confirm => "Are you sure to remove this bank account?", :method => :delete, :class => 'btn btn-danger remove-bank-account' %>
-    <% else %>
-      <%= button_link_to t('.add_bank_account'), spree.new_admin_supplier_bank_account_path(@supplier) %>
-    <% end %>
-</fieldset>
-
-<fieldset class="no-border-bottom">
-  <legend>Additional Links</legend>
-    <ul style="padding-left:25px;">
-      <li><a href="/edit.<%= current_user.id %>">Update Seller Bio</a></li>
-      <li><a href="/store/admin/products/new">Add a New Product</a></li>
-    </ul>
-</fieldset>
+  <fieldset class="no-border-bottom">
+    <legend>Additional Links</legend>
+      <ul style="padding-left:25px;">
+        <li><a href="/edit.<%= current_user.id %>">Update Seller Bio</a></li>
+        <li><a href="/store/admin/products/new">Add a New Product</a></li>
+      </ul>
+  </fieldset>
+<% end %>
