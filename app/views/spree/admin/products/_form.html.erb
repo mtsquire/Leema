@@ -127,7 +127,7 @@
 
     <div data-hook="admin_product_form_shipping_categories">
       <%= f.field_container :shipping_categories do %>
-        <%= f.label :shipping_category_id, Spree.t(:shipping_weight_in_ounces) %>
+        <%= f.label :shipping_category_id, Spree.t(:shipping_weight_in_pounds) %>
         <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2' }) %>
         <%= f.error_message_on :shipping_category %>
       <% end %>
