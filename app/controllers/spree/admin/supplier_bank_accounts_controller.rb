@@ -9,15 +9,33 @@ class Spree::Admin::SupplierBankAccountsController < Spree::Admin::ResourceContr
 
   def destroy
     @supplier = spree_current_user.supplier
-    @bank_account = Spree::SupplierBankAccount.where("supplier_id = ?", spree_current_user.supplier.id)
-    @bank_account.destroy
-    prints "bank account was destroyed"
-    respond_to do |format|
-      prints "redirecting..."
-      format.html { redirect_to edit_admin_supplier(@supplier) }
-      format.json { head :no_content }
+    invoke_callbacks(:destroy, :before)
+    if @object.destroy
+      invoke_callbacks(:destroy, :after)
+      flash[:success] = flash_message_for(@object, :successfully_removed)
+      respond_with(@object) do |format|
+        format.html { redirect_to edit_admin_supplier_path(@supplier) }
+        format.js   { render :partial => "spree/admin/shared/destroy" }
+      end
+    else
+      invoke_callbacks(:destroy, :fails)
+      respond_with(@object) do |format|
+        format.html { redirect_to location_after_destroy }
+      end
     end
   end
+
+  # def destroy
+  #   @supplier = spree_current_user.supplier
+  #   @bank_account = Spree::SupplierBankAccount.where("supplier_id = ?", spree_current_user.supplier.id)
+  #   @bank_account.destroy
+  #   prints "bank account was destroyed"
+  #   respond_to do |format|
+  #     prints "redirecting..."
+  #     format.html { redirect_to edit_admin_supplier(@supplier) }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 
