@@ -54,6 +54,7 @@ gem 'spree', '2.3.4'
 gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-3-stable'
 gem 'spree_reviews', github: 'spree-contrib/spree_reviews', branch: '2-3-stable'
 gem 'aws-sdk' #For using S3 to store images
+gem "asset_sync" # for storing all assets on S3
 
 #multi-tenancy
 gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship'
@@ -64,7 +65,7 @@ gem 'easypost'
 #For Heroku deployment
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
-ruby "2.1.2"
+ruby "2.1.3"
 
 
 
