@@ -10,7 +10,8 @@ module Spree
                       convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
     validates_attachment :attachment,
       :presence => true,
-      :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
+      :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) },
+      :size => { :in => 0..1.megabytes }
 
     # save the w,h of the original image (from which others can be calculated)
     # we need to look at the write-queue for images which have not been saved yet

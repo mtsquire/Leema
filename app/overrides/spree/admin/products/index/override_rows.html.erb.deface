@@ -3,9 +3,12 @@
 <td class="align-center"><%= mini_image(product) %></td>
 <td>
   <% if try_spree_current_user && try_spree_current_user.supplier? %>
-    <%= link_to product.try(:name), product_path(product) %>
-  <% else %>
     <%= link_to product.try(:name), edit_admin_product_path(product) %>
+  <% end %>
+</td>
+<td class="align-center">
+  <% if try_spree_current_user && try_spree_current_user.supplier? %>
+    <%= link_to "Customer View", product_path(product), :class => "btn btn-primary button" %>
   <% end %>
 </td>
 <td class="align-center"><%= product.display_price.to_html rescue '' %></td>

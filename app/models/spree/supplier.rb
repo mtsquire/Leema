@@ -14,7 +14,7 @@ class Spree::Supplier < Spree::Base
     has_many :ckeditor_pictures
     has_many :ckeditor_attachment_files
   end
-  has_many   :products, through: :variants 
+  has_many   :products, through: :variants, dependent: :destroy 
   has_many   :shipments, through: :stock_locations
   has_many   :stock_locations
   has_many   :supplier_variants
@@ -26,9 +26,11 @@ class Spree::Supplier < Spree::Base
   
   has_attached_file :cover_photo, :styles => { :large => "1900"}, :default_url => "/assets/profile-placeholder.jpg"
   validates_attachment_content_type :cover_photo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :cover_photo, :less_than => 1.megabytes
 
   has_attached_file :store_logo, :styles => { :default => "80x80>"}, :default_url => "/assets/leema-seller-logo.jpg"
   validates_attachment_content_type :store_logo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :store_logo, :less_than => 1.megabytes
 
   validates :commission_flat_rate,   presence: true
   validates :commission_percentage,  presence: true

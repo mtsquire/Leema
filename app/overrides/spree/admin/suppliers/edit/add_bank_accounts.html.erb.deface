@@ -10,7 +10,7 @@
     <% end %>
   </ol>
     <% if @supplier.bank_accounts.any? %>
-      <%= button_to "Remove Bank Account", admin_supplier_bank_account_path(@supplier.id, @supplier.bank_accounts.first.id), :confirm => "Are you sure to remove this bank account?", :method => :delete, :class => 'btn btn-danger' %>
+      <%= button_to "Remove Bank Account", admin_supplier_bank_account_path(@supplier.id, @supplier.bank_accounts.first.id), :confirm => "Are you sure to remove this bank account?", :method => :delete, :class => 'btn btn-danger remove-bank-account' %>
     <% else %>
       <%= button_link_to t('.add_bank_account'), spree.new_admin_supplier_bank_account_path(@supplier) %>
     <% end %>

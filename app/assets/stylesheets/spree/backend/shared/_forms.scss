@@ -120,6 +120,17 @@ button, .button {
   }
 }
 
+input[type="submit"].remove-bank-account {
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+input[type="submit"].remove-bank-account:hover {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+
 span.info {
   font-style: italic;
   font-size: 85%;
