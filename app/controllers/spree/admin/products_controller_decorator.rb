@@ -10,6 +10,27 @@ Spree::Admin::ProductsController.class_eval do
     @product = Spree::Product.find(params[:id])
     @supplier = @product.suppliers.first
   end
+  # Adding create method here to override the resource controller method
+  def create
+    print "creating product..."
+    @object.attributes = permitted_resource_params
+    if @object.save
+      flash[:success] = flash_message_for(@object, :successfully_created)
+      respond_with(@object) do |format|
+        format.html { redirect_to stock_admin_product_path(@object) }
+        format.js   { render :layout => false }
+      end
+    else
+      invoke_callbacks(:create, :fails)
+      respond_with(@object) do |format|
+        format.html do
+          flash.now[:error] = @object.errors.full_messages.join(", ")
+          render action: 'new'
+        end
+        format.js { render layout: false }
+      end
+    end
+  end
 
   # Set this up for the search functionality
   def index
