@@ -54,7 +54,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-   config.action_controller.asset_host = "https://d1vw1wxlid17s8.cloudfront.net"
+  # config.action_controller.asset_host = "http://assets.example.com"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -86,7 +86,7 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
 
-    url: ":s3_domain_url",
+    url: "https://d1vw1wxlid17s8.cloudfront.net",
     path: "/:class/:attachment/:id_partition/:style/:filename"
   }
 
