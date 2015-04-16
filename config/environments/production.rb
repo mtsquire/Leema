@@ -89,7 +89,7 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
 
-    url: "https://d1vw1wxlid17s8.cloudfront.net",
+    url: ":s3_domain_url",
     path: "/:class/:attachment/:id_partition/:style/:filename"
   }
 
