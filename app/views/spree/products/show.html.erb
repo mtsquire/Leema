@@ -44,13 +44,7 @@
             </div>
           </div>
 
-          <div data-hook="product_properties">
-            <%= render :partial => 'properties' %>
-          </div>
-
-          <div data-hook="promotions">
-            <%= render :partial => 'promotions' %>
-          </div>
+          <!-- removed properties and promotions partials -->
 
         </div>
       </div>
@@ -111,27 +105,27 @@
             <div role="tabpanel">
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                <li role="presentation" class="active"><a href="#shipping-info" aria-controls="shipping-info" role="tab" data-toggle="tab">Shipping Info</a></li>
                 <li role="presentation"><a href="#ingredients" aria-controls="ingredients" role="tab" data-toggle="tab">Ingredients</a></li>
-                <li role="presentation"><a href="#shipping-info" aria-controls="shipping-info" role="tab" data-toggle="tab">Shipping Info</a></li>
+                <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About the Seller</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="about">
-                  <% if @product.suppliers.first.users.first.about != "" %>
-                    <%= simple_format(@product.suppliers.first.users.first.about) %>
-                  <% else %>
-                    <p>This seller has no info.</p>
-                  <% end %>
+                <div role="tabpanel" class="tab-pane active" id="shipping-info">
+                  <p><%= @product.shipping_information %></p>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="ingredients">
                 <% if @product.ingredients %>
                   <%= simple_format(@product.ingredients) %>
                 <% end %>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="shipping-info">
-                  <p><%= @product.shipping_information %></p>
+                <div role="tabpanel" class="tab-pane" id="about">
+                  <% if @product.suppliers.first.users.first.about != "" %>
+                    <%= simple_format(@product.suppliers.first.users.first.about) %>
+                  <% else %>
+                    <p>This seller has no info.</p>
+                  <% end %>
                 </div>
               </div>
 
