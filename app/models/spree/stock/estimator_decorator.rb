@@ -10,7 +10,7 @@ Spree::Stock::Estimator.class_eval do
       rates.each do |rate|
         package.shipping_rates << Spree::ShippingRate.new(
           :name => "#{rate.carrier} #{rate.service}",
-          :cost => rate.rate,
+          :cost => (rate.rate.to_f + 0.35).to_s, #add in 35 cent processing fee
           :easy_post_shipment_id => rate.shipment_id,
           :easy_post_rate_id => rate.id,
           :easy_post_delivery_days => rate.delivery_days
