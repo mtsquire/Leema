@@ -3,9 +3,9 @@ gem 'devise', '3.2.3'
 gem 'rails', '4.1.6'
 #Deleted these gems for production push
 # # Use puma as the production webserver
-# gem 'puma', group: :production
+gem 'puma', group: :production
 # # Heroku kills processes that take longer than 30 seconds, this gem tells puma to kill them too
-# gem "rack-timeout"
+gem "rack-timeout"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 # Use SCSS for stylesheets
@@ -50,6 +50,9 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# New Relic for server monitoring
+gem 'newrelic_rpm'
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
