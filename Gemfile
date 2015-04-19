@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'devise', '3.2.3'
 gem 'rails', '4.1.6'
+<<<<<<< HEAD
 # Use puma as the production webserver
 gem 'puma', group: :production
 # Heroku kills processes that take longer than 30 seconds, this gem tells puma to kill them too
@@ -50,6 +51,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# New Relic for server monitoring
+gem 'newrelic_rpm'
+
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
@@ -57,6 +61,7 @@ gem 'spree', '2.3.4'
 gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-3-stable'
 gem 'spree_reviews', github: 'spree-contrib/spree_reviews', branch: '2-3-stable'
 gem 'aws-sdk' #For using S3 to store images
+gem "asset_sync" #sync assets to s3
 
 #multi-tenancy
 gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship'
