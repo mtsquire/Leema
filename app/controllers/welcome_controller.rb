@@ -5,8 +5,6 @@ class WelcomeController < ApplicationController
     @images = Spree::Image.all
     @users = User.all
     @suppliers = Spree::Supplier.all
-
-    expires_in 20.hours, :public => true
   end
 
 end
