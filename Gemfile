@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'devise', '3.2.3'
 gem 'rails', '4.1.6'
-<<<<<<< HEAD
+
 # Use puma as the production webserver
 gem 'puma', group: :production
 # Heroku kills processes that take longer than 30 seconds, this gem tells puma to kill them too
