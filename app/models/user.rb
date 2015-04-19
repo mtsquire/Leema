@@ -49,13 +49,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def gravatar_url
-      stripped_email = email.strip
-      downcased_email = stripped_email.downcase
-      hash = Digest::MD5.hexdigest(downcased_email)
-      "http://gravatar.com/avatar/#{hash}"
-  end
-
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
