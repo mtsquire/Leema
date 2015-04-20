@@ -768,6 +768,18 @@ ul#products {
 
 }
 
+@media (max-width: 991px) {
+  #more-info .nav-tabs li a {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 350px) {
+  #more-info .nav-tabs li a {
+    padding: 0 5px;
+  }
+}
+
 /*--------------------------------------*/
 /* Reviews
 /*--------------------------------------*/
