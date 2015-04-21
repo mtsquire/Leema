@@ -40,15 +40,13 @@
 }
 
 .profile-image {
+		width: 175px;
+		height: 175px;
+		border: 2px solid #3a89ff;
+		overflow: hidden;
 
 		img {
-			width: 175px;
-			height: 175px;
-		}
-
-		.img-thumbnail {
-			background-color: #fff;
-			border: 2px solid #3a89ff;
+			width: 100%;
 		}
 }
 
@@ -66,16 +64,6 @@
 
 	.profile-image {
 			margin-top: 0px;
-
-				img {
-					width: 175px;
-					height: 175px;
-				}
-
-				.img-thumbnail {
-					background-color: #3a89ff;
-					padding: 2px;
-				}
 		}
 
 	.edit-profile {
