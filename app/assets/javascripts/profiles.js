@@ -125,7 +125,17 @@ if ((widthIsWide) && ($sectionCover.length > 0)) {
 
 
     if ($('.no-bio').length > 0) {
-        var selectJoke = ['/assets/food-joke-1.jpg', '/assets/food-joke-2.jpg', '/assets/food-joke-3.jpg' ],
+        var selectJoke = [
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-joke-1.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-joke-2.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-joke-3.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun1.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun2.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun3.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun4.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun5.jpg',
+            'https://d1vw1wxlid17s8.cloudfront.net/assets/food-pun6.jpg'
+        ],
             joke = selectJoke[Math.floor(Math.random() * selectJoke.length)];
 
         $('.food-joke').attr('src', joke);
