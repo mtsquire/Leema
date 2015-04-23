@@ -18,6 +18,10 @@
     }
 }
 
+.ie9 .intro {
+    opacity: 1;
+}
+
 @media screen and (max-width: 1024px) {
     .intro {
         opacity: 1;
