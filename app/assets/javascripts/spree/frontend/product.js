@@ -4,4 +4,9 @@ $(document).ready(function() {
     controlNav: 'thumbnails',
     smoothHeight: true
   });
-});
+
+/*  if ($('#products').length > 0) {
+	    $('#products .product-list-item').shuffle();
+	}
+*/});
+
