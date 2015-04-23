@@ -14,11 +14,10 @@
            });
 
         this.each(function(i){
-            $('.spinner-container').remove();
-            $('#products').css('display','block')
             $(this).replaceWith($(shuffled[i]));
         });
-
+        $('.spinner-container').remove();
+        $('#products').css('display','block');
         return $(shuffled);
 
     };
