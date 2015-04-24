@@ -14,8 +14,17 @@
   </div>
 </div>
 <div class="share-product">
-  <!-- Facebook Like/Share Buttons -->
-  <div class="fb-like" data-share="true" data-width="300px" data-show-faces="false" data-layout="button_count"></div>
+    <!-- Facebook Like/Share Buttons -->
+    <div class="share-product-button">
+      <div class="fb-like" data-share="true" data-width="300px" data-show-faces="false" data-layout="button_count"></div>
+    </div>
+    <% if @product.images.count > 0 %>
+      <div class="share-product-button" style="margin-top:4px;">
+        <a href="//www.pinterest.com/pin/create/button/?url=<%= canonical_href %>&media=<%= image_url(@product.images.first.attachment.url(:large)) %>&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
+        <!-- Please call pinit.js only once per page -->
+        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+      </div>
+    <% end %>
 </div><!-- close .share-product -->
 <script>
   window.fbAsyncInit = function() {
