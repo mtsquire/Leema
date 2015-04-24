@@ -719,6 +719,18 @@ ul#products {
 
 .share-product {
   margin-bottom: 20px;
+
+  .share-product-button {
+    display: inline-block;
+
+    .fb-like span {
+      vertical-align: inherit !important;
+    }
+  }
+
+  .share-product-button + .share-product-button {
+    margin-left: 10px;
+  }
 }
 
 #more-info {
