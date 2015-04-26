@@ -25,6 +25,13 @@
               <td>
                 <h2 style="font-size:18px;font-weight:normal;">Reference Number: <%= @shipment.number %></h2>
                 <h4style="font-size:14px;font-weight:normal;">Placed on: <%= @shipment.created_at.strftime('%A %b %e, %Y at %l:%M%p %Z') %></h4>
+                <% if @shipment.order.special_instructions.present? %>
+                  <tr class='special_instructions'>
+                    <td colspan="5">
+                      <h4style="font-size:14px;font-weight:normal;"><strong>Special instructions from the buyer:</strong> <%= @shipment.order.special_instructions %></h4>
+                    </td>
+                  </tr>
+                <% end %>
               </td>
             </tr>
             <tr>
