@@ -38,12 +38,16 @@
               <div><%= f.label :password_confirmation %>
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control input_wide' %></div>
             </div>
+            <div class="checkbox">
+              <%= f.label :mailing_list do %>
+                <%= f.check_box :mailing_list, :checked => true %> Treat my inbox with delicious emails from www.leemaeats.com
+              <% end %>
+            </div>
           </fieldset>
           <div class="text-center">
             <p><small>By submitting, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
             <%= f.submit "Sign up", :class => "btn btn-primary" %>
           </div>
-
           <div class="text-right">
             Already a member? <%= render "devise/shared/links" %>
           </div>
