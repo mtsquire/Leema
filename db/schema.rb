@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403220819) do
+ActiveRecord::Schema.define(version: 20150426212654) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 20150403220819) do
     t.boolean  "considered_risky",                                           default: false
     t.string   "guest_token"
     t.string   "tracking_number"
+    t.integer  "state_lock_version",                                         default: 0,       null: false
   end
 
   add_index "spree_orders", ["approver_id"], name: "index_spree_orders_on_approver_id"
@@ -319,6 +320,7 @@ ActiveRecord::Schema.define(version: 20150403220819) do
   add_index "spree_orders", ["confirmation_delivered"], name: "index_spree_orders_on_confirmation_delivered"
   add_index "spree_orders", ["considered_risky"], name: "index_spree_orders_on_considered_risky"
   add_index "spree_orders", ["created_by_id"], name: "index_spree_orders_on_created_by_id"
+  add_index "spree_orders", ["guest_token"], name: "index_spree_orders_on_guest_token"
   add_index "spree_orders", ["number"], name: "index_spree_orders_on_number"
   add_index "spree_orders", ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
   add_index "spree_orders", ["shipping_method_id"], name: "index_spree_orders_on_shipping_method_id"
@@ -1053,6 +1055,7 @@ ActiveRecord::Schema.define(version: 20150403220819) do
     t.integer  "store_logo_file_size"
     t.datetime "store_logo_updated_at"
     t.string   "display_name"
+    t.integer  "mailing_list",                        default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
