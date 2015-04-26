@@ -10,9 +10,8 @@ module Spree
 
           on_hand, backordered = stock_location.fill_status(line_item.variant, line_item.quantity)
           package.add line_item, on_hand, :on_hand if on_hand > 0
-          # Added to allow backordered items to be shipped
-          package.add line_item, on_hand, :on_hand if backordered > 0
-          # package.add line_item, backordered, :backordered if backordered > 0
+          # added this to add count to backordered products so they can ship
+          package.add line_item, line_item.quantity, :on_hand if backordered > 0
         else
           package.add line_item, line_item.quantity, :on_hand
         end
