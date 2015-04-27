@@ -33,9 +33,9 @@
             <%#-= large_image(product, :itemprop => "image", :class => 'img-responsive center-block') -%>
             <div class="product-image-container">
               <% if product.images.count > 0 %>
-                <div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+                <div class="product-image background-image lazy" data-original="<%= image_url product.images.first.attachment.url(:large) %>" style="background-image: url(<%= image_url ("leema-lazy.jpg") %>);"></div>
               <% else %>
-                <div class="product-image background-image" style="background-image: url(<%= image_url ("leema-product-placeholder.jpg") %>)"></div>
+                <div class="product-image background-image lazy" data-original="<%= image_url ("leema-product-placeholder.jpg") %>" style="background-image: url(<%= image_url ("leema-lazy.jpg") %>)"></div>
               <% end %>
 
             </div><!-- close .product-image-container -->
