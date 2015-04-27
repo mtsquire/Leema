@@ -406,3 +406,7 @@ $fourth_level: #cbcbc9;
 	color: #3c763d !important;
 	background-color: #dff0d8 !important;
 }
+
+.state.shipped:before {
+	background-color: #9FC820;
+}
