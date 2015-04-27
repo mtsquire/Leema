@@ -21,6 +21,8 @@ Spree.config do |config|
         storage:        :s3,
         s3_headers:     { "Cache-Control" => "max-age=31557600" },
         s3_protocol:    "https",
+        s3_host_alias:  "d1vw1wxlid17s8.cloudfront.net",
+        url:            "s3_alias_url",
         bucket:         ENV['S3_BUCKET_NAME'],
 
         styles: {
