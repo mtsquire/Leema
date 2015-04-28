@@ -40,19 +40,19 @@
                 <td>
                   <% order.shipments.each do |shipment| %>
                     <% shipment.line_items.each do |item| %>
-                      <a href="/store/products/<%= item.product.slug %>"><%= item.name %></a><br>
+                      <a href="/store/products/<%= item.product.slug %>"><%= item.name %> <i class="fa fa-external-link"></i></a><br>
                     <% end %>
                   <% end %>
                 </td>
                 <td>
                   <% order.suppliers.each do |supplier| %>
-                    <a href="/<%= supplier.users.first.display_name %>"><%= supplier.store_name %></a><br>
+                    <a href="/<%= supplier.users.first.display_name %>"><%= supplier.store_name %> <i class="fa fa-external-link"></i></a><br>
                   <% end %>
                 </td>
                 <td>
                   <% order.shipments.each do |shipment| %>
                     <% if shipment.tracking %>
-                      <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= shipment.tracking.to_s %>" target="_blank"><%= shipment.tracking %></a><br>
+                      <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= shipment.tracking.to_s %>" target="_blank"><%= shipment.tracking %> <i class="fa fa-external-link"></i></a><br>
                     <% else %>
                       <p font-size= "small"><%= shipment.supplier.store_name %> has received your order, but hasn't shipped your product yet. Check back here once they do.</p>
                     <% end %>
