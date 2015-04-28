@@ -48,7 +48,7 @@
                     <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
                     <span class="rate-name"><%= rate.name %></span>
                     <span class="badge rate-cost">
-                      $<%= rate.cost %>
+                      <%= number_to_currency(rate.cost, :unit => "$") %>
                     </span>
                     <span class="delivery-days">
                       <% if rate.name == "USPS Priority" %>
