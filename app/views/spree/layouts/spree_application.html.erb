@@ -16,9 +16,9 @@
       <div id="wrapper" data-hook>
 
         <%-# breadcrumbs(@taxon) -%>
-        <div class="row">
-          <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
-        </div>
+
+        <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
+
 
         <div class="row">
             <div id="content" class="col-xs-12" data-hook>
