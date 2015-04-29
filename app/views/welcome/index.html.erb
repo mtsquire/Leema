@@ -31,7 +31,7 @@
 
 								<% end %>
 								<div class="product-info">
-									<h3><%= product.name %></h3>
+									<h3><%= truncate(product.name, :length => 50) %></h3>
 									<p class="product-description"><%= truncate(product.leema_description, :length => 150) %></p>
                   <p class="product-price" itemprop="price"><%= product.display_price %></p>
                   <% if product.suppliers.first.store_logo_file_name? %>
