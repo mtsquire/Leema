@@ -5,8 +5,8 @@ $(document).ready(function() {
     smoothHeight: true
   });
 
-	if ($('#products').length > 0) {
-	    $('#products .product-list-item').shuffle();
+	if ($('.spree #products').length > 0) {
+	    $('.spree #products .product-list-item').shuffle();
 	}
 
 	if ($('.lazy').length > 0) {
