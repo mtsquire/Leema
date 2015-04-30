@@ -7,11 +7,11 @@
   </div>
 </div>
 
+<div class="text-center">
+  <p><small>By placing my order, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
+  <%= f.submit "Sign up", :class => "btn btn-primary" %>
+</div>
 <div class="well text-right form-buttons" data-hook="buttons">
-	<div class="text-center">
-    <p><small>By placing my order, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
-    <%= f.submit "Sign up", :class => "btn btn-primary" %>
-  </div>
   <%= submit_tag Spree.t(:place_order), :class => 'btn btn-lg btn-success' %>
   <script>Spree.disableSaveOnClick();</script>
 </div>
