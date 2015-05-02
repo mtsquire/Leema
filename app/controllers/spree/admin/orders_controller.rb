@@ -37,8 +37,8 @@ module Spree
 
         # lazyoading other models here (via includes) may result in an invalid query
         # e.g. SELECT  DISTINCT DISTINCT "spree_orders".id, "spree_orders"."created_at" AS alias_0 FROM "spree_orders"
-        # see https://github.com/spree/spree/pull/3919
-
+        # see https://github.com/spree/spree/pull/3919 
+        
 
         # Restore dates
         params[:q][:created_at_gt] = created_at_gt
@@ -51,7 +51,7 @@ module Spree
           @orders = Spree::Order.all
         else
           @orders = @user.supplier.products.orders
-        end
+        end        
       end
 
       def new
@@ -98,7 +98,7 @@ module Spree
       end
 
       def resend
-        OrderMailer.delay.confirm_email(@order.id, true).deliver
+        OrderMailer.confirm_email(@order.id, true).deliver
         flash[:success] = Spree.t(:order_email_resent)
 
         redirect_to :back
