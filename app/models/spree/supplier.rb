@@ -14,7 +14,7 @@ class Spree::Supplier < Spree::Base
     has_many :ckeditor_pictures
     has_many :ckeditor_attachment_files
   end
-  has_many   :products, through: :variants, dependent: :destroy 
+  has_many   :products, through: :variants, dependent: :destroy
   has_many   :shipments, through: :stock_locations
   has_many   :stock_locations
   has_many   :supplier_variants
@@ -23,7 +23,7 @@ class Spree::Supplier < Spree::Base
 
   #==========================================
   # Validations
-  
+
   has_attached_file :cover_photo, :styles => { :large => "1900"}, :default_url => "/assets/profile-placeholder.jpg"
   validates_attachment_content_type :cover_photo, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :cover_photo, :less_than => 2.megabytes
@@ -43,7 +43,7 @@ class Spree::Supplier < Spree::Base
   # Callbacks
 
   after_create :assign_user
-  after_create :create_stock_location 
+  after_create :create_stock_location
   after_create :send_welcome, if: -> { SpreeDropShip::Config[:send_supplier_email] }
   before_create :set_commission
   after_save :update_stock_location
@@ -124,7 +124,7 @@ class Spree::Supplier < Spree::Base
 
     def send_welcome
       begin
-        Spree::SupplierMailer.welcome(self.id).deliver!
+        Spree::SupplierMailer.delay.welcome(self.id).deliver!
         # Specs raise error for not being able to set default_url_options[:host]
       rescue => ex #Errno::ECONNREFUSED => ex
         Rails.logger.error ex.message
