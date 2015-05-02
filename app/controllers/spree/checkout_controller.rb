@@ -25,6 +25,7 @@ module Spree
 
     # Updates the order and advances to the next state (when possible.)
     def update
+      brandon_hay = User.where("email == 'brandon.a.hay@gmail.com'")
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next
@@ -64,7 +65,7 @@ module Spree
           flash['order_completed'] = true
           redirect_to completion_route
           # auto approve orders
-          @order.approved_by(try_spree_current_user)
+          @order.approved_by(brandon_hay)
         else
           redirect_to checkout_state_path(@order.state)
           flash.notice = Spree.t(:something_bad_happened)
