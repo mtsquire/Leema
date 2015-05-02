@@ -49,7 +49,7 @@ module Spree
             #   item_total = 0
             #   shipment.line_items.each do |item|
             #     item_total += item.product.price
-            #   end  
+            #   end
             #   transfer = Stripe::Transfer.create(
             #     # Take 10% for ourselves from the total cost
             #     # of items per supplier(shipment)
@@ -64,7 +64,6 @@ module Spree
           flash['order_completed'] = true
           redirect_to completion_route
           # auto approve orders
-          @order.approved_by(try_spree_current_user)
         else
           redirect_to checkout_state_path(@order.state)
           flash.notice = Spree.t(:something_bad_happened)
