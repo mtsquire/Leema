@@ -61,6 +61,7 @@ gem 'spree', '2.3.4'
 gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-3-stable'
 gem 'spree_reviews', github: 'spree-contrib/spree_reviews', branch: '2-3-stable'
 gem 'aws-sdk' #For using S3 to store images
+gem "fog"
 gem "asset_sync" #sync assets to s3
 
 #multi-tenancy
