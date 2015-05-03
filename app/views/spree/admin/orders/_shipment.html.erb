@@ -63,7 +63,8 @@
               <strong><%= shipment.selected_shipping_rate.name %></strong>
             </td>
             <td class="total" align="center">
-              <span><%= shipment.cost %></span>
+              <span><%= number_to_currency(shipment.cost, :unit => "$") %>
+              </span>
             </td>
           <% else %>
             <td colspan='5'><%= Spree.t(:no_shipping_method_selected) %></td>
@@ -110,7 +111,7 @@
       <% if shipment.tracking.present? %>
         <tr>
           <td colspan="5">
-            <strong><%= Spree.t(:postage_label) %>:</strong> <%= link_to shipment.postage_label, shipment.postage_label, :target => "_blank" %>   
+            <strong><%= Spree.t(:postage_label) %>:</strong> <%= link_to shipment.postage_label, shipment.postage_label, :target => "_blank" %>
           </td>
         </tr>
       <% end %>
