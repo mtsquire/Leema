@@ -6,7 +6,8 @@ Spree::Product.class_eval do
 
   def self.search(search)
     if search
-      where(['name ILIKE ?', "%#{search}%"])
+      where(['name ILIKE ?', "%#{search}%"]) &&
+      where(['leema_description ILIKE ?', "%#{search}%" ])
     else
       @products = Spree::Product.all
     end
