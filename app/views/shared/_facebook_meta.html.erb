@@ -5,13 +5,13 @@
 <% if content_for?(:image) %>
 <meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "" %>" />
 <% else %>
-<meta property="og:image" content="https://d1vw1wxlid17s8.cloudfront.net/assets/leema-og-image.jpg" />
+<meta property="og:image" content="https://d1vw1wxlid17s8.cloudfront.net/assets/leema-og-image-new.jpg" />
 <% end %>
 <% if content_for?(:ogtype) %>
 <meta property="og:type" content="<%= content_for?(:ogtype) ? yield(:ogtype) : "" %>" />
 <% end %>
 <meta property="fb:admins" content="1223880596" />
 
-
+<meta name="p:domain_verify" content="c610bbc4a196f025ec48f41af5d8ea65"/>
 
 <link href="<%= request.original_url %>" rel="canonical" />
