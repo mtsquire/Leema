@@ -25,7 +25,6 @@ module Spree
 
     # Updates the order and advances to the next state (when possible.)
     def update
-      brandon_hay = User.where("email = 'brandon.a.hay@gmail.com'")
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next
@@ -43,29 +42,10 @@ module Spree
               shipment.save!
               puts "Set stripe charge id to #{shipment.stripe_charge_id}!"
             end
-            # moved this code to the webhook controller
-            # @order.shipments.each do |shipment|
-            #   shipment.stripe_charge_id = charge_id
-            #   puts "Set stripe charge id to #{charge_id}!"
-            #   item_total = 0
-            #   shipment.line_items.each do |item|
-            #     item_total += item.product.price
-            #   end  
-            #   transfer = Stripe::Transfer.create(
-            #     # Take 10% for ourselves from the total cost
-            #     # of items per supplier(shipment)
-            #     # shipment.final_price is shipping cost plus tax
-            #     :amount => ((item_total * 90) + (shipment.cost * 100)).floor,
-            #     :currency => "usd",
-            #     :recipient => shipment.supplier.token
-            #   )
-            # end
           end
           flash.notice = Spree.t(:order_processed_successfully)
           flash['order_completed'] = true
           redirect_to completion_route
-          # auto approve orders
-          @order.approved_by(brandon_hay)
         else
           redirect_to checkout_state_path(@order.state)
           flash.notice = Spree.t(:something_bad_happened)
