@@ -44,10 +44,7 @@ Spree::Supplier.class_eval do
         if tax_id.present?
           rp.tax_id = tax_id
         end
-        # Don't save the bank account token again. Gives a stripe error.
-        # Maybe we re-implement this when we allow users to delete their
-        # bank accounts?
-        # rp.bank_account = bank_accounts.first.token if bank_accounts.first
+        rp.bank_account = bank_accounts.first.token if !bank_accounts.first
         rp.save
       else
         stripe_recipient_setup
