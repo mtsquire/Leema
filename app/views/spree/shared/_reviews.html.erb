@@ -3,15 +3,15 @@
   <% if @product.reviews.approved.count == 0 %>
     <p class="reviews-none"><%= Spree.t('no_reviews_available') %></p>
   <% else %>
-    <% if signed_in? %>
-      <%= link_to Spree.t('write_your_own_review'), new_product_review_path(@product), :class => "btn btn-primary",
-                  :rel => 'nofollow' %>
-    <% else %>
-      <a href="/register" class="btn btn-primary">Register to leave a review!</a>
-    <% end %>
     <% for review in (Spree::Reviews::Config[:track_locale] ? @product.reviews.localized(I18n.locale) : @product.reviews).default_approval_filter.preview %>
       <%= render 'spree/shared/review', :review => review %>
     <% end %>
+  <% end %>
+  <% if signed_in? %>
+    <%= link_to Spree.t('write_your_own_review'), new_product_review_path(@product), :class => "btn btn-primary",
+                :rel => 'nofollow' %>
+  <% else %>
+    <a href="/register" class="btn btn-primary">Register to leave a review!</a>
   <% end %>
 
 </div>
