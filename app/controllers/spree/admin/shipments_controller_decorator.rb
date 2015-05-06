@@ -24,7 +24,8 @@ Spree::Admin::ShipmentsController.class_eval do
     end
     #Scoping shipments to the suppliers unless you're a badass leema admin
     if spree_current_user.leema_admin? == false
-      @search = Spree::Shipment.where("stock_location_id = ? and (state = ? or state = ?)", spree_current_user.supplier.stock_locations.first.id, 'shipped', 'ready').ransack(params[:q])
+      id = spree_current_user.supplier.stock_locations.first.id
+      @search = Spree::Shipment.where(stock_location_id: id, state: %w[shipped ready]).ransack(params[:q])
     else
       @search = Spree::Shipment.accessible_by(current_ability, :index).ransack(params[:q])
     end
