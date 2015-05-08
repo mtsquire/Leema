@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/store'
 
 # Need to adjust this for FB authentication
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   devise_scope :user do
     get 'register', to: 'devise/registrations#new', as: :register
