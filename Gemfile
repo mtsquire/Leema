@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'devise', '3.2.3'
+gem 'devise', '3.2.4'
 gem 'rails', '4.1.6'
 
 # Use puma as the production webserver
@@ -48,8 +48,8 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+# Debugging
+gem 'byebug', group: :development
 
 # New Relic for server monitoring
 gem 'newrelic_rpm'
