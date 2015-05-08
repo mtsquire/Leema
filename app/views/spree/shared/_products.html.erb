@@ -3,7 +3,7 @@
   paginated_products ||= products
 %>
 <%= title "Store - " %>
-<%= ogtype "product.group" %>
+
 
 <% content_for :head do %>
   <% if paginated_products.respond_to?(:num_pages) %>
