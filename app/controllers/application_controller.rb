@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
-    puts "#{store_location_for(:user, request.url)}"
   end
 
   protected
