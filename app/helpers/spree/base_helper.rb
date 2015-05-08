@@ -1,6 +1,14 @@
 module Spree
   module BaseHelper
 
+    def ogtype(og_type)
+      content_for(:ogtype) { og_type }
+    end
+
+    def title(page_title)
+      content_for(:title) { page_title }
+    end
+
     # Defined because Rails' current_page? helper is not working when Spree is mounted at root.
     def current_spree_page?(url)
       path = request.fullpath.gsub(/^\/\//, '/')
