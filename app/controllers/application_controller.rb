@@ -4,16 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #added as part of SO answer with profile page editing
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # store the last visited page url for sign in/sign up redirects
+  before_filter :store_current_location, :unless => :devise_controller?
 
   layout :layout_by_resource
 
-  #Used for rendering 404 pages
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
   def original_url
     base_url + original_fullpath
+  end
+
+  def store_current_location
+    store_location_for(:user, request.url)
+    puts "#{store_location_for(:user, request.url)}"
   end
 
   protected

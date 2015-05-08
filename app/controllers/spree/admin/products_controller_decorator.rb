@@ -76,7 +76,7 @@ Spree::Admin::ProductsController.class_eval do
   #   end
   # end
 
-  #added this to fix the unknown method "per" problem deriving from this method in spree backend
+  # added this to fix the unknown method "per" problem deriving from this method in spree backend
   private 
   def collection
           return @collection if @collection.present?
