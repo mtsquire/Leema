@@ -7,12 +7,6 @@
       <%= render 'spree/shared/review', :review => review %>
     <% end %>
   <% end %>
-  <% if signed_in? %>
     <%= link_to Spree.t('write_your_own_review'), new_product_review_path(@product), :class => "btn btn-primary",
-                :rel => 'nofollow' %>
-  <% else %>
-    <a href="/register" class="btn btn-primary">Register to leave a review!</a>
-  <% end %>
-
+              :rel => 'nofollow' %>
 </div>
-
