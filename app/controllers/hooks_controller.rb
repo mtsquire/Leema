@@ -3,10 +3,12 @@ class HooksController < ApplicationController
 skip_before_filter  :verify_authenticity_token
 
   def stripe
-    case params[:type]
-      when 'balance.available'
-        # only reference shipments that havent been transferred and are shipped
-        @shipments = Spree::Shipment.where("transferred = ? and state = ?", false, "ready")
+    #using easypost now as the webhook event
+    case params[:description]
+      # From EasyPost API https://www.easypost.com/docs/api#webhooks: 
+      # scan_form.updated: Fired when the status for the scan form changes
+      when 'scan_form.updated'
+        @shipments = Spree::Shipment.where(transferred: false, state: "shipped")
         @shipments.each do |shipment|
           item_total = 0
           shipment.line_items.each do |item|

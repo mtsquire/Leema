@@ -8,7 +8,7 @@ Spree::Supplier.class_eval do
 
   before_create :assign_name
   before_create :stripe_recipient_setup
-  before_save :stripe_recipient_update
+  before_save :stripe_recipient_update 
 
   private
 
@@ -36,20 +36,20 @@ Spree::Supplier.class_eval do
   end
 
   def stripe_recipient_update
-    unless new_record? or !changed?
-      if token.present?
-        rp = Stripe::Recipient.retrieve(token)
-        rp.name  = name
-        rp.email = email
-        if tax_id.present?
-          rp.tax_id = tax_id
+      unless new_record? or !changed?
+        if token.present?
+          rp = Stripe::Recipient.retrieve(token)
+          rp.name  = name
+          rp.email = email
+          if tax_id.present?
+            rp.tax_id = tax_id
+          end
+          rp.bank_account = bank_accounts.first.token if bank_accounts.first
+          rp.save
+        else
+          stripe_recipient_setup
         end
-        rp.bank_account = bank_accounts.first.token if !bank_accounts.first
-        rp.save
-      else
-        stripe_recipient_setup
       end
-    end
   end
 
 end

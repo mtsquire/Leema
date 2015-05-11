@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426212654) do
+ActiveRecord::Schema.define(version: 20150509221851) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -427,7 +427,7 @@ ActiveRecord::Schema.define(version: 20150426212654) do
   add_index "spree_product_properties", ["property_id"], name: "index_spree_product_properties_on_property_id"
 
   create_table "spree_products", force: true do |t|
-    t.string   "name",                                                     default: "",  null: false
+    t.string   "name",                                                     default: "",    null: false
     t.text     "description"
     t.datetime "available_on"
     t.datetime "deleted_at"
@@ -438,8 +438,8 @@ ActiveRecord::Schema.define(version: 20150426212654) do
     t.integer  "shipping_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "avg_rating",                       precision: 7, scale: 5, default: 0.0, null: false
-    t.integer  "reviews_count",                                            default: 0,   null: false
+    t.decimal  "avg_rating",                       precision: 7, scale: 5, default: 0.0,   null: false
+    t.integer  "reviews_count",                                            default: 0,     null: false
     t.integer  "user_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -448,6 +448,7 @@ ActiveRecord::Schema.define(version: 20150426212654) do
     t.text     "leema_description"
     t.text     "ingredients",          limit: 255
     t.text     "shipping_information"
+    t.boolean  "custom_order",                                             default: false
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
@@ -604,7 +605,7 @@ ActiveRecord::Schema.define(version: 20150426212654) do
   create_table "spree_shipments", force: true do |t|
     t.string   "tracking"
     t.string   "number"
-    t.decimal  "cost",                 precision: 10, scale: 2, default: 0.0
+    t.decimal  "cost",                     precision: 10, scale: 2, default: 0.0
     t.datetime "shipped_at"
     t.integer  "order_id"
     t.integer  "address_id"
@@ -612,15 +613,16 @@ ActiveRecord::Schema.define(version: 20150426212654) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_location_id"
-    t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
-    t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0,   null: false
-    t.decimal  "pre_tax_amount",       precision: 8,  scale: 2, default: 0.0
-    t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0,   null: false
+    t.decimal  "adjustment_total",         precision: 10, scale: 2, default: 0.0
+    t.decimal  "additional_tax_total",     precision: 10, scale: 2, default: 0.0
+    t.decimal  "promo_total",              precision: 10, scale: 2, default: 0.0
+    t.decimal  "included_tax_total",       precision: 10, scale: 2, default: 0.0,   null: false
+    t.decimal  "pre_tax_amount",           precision: 8,  scale: 2, default: 0.0
+    t.decimal  "supplier_commission",      precision: 8,  scale: 2, default: 0.0,   null: false
     t.string   "postage_label"
     t.string   "stripe_charge_id"
-    t.boolean  "transferred",                                   default: false
+    t.boolean  "transferred",                                       default: false
+    t.text     "custom_order_description"
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id"
