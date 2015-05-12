@@ -11,14 +11,10 @@
       <div data-hook="supplier_details_wrapper">
       <fieldset class="no-border-bottom no-border-top">
         <!-- auto populate name and email if user is a new supplier -->
+        <!-- Email needs to match the email a user signed up with so we can link their supplier account with user account -->
         <% if spree_current_user.supplier? == false %>
           <%= form.hidden_field :name, :class => 'fullwidth title', :value => spree_current_user.full_name %>
-          <%= form.field_container :email do %>
-            <div class="form-group">
-              <%= form.label :email, Spree::Supplier.human_attribute_name(:email) %>:
-              <%= form.email_field :email, :class => 'form-control', :value => spree_current_user.email %>
-            </div>
-          <% end %>
+          <%= form.hidden_field :email, :class => 'form-control', :value => spree_current_user.email %>
         <!-- when editing or viewing another supplier dont auto populate name/email -->
         <% else %>
             <%= form.hidden_field :name, :class => 'fullwidth title' %>
