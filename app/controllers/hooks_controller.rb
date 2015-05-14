@@ -27,7 +27,11 @@ skip_before_filter  :verify_authenticity_token
     end
     case params[:result][:tracking_details][:status]
     when 'in_transit'
-      print 'more detailed webhook worked!'
+      print 'result -> tracking_details -> status worked!'
+    end
+    case params[:result][:status]
+    when 'in_transit'
+      print 'result -> status worked'
     end
   end
 end
