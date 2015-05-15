@@ -29,7 +29,7 @@ skip_before_filter  :verify_authenticity_token
     when 'in_transit'
       print 'result -> tracking_details -> status worked!'
     end
-    case params[:result][:status]
+    case params[:result][0][:status]
     when 'in_transit'
       print 'result -> status worked'
     end
