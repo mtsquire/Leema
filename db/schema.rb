@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515020402) do
+ActiveRecord::Schema.define(version: 20150516232121) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -427,7 +427,7 @@ ActiveRecord::Schema.define(version: 20150515020402) do
   add_index "spree_product_properties", ["property_id"], name: "index_spree_product_properties_on_property_id"
 
   create_table "spree_products", force: true do |t|
-    t.string   "name",                                                     default: "",    null: false
+    t.string   "name",                                                                  default: "",    null: false
     t.text     "description"
     t.datetime "available_on"
     t.datetime "deleted_at"
@@ -438,18 +438,26 @@ ActiveRecord::Schema.define(version: 20150515020402) do
     t.integer  "shipping_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "avg_rating",                       precision: 7, scale: 5, default: 0.0,   null: false
-    t.integer  "reviews_count",                                            default: 0,     null: false
+    t.decimal  "avg_rating",                                    precision: 7, scale: 5, default: 0.0,   null: false
+    t.integer  "reviews_count",                                                         default: 0,     null: false
     t.integer  "user_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.text     "leema_description"
-    t.text     "ingredients",          limit: 255
+    t.text     "ingredients",                       limit: 255
     t.text     "shipping_information"
-    t.boolean  "custom_order",                                             default: false
-    t.integer  "allow_custom_order",                                       default: 0
+    t.boolean  "custom_order",                                                          default: false
+    t.integer  "allow_custom_order",                                                    default: 0
+    t.decimal  "price_increase"
+    t.text     "custom_message"
+    t.date     "deliver_by_date"
+    t.string   "custom_product_image_file_name"
+    t.string   "custom_product_image_content_type"
+    t.integer  "custom_product_image_file_size"
+    t.datetime "custom_product_image_updated_at"
+    t.text     "custom_order_description"
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"

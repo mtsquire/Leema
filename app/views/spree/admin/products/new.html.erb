@@ -52,8 +52,6 @@
           <%= f.error_message_on :shipping_information %>
         </div>
       <% end %>
-      <%= f.label :allow_custom_order, Spree.t(:allow_custom_order) %>
-      <%= f.check_box :allow_custom_order %>
 
       <div data-hook="new_product_attrs" class="row">
         <% unless @product.has_variants? %>
@@ -87,17 +85,10 @@
         </div>
 
         <!-- Hidden and automatically sets to today's date-->
-      <div data-hook="admin_product_form_available_on">
-        <%= f.hidden_field :available_on, :value => Date.today %>
-      </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <p class="your-take">Your take: <span class="net-price"></span></p>
-          <p class="help-block">This is approximately what you will make after Leema takes 10% of the sale.</p>
+        <div data-hook="admin_product_form_available_on">
+          <%= f.hidden_field :available_on, :value => Date.today %>
         </div>
+
       </div>
 
       <div class='row'>
@@ -112,6 +103,37 @@
           <% end %>
         </div>
       </div>
+
+      <!-- Custom Orders -->
+      <div class="custom-orders">
+        <h2>Custom Orders</h2>
+        <hr>
+        <div class="custom order checkbox">
+          <%= f.label :allow_custom_order, Spree.t(:allow_custom_order) %>
+          <%= f.check_box :allow_custom_order %>
+        </div>
+        <%= f.field_container :custom_order_description do %>
+          <div class="form-group">
+            <%= f.label :custom_order_description, Spree.t(:custom_order_description) %> <span class="required">*</span><br />
+            <%= f.text_area :custom_order_description, {:rows => "7", :class => 'form-control', :placeholder => 'Let your buyers know some details about your custom order options. What about your product can they personalize?'} %>
+            <%= f.error_message_on :custom_order_description %>
+          </div>
+        <% end %>
+
+        <div data-hook="new_product_price" class="col-sm-3">
+          <%= f.field_container :price_increase do %>
+            <div class="form-group">
+              <%= f.label :price_increase, Spree.t(:price_increase) %>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <%= f.text_field :price_increase, :value => number_to_currency(@product.price_increase, :unit => ''), :class => 'form-control' %>
+              </div>
+              <%= f.error_message_on :price_increase %>
+            </div>
+          <% end %>
+        </div>
+
+      </div><!-- end custom orders -->
 
       <div class="clearfix" data-hook="product-from-prototype" id="product-from-prototype">
         <%= render :file => 'spree/admin/prototypes/show' if @prototype %>
