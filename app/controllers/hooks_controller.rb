@@ -25,7 +25,7 @@ skip_before_filter  :verify_authenticity_token
         shipment.save!
       end
     end
-    case params[:result][:tracking_details[0]][:status]
+    case params[:result][:tracking_details][0][:status]
     when 'in_transit'
       print 'result -> tracking_details -> status worked!'
     end
