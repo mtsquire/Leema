@@ -84,6 +84,13 @@
           <% end %>
         </div>
 
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="your-take">Your take: <span class="net-price"></span></p>
+            <p class="help-block">This is approximately what you will make after Leema takes 10% of the sale.</p>
+          </div>
+        </div>
+
         <!-- Hidden and automatically sets to today's date-->
         <div data-hook="admin_product_form_available_on">
           <%= f.hidden_field :available_on, :value => Date.today %>
@@ -107,11 +114,9 @@
       <!-- Custom Orders -->
       <div class="custom-orders">
         <h2>Custom Orders</h2>
+        <p>If you would like to allow buyers to place custom orders of this product fill out the fields below.</p>
         <hr>
-        <div class="custom order checkbox">
-          <%= f.label :allow_custom_order, Spree.t(:allow_custom_order) %>
-          <%= f.check_box :allow_custom_order %>
-        </div>
+
         <%= f.field_container :custom_order_description do %>
           <div class="form-group">
             <%= f.label :custom_order_description, Spree.t(:custom_order_description) %> <span class="required">*</span><br />
