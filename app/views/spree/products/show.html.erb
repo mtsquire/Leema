@@ -76,26 +76,37 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="exampleModalLabel">Leema Custom Order</h4>
                       </div>
-                      <div class="modal-body">
-                        <form>
-                          <div class="form-group">
-                            <label for="quantity" class="control-label">Quantity:</label>
-                            <input type="number" value="1" class="form-control" id="quantity">
-                          </div>
-                          <div class="form-group">
-                            <label for="message-text" class="control-label">Description:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputFile">Photo</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Photo should be at least 500px by 500px.</p>
-                          </div>
-                        </form>
-                      </div>
+                      <!-- scope this data to the order form -->
+                      <%= form_for :order, :url => populate_orders_path do |f| %>
+                      <!-- not sure but i think this is needed from _cart_form.html.erb -->
+                      <%= hidden_field_tag "variant_id", @product.master.id %>
+                        <div class="modal-body">
+                          <form>
+                            <div class="form-group">
+                              <label class="control-label">Message from <%= @product.suppliers.first.store_name %>:</label>
+                              <p><%= @product.custom_order_description %></p>
+                            </div>
+                            <div class="form-group">
+                              <label for="quantity" class="control-label">Quantity:</label>
+                              <%= number_field_tag :quantity, 1, :class => 'form-control', :min => 1 %>
+                            </div>
+                            <div class="form-group">
+                              <label for="message-text" class="control-label">Description:</label>
+                              <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputFile">Photo</label>
+                              <input type="file" id="exampleInputFile">
+                              <p class="help-block">Photo should be at least 500px by 500px.</p>
+                            </div>
+                          </form>
+                        </div>
+                      <% end %>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send Custom Order</button>
+                        <%= button_tag :class => 'btn btn-primary', :id => 'add-to-cart-button', :type => :submit do %>
+                          Send Custom Order
+                        <% end %>
                       </div>
                     </div>
                   </div>
