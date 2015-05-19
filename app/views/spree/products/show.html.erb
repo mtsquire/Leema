@@ -72,7 +72,9 @@
                 <div class="modal fade" id="customOrder" tabindex="-1" role="dialog" aria-labelledby="customOrder" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
-                      <%= render :partial => "custom_order_cart_form" %>
+                      <div id="cart-form" data-hook="cart_form">
+                        <%= render 'cart_form' %>
+                      </div>
                     </div><!-- end modal content -->
                     <!-- marcs markup
                     <!-- <div class="modal-header">
