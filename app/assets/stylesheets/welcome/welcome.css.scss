@@ -285,3 +285,13 @@ section {
         color: #3a89ff;
     }
 }
+
+.newsletter-alert {
+    margin-bottom: 0px;
+    padding: 5px;
+}
+
+.newsletter-alert.alert-dismissible .close {
+    top: 5px;
+    right: 5px;
+}
