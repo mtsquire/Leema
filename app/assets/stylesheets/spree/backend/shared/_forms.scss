@@ -335,3 +335,12 @@ fieldset {
 .form-buttons {
   text-align: center;
 }
+
+.custom-order-checkbox {
+  label {
+    text-transform: none;
+  }
+  input[type="checkbox"] {
+    margin: 2px 0 0 -20px;
+  }
+}
