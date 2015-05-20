@@ -285,3 +285,17 @@ section {
         color: #3a89ff;
     }
 }
+
+.newsletter-alert {
+    margin-bottom: 0px;
+    padding: 5px;
+
+    input:focus {
+        outline: none;
+    }
+}
+
+.newsletter-alert.alert-dismissible .close {
+    top: 5px;
+    right: 5px;
+}

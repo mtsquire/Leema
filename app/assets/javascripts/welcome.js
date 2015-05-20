@@ -182,4 +182,15 @@ $(document).ready(function() {
           scrollPerPage: true
       });
     }
+
+    var newsletterCookie = Cookies.get('leemanewsletter');
+
+    if (newsletterCookie == 'donotshow') {
+        $('.newsletter-alert').remove();
+    } else {
+        $('.newsletter-alert').slideDown('slow');
+        $('.newsletter-alert .close').click(function(){
+            Cookies.set('leemanewsletter', 'donotshow',{ expires: 5 }, { secure:true });
+        });
+    };
 });
