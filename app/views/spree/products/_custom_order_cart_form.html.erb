@@ -27,7 +27,9 @@
     <%# else %>
       <%= hidden_field_tag "variant_id", @product.master.id %>
     <%# end %>
+    <%= f.label :image_upload %><br/>
     <%= f.file_field :custom_product_image, :class => 'form-control'  %>
+    <%= f.label :order_description %><br/>
     <%= f.text_field :custom_product_description, :class => 'form-control'  %>
 
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
