@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516232121) do
+ActiveRecord::Schema.define(version: 20150519222647) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -312,6 +312,8 @@ ActiveRecord::Schema.define(version: 20150516232121) do
     t.string   "guest_token"
     t.string   "tracking_number"
     t.integer  "state_lock_version",                                         default: 0,       null: false
+    t.text     "custom_message"
+    t.date     "deliver_by_date"
   end
 
   add_index "spree_orders", ["approver_id"], name: "index_spree_orders_on_approver_id"
@@ -451,8 +453,6 @@ ActiveRecord::Schema.define(version: 20150516232121) do
     t.boolean  "custom_order",                                                          default: false
     t.integer  "allow_custom_order",                                                    default: 0
     t.decimal  "price_increase"
-    t.text     "custom_message"
-    t.date     "deliver_by_date"
     t.string   "custom_product_image_file_name"
     t.string   "custom_product_image_content_type"
     t.integer  "custom_product_image_file_size"

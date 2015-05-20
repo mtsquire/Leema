@@ -1,32 +1,61 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="exampleModalLabel">Leema Custom Order</h4>
-</div>
-<div class="modal-body">
-  <form>
-    <div class="form-group">
-      <label class="control-label">Message from <%= @product.suppliers.first.store_name %>:</label>
+<%= form_for :order, :url => populate_orders_path do |f| %>
+  <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-      <p><%= @product.custom_order_description %></p>
-    </div>
+    <%# if @product.variants_and_option_values(current_currency).any? %>
+<!--       <div id="product-variants" class="columns five alpha">
+        <h6 class="product-section-title"><%#= Spree.t(:variants) %></h6>
+        <ul>
+          <%# @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
+            <li>
+              <%#= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_in(current_currency).money  %>
+              <%#= label_tag "variant_id_#{ variant.id }" do %>
+                <span class="variant-description">
+                  <%#= variant_options variant %>
+                </span>
+                <%# if variant_price variant %>
+                  <span class="price diff"><%#= variant_price variant %></span>
+                <%# end %>
 
-    <div class="form-group">
-      <label for="quantity" class="control-label">Quantity:</label>
-      <%= form_for :order, :url => populate_orders_path do |f| %>
-        <%= number_field_tag :quantity, 1, :class => 'form-control', :min => 1 %>
-      <% end %>
-    </div> 
-  </form>
-</div><!-- end modal-body -->
-<div class="modal-footer">
-  <%= form_for :order, :url => populate_orders_path do |f| %>
-    <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-    <%= hidden_field_tag "variant_id", @product.master.id %>
+                <%# unless variant.can_supply? %>
+                  <span class="out-of-stock"><%#= Spree.t(:out_of_stock) %></span>
+                <%# end %>
+              <%# end %>
+            </li>
+          <%# end%>
+        </ul>
+      </div> -->
+    <%# else %>
+      <%= hidden_field_tag "variant_id", @product.master.id %>
+    <%# end %>
+    <%= f.label :image_upload %><br/>
+    <%= f.file_field :custom_product_image, :class => 'form-control'  %>
+    <%= f.label :order_description %><br/>
+    <%= f.text_field :custom_product_description, :class => 'form-control'  %>
+
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
       <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
+
+        <div id="product-price">
+
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= display_custom_price(@product) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+          </div>
+
           <% if @product.master.can_supply? %>
-          <!-- Add modal structure here -->
+            <link itemprop="availability" href="http://schema.org/InStock" />
+          <% elsif @product.variants.empty? %>
+            <br />
+            <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+          <% end %>
+        </div>
+
+          <% if @product.master.can_supply? %>
+
             <div class="add-to-cart">
+              <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
               <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
                 <%= Spree.t(:add_to_cart) %>
               <% end %>
@@ -41,6 +70,5 @@
           <div><span class="price selling" itemprop="price"><%= Spree.t('product_not_available_in_this_currency') %></span></div>
         </div>
     <% end %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
