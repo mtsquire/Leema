@@ -27,6 +27,8 @@
     <%# else %>
       <%= hidden_field_tag "variant_id", @product.master.id %>
     <%# end %>
+    <%= f.file_field :custom_product_image, :class => 'form-control'  %>
+    <%= f.text_field :custom_product_description, :class => 'form-control'  %>
 
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
       <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
