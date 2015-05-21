@@ -52,8 +52,6 @@
           <%= f.error_message_on :shipping_information %>
         </div>
       <% end %>
-      <%= f.label :allow_custom_order, Spree.t(:allow_custom_order) %>
-      <%= f.check_box :allow_custom_order %>
 
       <div data-hook="new_product_attrs" class="row">
         <% unless @product.has_variants? %>
