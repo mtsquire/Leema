@@ -8,8 +8,4 @@ class AddAttachmentCustomProductImageToOrders < ActiveRecord::Migration
   def self.down
     remove_attachment :spree_orders, :custom_product_image
   end
-  #removing the custom product image from the product model
-  def change
-    remove_column :spree_products, :custom_product_image
-  end
 end
