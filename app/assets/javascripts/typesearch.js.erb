@@ -21,19 +21,22 @@ $(document).ready(function(){
     };
   };
 
+  var url = window.location.hostname,
+      urlProtocol = window.location.protocol;
+
   var products = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     // url points to a json file that contains an array of country names, see
     // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-    prefetch: '../../../public/productnames.json'
+    prefetch: urlProtocol+'//'+url+'/productnames.json'
   });
   var sellers = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     // url points to a json file that contains an array of country names, see
     // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-    prefetch: '../../../public/suppliernames.json'
+    prefetch: urlProtocol+'//'+url+'/suppliernames.json'
   });
 
   $('.navbar-form #search').typeahead({
