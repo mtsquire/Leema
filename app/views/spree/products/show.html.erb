@@ -44,6 +44,14 @@
             </div>
           </div>
 
+
+          <div data-hook="product_properties">
+            <%= render :partial => 'properties' %>
+          </div>
+
+          <div data-hook="promotions">
+            <%= render :partial => 'promotions' %>
+          </div>
           <!-- removed properties and promotions partials -->
 
         </div>
@@ -85,28 +93,6 @@
                           <div id="cart-form" data-hook="cart_form">
                             <%= render 'custom_order_cart_form' %>
                           </div> <!-- close cart-form -->
-
-                          <!-- <form>
-                            <div class="form-group">
-                              <label class="control-label">Message from <%= @product.suppliers.first.store_name %>:</label>
-
-                              <p><%= @product.custom_order_description %></p>
-                            </div>
-                            <div class="form-group">
-                              <label for="quantity" class="control-label">Quantity:</label>
-                              <%= number_field_tag :quantity, 1, :class => 'form-control', :min => 1 %>
-                            </div>
-                            <div class="form-group">
-                              <label for="message-text" class="control-label">Description:</label>
-                              <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputFile">Photo</label>
-                              <input type="file" id="exampleInputFile">
-                              <p class="help-block">Photo should be at least 500px by 500px.</p>
-                            </div>
-                          </form> -->
-
                         </div><!-- close modal body -->
 
                       <div class="modal-footer">
