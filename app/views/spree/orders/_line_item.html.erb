@@ -17,6 +17,9 @@
         </span>
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
+        <% if line_item.custom_order_description != nil %>
+          Custom Order Message: <%= line_item.custom_order_description %>
+        <% end %>
         <!-- removed the description here -->
       </span>
     </td>
