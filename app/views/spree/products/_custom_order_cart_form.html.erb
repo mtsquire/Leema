@@ -27,8 +27,8 @@
     <%= f.label :image_upload %><br/>
     <%= f.file_field :custom_product_image, :class => 'form-control'  %>
     <%= f.label :order_description %><br/>
-    <%= f.text_field :custom_product_description, :class => 'form-control'  %>
-
+    <%= f.text_field :custom_product_description, :class => 'form-control' %>
+ 
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
       <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
 
@@ -36,7 +36,6 @@
 
           <div>
             <span class="price selling" itemprop="price">
-              <%= display_custom_price(@product) %>
             </span>
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
           </div>
