@@ -5,7 +5,6 @@ Spree::Variant.class_eval do
   # end
 
   def remove_tracking
-    byebug
     # Remove the tracking requirement on new variants.
     puts "variant is master? #{self.is_master?}"
     self.track_inventory = false

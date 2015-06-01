@@ -1,7 +1,7 @@
 module Spree
   class OrdersController < Spree::StoreController
     ssl_required :show
-    
+
     helper 'spree/products', 'spree/orders'
 
     respond_to :html
@@ -45,10 +45,8 @@ module Spree
         custom_stuff = [params[:order][:custom_product_description], params[:order][:deliver_by_date]]
       end
       puts "custom stuff = #{custom_stuff}"
-      byebug
       populator = Spree::OrderPopulator.new(current_order(create_order_if_necessary: true), current_currency)
       if populator.populate(params[:variant_id], params[:quantity], custom_stuff)
-        byebug
         respond_with(@order) do |format|
           format.html { redirect_to cart_path }
         end

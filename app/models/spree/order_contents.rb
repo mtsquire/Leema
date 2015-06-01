@@ -56,7 +56,6 @@ module Spree
       def add_to_line_item(variant, quantity, currency=nil, shipment=nil, custom_stuff)
         line_item = grab_line_item_by_variant(variant)
         puts "custom stuff = #{custom_stuff}"
-        byebug
 
         if line_item
           line_item.target_shipment = shipment
@@ -79,7 +78,6 @@ module Spree
           end
         end
         puts "line item custom stuff = #{line_item.custom_order_description} + #{line_item.deliver_by_date}"
-        byebug
 
         line_item.save
         line_item
