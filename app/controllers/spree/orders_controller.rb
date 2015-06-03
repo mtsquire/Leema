@@ -40,9 +40,9 @@ module Spree
     # Adds a new item to the order (creating a new order if none already exists)
     def populate
       # adding new custom order fields here, scope with if statement incase user doesnt select custom option
-      # if the product variant id is the same as the master id, then we know it isnt a custom order.
+      # so if the params has the order key then we know its a custom order
       if params.has_key?(:order)
-        custom_stuff = [params[:order][:custom_product_description], params[:order][:deliver_by_date]]
+        custom_stuff = [params[:order][:custom_product_description], params[:order][:custom_product_image], params[:order][:deliver_by_date]]
       end
       puts "custom stuff = #{custom_stuff}"
       populator = Spree::OrderPopulator.new(current_order(create_order_if_necessary: true), current_currency)

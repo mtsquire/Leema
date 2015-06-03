@@ -68,7 +68,8 @@ module Spree
           # when a user doesnt click add to cart in the custom order modal
           if custom_stuff
             line_item.custom_order_description = custom_stuff[0]
-            line_item.deliver_by_date = custom_stuff[1]
+            line_item.custom_product_image = custom_stuff[1]
+            line_item.deliver_by_date = custom_stuff[2]
           end
           if currency
             line_item.currency = currency
