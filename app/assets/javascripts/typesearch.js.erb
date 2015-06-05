@@ -31,13 +31,13 @@ $(document).ready(function(){
     // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
     prefetch: urlProtocol+'//'+url+'/productnames.json'
   });
-  var sellers = new Bloodhound({
+/*  var sellers = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     // url points to a json file that contains an array of country names, see
     // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
     prefetch: urlProtocol+'//'+url+'/suppliernames.json'
-  });
+  });*/
 
   $('.navbar-form #search').typeahead({
     hint: true,
@@ -50,13 +50,13 @@ $(document).ready(function(){
     templates: {
       header: '<h4 class="product-names">Products</h3>'
     }
-  },
+  }/*,
   {
     name: 'sellers',
     source: sellers,
     templates: {
       header: '<h4 class="seller-names">Stores</h3>'
-    }
+    }*/
   });
 });
 
