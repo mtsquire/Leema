@@ -8,7 +8,7 @@ Spree::Supplier.class_eval do
 
   before_create :assign_name
   before_create :stripe_recipient_setup
-  before_save :stripe_recipient_update 
+  after_update :stripe_recipient_update 
 
   private
 

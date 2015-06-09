@@ -141,6 +141,10 @@ module Spree
       product_or_variant.price_in(current_currency).display_price.to_html
     end
 
+    def display_custom_price(product)
+      product.price + product.price_increase
+    end
+
     def pretty_time(time)
       [I18n.l(time.to_date, format: :long),
         time.strftime("%l:%M %p")].join(" ")

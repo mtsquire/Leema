@@ -44,6 +44,37 @@
         <%= f.error_message_on :shipping_information %>
       </div>
     <% end %>
+    <!-- <div class="custom-orders">
+        <h2>Custom Orders</h2>
+        <hr>
+        <div class="checkbox custom-order-checkbox">
+          <label>
+            <input type="checkbox"> Allow custom orders for this product.
+          </label>
+        </div>
+
+        <%= f.field_container :custom_order_description do %>
+          <div class="form-group">
+            <%= f.label :custom_order_description, Spree.t(:custom_order_description) %><br />
+            <%= f.text_area :custom_order_description, {:rows => "7", :class => 'form-control', :placeholder => 'Let your buyers know some details about your custom order options. What about your product can they personalize?'} %>
+            <%= f.error_message_on :custom_order_description %>
+          </div>
+        <% end %>
+
+        <div data-hook="new_product_price" class="col-sm-3">
+          <%= f.field_container :price_increase do %>
+            <div class="form-group">
+              <%= f.label :price_increase, Spree.t(:price_increase) %>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <%= f.text_field :price_increase, :value => number_to_currency(@product.price_increase, :unit => ''), :class => 'form-control' %>
+              </div>
+              <%= f.error_message_on :price_increase %>
+            </div>
+          <% end %>
+        </div>
+
+      </div><!-- end custom orders -->
   </div>
 
   <div class="col-sm-4" data-hook="admin_product_form_right">
@@ -152,14 +183,14 @@
       <% end %>
     </div>
 
-    <div data-hook="admin_product_form_option_types">
+    <!-- <div data-hook="admin_product_form_option_types">
       <%= f.field_container :option_types do %>
         <div class="form-group">
           <%= f.label :option_type_ids, Spree.t(:option_types) %>
           <%= f.hidden_field :option_type_ids, :value => @product.option_type_ids.join(',') %>
         </div>
       <% end %>
-    </div>
+    </div> -->
   </div>
 
   <div data-hook="admin_product_form_meta" class="col-xs-12">

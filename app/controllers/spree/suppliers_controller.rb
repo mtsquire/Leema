@@ -57,10 +57,4 @@ class Spree::SuppliersController < Spree::StoreController
     params.require(:supplier).permit(:first_name, :name, :last_name, :tax_id, :store_name, :cover_photo, :store_logo)
   end
 
-  def check_user_authenticity
-    if spree_current_user.leema_admin?
-      raise ActionController::RoutingError.new('Not Found')
-    end
-  end
-
 end

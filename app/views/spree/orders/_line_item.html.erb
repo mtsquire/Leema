@@ -3,7 +3,11 @@
   <tr class="<%= cycle('', 'alt') %> line-item">
     <td class="cart-item-image" data-hook="cart_item_image">
       <% if variant.images.length == 0 %>
-        <%= link_to image_tag "leema-seller-logo.jpg" %>
+        <% if line_item.custom_product_image %>
+          <%= link_to image_tag line_item.custom_product_image.url(:thumb) %>
+        <% else %>
+          <%= link_to image_tag "leema-seller-logo.jpg" %>
+        <% end %>
       <% else %>
         <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
       <% end %>       
@@ -17,6 +21,9 @@
         </span>
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
+        <% if line_item.custom_order_description != nil %>
+          Custom Order Message: <%= line_item.custom_order_description %>
+        <% end %>
         <!-- removed the description here -->
       </span>
     </td>

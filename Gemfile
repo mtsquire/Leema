@@ -54,10 +54,6 @@ gem 'byebug', group: :development
 # New Relic for server monitoring
 gem 'newrelic_rpm'
 
-# auto complete searching
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
