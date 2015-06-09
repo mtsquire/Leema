@@ -15,9 +15,9 @@ Spree::Product.class_eval do
   end
 
   # method to detect if product is able to be custom ordered
-  def is_custom?
-    true if !self.custom_order_description.blank? || self.price_increase > 0
-  end
+  # def is_custom?
+  #   true if !self.custom_order_description.blank? || self.price_increase > 0
+  # end
 
   def assign_option_and_create_variant
 
