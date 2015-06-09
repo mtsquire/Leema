@@ -183,14 +183,14 @@
       <% end %>
     </div>
 
-    <div data-hook="admin_product_form_option_types">
+    <!-- <div data-hook="admin_product_form_option_types">
       <%= f.field_container :option_types do %>
         <div class="form-group">
           <%= f.label :option_type_ids, Spree.t(:option_types) %>
           <%= f.hidden_field :option_type_ids, :value => @product.option_type_ids.join(',') %>
         </div>
       <% end %>
-    </div>
+    </div> -->
   </div>
 
   <div data-hook="admin_product_form_meta" class="col-xs-12">
