@@ -3,7 +3,7 @@ Spree::Product.class_eval do
 
   validates :leema_description, presence: true
   validates :ingredients, presence: true
-  before_create :assign_option_and_create_variant, :if => :is_custom?
+  # before_create :assign_option_and_create_variant, :if => :is_custom?
 
   def self.search(search)
     if search
