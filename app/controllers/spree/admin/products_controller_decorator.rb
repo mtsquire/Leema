@@ -3,7 +3,7 @@ Spree::Admin::ProductsController.class_eval do
   before_filter :supplier_collection, only: [:index]
 
   # added the code for this within the new create method
-  #create.after :add_product_to_supplier
+  # create.after :add_product_to_supplier
 
   def show
     session[:return_to] ||= request.referer
