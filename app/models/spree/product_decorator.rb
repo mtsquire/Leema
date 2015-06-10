@@ -7,9 +7,13 @@ Spree::Product.class_eval do
 
   def self.search(search)
     if search
-      where(['name ILIKE ?', "%#{search}%"]) &&
-      where(['leema_description ILIKE ?', "%#{search}%" ]) &&
-      self.joins(:suppliers).where('store_name ILIKE ?', '%' + '{search}' + '%')
+      @supplier_search = self.joins(:suppliers).where('store_name ILIKE ?', "%#{search}%")
+      @product_search = self.where(['name ILIKE ? OR leema_description ILIKE ?', "%#{search}%", "%#{search}%"])
+      if @supplier_search.count > 0
+        @supplier_search
+      else @product_search.count > 0
+        @product_search
+      end
     else
       @products = Spree::Product.all
     end
