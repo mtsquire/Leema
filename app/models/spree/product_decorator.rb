@@ -11,7 +11,7 @@ Spree::Product.class_eval do
       @product_search = self.where(['name ILIKE ? OR leema_description ILIKE ?', "%#{search}%", "%#{search}%"])
       if @supplier_search.count > 0
         @supplier_search
-      else @product_search.count > 0
+      elsif @product_search.count > 0
         @product_search
       end
     else
