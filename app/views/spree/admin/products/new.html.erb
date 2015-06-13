@@ -63,13 +63,12 @@
             <% end %>
           </div> -->
         <% end %>
-        <!--removed prototype -->
-        <!-- <div data-hook="new_product_prototype" class="col-sm-3">
+        <div data-hook="new_product_prototype" class="col-sm-3">
           <%= f.field_container :prototype do %>
             <%= f.label :prototype_id, Spree.t(:prototype) %><br />
             <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
           <% end %>
-        </div> -->
+        </div>
 
         <div data-hook="new_product_price" class="col-sm-3">
           <%= f.field_container :price do %>
@@ -111,13 +110,13 @@
         </div>
       </div>
 
-      <!-- <div class="checkbox custom-order-checkbox">
+      <div class="checkbox custom-order-checkbox">
         <label>
           <input type="checkbox"> Allow custom orders for this product.
         </label>
       </div>
       <!-- Custom Orders -->
-      <!-- <div class="row custom-orders" style="display:none;">
+      <div class="row custom-orders" style="display:none;">
         <div class="col-xs-12">
           <h2>Custom Orders</h2>
           <p>If you would like to allow buyers to place custom orders of this product fill out the fields below.</p>
