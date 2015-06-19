@@ -196,7 +196,17 @@
       var customOrderCheck = $('.custom-order-checkbox input[type="checkbox"]');
       customOrderCheck.click(function(){
         if (customOrderCheck.prop('checked') == true) {
+          var base_url = "<%= admin_prototypes_url %>";
           $('.custom-orders').slideDown('slow');
+          console.log("adding the prototype");
+          var id = "1";
+          if (id.length) {
+            var url = new Uri(base_url);
+            url.setPath(url.path() + '/' + id);
+            $('#product-from-prototype').load(url.toString());
+          } else {
+            $('#product-from-prototype').empty();
+          }
         } else {
           $('.custom-orders').slideUp('slow');
         };

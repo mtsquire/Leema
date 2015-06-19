@@ -53,6 +53,17 @@
           </label>
         </div>
 
+        <div data-hook="new_product_prototype" class="col-sm-3">
+          <%= f.field_container :prototype do %>
+            <%= f.label :prototype_id, Spree.t(:prototype) %><br />
+            <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+          <% end %>
+        </div>
+
+        <div class="clearfix" data-hook="product-from-prototype" id="product-from-prototype">
+          <%= render :file => 'spree/admin/prototypes/show' if @prototype %>
+        </div>
+
         <%= f.field_container :custom_order_description do %>
           <div class="form-group">
             <%= f.label :custom_order_description, Spree.t(:custom_order_description) %><br />
@@ -226,3 +237,43 @@
   $('.select2-container').css({width: '20em'})
   </script>
 <% end %>
+<script type="javascript">
+
+  //<![CDATA[
+    (function($){
+      var base_url = "<%= admin_prototypes_url %>";
+      var prototype_select = $('#product_prototype_id');
+
+      var customOrderCheck = $('#custom-order-checkbox input[type="checkbox"]');
+      customOrderCheck.click(function(){
+        if (customOrderCheck.prop('checked') == true) {
+          console.log("adding the prototype");
+          var id = "1";
+          if (id.length) {
+            var url = new Uri(base_url);
+            url.setPath(url.path() + '/' + id);
+            $('#product-from-prototype').load(url.toString());
+          } else {
+            $('#product-from-prototype').empty();
+          }
+        };
+      });
+
+      prototype_select.change(function() {
+        var id = prototype_select.val();
+        console.log(id);
+        if (id.length) {
+          var url = new Uri(base_url);
+          url.setPath(url.path() + '/' + id);
+          $('#product-from-prototype').load(url.toString());
+        } else {
+          $('#product-from-prototype').empty();
+        }
+      })
+      if (prototype_select.html() == "") {
+        prototype_select.change();
+      }
+    })(jQuery);
+  //]]>
+
+</script>

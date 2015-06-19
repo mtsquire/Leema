@@ -18,7 +18,7 @@ Spree::Admin::ProductsController.class_eval do
     if @object.save
       flash[:success] = flash_message_for(@object, :successfully_created)
       respond_with(@object) do |format|
-        format.html { redirect_to stock_admin_product_path(@object) }
+        format.html { redirect_to location_after_save }
         format.js   { render :layout => false }
       end
       if try_spree_current_user && try_spree_current_user.supplier?
