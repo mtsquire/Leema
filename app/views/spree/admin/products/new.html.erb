@@ -63,7 +63,7 @@
             <% end %>
           </div> -->
         <% end %>
-        <div data-hook="new_product_prototype" class="col-sm-3">
+        <div data-hook="new_product_prototype" class="col-sm-3 hidden">
           <%= f.field_container :prototype do %>
             <%= f.label :prototype_id, Spree.t(:prototype) %><br />
             <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
@@ -196,17 +196,14 @@
       var customOrderCheck = $('.custom-order-checkbox input[type="checkbox"]');
       customOrderCheck.click(function(){
         if (customOrderCheck.prop('checked') == true) {
-          var base_url = "<%= admin_prototypes_url %>";
           $('.custom-orders').slideDown('slow');
-          console.log("adding the prototype");
-          var id = "1";
-          if (id.length) {
-            var url = new Uri(base_url);
-            url.setPath(url.path() + '/' + id);
-            $('#product-from-prototype').load(url.toString());
-          } else {
-            $('#product-from-prototype').empty();
-          }
+          var element = document.getElementById('product_prototype_id');
+          element.value = "1";
+          var id = element.value;
+          var base_url = "http://localhost:3000/store/admin/prototypes";
+          var url = new Uri(base_url);
+          url.setPath(url.path() + '/' + id);
+          $('#product-from-prototype').load(url.toString());
         } else {
           $('.custom-orders').slideUp('slow');
         };
