@@ -16,8 +16,10 @@
   <% if !@order.shipments.empty? %>
     <% @order.shipments.each do |shipment| %>
       <tr>
-        <td colspan="6" align='right'><h5><%= Spree.t(:shipping) %>:&nbsp;&nbsp;&nbsp;<%= shipment.shipping_method.name %>: <strong><%= shipment.display_discounted_cost %></strong></h5>
-        </td>
+        <% if shipment.shipping_method %>
+          <td colspan="6" align='right'><h5><%= Spree.t(:shipping) %>:&nbsp;&nbsp;&nbsp;<%= shipment.shipping_method.name %>: <strong><%= shipment.display_discounted_cost %></strong></h5>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   <% end %>
