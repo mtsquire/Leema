@@ -230,6 +230,11 @@
   <div data-hook="admin_product_form_additional_fields"></div>
 
   <div class="clear"></div>
+
+  <div class="clearfix" data-hook="product-from-prototype" id="product-from-prototype">
+    <%= render :file => 'spree/admin/prototypes/show' if @prototype %>
+  </div>
+  
 </div>
 
 <% unless Rails.env.test? %>
