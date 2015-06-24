@@ -6,11 +6,20 @@ module Spree
     def index
       @searcher = build_searcher(params.merge(include_images: true))
       @taxonomies = Spree::Taxonomy.includes(root: :children)
-      @products = Spree::Product.search(params[:search]).order("RANDOM()")
+      @product_search = Spree::Product.search(params[:search])
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @products }
+      if @product_search
+        @products = Spree::Product.search(params[:search]).order("RANDOM()")
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @products }
+        end
+      else
+        @products = {}
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @products }
+        end
       end
 
     end
