@@ -192,5 +192,8 @@ $(document).ready(function() {
         $('.newsletter-alert .close').click(function(){
             Cookies.set('leemanewsletter', 'donotshow',{ expires: 5 }, { secure:true });
         });
+        $('#mc-embedded-subscribe').click(function(){
+            Cookies.set('leemanewsletter', 'donotshow',{ expires: 1095 }, { secure:true });
+        });
     };
 });
