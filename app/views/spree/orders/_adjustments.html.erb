@@ -13,12 +13,15 @@
   <% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
     <%= render "spree/orders/adjustment_row", :label => label, :adjustments => adjustments, :type => Spree.t(:tax) %>
   <% end %>
-
-  <% @order.shipments.each do |shipment| %>
-    <tr>
-      <td colspan="6" align='right'><h5><%= Spree.t(:shipping) %>:&nbsp;&nbsp;&nbsp;<%= shipment.shipping_method.name %>: <strong><%= shipment.display_discounted_cost %></strong></h5>
-      </td>
-    </tr>
+  <% if !@order.shipments.empty? %>
+    <% @order.shipments.each do |shipment| %>
+      <tr>
+        <% if shipment.shipping_method %>
+          <td colspan="6" align='right'><h5><%= Spree.t(:shipping) %>:&nbsp;&nbsp;&nbsp;<%= shipment.shipping_method.name %>: <strong><%= shipment.display_discounted_cost %></strong></h5>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
 
   <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
