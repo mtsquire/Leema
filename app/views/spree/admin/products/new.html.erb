@@ -112,7 +112,8 @@
 
       <div class="checkbox custom-order-checkbox">
         <label>
-          <input type="checkbox"> Allow custom orders for this product.
+          <%= f.check_box :allow_custom_order, {:id => 'custom-order-checkbox'} %>
+            Allow custom orders for this product.
         </label>
       </div>
       <!-- Custom Orders -->

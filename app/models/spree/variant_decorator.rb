@@ -3,7 +3,7 @@ Spree::Variant.class_eval do
 
   def add_variant_price
     puts 'self.is_master = #{self.is_master}'
-    self.price = product.price_increase
+    self.price = product.price + product.price_increase
     self.save!
   end
 
