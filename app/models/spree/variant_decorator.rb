@@ -8,6 +8,10 @@ Spree::Variant.class_eval do
   end
 
   def okay_to_increase_variant_price?
-    !self.is_master? && self.id != product.master.id && product.price_increase > 0 && (product.price_increase_changed? || product.price_increase.new_record?)
+    !self.is_master? &&
+    self.id != product.master.id &&
+    product.price_increase &&
+    product.price_increase > 0 &&
+    (product.price_increase_changed? || product.price_increase.new_record?)
   end
 end
