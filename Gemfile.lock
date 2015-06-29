@@ -34,6 +34,13 @@ GIT
       spree_core (~> 2.3.0)
 
 GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: 5e63d51f29426f06c96d7ff074beda56cf5f2369
+  specs:
+    rails-dev-boost (0.3.0)
+      railties (>= 3.0)
+
+GIT
   remote: https://github.com/spree/spree_gateway.git
   revision: 6ad5f6b82986f4cf1ddf8f9370f96e2e7501f24c
   branch: 2-3-stable
@@ -371,6 +378,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    rb-fsevent (0.9.5)
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
@@ -510,7 +518,9 @@ DEPENDENCIES
   puma
   rack-timeout
   rails (= 4.1.6)
+  rails-dev-boost!
   rails_12factor
+  rb-fsevent (>= 0.9.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spree (= 2.3.4)

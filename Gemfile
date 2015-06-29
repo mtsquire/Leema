@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 group :development do
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+  gem 'rb-fsevent', '>= 0.9.1'
 end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
