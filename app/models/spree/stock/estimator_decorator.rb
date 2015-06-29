@@ -16,6 +16,13 @@ Spree::Stock::Estimator.class_eval do
           :easy_post_delivery_days => rate.delivery_days
         )
       end
+      package.shipping_rates << Spree::ShippingRate.new(
+        :name => "Pick Up",
+        :cost => "0",
+        :easy_post_shipment_id => nil,
+        :easy_post_rate_id => nil,
+        :easy_post_delivery_days => nil
+        )
 
       # Set cheapest rate to be selected by default
       package.shipping_rates.first.selected = true
