@@ -44,29 +44,29 @@
         <%= f.error_message_on :shipping_information %>
       </div>
     <% end %>
-      <div class="custom-orders">
-        <h2>Custom Orders</h2>
-        <hr>
-        <% if @product.allow_custom_order == 0 %>
-          <div class="checkbox custom-order-checkbox">
-            <label>
-              <%= f.check_box :allow_custom_order, {:id => 'custom-order-checkbox'} %>
-              Allow custom orders for this product.
-            </label>
-          </div>
-        <% else %>
 
-          <div data-hook="new_product_prototype" class="col-sm-3 hidden">
-            <%= f.field_container :prototype do %>
-              <%= f.label :prototype_id, Spree.t(:prototype) %><br />
-              <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
-            <% end %>
-          </div>
+    <div><!--Custom Orders-->
+      <h2>Custom Orders</h2>
+      <hr>
+      
+        <div class="checkbox custom-order-checkbox" id="custom-order-checkbox">
+          <label>
+            <%= f.check_box :allow_custom_order, {:id => 'custom-order-checkbox'} %>
+            Allow custom orders for this product.
+          </label>
+        </div>
 
-          <div class="clearfix" data-hook="product-from-prototype" id="product-from-prototype">
-            <%= render :file => 'spree/admin/prototypes/show' if @prototype %>
-          </div>
+        <div data-hook="new_product_prototype" class="col-sm-3 hidden">
+          <%= f.field_container :prototype do %>
+            <%= f.label :prototype_id, Spree.t(:prototype) %><br />
+            <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+          <% end %>
+        </div>
 
+        <div class="clearfix" data-hook="product-from-prototype" id="product-from-prototype">
+          <%= render :file => 'spree/admin/prototypes/show' if @prototype %>
+        </div>
+        <div class="custom-orders">
           <%= f.field_container :custom_order_description do %>
             <div class="form-group">
               <%= f.label :custom_order_description, Spree.t(:custom_order_description) %><br />
@@ -87,9 +87,9 @@
               </div>
             <% end %>
           </div>
-        <% end %>
+        </div>
 
-      </div><!-- end custom orders -->
+    </div><!-- end custom orders -->
   </div>
 
   <div class="col-sm-4" data-hook="admin_product_form_right">
@@ -256,13 +256,14 @@
       var customOrderCheck = $('#custom-order-checkbox input[type="checkbox"]');
       customOrderCheck.click(function(){
         if (customOrderCheck.prop('checked') == true) {
-          console.log("adding the prototype");
+          $('.custom-orders').slideDown('slow');
           var id = "1";
           if (id.length) {
             var url = new Uri(base_url);
             url.setPath(url.path() + '/' + id);
             $('#product-from-prototype').load(url.toString());
           } else {
+            $('.custom-orders').slideUp('slow');
             $('#product-from-prototype').empty();
           }
         };

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603010246) do
+ActiveRecord::Schema.define(version: 20150629210404) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -862,6 +862,7 @@ ActiveRecord::Schema.define(version: 20150603010246) do
     t.string   "store_logo_content_type"
     t.integer  "store_logo_file_size"
     t.datetime "store_logo_updated_at"
+    t.integer  "allow_pickup",                                     default: 0
   end
 
   add_index "spree_suppliers", ["active"], name: "index_spree_suppliers_on_active"
