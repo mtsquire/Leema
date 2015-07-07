@@ -39,8 +39,7 @@
         <div id="product-price">
 
           <div>
-            <span class="price selling" itemprop="price">
-            </span>
+            <span class="price selling" itemprop="price">Price increase: <%= variant.price_in(current_currency).money %></span>
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
           </div>
 
