@@ -124,7 +124,7 @@
     <div class="clear"></div>
 
     <% if @product.has_variants? %>
-      <div data-hook="admin_product_form_multiple_variants">
+      <div data-hook="admin_product_form_multiple_variants" class="<% if spree_current_user.leema_admin? == false %>hidden<% end %>">
         <%= f.label :skus, Spree.t(:sku).pluralize %>
         <span class="info">
           <%= Spree.t(:info_product_has_multiple_skus, count: @product.variants.count) %>
