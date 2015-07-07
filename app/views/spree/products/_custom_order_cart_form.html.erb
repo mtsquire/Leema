@@ -39,7 +39,7 @@
         <div id="product-price">
 
           <div>
-            <span class="price selling" itemprop="price">Price increase: <%= number_to_currency(@product.price_increase, :unit => "$") %></span>
+            <span class="price selling" itemprop="price">Additional Cost: <%= number_to_currency(@product.price_increase, :unit => "$") %></span>
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
           </div>
 
