@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
     @user = User.find_by_display_name(params[:id])
     @supplier = @user.supplier
     @orders = @user.spree_orders.all
+    @products = Spree::Product.joins(:suppliers).where('supplier_id = ?', @supplier.id)
 
     if @user
       render action: :show
