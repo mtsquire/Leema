@@ -10,11 +10,11 @@
         <% end %>
       <% else %>
         <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
-      <% end %>       
+      <% end %>   
     </td>
     <td class="cart-item-description" data-hook="cart_item_description">
       <h4><%= link_to line_item.name, product_path(variant.product) %></h4>
-      <%= variant.options_text %>
+      <!--<%= variant.options_text %> hiding this cause didnt think it looked good - Brandon -->
       <% if line_item.insufficient_stock? %>
         <span class="out-of-stock">
           <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br />
@@ -22,9 +22,15 @@
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
         <% if line_item.custom_order_description != nil %>
-          <%= line_item.custom_order_description %>
+          <span class="label label-info">Custom Order</span>
         <% end %>
         <!-- removed the description here -->
+      </span>
+      <br>
+      <span>
+        <% if line_item.deliver_by_date != nil %>
+          Desired delivery date: <%= line_item.deliver_by_date %> 
+        <% end %>
       </span>
     </td>
     <td class="cart-item-price" data-hook="cart_item_price">

@@ -89,6 +89,7 @@
                         </div><!-- close modal header -->
 
                         <div class="modal-body">
+                          <strong><%= @product.suppliers.first.store_name %> says:</strong>
                           <%= simple_format(@product.custom_order_description) %>
                           <div id="cart-form" data-hook="cart_form">
                             <%= render 'custom_order_cart_form' %>
