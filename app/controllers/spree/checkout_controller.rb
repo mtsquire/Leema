@@ -23,8 +23,20 @@ module Spree
 
     rescue_from Spree::Core::GatewayError, :with => :rescue_from_spree_gateway_error
 
+    def edit
+      # if the user has a leema account and has ordered before we will prepopulate
+      # their billing address
+      @previous_address = nil
+      if @order.user != nil
+        if !@order.user.spree_orders.empty?
+          @previous_address = @order.user.spree_orders.last.bill_address
+        end
+      end
+    end
+
     # Updates the order and advances to the next state (when possible.)
     def update
+
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next
