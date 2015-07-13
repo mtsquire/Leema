@@ -11,7 +11,7 @@ module Spree
     has_many :inventory_units, inverse_of: :line_item
 
     # Paper clip stuff necessary for custom photo uploads
-    has_attached_file :custom_product_image, :styles => { :medium => "300x300>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "/assets/leema-nav-logo.jpg"
+    has_attached_file :custom_product_image, :styles => { :medium => "300x300>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "noimage-small.png"
     validates_attachment_content_type :custom_product_image, :content_type => /\Aimage\/.*\Z/
     validates_attachment_size :custom_product_image, :less_than => 2.megabytes
 
