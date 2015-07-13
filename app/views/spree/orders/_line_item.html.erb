@@ -22,14 +22,14 @@
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
         <% if line_item.custom_order_description != nil %>
-          <span class="label label-info">Custom Order</span>
+          <p><span class="label label-info">Custom Order</span></p>
+          <p>Description: <%= truncate(line_item.custom_order_description, :length => 100, :separator => ' ') %></p>
         <% end %>
         <!-- removed the description here -->
       </span>
-      <br>
       <span>
         <% if line_item.deliver_by_date != nil %>
-          Desired delivery date: <%= line_item.deliver_by_date %> 
+          <p>Desired delivery date: <strong><%= line_item.deliver_by_date.strftime("%b %e, %Y") %></strong></p>
         <% end %>
       </span>
     </td>
