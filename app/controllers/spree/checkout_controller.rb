@@ -28,7 +28,7 @@ module Spree
       # their billing address
       @previous_address = nil
       if @order.user != nil
-        if !@order.user.spree_orders.empty?
+        if !@order.user.spree_orders.where(state: "complete").empty?
           @previous_address = @order.user.spree_orders.where(state: "complete").last.bill_address
         end
       end
