@@ -30,8 +30,28 @@
             <tbody>
               <% ship_form.object.manifest.each do |item| %>
                 <tr class="stock-item">
-                  <td class="item-image"><%= mini_image(item.variant) %></td>
-                  <td class="item-name"><%= item.variant.name %></td>
+                  <td class="item-image">
+                    <% if item.line_item.variant.images.length == 0 %>
+                      <% if item.line_item.custom_product_image %>
+                        <%= link_to image_tag item.line_item.custom_product_image.url(:thumb) %>
+                      <% else %>
+                        <%= image_tag "noimage/mini.png" %>
+                      <% end %> 
+                    <% else %>
+                      <%= mini_image(item.variant) %>
+                    <% end %>   
+                  </td>
+                  <td class="item-name">
+                    <% if item.line_item.custom_order_description != nil %>
+                      <strong><%= item.variant.name %></strong>&nbsp;<span class="label label-info">Custom Order</span>
+                      <p><strong>Description:</strong> <%= truncate(item.line_item.custom_order_description, :length => 100, :separator => ' ') %></p>
+                      <% if item.line_item.deliver_by_date != nil %>
+                        <p><strong>Desired delivery date:</strong> <%= item.line_item.deliver_by_date.strftime("%b %e, %Y") %></p>
+                      <% end %>
+                    <% else %>
+                      <%= item.variant.name %>
+                    <% end %>
+                  </td>
                   <td class="item-qty"><%= item.quantity %></td>
                   <td class="item-price"><%= display_price(item.variant) %></td>
                 </tr>

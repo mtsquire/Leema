@@ -33,8 +33,8 @@
       <%= f.text_area :custom_product_description, :class => 'form-control', :rows => 4 %>
     </div>
     <div class="form-group">
-      <%= f.label :When_would_you_like_it_to_be_delivered? %><br>
-      <%= f.date_field :deliver_by_date %>
+      <%= f.label :When_would_you_like_it_to_be_delivered? %>
+      <%= f.date_field :deliver_by_date, :min => Date.today, :value => Time.now.strftime('%Y-%m-%d')%>
     </div>
  
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
