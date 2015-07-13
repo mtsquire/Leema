@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :display_name, presence: true, uniqueness: true, format: { with: /\A[-a-zA-Z0-9]+\z/,
     message: "can only contain alphanumeric characters and dashes." }
 
-  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "/assets/leema-nav-logo.jpg"
+  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "noimage-small.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :avatar, :less_than => 1.megabytes
 
