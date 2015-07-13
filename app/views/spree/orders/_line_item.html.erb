@@ -23,13 +23,13 @@
       <span class="line-item-description" data-hook="line_item_description">
         <% if line_item.custom_order_description != nil %>
           <p><span class="label label-info">Custom Order</span></p>
-          <p>Description: <%= truncate(line_item.custom_order_description, :length => 100, :separator => ' ') %></p>
+          <p><strong>Description:</strong> <%= truncate(line_item.custom_order_description, :length => 100, :separator => ' ') %></p>
         <% end %>
         <!-- removed the description here -->
       </span>
       <span>
         <% if line_item.deliver_by_date != nil %>
-          <p>Desired delivery date: <strong><%= line_item.deliver_by_date.strftime("%b %e, %Y") %></strong></p>
+          <p><strong>Desired delivery date:</strong> <%= line_item.deliver_by_date.strftime("%b %e, %Y") %></p>
         <% end %>
       </span>
     </td>

@@ -64,15 +64,24 @@
       <tr data-hook="order_details_line_item_row">
         <td data-hook="order_item_image">
           <% if item.variant.images.length == 0 %>
-            <%= link_to small_image(item.variant.product), item.variant.product %>
+            <% if item.custom_product_image %>
+              <%= link_to image_tag item.custom_product_image.url(:thumb) %>
+            <% else %>
+              <%= image_tag "noimage/small.png" %>
+            <% end %>
           <% else %>
             <%= link_to image_tag(item.variant.images.first.attachment.url(:small)), item.variant.product %>
-          <% end %>
+          <% end %>   
         </td>
         <td data-hook="order_item_description">
           <h4><%= item.variant.product.name %></h4>
-          <%= truncated_product_description(item.variant.product) %>
-          <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
+          <% if item.custom_order_description != nil %>
+            <p><span class="label label-info">Custom Order</span></p>
+            <p><strong>Description:</strong> <%= truncate(item.custom_order_description, :length => 100, :separator => ' ') %></p>
+          <% end %>
+          <% if item.deliver_by_date != nil %>
+            <p><strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %></p>
+          <% end %>
         </td>
         <td data-hook="order_item_price" class="lead text-primary price"><span><%= item.single_money.to_html %></span></td>
         <td data-hook="order_item_qty"><%= item.quantity %></td>
