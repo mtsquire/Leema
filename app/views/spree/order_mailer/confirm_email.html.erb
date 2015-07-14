@@ -187,8 +187,7 @@ img {
                                     <p style="margin:0 0 20px; line-height:0;">
                                       <% if item.variant.images.length == 0 %>
                                         <% if item.custom_product_image %>
-                                          <%= image_tag item.custom_product_image.url(:email), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %><br><br><br>
-                                          <span style="text-align:center; font-size:10px; color:#676767; text-decoration:none;">This image has been cropped to fit the email. Your full image has been sent to the vendor.</span><br>
+                                          <%= image_tag item.custom_product_image.url(:email), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% else %>
                                           <%= image_tag "leema-seller-logo.jpg", :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% end %>
@@ -197,6 +196,11 @@ img {
                                       <% end %>   
                                     </p>
                                   <% end %>
+                                  <% if item.variant.images.length == 0 %>
+                                    <% if item.custom_product_image %>
+                                      <p style="margin:0"><span style="text-align:center; font-size:10px; color:#676767; text-decoration:none;">This image has been cropped to fit the email. Your full image has been sent to the vendor.</span></p><br>
+                                    <% end %>  
+                                  <% end %>  
                                   <p style="margin:0">
                                     <strong><%= raw(item.variant.product.name) %></strong><% if item.custom_order_description != nil %>&nbsp;&nbsp;<span style="background-color:#5bc0de; display:inline; padding:3px; color:#ffffff; text-align:center; border-radius:2px; font-size:10px;">Custom Order</span><br /><br>
                                     <strong>Description:</strong> <%= item.custom_order_description %><br><br>
