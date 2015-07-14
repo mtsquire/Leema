@@ -96,34 +96,6 @@ $(document).ready(function() {
 
         if ($('.icon-blurb').length > 0){
 
-            // define function to fade in bio photo and blurb from left with requestAnimationFrame
-            iconBlurbLeft = function(){
-                var scrolled = window.pageYOffset,
-                    offset = viewPortHeight / 3;
-                $('.icon-blurb:even .icon, .icon-blurb:odd .blurb').each(function(){
-                    var thisEl = $(this);
-                    isInViewport(thisEl,scrolled,offset,function(elementVisibleAt,elementBottom){
-                        thisEl.addClass('animated iconBlurbLeft');
-                    });
-                });
-            }
-
-            iconBlurbLeft();
-
-            // define function to fade in bio photo and blurb from right with requestAnimationFrame
-            iconBlurbRight = function(){
-                var scrolled = window.pageYOffset,
-                    offset = viewPortHeight / 3;
-                $('.icon-blurb:odd .icon, .icon-blurb:even .blurb').each(function(){
-                    var thisEl = $(this);
-                    isInViewport(thisEl,scrolled,offset,function(elementVisibleAt,elementBottom){
-                        thisEl.addClass('animated iconBlurbRight');
-                    });
-                });
-            }
-
-            iconBlurbRight();
-
 
             // define function to fade in bio photo and blurb from right with requestAnimationFrame
             pricingPercent = function(){
@@ -137,8 +109,6 @@ $(document).ready(function() {
                 });
             }
 
-            iconBlurbRight();
-
             //fade in blurb on intro panel
             setTimeout(function(){
                 $(".intro").addClass("animated fadeInUp");
@@ -146,8 +116,7 @@ $(document).ready(function() {
 
 
         } else {
-            iconBlurbLeft = function(){}
-            iconBlurbRight = function(){}
+
             pricingPercent = function(){}
         }
 
@@ -160,10 +129,6 @@ $(document).ready(function() {
         window.addEventListener('scroll', function(){
             if ($('#reindeer').length > 0){
                 requestAnimationFrame(parallaxBackground)
-            }
-            if ($('.icon-blurb').length > 0){
-                requestAnimationFrame(iconBlurbLeft)
-                requestAnimationFrame(iconBlurbRight)
             }
             if ($('.pricing-box').length > 0){
                 requestAnimationFrame(pricingPercent)
