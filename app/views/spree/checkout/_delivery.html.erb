@@ -43,7 +43,7 @@
                   </td>
                   <td class="item-name">
                     <% if item.line_item.custom_order_description != nil %>
-                      <strong><%= item.variant.name %></strong>&nbsp;<span class="label label-info">Custom Order</span>
+                      <p><strong><%= item.variant.name %></strong>&nbsp;<span class="label label-info">Custom Order</span></p>
                       <p><strong>Description:</strong> <%= truncate(item.line_item.custom_order_description, :length => 100, :separator => ' ') %></p>
                       <% if item.line_item.deliver_by_date != nil %>
                         <p><strong>Desired delivery date:</strong> <%= item.line_item.deliver_by_date.strftime("%b %e, %Y") %></p>
