@@ -102,8 +102,10 @@
                             <% if line_item.deliver_by_date != nil %>
                               <strong>Desired delivery date:</strong> <%= line_item.deliver_by_date.strftime("%b %e, %Y") %><br><br>
                             <% end %>
-                            <% if line_item.custom_product_image %>
-                              <strong>Custom order image: <%= link_to 'View Image', line_item.custom_product_image.url(:large)%></strong> 
+                            <% if line_item.variant.images.length == 0 %>
+                              <% if line_item.custom_product_image %>
+                                <strong>Custom order image: <%= link_to 'View Image', line_item.custom_product_image.url(:large)%></strong> 
+                              <% end %>
                             <% end %>
 
                           </td>
