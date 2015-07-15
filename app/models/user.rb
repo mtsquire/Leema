@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 1.megabytes
 
   #callbacks
-  before_save :create_display_name
+  before_create :create_display_name
   after_save :create_admin
   # before_save :slugify
   # before_update :slugify
