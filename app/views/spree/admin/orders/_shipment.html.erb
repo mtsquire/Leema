@@ -36,6 +36,7 @@
     <tbody data-shipment-number="<%= shipment.number %>" data-order-number="<%= order.number %>">
       <%= render 'spree/admin/orders/shipment_manifest', shipment: shipment %>
 
+      
       <% unless shipment.shipped? %>
         <tr class="edit-method hidden total">
           <td colspan="5">
@@ -57,6 +58,7 @@
         </tr>
         <% end %>
 
+        
         <tr class="show-method total">
           <% if shipment.selected_shipping_rate %>
             <td colspan="4">
@@ -97,6 +99,28 @@
             <strong><%= Spree.t(:special_instructions) %>:&nbsp;</strong><%= order.special_instructions %>
           </td>
         </tr>
+      <% end %>
+
+      <% shipment.order.line_items.each do |item| %>
+        <% if item.custom_order_description != nil %>
+          <tr class="alert-info">
+            <td colspan="5">
+              <p><strong>A custom order was placed for:</strong> <%= raw(item.variant.product.name) %></p>
+              <br>
+              <p><strong>Description:</strong> <%= item.custom_order_description %></p>
+              <% if item.deliver_by_date != nil %>
+                <br>
+                <p><strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %></p>
+              <% end %>
+              <% if item.variant.images.length == 0 %>
+                <% if item.custom_product_image %>
+                  <br>
+                  <strong>Custom order image: <%= link_to 'View Image', item.custom_product_image.url(:large), :target => '_blank'%></strong> 
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
 
       <tr class="show-tracking total">
