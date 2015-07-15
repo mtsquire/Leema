@@ -15,15 +15,15 @@
             </tr>
             <tr>
               <td valign="top">
-                <h1 style="font-size:22px;font-weight:normal;line-height:22px;">Hello</h1>
+                <h1 style="font-size:22px;font-weight:normal;line-height:22px;">Hello <%= @supplier.users.first.first_name %>,</h1>
                 <p style="font-size:12px;line-height:16px;margin:0">
-                  An order has been placed.  Please confirm the shipment details, and <%= link_to 'update the shipment', spree.edit_admin_shipment_url(@shipment) %> once it has shipped.
+                  An order has been placed.  Please confirm the shipment details, and <%= link_to 'print your shipping label', spree.edit_admin_shipment_url(@shipment) %> once your order is ready to be shipped.
                 </p>
               </td>
             </tr>
             <tr>
               <td>
-                <h2 style="font-size:18px;font-weight:normal;">Reference Number: <%= @shipment.number %></h2>
+                <h2 style="font-size:18px;font-weight:normal;">Shipment Number: <%= link_to @shipment.number, spree.edit_admin_shipment_url(@shipment) %></h2>
                 <h4style="font-size:14px;font-weight:normal;">Placed on: <%= @shipment.created_at.strftime('%A %b %e, %Y at %l:%M%p %Z') %></h4>
                 <% if @shipment.order.special_instructions.present? %>
                   <tr class='special_instructions'>
@@ -36,6 +36,26 @@
             </tr>
             <tr>
               <td>
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                  <thead>
+                    <tr>
+                      <th align="left" width="660" bgcolor="#EAEAEA" style="font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Buyer's Information:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td valign="top" style="font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea">
+                        <%= @shipment.order.bill_address.firstname %> <%= @shipment.order.bill_address.lastname %><br/>
+                        <%= @shipment.order.bill_address.address1 %><br/>
+                        <% unless @shipment.order.bill_address.address2.blank? %><%= @shipment.order.bill_address.address2 %><br/><% end %>
+                        <%= @shipment.order.bill_address.city %>, <%= @shipment.order.bill_address.state.name %> <%= @shipment.order.bill_address.zipcode %><br/>
+                        <%= @shipment.order.bill_address.country.name %><br/>
+                        T: <a href="tel:<%= @shipment.order.bill_address.phone %>" value="<%= @shipment.order.bill_address.phone %>" target="_blank"><%= @shipment.order.bill_address.phone %></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
                 <table cellspacing="0" cellpadding="0" border="0" width="650">
                   <thead>
                     <tr>
@@ -65,8 +85,7 @@
                   <table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #eaeaea">
                     <thead>
                       <tr>
-                        <th align="left" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Item</th>
-                        <th align="left" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Sku</th>
+                        <th align="left" bgcolor="#EAEAEA" colspan="2" style="font-size:13px;padding:3px 9px">Item</th>
                         <th align="center" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Qty</th>
                         <th align="right" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Subtotal</th>
                       </tr>
@@ -74,10 +93,20 @@
                     <tbody bgcolor="#F6F6F6">
                       <% @shipment.line_items.each do |line_item| %>
                         <tr>
-                          <td align="left" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">
-                            <strong style="font-size:11px"><%= line_item.variant.name %></strong>
+                          <td align="left" colspan="2" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">
+                            <strong style="font-size:11px"><%= line_item.variant.name %></strong><% if line_item.custom_order_description != nil %>&nbsp;&nbsp;<span style="background-color:#5bc0de; display:inline; padding:3px; color:#ffffff; text-align:center; border-radius:2px; font-size:9px;">Custom Order</span>
+                            <br /><br>
+                            <strong>Description:</strong> <%= line_item.custom_order_description %>
+                            <br><br>
+                            <% end %>
+                            <% if line_item.deliver_by_date != nil %>
+                              <strong>Desired delivery date:</strong> <%= line_item.deliver_by_date.strftime("%b %e, %Y") %><br><br>
+                            <% end %>
+                            <% if line_item.custom_product_image %>
+                              <strong>Custom order image: <%= link_to 'View Image', line_item.custom_product_image.url(:large)%></strong> 
+                            <% end %>
+
                           </td>
-                          <td align="left" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc"><%= line_item.variant.sku %></td>
                           <td align="center" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc"><%= line_item.quantity %></td>
                           <td align="right" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">
                             <span><%= line_item.display_amount %></span>
