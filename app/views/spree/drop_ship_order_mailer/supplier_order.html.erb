@@ -8,7 +8,7 @@
               <td valign="top">
                 <figure id="logo" data-hook>
                   <%= link_to spree.root_url do %>
-                    <img src="http://leemaeats.herokuapp.com/assets/leema-mail-logo.png">
+                    <img src="http://leemaeats.herokuapp.com/assets/leema-mail-logo.png" alt="Leema Logo">
                   <% end %>
                 </figure>
               </td>
@@ -150,6 +150,27 @@
                 <center>
                   <p style="font-size:12px;margin:0">Thank you for using Leema, <%= @supplier.users.first.first_name %>!</p>
                 </center>
+                <br><br>
+                <p style="font-size:12px;margin:0">Leema: Let Everyone Eat My Art © <%= Time.now.strftime("%Y") %>.</p>
+                <br>
+                <p style="font-size:12px;margin:0">You are receiving this email because one or more of your products were purchased on our website. If there is an issue with your order, please email us at <a href="mailto:support@leemaeats.com" style="color:#3a89ff">support@leemaeats.com</a>.</p>
+                <br>
+                
+                <p style="font-size:12px;margin:0"><strong>Leema LLC</strong><br>
+                  <span class="ios-footer">
+                    New York, NY<br>
+                  </span>
+                  <a href="http://www.leemaeats.com.com" style="color:#3a89ff">www.leemaeats.com</a>
+                </p>
+
+                  <br>
+                  <center>
+                    <p style="font-size:12px;margin:0">
+                      <a href="http://www.leemaeats.com/privacy-policy" style="color:#3a89ff">Privacy Policy</a>&nbsp;|&nbsp;<a href="https://www.leemaeats.com/terms-of-use" style="color:#3a89ff">Terms of Use</a>
+                    </p>
+                  </center>
+
+                  <br>
               </td>
             </tr>
           </tbody>
