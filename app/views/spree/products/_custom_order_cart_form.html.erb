@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
       <%= f.label :When_would_you_like_it_to_be_delivered? %>
-      <%= f.date_field :deliver_by_date, :min => Date.today, :value => Time.now.strftime('%Y-%m-%d')%>
+      <%= f.date_field :deliver_by_date, :min => Date.today, :value => 'mm/dd/yyyy'%>
     </div>
  
     <% if @product.price_in(current_currency) and !@product.price.nil? %>

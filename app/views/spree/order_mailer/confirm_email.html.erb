@@ -123,7 +123,7 @@ img {
           <tr>
             <td class="container-padding header" align="left" style="font-family:Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;padding-bottom:12px;color:#DF4726;padding-left:24px;padding-right:24px">
               <a href="http://www.leemaeats.com">
-                <img src="https://d1vw1wxlid17s8.cloudfront.net/assets/leema-mail-logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" align="left" />
+                <img src="https://d1vw1wxlid17s8.cloudfront.net/assets/leema-mail-logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" align="left" alt="Leema Logo"/>
               </a>
             </td>
           </tr>
@@ -203,10 +203,10 @@ img {
                                   <% end %>  
                                   <p style="margin:0">
                                     <strong><%= raw(item.variant.product.name) %></strong><% if item.custom_order_description != nil %>&nbsp;&nbsp;<span style="background-color:#5bc0de; display:inline; padding:3px; color:#ffffff; text-align:center; border-radius:2px; font-size:10px;">Custom Order</span><br /><br>
-                                    <strong>Description:</strong> <%= item.custom_order_description %><br><br>
+                                    <strong>Description:</strong> <%= item.custom_order_description %><br>
                                     <% end %>
                                     <% if item.deliver_by_date != nil %>
-                                      <strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %><br>
+                                      <strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %><br><br>
                                     <% end %>
                                     <strong>Item Price:</strong> <%= item.single_money %><br />
                                     <strong>Quantity:</strong> <%=item.quantity%><br />
@@ -218,6 +218,11 @@ img {
                             <% end %>
 
                             <tr><td colspan="5" style="border-bottom:1px solid #e5e5e5; margin-top: 40px; padding-bottom:40px;" height="1"></td></tr>
+
+                            <% if @order.special_instructions.present? %>
+                              <tr><td colspan="5" style="font-family:Arial, sans-serif; font-size:12px; line-height:21px; text-align:left; border-collapse:collapse; color:#676767; padding-bottom:20px; padding-top:40px;"><strong>Special Instructions:</strong> <%= @order.special_instructions %></td></tr>
+                            <% end %>
+
                             <tr>
                               <td colspan="2"></td>
 
