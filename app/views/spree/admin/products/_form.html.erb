@@ -49,10 +49,10 @@
       <h2>Custom Orders</h2>
       <hr>
       
-        <div class="checkbox custom-order-checkbox" id="custom-order-checkbox">
+        <div class="checkbox custom-order-checkbox">
           <label>
             <%= f.check_box :allow_custom_order, {:id => 'custom-order-checkbox'} %>
-            Allow custom orders for this product.
+              Allow custom orders for this product.
           </label>
         </div>
 
@@ -246,32 +246,14 @@
   $('.select2-container').css({width: '20em'})
   </script>
 <% end %>
-<script type="javascript">
+<script type="text/javascript">
 
   //<![CDATA[
     (function($){
       var base_url = "<%= admin_prototypes_url %>";
       var prototype_select = $('#product_prototype_id');
-
-      var customOrderCheck = $('#custom-order-checkbox input[type="checkbox"]');
-      customOrderCheck.click(function(){
-        if (customOrderCheck.prop('checked') == true) {
-          $('.custom-orders').slideDown('slow');
-          var id = "1";
-          if (id.length) {
-            var url = new Uri(base_url);
-            url.setPath(url.path() + '/' + id);
-            $('#product-from-prototype').load(url.toString());
-          } else {
-            $('.custom-orders').slideUp('slow');
-            $('#product-from-prototype').empty();
-          }
-        };
-      });
-
       prototype_select.change(function() {
         var id = prototype_select.val();
-        console.log(id);
         if (id.length) {
           var url = new Uri(base_url);
           url.setPath(url.path() + '/' + id);
@@ -285,5 +267,27 @@
       }
     })(jQuery);
   //]]>
+    $(document).ready(function(){
+      var customOrderCheck = $('.custom-order-checkbox input[type="checkbox"]');
+      if (customOrderCheck.prop('checked') == false) {
+        $('.custom-orders').hide();
+      } else {
+        $('.custom-orders').show();
+      }
+      customOrderCheck.click(function(){
+        if (customOrderCheck.prop('checked') == true) {
+          $('.custom-orders').slideDown('slow');
+          var element = document.getElementById('product_prototype_id');
+          element.value = "1";
+          var id = element.value;
+          var base_url = "<%= admin_prototypes_url %>";
+          var url = new Uri(base_url);
+          url.setPath(url.path() + '/' + id);
+          $('#product-from-prototype').load(url.toString());
+        } else {
+          $('.custom-orders').slideUp('slow');
+        };
+      });
+    });
 
 </script>
