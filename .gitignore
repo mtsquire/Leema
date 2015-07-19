@@ -15,6 +15,10 @@
 /log/*.log
 /tmp
 
+public/productnames.json
+
+public/suppliernames.json
+
 public/system/users/cover_photos/000/000/001/large/st-coverphoto.jpg
 
 public/system/users/cover_photos/000/000/001/original/st-coverphoto.jpg
