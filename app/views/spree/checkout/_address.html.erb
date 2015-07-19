@@ -71,7 +71,7 @@
 </div>
 <% if @previous_address %>
   <script>
-  $(document).ready(
+  $(document).ready(function () {
     $("#prior-address").click(function() {
       if ($("#prior-address").prop('checked') == true) {
         $("#order_bill_address_attributes_firstname").val("<%=@previous_address.firstname %>");
@@ -85,6 +85,6 @@
         $("#order_bill_address_attributes_phone").val("<%=@previous_address.phone %>");
       };
     });
-    );
+  )};
   </script>
 <% end %>
