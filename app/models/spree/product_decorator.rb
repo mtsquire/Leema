@@ -5,6 +5,8 @@ Spree::Product.class_eval do
   validates :ingredients, presence: true
   validates :shipping_information, presence: true
 
+  after_update :increase_variant_price
+
   def self.search(search)
     if search
       @supplier_search = self.joins(:suppliers).where('store_name LIKE ?', "%#{search}%")
@@ -16,6 +18,17 @@ Spree::Product.class_eval do
       end
     else
       @products = Spree::Product.all
+    end
+  end
+
+  def increase_variant_price
+    # if user updates the price increase field, propogate that value to the variant price
+    if self.price_increase_changed?
+      # the product's last (most recent) variant is the custom order variant. will need to change this
+      # if we ever allow more than 1 custom variant.
+      variant = self.variants.last
+      variant.price = self.price_increase + self.price
+      variant.save!
     end
   end
 
