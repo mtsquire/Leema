@@ -3,7 +3,9 @@ Spree::Variant.class_eval do
 
   def add_variant_price
     puts 'self.is_master = #{self.is_master}'
+    puts 'self.price = #{self.price = product.price + product.price_increase}'
     self.price = product.price + product.price_increase
+    puts 'self.price'
     self.save!
   end
 
@@ -12,6 +14,6 @@ Spree::Variant.class_eval do
     self.id != product.master.id &&
     product.price_increase &&
     product.price_increase > 0 &&
-    (product.price_increase_changed? || product.price_increase.new_record?)
+    (product.price_increase_changed? || product.new_record?)
   end
 end
