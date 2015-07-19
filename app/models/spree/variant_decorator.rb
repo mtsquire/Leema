@@ -1,5 +1,6 @@
 Spree::Variant.class_eval do
   after_create :add_variant_price, :if => :okay_to_increase_variant_price?
+  after_update :add_variant_price, :if => :okay_to_increase_variant_price?
 
   def add_variant_price
     puts 'self.is_master = #{self.is_master}'
