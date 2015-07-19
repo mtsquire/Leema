@@ -2,17 +2,17 @@
 <%= order_form.fields_for :line_items, line_item do |item_form| -%>
   <tr class="<%= cycle('', 'alt') %> line-item">
     <td class="cart-item-image" data-hook="cart_item_image">
-      <% if variant.images.length == 0 %> <!-- if theres no product image provided by seller -->
+      <% if variant.product.images.count == 0 %> <!-- if theres no product image provided by seller -->
         <% if line_item.custom_product_image_file_name %>
           <%= link_to image_tag line_item.custom_product_image.url(:thumb) %>
         <% else %> <!-- show generic leema image if no custom image provided by buyer -->
           <%= image_tag "leema-seller-logo.jpg" %>
         <% end %>
-      <% else %>
+      <% else %><!-- if supplier did upload a product image -->
         <% if line_item.custom_product_image_file_name %>
           <%= link_to image_tag line_item.custom_product_image.url(:thumb) %>
         <% else %><!-- if buyer does not upload image, default to product's image -->
-          <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
+          <%= link_to image_tag(variant.product.images.first.attachment.url(:small)), variant.product %>
         <% end %>
       <% end %>   
     </td>
