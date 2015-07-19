@@ -185,19 +185,23 @@ img {
                                 <td style="width:100%; padding-top: 40px;" colspan="5" valign="top">
                                   <%= link_to (root_url + 'products/' + item.variant.product.slug), :style => 'text-decoration:none;' do %>
                                     <p style="margin:0 0 20px; line-height:0;">
-                                      <% if item.variant.images.length == 0 %>
-                                        <% if item.custom_product_image %>
+                                      <% if item.product.images.count == 0 %>
+                                        <% if item.custom_product_image_file_name %>
                                           <%= image_tag item.custom_product_image.url(:email), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% else %>
                                           <%= image_tag "leema-seller-logo.jpg", :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% end %>
                                       <% else %>
-                                        <%= image_tag item.variant.images.first.attachment.url(:facebook), :style => 'width:100%; max-width:250px;', width: '150', border: '0'%>
+                                        <% if item.custom_product_image_file_name %>
+                                          <%= image_tag item.variant.images.first.attachment.url(:facebook), :style => 'width:100%; max-width:250px;', width: '150', border: '0'%>
+                                        <% else %>
+                                          <%= image_tag(variant.product.images.first.attachment.url(:small)), variant.product %>
+
                                       <% end %>   
                                     </p>
                                   <% end %>
-                                  <% if item.variant.images.length == 0 %>
-                                    <% if item.custom_product_image %>
+                                  <% if item.variant.product.images.count == 0 %>
+                                    <% if item.custom_product_image_file_name %>
                                       <p style="margin:0"><span style="text-align:center; font-size:10px; color:#676767; text-decoration:none;">This image has been cropped to fit the email. Your full image has been sent to the vendor.</span></p><br>
                                     <% end %>  
                                   <% end %>  
