@@ -163,6 +163,7 @@
                             <td colspan="2">
                               <h4 style="font-size:12px; margin-bottom:10px; letter-spacing:.5px;">SHIPPED TO:</h4>
                               <p style="white-space: pre-line;"><%= @shipment.order.shipping_address.firstname %> <%= @shipment.order.shipping_address.lastname %><br><%= @shipment.order.shipping_address.address1 %> <% if @shipment.order.shipping_address.address2 %><%= @shipment.order.shipping_address.address2 %><% end %><br><%= @shipment.order.shipping_address.city %>, <%= @shipment.order.shipping_address.state.abbr %> <%= @shipment.order.shipping_address.zipcode %></p>
+                              <p><strong>Tracking Number:</strong> <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= @shipment.tracking.to_s %>" target="_blank" style="color:#3a89ff"><%= @shipment.tracking %></a></p>
                               </td>
                             </tr>
                               <tr><td colspan="5" style="border-bottom:1px solid #e5e5e5; margin-top: 40px" height="1"></td></tr>

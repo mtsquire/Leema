@@ -211,6 +211,8 @@ img {
                                     <% end %>
                                     <% if item.deliver_by_date != nil %>
                                       <strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %><br><br>
+                                    <% else %>
+                                      <br>
                                     <% end %>
                                     <strong>Item Price:</strong> <%= item.single_money %><br />
                                     <strong>Quantity:</strong> <%=item.quantity%><br />
