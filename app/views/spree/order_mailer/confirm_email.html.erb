@@ -195,7 +195,7 @@ img {
                                         <% if item.custom_product_image_file_name %>
                                           <%= image_tag item.custom_product_image.url(:email), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% else %>
-                                          <%= image_tag item.product.images.first.attachment.url(:small), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
+                                          <%= image_tag item.product.images.first.attachment.url(:facebook), :style => 'width:100%; max-width:250px;', width: '150', border: '0' %>
                                         <% end %>
                                       <% end %>   
                                     </p>
