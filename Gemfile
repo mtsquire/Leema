@@ -68,7 +68,7 @@ gem "fog"
 gem "asset_sync" #sync assets to s3
 
 #multi-tenancy
-gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship'
+gem 'spree_drop_ship', github: 'jdutil/spree_drop_ship', branch: '2-3-stable'
 gem 'spree_marketplace', github: 'jdutil/spree_marketplace'
 gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings', branch: '2-3-stable'
 gem 'easypost'
