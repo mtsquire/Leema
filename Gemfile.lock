@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/jdutil/spree_drop_ship.git
-  revision: 6b91b5563e656eaa153e7800930fc2f32f766729
+  revision: b80827c4e383a6cb202b7cf01d2c9dbbb9fa5a93
+  branch: 2-3-stable
   specs:
     spree_drop_ship (2.3.0.beta)
       durable_decorator (~> 0.2.0)
