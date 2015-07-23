@@ -1,4 +1,24 @@
 /* Admin Styles */
+
+#mobile-shop .btn:visited {
+	color:#fff;
+}
+
+.lines-button:active:focus { 
+	outline: none !important; 
+	background: transparent;
+	box-shadow: none !important;
+}
+
+.navbar-form .input-group .input-group-btn {
+	display: table-cell;
+
+	.btn {
+		margin-left: 0px;
+		width: 100%;
+	}
+}
+
 fieldset .filter-actions {
 	margin-bottom: 32px;
 }

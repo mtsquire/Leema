@@ -55,11 +55,14 @@
   <body class="docs-layout" data-spy="scroll" data-target=".leema-side-bar">
 
     <%= render :partial => 'shared/header' %>
-  <!--Alert messages for Devise user authentication -->
 
-    <%= yield %>
+    <div class="row-offcanvas row-offcanvas-right">
+    <!--Alert messages for Devise user authentication -->
+
+      <%= yield %>
 
      <%= render :partial => 'shared/footer' %>
+    </div>
 
   </body>
 </html>

@@ -88,11 +88,13 @@
         </div><!-- close row -->
     </div><!-- close container -->
   </div>
-  <%= render :partial => 'shared/header' %>
 
+  <%= render :partial => 'shared/header' %>
+  <div class="row-offcanvas row-offcanvas-right">
   <!--Alert messages for Devise user authentication -->
     <%= yield %>
 
     <%= render :partial => 'shared/footer' %>
+  </div>
 </body>
 </html>
