@@ -15,15 +15,18 @@
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
           </div>
 
-          <% if @product.master.can_supply? %>
+          <% if @product.master.can_supply? && @product.out_of_stock == 0 %>
             <link itemprop="availability" href="http://schema.org/InStock" />
           <% elsif @product.variants.empty? %>
             <br />
             <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+          <% else %>
+            <br />
+            <span class="out-of-stock">Sorry! This product is temporarily unavailable.</span>
           <% end %>
         </div>
 
-          <% if @product.master.can_supply? %>
+          <% if @product.master.can_supply? && @product.out_of_stock == 0 %>
 
             <div class="add-to-cart">
               <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629210404) do
+ActiveRecord::Schema.define(version: 20150723025131) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -461,6 +461,7 @@ ActiveRecord::Schema.define(version: 20150629210404) do
     t.integer  "allow_custom_order",                                           default: 0
     t.decimal  "price_increase"
     t.text     "custom_order_description"
+    t.integer  "out_of_stock",                                                 default: 0
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
