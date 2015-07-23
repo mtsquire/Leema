@@ -153,13 +153,32 @@ $(document).ready(function() {
     if (newsletterCookie == 'donotshow') {
         $('.newsletter-alert').remove();
     } else {
+        var newsletterAlertHeight = $('.newsletter-alert').outerHeight();
+        var linesButtonTop = $('.lines-button').css('top');
+        var moveLinesButton = newsletterAlertHeight + parseInt(linesButtonTop, 10);
+
+        console.log(moveLinesButton);
+
         $('.newsletter-alert').slideDown('slow');
+        $('.lines-button').css('top', moveLinesButton);
         $('.newsletter-alert .close').click(function(){
+
+            linesButtonTop = $('.lines-button').css('top');
+
+            moveLinesButton = parseInt(linesButtonTop, 10) - newsletterAlertHeight;
+
             Cookies.set('leemanewsletter', 'donotshow',{ expires: 5 }, { secure:true });
+
+            $('.lines-button').css('top', moveLinesButton);
         });
         $('#mc-embedded-subscribe').click(function(){
+
+            linesButtonTop = $('.lines-button').css('top');
+            moveLinesButton = parseInt(linesButtonTop, 10) - newsletterAlertHeight;
+
             Cookies.set('leemanewsletter', 'donotshow',{ expires: 1095 }, { secure:true });
             $('.newsletter-alert').remove();
+            $('.lines-button').css('top', moveLinesButton);
         });
     };
 });
