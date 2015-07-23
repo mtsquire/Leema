@@ -19,7 +19,7 @@ module ApplicationHelper
     css_class = nil
 
     if current_order.nil? or current_order.item_count.zero?
-      text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{Spree.t('empty')})</span>".html_safe
+      text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{Spree.t('0')})</span>".html_safe
       css_class = 'empty'
     else
       text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{current_order.item_count})</span>".html_safe

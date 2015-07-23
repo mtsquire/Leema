@@ -32,3 +32,24 @@ function getInternetExplorerVersion() {
 var MSIE = false,
     widthIsWide = !1;
 
+
+$(document).ready(function(){
+    $('.navbar-toggle').on('click', function() {
+        if (($('.row-offcanvas').hasClass('nav-active')) && ($('#leema-nav').hasClass('active'))) {
+
+            $('.row-offcanvas, .navbar-default').removeClass('nav-active');
+            $('#leema-nav').removeClass('active');
+            $('#leema-nav').addClass('collapse');
+            $('.lines-button').removeClass('close');
+
+        } else {
+
+            $('.row-offcanvas, .navbar-default').addClass('nav-active');
+            $('#leema-nav').addClass('active');
+            $('#leema-nav').removeClass('collapse');
+            $('.lines-button').addClass('close');
+
+        }
+    });
+
+});

@@ -45,13 +45,6 @@
       </div>
     <% end %>
 
-    <div class="form-group">
-      <label>
-        <%= f.check_box :out_of_stock %>
-          Mark this product as out of stock.
-      </label>
-    </div>
-
     <div><!--Custom Orders-->
       <h2>Custom Orders</h2>
       <hr>
@@ -186,6 +179,14 @@
       <% end %>
     </div>
 
+    <div class="checkbox out-of-stock-checkbox">
+      <label>
+        <%= f.check_box :out_of_stock %>
+          Mark this product as "Out of Stock". <span data-toggle="tooltip" data-placement="bottom" title="Checking this box will label your product Out of Stock and not allow customers to purcahse it.">( ? )</span>
+      </label>
+    </div>
+
+
     <!--<div data-hook="admin_product_form_tax_category">
       <%= f.field_container :tax_category do %>
         <%= f.label :tax_category_id, Spree.t(:tax_category) %>
@@ -295,6 +296,12 @@
           $('.custom-orders').slideUp('slow');
         };
       });
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     });
+
+
 
 </script>

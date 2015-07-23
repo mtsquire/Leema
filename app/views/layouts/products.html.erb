@@ -57,11 +57,12 @@
 
 <nav class="navbar navbar-default" role="navigation">
   <%= render :partial => 'shared/header' %>
-  <!--Alert messages for Devise user authentication -->
+    <div class="row-offcanvas row-offcanvas-right">
+        <!--Alert messages for Devise user authentication -->
 
-    <%= yield %>
+        <%= yield %>
 
-     <%= render :partial => 'shared/footer' %>
-
+        <%= render :partial => 'shared/footer' %>
+    </div>
   </body>
 </html>

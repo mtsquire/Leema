@@ -10,28 +10,29 @@
   <body class="<%= body_class %> spree" id="<%= @body_id || 'default' %>" data-hook="body">
 
     <%= render :partial => 'spree/shared/header' %>
+    <div class="row-offcanvas row-offcanvas-right">
+      <div class="container">
 
-    <div class="container">
+        <div id="wrapper" data-hook>
 
-      <div id="wrapper" data-hook>
+          <%-# breadcrumbs(@taxon) -%>
 
-        <%-# breadcrumbs(@taxon) -%>
-
-        <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
+          <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
 
 
-        <div class="row">
-            <div id="content" class="col-xs-12" data-hook>
-              <%= yield %>
-            </div>
+          <div class="row">
+              <div id="content" class="col-xs-12" data-hook>
+                <%= yield %>
+              </div>
 
-          <%= yield :templates %>
+            <%= yield :templates %>
 
-        </div><!-- close .row -->
-      </div><!-- close #wrapper -->
+          </div><!-- close .row -->
+        </div><!-- close #wrapper -->
 
-    </div><!-- close .container -->
+      </div><!-- close .container -->
 
-    <%= render :partial => 'shared/footer' %>
+      <%= render :partial => 'shared/footer' %>
+    </div><!-- close row-offcanvas -->
   </body>
 </html>
