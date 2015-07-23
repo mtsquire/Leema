@@ -336,11 +336,18 @@ fieldset {
   text-align: center;
 }
 
-.custom-order-checkbox {
+.custom-order-checkbox, .out-of-stock-checkbox {
   label {
     text-transform: none;
   }
   input[type="checkbox"] {
     margin: 2px 0 0 -20px;
   }
+}
+
+.out-of-stock-checkbox {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding:5px;
+    margin-top:15px;
 }
