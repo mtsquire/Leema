@@ -84,7 +84,23 @@ body {
 
 @media (max-width: 767px) {
 	#sidebar {
-		margin-top: 50px !important;
+		#taxonomies {
+		  width: 100%;
+		  overflow-x: scroll;
+		  white-space: nowrap;
+		  padding-bottom: 15px;
+
+			.dropdown-menu {
+				position: relative;
+			}
+
+		}
+	}
+
+	#sidebar #taxonomies.nav-pills > li {
+	  display: inline-block;
+	  vertical-align: top;
+	  float: none;
 	}
 }
 
