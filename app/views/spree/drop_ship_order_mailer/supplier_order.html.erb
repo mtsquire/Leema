@@ -50,7 +50,8 @@
                         <% unless @shipment.order.bill_address.address2.blank? %><%= @shipment.order.bill_address.address2 %><br/><% end %>
                         <%= @shipment.order.bill_address.city %>, <%= @shipment.order.bill_address.state.name %> <%= @shipment.order.bill_address.zipcode %><br/>
                         <%= @shipment.order.bill_address.country.name %><br/>
-                        T: <a href="tel:<%= @shipment.order.bill_address.phone %>" value="<%= @shipment.order.bill_address.phone %>" target="_blank"><%= @shipment.order.bill_address.phone %></a>
+                        T: <a href="tel:<%= @shipment.order.bill_address.phone %>" value="<%= @shipment.order.bill_address.phone %>" target="_blank"><%= @shipment.order.bill_address.phone %></a><br>
+                        E: <%= @shipment.order.email %>
                       </td>
                     </tr>
                   </tbody>
