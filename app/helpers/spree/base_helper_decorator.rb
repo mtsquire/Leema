@@ -21,7 +21,7 @@ Spree::BaseHelper.module_eval do
 
     flash.each do |msg_type, text|
       unless ignore_types.include?(msg_type)
-        concat(content_tag :div, text, class: "alert alert-#{msg_type}")
+        concat(content_tag :div, text, class: "alert alert-#{msg_type} alert-danger")
       end
     end
     nil
