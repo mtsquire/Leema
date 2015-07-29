@@ -79,6 +79,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Google analytics only use in production
+  config.google_analytics = ENV["GOOGLE_ANALYTICS"]
+
+
   #Store image uploads in S3
   config.paperclip_defaults = {
     :storage => :s3,
