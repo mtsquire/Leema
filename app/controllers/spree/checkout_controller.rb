@@ -32,11 +32,33 @@ module Spree
           @previous_address = @order.user.spree_orders.where(state: "complete").last.bill_address
         end
       end
+
+      @order.shipments.each do | shipment |
+        shipment.line_items.each do |li|
+          shipping = [] # store shipping options for this shipment
+
+          if li.product.allow_usps_priority == 1
+            shipping << "USPS Priority"
+          end
+
+          if li.product.allow_usps_express == 1
+            shipping << "USPS Express"
+          end
+          # if any of the shipments products require Express as the only option
+          # then the avail rates attr for the shipment will be only Express
+          if shipping == ["USPS Express"]
+            li.shipment.avail_rates == ["USPS Express"]
+          else
+            shipment.avail_rates = shipping
+          end
+
+        end
+      end
+
     end
 
     # Updates the order and advances to the next state (when possible.)
     def update
-
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next

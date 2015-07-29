@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723025131) do
+ActiveRecord::Schema.define(version: 20150728021834) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -462,6 +462,8 @@ ActiveRecord::Schema.define(version: 20150723025131) do
     t.decimal  "price_increase"
     t.text     "custom_order_description"
     t.integer  "out_of_stock",                                                 default: 0
+    t.integer  "allow_usps_priority",                                          default: 1
+    t.integer  "allow_usps_express",                                           default: 1
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
@@ -615,32 +617,8 @@ ActiveRecord::Schema.define(version: 20150723025131) do
   add_index "spree_roles_users", ["role_id"], name: "index_spree_roles_users_on_role_id"
   add_index "spree_roles_users", ["user_id"], name: "index_spree_roles_users_on_user_id"
 
-  create_table "spree_shipments", force: true do |t|
-    t.string   "tracking"
-    t.string   "number"
-    t.decimal  "cost",                 precision: 10, scale: 2, default: 0.0
-    t.datetime "shipped_at"
-    t.integer  "order_id"
-    t.integer  "address_id"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "stock_location_id"
-    t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
-    t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0,   null: false
-    t.decimal  "pre_tax_amount",       precision: 8,  scale: 2, default: 0.0
-    t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0,   null: false
-    t.string   "postage_label"
-    t.string   "stripe_charge_id"
-    t.boolean  "transferred",                                   default: false
-  end
-
-  add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id"
-  add_index "spree_shipments", ["number"], name: "index_shipments_on_number"
-  add_index "spree_shipments", ["order_id"], name: "index_spree_shipments_on_order_id"
-  add_index "spree_shipments", ["stock_location_id"], name: "index_spree_shipments_on_stock_location_id"
+# Could not dump table "spree_shipments" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "spree_shipping_categories", force: true do |t|
     t.string   "name"

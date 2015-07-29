@@ -45,6 +45,34 @@
       </div>
     <% end %>
 
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :allow_usps_priority, {:id => 'usps-priority'} %>
+        Allow USPS Priority
+      </label>
+      <label>
+        <%= f.check_box :allow_usps_express, {:id => 'usps-express'} %>
+        Allow USPS Express
+      </label>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var uspsPriority = $('#usps-priority input[type="checkbox"]');
+        var uspsExpress = $('#usps-express input[type="checkbox"]');
+        // if user unclicks both options, auto enable USPS Priority
+        uspsExpress.on('click', function (){
+          if (uspsExpress.val == 0 && uspsPriority.val == 0) {
+            uspsPriority.val = 1;
+          }
+        });
+        uspsPriority.on('click', function (){
+          if (uspsExpress.val == 0 && uspsPriority.val == 0) {
+            uspsPriority.val = 1;
+          }
+        });
+      });
+    </script>
+
     <div><!--Custom Orders-->
       <h2>Custom Orders</h2>
       <hr>

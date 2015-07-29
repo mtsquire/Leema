@@ -59,7 +59,7 @@
             </tbody>
           </table>
 
-          <h4 class="stock-shipping-method-title"><%= Spree.t(:shipping_method) %></h4>
+          <h4 class="stock-shipping-method-title">available rates: <%= ship_form.object.avail_rates %><%= Spree.t(:shipping_method) %></h4>
           <ul class="list-group shipping-methods">
             <% ship_form.object.shipping_rates.each do |rate| %>
               <% if rate.name != "USPS ParcelSelect" %>
