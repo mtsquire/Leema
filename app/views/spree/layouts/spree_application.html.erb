@@ -11,7 +11,9 @@
 
     <%= render :partial => 'spree/shared/header' %>
     <div class="row-offcanvas row-offcanvas-right">
-      <%= flash_messages %>
+      <div class="flash-msg">
+        <%= flash_messages %>
+      </div>
       <div class="container">
 
         <div id="wrapper" data-hook>
