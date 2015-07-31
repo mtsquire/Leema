@@ -24,7 +24,7 @@ class Spree::ReviewsController < Spree::StoreController
 
     authorize! :create, @review
     if @review.save
-      flash[:notice] = Spree.t('review_successfully_submitted')
+      flash[:success] = Spree.t('review_successfully_submitted')
       puts "Approving review..."
       @review.update_attribute(:approved, true)
       puts "Review approved!"

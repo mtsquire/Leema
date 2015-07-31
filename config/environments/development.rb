@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Google analytics only use in production
+  config.google_analytics = ENV["GOOGLE_ANALYTICS"]
 end

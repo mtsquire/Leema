@@ -11,11 +11,15 @@
 
     <%= render :partial => 'spree/shared/header' %>
     <div class="row-offcanvas row-offcanvas-right">
+      <div class="flash-msg">
+        <%= flash_messages %>
+      </div>
       <div class="container">
 
         <div id="wrapper" data-hook>
 
           <%-# breadcrumbs(@taxon) -%>
+
 
           <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
 

@@ -239,6 +239,14 @@ img {
                                     <td style="vertical-align:top; text-align:left;">Subtotal</td>
                                     <td style="vertical-align:top; text-align:right;"><%= @order.display_item_total %></td>
                                   </tr>
+                                  <% @order.adjustments.eligible.each do |adjustment| %>
+                                    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+                                    <tr>
+                                      <td style="vertical-align:top; text-align:left;"><%= adjustment.label %>:</td>
+                                      <td style="vertical-align:top; text-align:right;"><%= adjustment.display_amount %></td>
+                                    </tr>
+                                  <% end %>
+
                                   <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
                                     <tr>
                                       <td style="vertical-align:top; text-align:left;"><%= Spree.t(:shipping) %>: <%= name %></td>
@@ -256,6 +264,11 @@ img {
 
                           </table>
                         </center>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p style="font-family:Arial, sans-serif; font-size:10px; line-height:16px; text-align:center; border-collapse:collapse; color:#676767; padding:0 10px 0 10px;">Want to track your order? Once your items ship, we'll send you an email containing your shipping confirmation and tracking number!</p>
                       </td>
                     </tr>
                     <tr>

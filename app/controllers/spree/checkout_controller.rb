@@ -82,7 +82,6 @@ module Spree
           redirect_to completion_route
         else
           redirect_to checkout_state_path(@order.state)
-          flash.notice = Spree.t(:something_bad_happened)
         end
       else
         render :edit
