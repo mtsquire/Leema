@@ -83,103 +83,6 @@
     color: green;
 }
 
-.input-group .form-control.main-search {
-    background: rgba(255,255,255,.7) !important;
-    border-color: rgba(58, 137, 255, 1);
-    border-style: none none solid solid;
-    border-width: 3px;
-    border-radius: 0;
-    outline: none;
-    color: #1a1a1a;
-    box-shadow: none;
-    font-weight: 500;
-}
-
-/* Placeholder text color for browsers */
-.input-group .form-control.main-search::-webkit-input-placeholder {
-    color:#888;
-}
-.input-group .form-control.main-search:-moz-placeholder {
-    color:#888;
-    opacity: 1;
-}
-.input-group .form-control.main-search::-moz-placeholder {
-    color:#888;
-    opacity: 1;
-}
-.input-group .form-control.main-search::-ms-input-placeholder {
-    color:#888;
-}
-
-.search-leema .btn {
-    border-radius: 0px;
-    padding: 10px;
-    border-color: rgba(58, 137, 255, 1);
-    border-style: none none solid none;
-    border-width: 3px;
-}
-
-
-@media (min-width: 990px) {
-    .input-group .form-control.main-search {
-        font-size: 70px;
-        height: 110px;
-        line-height: 90px;
-        margin:0px;
-        padding: 20px;
-        border-width: 5px;
-    }
-
-    .search-leema .btn {
-        border-radius: 0px;
-        height: 110px;
-        padding: 10px 30px;
-        border-width: 5px;
-    }
-
-    #welcome h1 {
-        font-size: 55px;
-        margin-top: 0px;
-    }
-
-    #welcome p.lead {
-        font-size: 30px;
-    }
-}
-
-
-@media screen and (min-width: 768px) and (max-width: 989px) {
-	.masthead {
-		padding: 80px 0;
-	}
-
-    .input-group .form-control.main-search {
-        font-size: 50px;
-        height: 90px;
-        line-height: 70px;
-        margin:0px;
-        padding: 20px;
-        border-width: 3px;
-    }
-
-    .search-leema .btn {
-        border-radius: 0px;
-        height: 90px;
-        padding: 10px 20px;
-        border-width: 3px;
-    }
-    #welcome {
-        padding: 60px 0;
-    }
-
-    #welcome h1 {
-        font-size: 55px;
-    }
-
-    #welcome p.lead {
-        font-size: 30px;
-    }
-}
 
 #featured-products {
     .welcome-product {
@@ -298,4 +201,172 @@ section {
 .newsletter-alert.alert-dismissible .close {
     top: 5px;
     right: 5px;
+}
+
+/* new shit */
+
+#welcome{
+    position: relative;
+    padding: 0px;
+    background: image-url("macaroons.jpg") top left no-repeat;
+    background-size: 140%;
+
+    .gradient {
+        background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.75))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+
+    .welcome-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: #fff;
+        z-index: 4;
+        width: 100%;
+        padding: 5%;
+
+        h1 {
+            color:#fff;
+            font-size: 70px;
+            line-height: 1;
+            text-shadow: 1px 1px 7px #000;
+        }
+
+        p {
+            font-size: 28px;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 7px #000;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px){
+    #welcome {
+        .welcome-info {
+            padding: 3%;
+
+            h1 {
+                font-size: 55px;
+            }
+
+            p {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px){
+    #welcome {
+        background-size: cover;
+
+        .welcome-info {
+            h1 {
+                font-size: 45px;
+            }
+
+            p {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px){
+    #welcome {
+        .welcome-info {
+            h1 {
+                font-size: 35px;
+            }
+
+            p {
+                font-size: 18px;
+                line-height: 1;
+                margin-bottom: 15px;
+                text-shadow: 1px 1px 7px #000;
+            }
+
+            .btn-lg {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 380px){
+    #welcome {
+        .welcome-info {
+            h1 {
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 15px;
+                line-height: 1;
+                margin-bottom: 10px;
+                text-shadow: 1px 1px 7px #000;
+            }
+
+            .btn-lg {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+#instagram {
+    padding: 0px;
+    position: relative;
+
+    #instagram-feed {
+        img {
+            width: 20%;
+            float: left;
+            z-index: 2;
+        }
+    }
+
+    .gradient {
+        background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.55))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+
+    .btn-instagram {
+        z-index: 4;
+        background:#517fa4;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .btn-instagram:hover {
+        background:#306088;
+        color: #fff;
+    }
 }
