@@ -35,21 +35,20 @@ module Spree
 
       @order.shipments.each do | shipment |
         shipment.line_items.each do |li|
-          shipping = [] # store shipping options for this shipment
+          @available_rates = [] # create collection to show shipping rates as specified by
+                                # supplier
 
           if li.product.allow_usps_priority == 1
-            shipping << "USPS Priority"
+            @available_rates << shipment.shipping_rates.where(name: "USPS Priority")
           end
 
           if li.product.allow_usps_express == 1
-            shipping << "USPS Express"
+            @available_rates << shipment.shipping_rates.where(name: "USPS Express")
           end
-          # if any of the shipments products require Express as the only option
-          # then the avail rates attr for the shipment will be only Express
-          if shipping == ["USPS Express"]
-            li.shipment.avail_rates == ["USPS Express"]
-          else
-            shipment.avail_rates = shipping
+
+          # error handling in case no rate was checked by supplier, at least give one option
+          if @available_rates == []
+            @available_rates << shipment.shipping_rates.where(name: "USPS Priority")
           end
 
         end
