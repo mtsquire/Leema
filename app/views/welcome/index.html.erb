@@ -1,15 +1,16 @@
 <% title "Welcome - " %>
 
-<section class="masthead home" id="content" role="main">
-  <div class="container">
-		<div class="row">
-			 <div class="col-xs-12 intro">
-				 	<h1 class="text-center">The marketplace that connects culinary artists to people with great taste.</h1>
-			  	<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
-		  </div>
-		</div>
-  </div><!-- /.container -->
-</section><!-- /.masthead -->
+<section id="welcome">
+	<!-- <div id="instagram-feed" class="clearfix"></div> -->
+	<div class="gradient"></div>
+
+	<div class="welcome-info">
+		<h1>Let Everyone Eat My Art.</h1>
+		<p>The marketplace that connects culinary artists to people with great taste.</p>
+		<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
+	</div>
+
+</section>
 
 <section id="welcome-product-grid">
 	<div class="container">
@@ -114,47 +115,13 @@
 	</div>
 </section>
 
-<section id="features-benefits">
-	<div class="container">
-		<h2 class="text-center">Eat to Your Heart's Desire</h2>
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "donut-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Designed to Eat</h3>
-				<p>Leema Artisans only make the most mouthwatering, unique, and creative food items. From savory Cookie Nut Butter to sweet Gluten Free Cake Bites, if it’s delicious, you’ll find it on Leema.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "stripe-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Secure Transactions</h3>
-				<p>Using Stripe to process all transactions, we give you the peace of mind that you're protected when you make a purchase or sell a product. Whether paying by credit card or debit card your information is safe and secure.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "shipping-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Shipped to Your Door</h3>
-				<p>Whether you’re 2 or 2000 miles away, shipping by USPS&reg; will ensure that you receive your product right at your doorstep.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "heart-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Better With Friends</h3>
-				<p>Leema’s community was built on unique and delicious food products created by culinary artists and enjoyed by people with great taste. This community truly sees food for what it is, a delicious expression of the person who created it.</p>
-			</div>
-		</div><!-- close .row -->
-	</div><!-- close .container -->
+<section id="instagram">
+	<div id="instagram-feed" class="clearfix"></div>
+	<div class="gradient"></div>
+	<a class="btn btn-lg btn-instagram" target="_blank" href="https://instagram.com/leemaeats/"><i class="fa fa-instagram"></i> Follow @leemaeats!</a>
 </section>
+
+
 
 
 <section id="get-started">
