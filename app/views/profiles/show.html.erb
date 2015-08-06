@@ -57,7 +57,7 @@
         <% end %>
         <p class="text-muted"><i class="fa fa-clock-o"></i> Joined <%= @user.created_at.strftime('%B %Y') %></p>
         <% if @user.supplier? %>
-          <p class="text-muted"><%= @supplier.products.count %> Products Listed</p>
+          <p class="text-muted"><%= @products.count %> Products Listed</p>
           <!-- <a href="#" class="btn btn-favorite"> Favorite</a> -->
         <% end %>
       </div>
@@ -70,8 +70,7 @@
             <p class="lead">Say something about yourself...<%= link_to "add your bio", edit_path(@user) %>!</p>
           <% else %>
           <div class="no-bio">
-            <p class="lead">This Leema'er has no bio...so here's a joke:</p>
-            <img src="" class="img-responsive food-joke">
+            <p class="lead">This Leema'er has no bio...</p>
           </div>
           <% end %>
         <% end %>
