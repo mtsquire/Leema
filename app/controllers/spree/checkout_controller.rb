@@ -39,16 +39,25 @@ module Spree
                                 # supplier
 
           if li.product.allow_usps_priority == 1
-            @available_rates << shipment.shipping_rates.where(name: "USPS Priority")
+            @available_rates << shipment.shipping_rates.where(name: "USPS Priority").first 
+            # have to use .first to get a single object, otherwise returns an ActiveRecord
+            # Association
           end
 
           if li.product.allow_usps_express == 1
-            @available_rates << shipment.shipping_rates.where(name: "USPS Express")
+            @available_rates << shipment.shipping_rates.where(name: "USPS Express").first
+            if li.product.allow_usps_priority == 0
+              # if the buyer has purchased just one product that needs to be shipped
+              # express then we force the buyer to select that option regardless of
+              # what the other products' shipping options were.
+              @available_rates = []
+              @available_rates << shipment.shipping_rates.where(name: "USPS Express").first and return
+            end
           end
 
           # error handling in case no rate was checked by supplier, at least give one option
           if @available_rates == []
-            @available_rates << shipment.shipping_rates.where(name: "USPS Priority")
+            @available_rates << shipment.shipping_rates.where(name: "USPS Priority").first
           end
 
         end

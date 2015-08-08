@@ -43,6 +43,9 @@ Spree::Admin::ProductsController.class_eval do
     @supplier = @user.supplier
     if @user.leema_admin? == true
       @collection = Spree::Product.all
+      @collection.each do |product|
+        @order_count = product.orders.where(state: "complete").count
+      end
     else
       @collection = @user.supplier.products.all
     end
