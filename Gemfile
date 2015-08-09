@@ -6,8 +6,8 @@ gem 'rails', '4.1.6'
 gem 'puma', group: :production
 # Heroku kills processes that take longer than 30 seconds, this gem tells puma to kill them too
 gem "rack-timeout"
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+# Use postgres as the database for Active Record
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -75,7 +75,6 @@ gem 'easypost'
 
 #For Heroku deployment
 gem 'rails_12factor', group: :production
-gem 'pg', group: :production
 ruby "2.1.2"
 
 
