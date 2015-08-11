@@ -23,7 +23,6 @@ module Spree
 
           if handler.error.present?
             flash.now[:error] = handler.error
-            byebug
             respond_with(@order) { |format| format.html { render :edit } } and return
           elsif handler.success
             flash[:success] = handler.success
