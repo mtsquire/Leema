@@ -69,25 +69,25 @@
 
           <h4 class="stock-shipping-method-title"><%= Spree.t(:shipping_method) %></h4>
           <ul class="list-group shipping-methods">
-            <% @available_rates.each do |rate| %>
-              <% if rate.name != "USPS ParcelSelect" %>
-                <li class="list-group-item shipping-method">
-                  <label>
-                    <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
-                    <span class="rate-name"><%= rate.name %></span>
-                    <span class="badge rate-cost">
-                      <%= number_to_currency(rate.cost, :unit => "$") %>
-                    </span>
-                    <span class="delivery-days">
-                      <% if rate.name == "USPS Priority" %>
-                        <a href="https://www.usps.com/ship/priority-mail.htm" target="_blank">1-3 Business Days</a>
-                      <% else %>
-                        <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
-                      <% end %>
-                    </span>
-                  </label>
-                </li>
-              <% end %>
+            <% ship_form.object.available_rates.each do |key, rate| %>
+                <% if rate.name != "USPS ParcelSelect" %>
+                  <li class="list-group-item shipping-method">
+                    <label>
+                      <%= ship_form.radio_button :selected_shipping_rate_id, rate.id, checked: true if key == 1 %>
+                      <span class="rate-name"><%= rate.name %></span>
+                      <span class="badge rate-cost">
+                        <%= number_to_currency(rate.cost, :unit => "$") %>
+                      </span>
+                      <span class="delivery-days">
+                        <% if rate.name == "USPS Priority" %>
+                          <a href="https://www.usps.com/ship/priority-mail.htm" target="_blank">1-3 Business Days</a>
+                        <% else %>
+                          <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
+                        <% end %>
+                      </span>
+                    </label>
+                  </li>
+                <% end %>
             <% end %>
           </ul>
         </div>

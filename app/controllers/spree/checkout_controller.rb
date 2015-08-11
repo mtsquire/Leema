@@ -33,37 +33,11 @@ module Spree
         end
       end
 
-      @order.shipments.each do | shipment |
-        shipment.line_items.each do |li|
-          @available_rates = [] # create collection to show shipping rates as specified by
-                                # supplier
-
-          if li.product.allow_usps_priority == 1
-            @available_rates << shipment.shipping_rates.where(name: "USPS Priority").first 
-            # have to use .first to get a single object, otherwise returns an ActiveRecord
-            # Association
-          end
-
-          if li.product.allow_usps_express == 1
-            @available_rates << shipment.shipping_rates.where(name: "USPS Express").first
-            if li.product.allow_usps_priority == 0
-              # if the buyer has purchased just one product that needs to be shipped
-              # express then we force the buyer to select that option regardless of
-              # what the other products' shipping options were.
-              @available_rates = []
-              @available_rates << shipment.shipping_rates.where(name: "USPS Express").first and return
-            end
-          end
-
-          # error handling in case no rate was checked by supplier, at least give one option
-          if @available_rates == []
-            @available_rates << shipment.shipping_rates.where(name: "USPS Priority").first
-          end
-
-        end
+      @order.shipments.each do |shipment|
+        get_shipping_rates(shipment)
       end
-
     end
+
 
     # Updates the order and advances to the next state (when possible.)
     def update
@@ -193,6 +167,36 @@ module Spree
 
       def check_authorization
         authorize!(:edit, current_order, cookies.signed[:guest_token])
+      end
+
+      def get_shipping_rates(shipment)
+        shipment.line_items.each do |li| 
+          if li.product.allow_usps_priority == 1
+            shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first 
+            # have to use .first to get a single object, otherwise returns an ActiveRecord
+            # Association
+             
+          end
+
+          if li.product.allow_usps_express == 1
+            shipment.available_rates[2] = shipment.shipping_rates.where(name: "USPS Express").first
+            if li.product.allow_usps_priority == 0
+              # if the buyer has purchased just one product that needs to be shipped
+              # express then we force the buyer to select that option regardless of
+              # what the other products' shipping options were.
+              shipment.available_rates = {}
+              
+              shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Express").first and return shipment.available_rates
+            end
+          end
+
+          # error handling in case no rate was checked by supplier, at least give one option
+          if shipment.available_rates == {}
+            shipment.available_rates[1] << shipment.shipping_rates.where(name: "USPS Priority").first
+          end
+
+        end
+
       end
   end
 end
