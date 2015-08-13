@@ -194,6 +194,7 @@ module Spree
           if shipment.available_rates == {}
             shipment.available_rates[1] << shipment.shipping_rates.where(name: "USPS Priority").first
           end
+          shipment.available_rates[1].selected = true
 
         end
 

@@ -73,7 +73,7 @@
                 <% if rate.name != "USPS ParcelSelect" %>
                   <li class="list-group-item shipping-method">
                     <label>
-                      <%= ship_form.radio_button :selected_shipping_rate_id, rate.id, checked: true if key == 1 %>
+                      <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
                       <span class="rate-name"><%= rate.name %></span>
                       <span class="badge rate-cost">
                         <%= number_to_currency(rate.cost, :unit => "$") %>
