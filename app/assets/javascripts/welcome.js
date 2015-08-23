@@ -161,7 +161,7 @@ $(document).ready(function() {
             welcomeSection.css('height', '250');
         }   
     });
-
+/*
     // set up owl carousel for featured products
     if ($("#featured-products").length > 0){
      $("#featured-products").owlCarousel({
@@ -172,7 +172,7 @@ $(document).ready(function() {
           stopOnHover: true,
           scrollPerPage: true
       });
-    }
+    }*/
 
     var newsletterCookie = Cookies.get('leemanewsletter');
 
