@@ -161,18 +161,6 @@ $(document).ready(function() {
             welcomeSection.css('height', '250');
         }   
     });
-/*
-    // set up owl carousel for featured products
-    if ($("#featured-products").length > 0){
-     $("#featured-products").owlCarousel({
-          autoPlay: 5000, //Set AutoPlay to 3 seconds
-          items: 3,
-          itemsDesktop: [1199,3],
-          itemsDesktopSmall: [979,3],
-          stopOnHover: true,
-          scrollPerPage: true
-      });
-    }*/
 
     var newsletterCookie = Cookies.get('leemanewsletter');
 
