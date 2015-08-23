@@ -8,6 +8,8 @@
 }
  */
 
+
+ 
 .intro {
 
     opacity: 0;
@@ -112,10 +114,10 @@ section {
     }
 }
 
-#get-started {
+#get-started, #welcome-product-grid {
     .btn {
         padding: 10px 50px;
-        margin: 40px 0;
+        margin: 40px 0 0;
         font-size: 14px
     }
 }
