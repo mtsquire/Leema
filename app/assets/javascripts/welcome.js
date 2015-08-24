@@ -46,19 +46,6 @@ $(document).ready(function() {
 
     if (widthIsWide) {
 
-        // define function to fire with requestAnimationFrame
-        parallaxBackground = function(){
-            var scrolled = window.pageYOffset;
-            $('#reindeer').each(function(){
-                var thisEl = $(this);
-                isInViewport(thisEl,scrolled,0,function(elementVisibleAt,elementBottom){
-                    thisEl.css('background-position', '50% ' + ( 100 - ( ( scrolled - elementVisibleAt ) / elementBottom * 100 ) ) + '%');
-                });
-            });
-        }
-
-        parallaxBackground();
-
         if ($('.icon-blurb').length > 0){
 
 
@@ -84,17 +71,11 @@ $(document).ready(function() {
 
             pricingPercent = function(){}
         }
-
-    } else {
-        parallaxBackground = function(){}
     }
 
     // fire parallax functions on scroll through requestAnimationFrame if not oldIE
     if ( !($('html').hasClass('lt-ie9')) && widthIsWide) {
         window.addEventListener('scroll', function(){
-            if ($('#reindeer').length > 0){
-                requestAnimationFrame(parallaxBackground)
-            }
             if ($('.pricing-box').length > 0){
                 requestAnimationFrame(pricingPercent)
             }

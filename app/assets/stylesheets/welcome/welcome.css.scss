@@ -131,41 +131,55 @@ section {
 }
 
 
-#reindeer {
-    background: image-url("pretzel-reindeer.jpg");
-    background-attachment: fixed;
-    background-position:0 0;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 1;
-}
-
-#founding-sellers-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background:rgba(248, 248, 248, .9);
-    z-index: 2;
+#featured-sellers {
+    background: #fff;
 }
 
 #founding-sellers {
-    z-index: 3;
 
-     h2 {
+    .seller {
+        margin-bottom: 40px;
         z-index: 4;
         position: relative;
     }
 
-    .col-xs-4 {
-        margin-bottom: 20px;
-        z-index: 4;
+    .founding-seller-logo {
+        max-width: 100px;
+        width: 100%;
+        margin: 0px auto 20px;
     }
 
-    .founding-seller-logo {
-        max-width: 200px;
-        width: 100%;
+    .seller-logo-link:hover {
+        .founding-seller-logo {
+            opacity: .75;
+        }
+    }
+
+    .seller-full-name {
+        font-size: 19px;
+    }
+
+    .location-store {
+        color:#8d8d8d;
+        font-size: 12px;
+        margin-bottom: 10px;
+        min-height: 35px;
+    }
+}
+
+@media only screen and (max-width: 991px){
+    #founding-sellers {
+        .seller-full-name {
+            min-height: 40px;
+        }
+    }
+}
+
+@media  (min-width:400px) and (max-width: 767px){
+    #founding-sellers {
+        .seller-full-name {
+            min-height: auto;
+        }
     }
 }
 
@@ -296,10 +310,7 @@ section {
             }
 
             p {
-                font-size: 18px;
-                line-height: 1;
-                margin-bottom: 15px;
-                text-shadow: 1px 1px 7px #000;
+                display: none;
             }
 
             .btn-lg {
@@ -370,5 +381,11 @@ section {
     .btn-instagram:hover {
         background:#306088;
         color: #fff;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .btn-instagram {
+        font-size: 14px;
     }
 }
