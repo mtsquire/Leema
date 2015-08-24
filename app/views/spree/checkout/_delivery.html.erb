@@ -144,9 +144,11 @@
 </div>
 
 <script type="text/javascript">
+// get shipping inputs
 var shippingRadio = $('.shipping-methods li input');
-$( shippingRadio ).click(function() {
 
+// funciton to update the shipping price in the order total column
+function updateShippingPrice() {
   var selectedShipping = $('.shipping-methods li input:checked'),
       itemTotal = Number( $('.summary-item-total').text().replace(/[^0-9\.]+/g,"")),
       shippingPrices = [];
@@ -163,15 +165,17 @@ $( shippingRadio ).click(function() {
       shippingTotal = Math.round(shippingSum * 100) / 100,
       orderTotal = Math.round((itemTotal + shippingTotal) * 100) / 100;
 
-  $('.summary-shipping-price').text(shippingTotal);
-  $('.summary-order-total').html('<strong>'+ orderTotal +'</strong>');
+  $('.summary-shipping-price').text(shippingTotal.toFixed(2));
+  $('.summary-order-total').html('<strong>'+ orderTotal.toFixed(2) +'</strong>');
+};
 
+$( shippingRadio ).click(function() {
+  updateShippingPrice()
 });
-$( document ).ready(function() {
-  var shippingMethods = document.getElementById("shipping-methods");
-  for (i = 0; i < shippingMethods.length; i++) {
-    var selectedRate = $("shippingMethods[i] li:nth-child(1)");
-    selectedRate.checked = true;
-  }
+
+// on documnet ready, find the first input for each shipment and mark as checked then update total
+$(document).ready(function(){
+  $('.shipping-methods').find('li:first-child input').prop("checked", true);
+  updateShippingPrice();
 });
 </script>
