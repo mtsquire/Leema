@@ -47,8 +47,14 @@ module Spree
         def get_shipment_profit(order)
           @shipment_profits1 = 0
           order.shipments.each do |shipment|
-            @shipment_profit = shipment.cost.to_i * ((shipment.supplier.commission_percentage - 2.9) / 100)
-            @shipment_profits1 += @shipment_profit
+            # wrote this for any suppliers who had orders but then closed their account
+            if shipment.supplier
+              @shipment_profit = shipment.cost.to_i * ((shipment.supplier.commission_percentage - 2.9) / 100)
+              @shipment_profits1 += @shipment_profit
+            else
+              @shipment_profit = shipment.cost.to_i * ((7.1) / 100)
+              @shipment_profits1 += @shipment_profit
+            end
           end
           puts "@shipment_profits1 = #{@shipment_profits1}"
           return @shipment_profits1
