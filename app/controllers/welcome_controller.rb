@@ -1,12 +1,13 @@
 class WelcomeController < ApplicationController
 	layout "home"
   def index
-    @products = Spree::Product.all.shuffle.first(6)
+    @top_product = Spree::Product.all.sort_by { |p| p.sales_count }.reverse!
+    @products = @top_product.first(6)
     @images = Spree::Image.all
     @users = User.all
     @suppliers = Spree::Supplier.all
 
-    #predictive search shizzz
+    # predictive search shizzz
     @product_names = []
     @allProducts = Spree::Product.all
     @allProducts.each do |product|
