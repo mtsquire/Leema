@@ -45,24 +45,29 @@ module Spree
         @number_of_orders = @orders.count
 
         def get_shipment_profit(order)
-          @shipment_profits1 = 0
+          @total_shipment_profits = 0
           order.shipments.each do |shipment|
-            # wrote this for any suppliers who had orders but then closed their account
-            if shipment.supplier
-              @shipment_profit = shipment.cost.to_i * ((shipment.supplier.commission_percentage - 2.9) / 100)
-              @shipment_profits1 += @shipment_profit
-            else
-              @shipment_profit = shipment.cost.to_i * ((7.1) / 100)
-              @shipment_profits1 += @shipment_profit
+            @total_price = 0
+            # get the price of each product within the shipment and
+            # add it to @total_price
+            shipment.line_items.each do |li|
+              @total_price += li.price
             end
+            # calculate our profit from @total_price and add it to 
+            # @total_shipment_profits
+            puts "shipment commish = #{shipment.supplier_commission}"
+            byebug
+            @shipment_profit = @total_price * ((shipment.supplier_commission - 2.9) / 100)
+            @total_shipment_profits += @shipment_profit
           end
-          puts "@shipment_profits1 = #{@shipment_profits1}"
-          return @shipment_profits1
+          puts "@total_shipment_profits = #{@total_shipment_profits}"
+          return @total_shipment_profits
         end
 
         @totals = {}
         @orders.each do |order|
           @profit_totals = get_shipment_profit(order)
+          puts "profit for order #{@profit_totals}"
           @totals[order.currency] = { :item_total => ::Money.new(0, order.currency), :adjustment_total => ::Money.new(0, order.currency), :sales_total => ::Money.new(0, order.currency), :shipment_profit => 0 } unless @totals[order.currency]
           @totals[order.currency][:item_total] += order.display_item_total.money
           @totals[order.currency][:adjustment_total] += order.display_adjustment_total.money

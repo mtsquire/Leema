@@ -21,11 +21,11 @@ Spree::Order.class_eval do
       consider_risk
       update_sales_count
     end
+    # update the sales count column on the product table
     def update_sales_count
-      self.products.each do |p|
-        byebug
-        p.sales_count = p.orders.complete.count
-        p.save
+      self.line_items.each do |li|
+        li.product.sales_count += li.quantity
+        li.product.save
       end
     end
 end 
