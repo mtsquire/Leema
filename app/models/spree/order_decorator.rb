@@ -1,7 +1,8 @@
 Spree::Order.class_eval do
     def finalize!
       self.products.each do |p|
-        p.sales_count ++
+        byebug
+        p.sales_count = p.orders.complete.count
         p.save
       end
     end
