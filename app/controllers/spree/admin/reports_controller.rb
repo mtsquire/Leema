@@ -56,7 +56,6 @@ module Spree
             # calculate our profit from @total_price and add it to 
             # @total_shipment_profits
             puts "shipment commish = #{shipment.supplier_commission}"
-            byebug
             @shipment_profit = @total_price * ((shipment.supplier_commission - 2.9) / 100)
             @total_shipment_profits += @shipment_profit
           end
