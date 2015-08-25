@@ -2,33 +2,6 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
-function doneResizing() {
-
-    var b = getViewport()[0], c = getViewport()[1];
-    if (b != viewPortWidth && (console.log("Viewport Width: " + viewPortWidth + ", New Width: " + b), widthIsWide && 769 > b ? prlxBg = function() {
-    } : !widthIsWide && b > 768 || (resizing = !1), widthIsWide = b > 768 ? !0 : !1), c != viewPortHeight && console.log("Viewport Height: " + viewPortHeight + ", New Height: " + c), c != viewPortHeight || b != viewPortWidth)
-        if (widthIsWide) {
-            var d = (c * .66666667) + "px", e = $(".navbar").outerHeight();
-            $(".masthead").each(function() {
-                $(this).css("height", d), $(this).css("visibility", "visible").css("opacity", "1");
-
-                // Reposition search bar in center of masthead
-                introMargin = $('.masthead').height() / 2;
-                introHeight = $('.intro').height() / 2;
-                $(".intro").css("margin-top", Math.floor(introMargin - introHeight))
-            })
-        } else {
-            $(".masthead").css("height", "").css("margin-top", "").css("padding-top", "").css("visibility", "visible").css("opacity", "1");
-            viewPortHeight = c, viewPortWidth = b;
-
-            // Reposition search bar in center of masthead
-            introMargin = $('.masthead').height() / 2;
-            introHeight = $('.intro').height() / 2;
-            $(".intro").css("margin-top", Math.floor(introMargin - introHeight))
-        }
-    }
-
-
 $(document).ready(function() {
     // define viewport vairables
         viewPortWidth = getViewport()[0],
@@ -36,30 +9,22 @@ $(document).ready(function() {
         widthIsWide = (viewPortWidth > 1024),
         IEVersion = getInternetExplorerVersion();
 
-    if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 1024, IEVersion = getInternetExplorerVersion(), widthIsWide) {
-        var a = (viewPortHeight * .75) + "px",
-            b = $(".navbar").outerHeight();
-        $(".masthead").each(function() {
-            $(this).css("height", a), $(this).css("visibility", "visible").css("opacity", "1");
-        })
+    if ($('.masthead')) {
+        if (viewPortWidth = getViewport()[0], viewPortHeight = getViewport()[1], widthIsWide = viewPortWidth > 1024, IEVersion = getInternetExplorerVersion(), widthIsWide) {
+            var a = (viewPortHeight * .75) + "px",
+                b = $(".navbar").outerHeight();
+            $(".masthead").each(function() {
+                $(this).css("height", a), $(this).css("visibility", "visible").css("opacity", "1");
+            })
+        }
+
+        // Reposition search bar in center of masthead
+        var introMargin = $('.masthead').height() / 2,
+            introHeight = $('.intro').height() / 2;
+
+        $(".intro").css("margin-top", Math.floor(introMargin - introHeight));     
     }
 
-    // Reposition search bar in center of masthead
-    var introMargin = $('.masthead').height() / 2,
-        introHeight = $('.intro').height() / 2;
-
-    $(".intro").css("margin-top", Math.floor(introMargin - introHeight))
-
-    var c;
-    $(window).on("resize", function() {
-        clearTimeout(c), c = setTimeout(doneResizing, 1e3)
-    }), window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function(a) {
-        setTimeout(a, 1e3 / 60)
-    };
-    var d = function(a, b, c, d) {
-        var e = a.offset().top, f = a.outerHeight(), g = e - viewPortHeight + c, h = e + f;
-        b >= g && h >= b && d(g, h)
-    };
 
     //parrallax covers
     // requestAnimationFrame method:
@@ -80,19 +45,6 @@ $(document).ready(function() {
     }
 
     if (widthIsWide) {
-
-        // define function to fire with requestAnimationFrame
-        parallaxBackground = function(){
-            var scrolled = window.pageYOffset;
-            $('#reindeer').each(function(){
-                var thisEl = $(this);
-                isInViewport(thisEl,scrolled,0,function(elementVisibleAt,elementBottom){
-                    thisEl.css('background-position', '50% ' + ( 100 - ( ( scrolled - elementVisibleAt ) / elementBottom * 100 ) ) + '%');
-                });
-            });
-        }
-
-        parallaxBackground();
 
         if ($('.icon-blurb').length > 0){
 
@@ -119,34 +71,77 @@ $(document).ready(function() {
 
             pricingPercent = function(){}
         }
-
-    } else {
-        parallaxBackground = function(){}
     }
 
     // fire parallax functions on scroll through requestAnimationFrame if not oldIE
     if ( !($('html').hasClass('lt-ie9')) && widthIsWide) {
         window.addEventListener('scroll', function(){
-            if ($('#reindeer').length > 0){
-                requestAnimationFrame(parallaxBackground)
-            }
             if ($('.pricing-box').length > 0){
                 requestAnimationFrame(pricingPercent)
             }
         }, false)
     }
 
-    // set up owl carousel for featured products
-    if ($("#featured-products").length > 0){
-     $("#featured-products").owlCarousel({
-          autoPlay: 5000, //Set AutoPlay to 3 seconds
-          items: 3,
-          itemsDesktop: [1199,3],
-          itemsDesktopSmall: [979,3],
-          stopOnHover: true,
-          scrollPerPage: true
-      });
+   function loadInstagrams() {
+        $.ajax({
+          url: 'https://api.instagram.com/v1/users/1586239279/media/recent?client_id=34060d525c58405088094409b600da10',
+          dataType: 'jsonp',
+          cache: true,
+          success:function(data){
+
+            for (var i = 0; i < 10; i++) {
+                var instagram = data.data[i];
+                if (widthIsWide) {
+                    var imageUrl = instagram.images.standard_resolution.url;
+                } else {
+                    imageUrl = instagram.images.low_resolution.url;
+                }
+                    
+
+                $('#instagram-feed').append('<img class="img-responsive" src="'+imageUrl+'">')
+            }
+          }
+        });
     }
+
+    loadInstagrams();
+
+
+    //resize height of welcome section at top of page
+    var welcomeSection = $('#welcome');
+    var headerHeight = $('nav.navbar-default').outerHeight();
+
+    if (getViewport()[0] >= 767) {
+        console.log('>= 767');
+        welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .75));
+    } else if ((getViewport()[0] < 767) && (getViewport()[0] > 480)) {
+        console.log('< 767 and > 480');
+        welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .666667));
+    } else {
+        console.log('350');
+        welcomeSection.css('height', '250');
+    }   
+
+    $(window).on('resize',function(){
+        if($('.masthead')) {
+            $('.masthead').css('height', (getViewport()[1] * .6666667));
+            var introMargin = $('.masthead').height() / 2,
+                introHeight = $('.intro').height() / 2;
+
+            $(".intro").css("margin-top", Math.floor(introMargin - introHeight));
+        }
+
+        if (getViewport()[0] >= 767) {
+            console.log('>= 767');
+            welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .75));
+        } else if ((getViewport()[0] < 767) && (getViewport()[0] > 480)) {
+            console.log('< 767 and > 480');
+            welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .666667));
+        } else {
+            console.log('350');
+            welcomeSection.css('height', '250');
+        }   
+    });
 
     var newsletterCookie = Cookies.get('leemanewsletter');
 
@@ -156,8 +151,6 @@ $(document).ready(function() {
         var newsletterAlertHeight = $('.newsletter-alert').outerHeight();
         var linesButtonTop = $('.lines-button').css('top');
         var moveLinesButton = newsletterAlertHeight + parseInt(linesButtonTop, 10);
-
-        console.log(moveLinesButton);
 
         $('.newsletter-alert').slideDown('slow');
         $('.lines-button').css('top', moveLinesButton);

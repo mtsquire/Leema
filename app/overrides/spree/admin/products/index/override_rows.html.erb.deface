@@ -12,6 +12,7 @@
   <% end %>
 </td>
 <td class="align-center"><%= product.display_price.to_html rescue '' %></td>
+<td class="align-center">Orders: <%= product.orders.complete.count %></td>
 <td class="actions" data-hook="admin_products_index_row_actions">
   <% if try_spree_current_user && try_spree_current_user.supplier? %>
     <%= link_to 'Stock Management', stock_admin_product_path(product), class: 'edit' if can?(:stock, product) && !product.deleted? %>

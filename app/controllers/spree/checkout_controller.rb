@@ -32,11 +32,15 @@ module Spree
           @previous_address = @order.user.spree_orders.where(state: "complete").last.bill_address
         end
       end
+
+      @order.shipments.each do |shipment|
+        get_shipping_rates(shipment)
+      end
     end
+
 
     # Updates the order and advances to the next state (when possible.)
     def update
-
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next
@@ -60,7 +64,6 @@ module Spree
           redirect_to completion_route
         else
           redirect_to checkout_state_path(@order.state)
-          flash.notice = Spree.t(:something_bad_happened)
         end
       else
         render :edit
@@ -164,6 +167,37 @@ module Spree
 
       def check_authorization
         authorize!(:edit, current_order, cookies.signed[:guest_token])
+      end
+
+      def get_shipping_rates(shipment)
+        shipment.line_items.each do |li| 
+          if li.product.allow_usps_priority == 1
+            shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first 
+            # have to use .first to get a single object, otherwise returns an ActiveRecord
+            # Association
+             
+          end
+
+          if li.product.allow_usps_express == 1
+            shipment.available_rates[2] = shipment.shipping_rates.where(name: "USPS Express").first
+            if li.product.allow_usps_priority == 0
+              # if the buyer has purchased just one product that needs to be shipped
+              # express then we force the buyer to select that option regardless of
+              # what the other products' shipping options were.
+              shipment.available_rates = {}
+              
+              shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Express").first and return shipment.available_rates
+            end
+          end
+
+          # error handling in case no rate was checked by supplier, at least give one option
+          if shipment.available_rates == {}
+            shipment.available_rates[1] << shipment.shipping_rates.where(name: "USPS Priority").first
+          end
+          shipment.available_rates[1].selected = true
+
+        end
+
       end
   end
 end

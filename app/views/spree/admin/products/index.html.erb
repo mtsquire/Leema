@@ -72,11 +72,13 @@
         <th>Product Name</th>
         <th>Product Actions</th>
         <th>Product Price</th>
+        <th>Sales</th>
         <th data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>
     </thead>
     <tbody>
       <% @collection.each do |product| %>
+      <!-- this whole element is being overridden by override_rows.html.erb.deface -->
         <tr <%== "style='color: red;'" if product.deleted? %> id="<%= spree_dom_id product %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
           <td class="align-center"><%= product.sku rescue '' %></td>
           <td class="align-center"></td>

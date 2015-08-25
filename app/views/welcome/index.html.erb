@@ -1,160 +1,119 @@
 <% title "Welcome - " %>
 
-<section class="masthead home" id="content" role="main">
-  <div class="container">
-		<div class="row">
-			 <div class="col-xs-12 intro">
-				 	<h1 class="text-center">The marketplace that connects culinary artists to people with great taste.</h1>
-			  	<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
-		  </div>
-		</div>
-  </div><!-- /.container -->
-</section><!-- /.masthead -->
+<section id="welcome">
+	<!-- <div id="instagram-feed" class="clearfix"></div> -->
+	<div class="gradient"></div>
+
+	<div class="welcome-info">
+		<h1>Let Everyone Eat My Art.</h1>
+		<p>The marketplace that connects culinary artists to people with great taste.</p>
+		<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
+	</div>
+
+</section>
 
 <section id="welcome-product-grid">
 	<div class="container">
 		<div class="row">
-			<h2 class="text-center">Explore The Most Popular Treats On The Market</h2>
-			<div id="featured-products" class="owl-carousel">
+			<h2 class="text-center">Explore The Most Popular Treats On Leema</h2>
+			<div id="featured-products">
 				<% @products.each do |product| %>
-				  <div class="welcome-product">
-				  	<%= link_to 'store/products/' + product.slug, :class => 'product-link', :itemprop => "name", :title => product.name do %>
-					  	<div class="product-card">
-								<% if product.images.count > 0 %>
+				<div class="col-md-4 col-sm-6">
+					  <div class="welcome-product">
+					  	<%= link_to 'store/products/' + product.slug, :class => 'product-link', :itemprop => "name", :title => product.name do %>
+						  	<div class="product-card">
+									<% if product.images.count > 0 %>
 
-									<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+										<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
 
-								<% else %>
+									<% else %>
 
-									<div class="product-image background-image" style="background-image: url(<%= image_url "leema-product-placeholder.jpg" %>)"></div>
+										<div class="product-image background-image" style="background-image: url(<%= image_url "leema-product-placeholder.jpg" %>)"></div>
 
-								<% end %>
-								<div class="product-info">
-									<h3><%= truncate(product.name, :length => 50) %></h3>
-									<p class="product-description"><%= truncate(product.leema_description, :length => 150) %></p>
-                  <p class="product-price" itemprop="price"><%= product.display_price %></p>
-                  <% if product.suppliers.first.store_logo_file_name? %>
-		                <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
-		              <% end %>
-								</div><!-- close .product-info -->
-							</div><!-- close .product-card -->
-						<% end %>
-				  </div>
+									<% end %>
+									<div class="product-info">
+										<h3><%= truncate(product.name, :length => 50) %></h3>
+										<p class="product-description"><%= truncate(product.leema_description, :length => 150) %></p>
+	                  <p class="product-price" itemprop="price"><%= product.display_price %></p>
+	                  <% if product.suppliers.first.store_logo_file_name? %>
+			                <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
+			              <% end %>
+									</div><!-- close .product-info -->
+								</div><!-- close .product-card -->
+							<% end %>
+					  </div>
+				</div><!-- close col-md-4 col-sm-6 -->
 				<% end %>
+			</div> <!-- close #featured-products -->
+			<div class="col-xs-12 text-center">
+				<%= link_to "Shop All Products", spree_path, class: "btn btn-primary" %>
 			</div>
-		</div>
+		</div><!-- close row -->
 	</div>
 </section><!-- /#welcome-product-grid -->
 
-<section id="reindeer" class="image-break">
-	<div id="founding-sellers-bg"></div>
+<section id="featured-sellers" class="image-break">
 	<div class="container" id="founding-sellers">
 		<h2 class="text-center">Featured Sellers</h2>
 		<div class="row">
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/popsbyhaley">
-					<%= image_tag "pops-by-haley.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+			<!-- b.cakes -->
+			<div class="col-sm-3 col-xs-6 seller text-center">
+				<a href="https://www.leemaeats.com/bcakesbakery" class="seller-logo-link">
+					<%= image_tag "b-cakes-photo.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
 				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/realitybitescupcakes">
-					<%= image_tag "reality-bites.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/carlysbetterbites">
-					<%= image_tag "carlys-better-bites.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/batterandcream">
-					<%= image_tag "batter-and-cream.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
 				<a href="https://www.leemaeats.com/bcakesbakery">
-					<%= image_tag "b-cakes.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+					<h4 class="seller-full-name">Emma Kantrowitz</h4>
 				</a>
+				<p class="location-store"><i class="fa fa-map-marker"></i> Hoboken, NJ / B.Cakes Bakery</p>
+				<a class="btn btn-primary" href="https://www.leemaeats.com/bcakesbakery">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/laurieandsons">
-					<%= image_tag "laurie-and-sons.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+
+			<!-- sweet e's -->
+			<div class="col-sm-3 col-xs-6 seller text-center">
+				<a href="https://www.leemaeats.com/sweetesbakeshop" class="seller-logo-link">
+					<%= image_tag "sweet-e-bakeshop-photo.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
 				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/3nanas">
-					<%= image_tag "3nanas.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/chups">
-					<%= image_tag "chups.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/wootgranola">
-					<%= image_tag "woot.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
-				<a href="https://www.leemaeats.com/cupkaties">
-					<%= image_tag "cupkaties.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
-				</a>
-			</div>
-			<div class="col-sm-3 col-xs-4">
 				<a href="https://www.leemaeats.com/sweetesbakeshop">
-					<%= image_tag "sweet-e-bake-shop.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+					<h4 class="seller-full-name">Erica Tucker</h4>
 				</a>
+				<p class="location-store"><i class="fa fa-map-marker"></i> Los Angeles, CA / Sweet E's Bake Shop</p>
+				<a class="btn btn-primary" href="https://www.leemaeats.com/sweetesbakeshop">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
-			<div class="col-sm-3 col-xs-4">
+
+			<!-- reality bites -->
+			<div class="col-sm-3 col-xs-6 seller text-center">
+				<a href="https://www.leemaeats.com/realitybitescupcakes" class="seller-logo-link">
+					<%= image_tag "rbc-photo.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+				</a>
+				<a href="https://www.leemaeats.com/realitybitescupcakes">
+					<h4 class="seller-full-name">Ashley Foxen</h4>
+				</a>
+				<p class="location-store"><i class="fa fa-map-marker"></i> New York, NY / Reality Bites Cupcakes</p>
+				<a class="btn btn-primary" href="https://www.leemaeats.com/realitybitescupcakes">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
+			</div>
+
+			<!-- baked boxes -->
+			<div class="col-sm-3 col-xs-6 seller text-center">
+				<a href="https://www.leemaeats.com/bakedboxes" class="seller-logo-link">
+					<%= image_tag "baked-boxes-photo.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+				</a>
 				<a href="https://www.leemaeats.com/bakedboxes">
-					<%= image_tag "baked-boxes.jpg", :class => 'img-responsive img-circle center-block founding-seller-logo' %>
+					<h4 class="seller-full-name">Danielle Brady</h4>
 				</a>
+				<p class="location-store"><i class="fa fa-map-marker"></i> Ridgefield, NJ / Baked Boxes</p>
+				<a class="btn btn-primary" href="https://www.leemaeats.com/bakedboxes">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
+
 	</div>
 </section>
 
-<section id="features-benefits">
-	<div class="container">
-		<h2 class="text-center">Eat to Your Heart's Desire</h2>
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "donut-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Designed to Eat</h3>
-				<p>Leema Artisans only make the most mouthwatering, unique, and creative food items. From savory Cookie Nut Butter to sweet Gluten Free Cake Bites, if it’s delicious, you’ll find it on Leema.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "stripe-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Secure Transactions</h3>
-				<p>Using Stripe to process all transactions, we give you the peace of mind that you're protected when you make a purchase or sell a product. Whether paying by credit card or debit card your information is safe and secure.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "shipping-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Shipped to Your Door</h3>
-				<p>Whether you’re 2 or 2000 miles away, shipping by USPS&reg; will ensure that you receive your product right at your doorstep.</p>
-			</div>
-		</div><!-- close .row -->
-		<div class="row icon-blurb">
-			<div class="icon">
-				<%= image_tag "heart-flat-icon.png", class: 'img-responsive center-block' %>
-			</div><!-- close .col-sm-3 -->
-			<div class="blurb">
-				<h3>Better With Friends</h3>
-				<p>Leema’s community was built on unique and delicious food products created by culinary artists and enjoyed by people with great taste. This community truly sees food for what it is, a delicious expression of the person who created it.</p>
-			</div>
-		</div><!-- close .row -->
-	</div><!-- close .container -->
+<section id="instagram">
+	<div id="instagram-feed" class="clearfix"></div>
+	<div class="gradient"></div>
+	<a class="btn btn-lg btn-instagram" target="_blank" href="https://instagram.com/leemaeats/"><i class="fa fa-instagram"></i> Follow @leemaeats!</a>
 </section>
+
+
 
 
 <section id="get-started">

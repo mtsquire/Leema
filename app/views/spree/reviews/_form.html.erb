@@ -1,7 +1,7 @@
+<%= render "spree/shared/error_messages", :target => review %>
 <div class="row">
   <div class="col-md-6 col-xs-12">
     <%= form_for review, :url => product_reviews_path(product), :html => {:method => :post} do |f| %>
-      <%= render "spree/shared/error_messages", :target => review %>
 
       <div class="form-group review_rating_field">
         <%= f.label :rating %> <span class="required">*</span>

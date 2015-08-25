@@ -1,3 +1,3 @@
 Spree::Address.class_eval do
-  validates_length_of :phone, :minimum => 10
+  validates :phone, length: { minimum: 10, maximum: 10 }, numericality: true, presence: true
 end
