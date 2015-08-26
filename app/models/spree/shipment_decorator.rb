@@ -37,7 +37,7 @@ Spree::Shipment.class_eval do
 
   #override this method from spree_drop_ship
   def supplier_commission_total
-    ((self.item_cost * self.supplier.commission_percentage / 100) + self.supplier.commission_flat_rate)
+    ((self.item_cost * (self.supplier.commission_percentage / 100)) + self.supplier.commission_flat_rate)
   end
 
 
