@@ -35,5 +35,10 @@ Spree::Shipment.class_eval do
     EasyPost::Tracker.retrieve(self.tracking)
   end
 
+  #override this method from spree_drop_ship
+  def supplier_commission_total
+    ((self.item_cost * self.supplier.commission_percentage / 100) + self.supplier.commission_flat_rate)
+  end
+
 
 end

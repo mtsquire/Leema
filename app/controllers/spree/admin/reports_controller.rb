@@ -47,19 +47,8 @@ module Spree
         def get_shipment_profit(order)
           @total_shipment_profits = 0
           order.shipments.each do |shipment|
-            @total_price = 0
-            # get the price of each product within the shipment and
-            # add it to @total_price
-            shipment.line_items.each do |li|
-              @total_price += li.price
-            end
-            # calculate our profit from @total_price and add it to 
-            # @total_shipment_profits
-            puts "shipment commish = #{shipment.supplier_commission}"
-            @shipment_profit = @total_price * ((shipment.supplier_commission - 2.9) / 100)
-            @total_shipment_profits += @shipment_profit
+            @total_shipment_profits += shipment.supplier_commission
           end
-          puts "@total_shipment_profits = #{@total_shipment_profits}"
           return @total_shipment_profits
         end
 
