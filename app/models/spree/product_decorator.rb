@@ -27,8 +27,13 @@ Spree::Product.class_eval do
       # the product's last (most recent) variant is the custom order variant. will need to change this
       # if we ever allow more than 1 custom variant.
       variant = self.variants.last
-      variant.price = self.price_increase + self.price
-      variant.save!
+      if variant
+        variant.price = self.price_increase + self.price
+        variant.save!
+      else
+        # handle this so the app doesnt bomb out
+        puts 'no variant found... woops!'
+      end
     end
   end
 

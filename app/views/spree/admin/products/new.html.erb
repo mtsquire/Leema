@@ -179,6 +179,15 @@
     })(jQuery);
   //]]>
     $(document).ready(function(){
+      // custom order stuff
+      var element = document.getElementById('product_prototype_id');
+      element.value = "1";
+      var id = element.value;
+      var base_url = "<%= admin_prototypes_url %>";
+      var url = new Uri(base_url);
+      url.setPath(url.path() + '/' + id);
+      $('#product-from-prototype').load(url.toString());
+
       $("#product_price").keyup(function() {
           var value = $( this ).val(),
               percent = (90/100),
@@ -193,13 +202,6 @@
       customOrderCheck.click(function(){
         if (customOrderCheck.prop('checked') == true) {
           $('.custom-orders').slideDown('slow');
-          var element = document.getElementById('product_prototype_id');
-          element.value = "1";
-          var id = element.value;
-          var base_url = "<%= admin_prototypes_url %>";
-          var url = new Uri(base_url);
-          url.setPath(url.path() + '/' + id);
-          $('#product-from-prototype').load(url.toString());
         } else {
           $('.custom-orders').slideUp('slow');
         };
