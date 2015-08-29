@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/store'
 
-# Need to adjust this for FB authentication
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { 
+    :omniauth_callbacks => "callbacks", 
+    :registrations => "registrations", 
+    :sessions => "sessions" }
 
   devise_scope :user do
     get 'register', to: 'devise/registrations#new', as: :register

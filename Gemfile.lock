@@ -513,6 +513,7 @@ DEPENDENCIES
   less-rails
   money-rails
   newrelic_rpm
+  omniauth
   omniauth-facebook
   pg
   puma
