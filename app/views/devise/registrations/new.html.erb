@@ -38,18 +38,13 @@
             </div>
           </fieldset>
           <div class="text-center">
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'fb-login-button', 'data-size' => "large" %>
+            <hr>
             <p><small>By submitting, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
             <%= f.submit "Sign up", :class => "btn btn-primary" %>
           </div>
           <div class="text-right">
             Already a member? <%= render "devise/shared/links" %>
-          </div>
-          <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-          </fb:login-button>
-
-          <div id="status">
           </div>
 
           <% end %>
