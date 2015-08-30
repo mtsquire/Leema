@@ -2,6 +2,9 @@
 
 en:
   devise:
+    callbacks:
+      user:
+        failure: "Sorry, but it looks like you already created an account on Leema with your Facebook email. Please sign in using the form below."
     confirmations:
       confirmed: "Your account was successfully confirmed."
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
