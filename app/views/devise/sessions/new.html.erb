@@ -12,6 +12,14 @@
             <h2>Log in</h2>
           </legend>
           <%= bootstrap_flash %>
+          <div class="facebook-login">
+              <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                <i class="fa fa-facebook"></i> Sign in with Facebook
+              <% end %>
+          </div>
+
+          <hr>
+
           <div class="form-group">
             <div><%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, class: 'form-control input_wide' %></div>
@@ -34,9 +42,9 @@
 
           <div><%= f.submit "Log in", :class => "btn btn-primary" %></div>
 
+          <hr>
+
           <div class="text-center">
-            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-            <hr>
             <%= render "devise/shared/links" %>
           </div>
         </fieldset>
