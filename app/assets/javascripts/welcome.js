@@ -112,13 +112,10 @@ $(document).ready(function() {
     var headerHeight = $('nav.navbar-default').outerHeight();
 
     if (getViewport()[0] >= 767) {
-        console.log('>= 767');
         welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .75));
     } else if ((getViewport()[0] < 767) && (getViewport()[0] > 480)) {
-        console.log('< 767 and > 480');
         welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .666667));
     } else {
-        console.log('350');
         welcomeSection.css('height', '250');
     }   
 
