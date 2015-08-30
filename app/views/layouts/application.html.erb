@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if lt IE 7]> dumb stuff here <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
 <!--[if IE 7]> <html class="lt-ie10 lt-ie9 lt-ie8 " lang="en-US"> <![endif]-->
 <!--[if IE 8]> <html class="lt-ie10 lt-ie9 " lang="en-US"> <![endif]-->
 <!--[if IE 9]> <html class="lt-ie10 ie9 " lang="en-US"> <![endif]-->
 <!--[if gt IE 9]><!--> <html lang="en-US"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
+    <meta dumb stuff>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "" %>Leema: Let Everyone Eat My Art</title>
@@ -52,9 +53,17 @@
 
         ga('create', 'UA-61690734-1', 'auto');
         ga('send', 'pageview');
-
       </script>
     <% end %>
+
+    <script type="text/javascript">
+    //fixed facebook login adding weird route to url
+    if (window.location.hash == '#_=_'){
+        history.replaceState 
+            ? history.replaceState(null, null, window.location.href.split('#')[0])
+            : window.location.hash = '';
+    }
+    </script>
   </head>
   <body class="default">
     <%= render :partial => 'shared/header' %>
