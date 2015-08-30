@@ -35,19 +35,9 @@
           <div><%= f.submit "Log in", :class => "btn btn-primary" %></div>
 
           <div class="text-center">
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+            <hr>
             <%= render "devise/shared/links" %>
-            <!-- <hr> -->
-            <!--
-              Below we include the Login Button social plugin. This button uses
-              the JavaScript SDK to present a graphical Login button that triggers
-              the FB.login() function when clicked.
-            -->
-              <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-size="large">
-              <i class="fa fa-facebook"></i> Sign in with Facebook
-              </fb:login-button> -->
-
-            <!-- <div id="status">
-            </div> -->
           </div>
         </fieldset>
 
@@ -56,7 +46,3 @@
     </div><!-- close row -->
   </div><!-- close container -->
 </div>
-
-
-
-

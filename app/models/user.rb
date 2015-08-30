@@ -8,21 +8,16 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :display_name, presence: true, uniqueness: true, format: { with: /\A[-a-zA-Z0-9]+\z/,
-  #   message: "can only contain alphanumeric characters and dashes." }
 
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "80x80>", :mini => "20x20>" }, :default_url => "noimage-small.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :avatar, :less_than => 1.megabytes
 
-  #callbacks
+  # callbacks
   before_create :create_display_name
   after_save :create_admin
-  # before_save :slugify
-  # before_update :slugify
-  # after_update :slugify
 
-  #instance methods
+  #class methods
 
   def to_param
     display_name
@@ -49,10 +44,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # FB authentication
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end

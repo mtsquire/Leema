@@ -19,13 +19,6 @@
               <div><%= f.label :last_name %>
               <%= f.text_field :last_name, class: 'form-control input_wide' %></div>
             </div>
-            <!-- <div class="form-group">
-              <%= f.label :display_name %>
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">www.leemaeats.com/</span>
-                <%= f.text_field :display_name, class: 'form-control input_wide' %>
-              </div>
-            </div> -->
             <div class="form-group">
               <div><%= f.label :email %>
               <%= f.email_field :email, class: 'form-control input_wide' %></div>
@@ -45,6 +38,8 @@
             </div>
           </fieldset>
           <div class="text-center">
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+            <hr>
             <p><small>By submitting, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
             <%= f.submit "Sign up", :class => "btn btn-primary" %>
           </div>
@@ -52,8 +47,9 @@
             Already a member? <%= render "devise/shared/links" %>
           </div>
 
-        <% end %>
+          <% end %>
       </div><!-- close col -->
     </div><!-- close row -->
+  
   </div><!-- close container -->
 </div><!-- close sign-in-reg -->

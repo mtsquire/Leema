@@ -56,6 +56,14 @@
 
       </script>
   <% end %>
+  <script type="text/javascript">
+    //fixed facebook login adding weird route to url
+    if (window.location.hash == '#_=_'){
+        history.replaceState 
+            ? history.replaceState(null, null, window.location.href.split('#')[0])
+            : window.location.hash = '';
+    }
+    </script>
 </head>
 <body class="homepage">
   <div class="alert alert-info alert-dismissible newsletter-alert" role="alert" style="display:none;">

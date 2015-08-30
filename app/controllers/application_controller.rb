@@ -19,10 +19,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    #Added so a user can edit their profile page.
+    # Added so a user can edit their profile page.
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|
-        u.permit(:date_of_birth, :about)
+        u.permit(:date_of_birth, :about, :first_name, :last_name, :email, :password_confirmation, :password, :mailing_list)
       end
       devise_parameter_sanitizer.for(:account_update) do |u|
         u.permit(:date_of_birth, :first_name, :last_name, :email, :city, :cover_photo, :state, :about, :password, :password_confirmation, :current_password, :store_name, :store_logo, :avatar, :display_name, :mailing_list)

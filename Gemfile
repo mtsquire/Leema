@@ -33,7 +33,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Facebook authentication
+gem 'omniauth'
 gem 'omniauth-facebook'
+
 # Used as currency fields
 gem 'money-rails'
 gem 'cancancan', '~> 1.9'
