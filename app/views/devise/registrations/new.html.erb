@@ -38,7 +38,7 @@
             </div>
           </fieldset>
           <div class="text-center">
-            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'fb-login-button', 'data-size' => "large" %>
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
             <hr>
             <p><small>By submitting, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
             <%= f.submit "Sign up", :class => "btn btn-primary" %>
@@ -53,11 +53,3 @@
   
   </div><!-- close container -->
 </div><!-- close sign-in-reg -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=778387892228096";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
