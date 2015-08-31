@@ -2,7 +2,7 @@ Spree::Order.class_eval do
 
   has_many :stock_locations, through: :shipments
   has_many :suppliers, through: :stock_locations
-  
+
     def finalize!
       # lock all adjustments (coupon promotions, etc.)
       all_adjustments.each{|a| a.close}
@@ -37,7 +37,6 @@ Spree::Order.class_eval do
     # Here we are handling notification by emailing the suppliers.
     # If you want to customize this you could override it as a hook for notifying a supplier with a API request instead.
     def finalize_with_drop_ship!
-      byebug
       finalize_without_drop_ship!
       shipments.each do |shipment|
         if SpreeDropShip::Config[:send_supplier_email] && shipment.supplier.present?
