@@ -7,6 +7,11 @@ Spree::Shipment.class_eval do
     nil
   end
 
+  #override this method from spree_drop_ship
+  def supplier_commission_total
+    ((self.item_cost * (self.supplier.commission_percentage / 100)) + self.supplier.commission_flat_rate)
+  end
+
   private
 
   def selected_easy_post_rate_id
@@ -33,11 +38,6 @@ Spree::Shipment.class_eval do
 
   def easypost_tracker
     EasyPost::Tracker.retrieve(self.tracking)
-  end
-
-  #override this method from spree_drop_ship
-  def supplier_commission_total
-    ((self.item_cost * (self.supplier.commission_percentage / 100)) + self.supplier.commission_flat_rate)
   end
 
 
