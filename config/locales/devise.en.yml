@@ -4,6 +4,7 @@ en:
   devise:
     callbacks:
       user:
+        fb-success: "Successfully authenticated from Facebook account."
         failure: "Sorry, but it looks like you already created an account on Leema with your Facebook email. Please sign in using the form below."
     confirmations:
       confirmed: "Your account was successfully confirmed."

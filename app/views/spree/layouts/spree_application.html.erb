@@ -6,6 +6,14 @@
 <!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
   <head data-hook="inside_head">
     <%= render :partial => 'spree/shared/head' %>
+    <script type="text/javascript">
+    //fixed facebook login adding weird route to url
+    if (window.location.hash == '#_=_'){
+        history.replaceState 
+            ? history.replaceState(null, null, window.location.href.split('#')[0])
+            : window.location.hash = '';
+    }
+    </script>
   </head>
   <body class="<%= body_class %> spree" id="<%= @body_id || 'default' %>" data-hook="body">
 
