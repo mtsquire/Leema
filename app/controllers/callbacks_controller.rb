@@ -7,7 +7,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
       redirect_to signin_path
     else
       @user = User.from_omniauth(request.env["omniauth.auth"])
-      set_flash_message :success, :success
+      set_flash_message :success, :fb_success
       sign_in_and_redirect @user
     end
   end
