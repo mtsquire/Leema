@@ -77,6 +77,40 @@ module ApplicationHelper
     end
   end
 
+  def find_order_by_token_or_user(options={})
+
+    # Find any incomplete orders for the guest_token
+    order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
+    # Find any incomplete orders for the current user
+    if order.nil? && current_user
+      order = Spree::Order.incomplete.order('id DESC').where({ currency: current_currency, user_id: current_user.try(:id)}).first
+      # If there is no prior order, find the latest in progress
+      # order from the guest and associate it with the newly logged in user
+      if !order
+        order = Spree::Order.incomplete.find_by({ currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: nil })
+      end
+    end
+
+    order
+  end
+
+  def find_leema_order_by_token_or_user(options={})
+
+    # Find any incomplete orders for the guest_token
+    order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
+    # Find any incomplete orders for the current user
+    if order.nil? && current_user
+      order = Spree::Order.incomplete.order('id DESC').where({ currency: current_currency, user_id: current_user.try(:id)}).first
+      # If there is no prior order, find the latest in progress
+      # order from the guest and associate it with the newly logged in user
+      if !order
+        order = Spree::Order.incomplete.find_by({ currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: nil })
+      end
+    end
+
+    order
+  end
+
   def current_order_params
     { currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: current_user.try(:id) }
   end
