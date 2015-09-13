@@ -1,15 +1,14 @@
 Spree::BaseHelper.module_eval do
   def link_to_cart(text = nil)
     return "" if current_spree_page?(spree.cart_path)
-
     text = text ? h(text) : Spree.t('cart')
     css_class = nil
 
-    if current_order.nil? or current_order.item_count.zero?
+    if current_leema_order.nil? or current_leema_order.item_count.zero?
       text = "<i class='fa fa-shopping-cart'></i> (#{Spree.t('0')})".html_safe
       css_class = 'empty'
     else
-      text = "<i class='fa fa-shopping-cart'></i> (#{current_order.item_count})".html_safe
+      text = "<i class='fa fa-shopping-cart'></i> (#{current_leema_order.item_count})".html_safe
       css_class = 'full'
     end
 
