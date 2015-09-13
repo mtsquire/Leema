@@ -95,7 +95,7 @@ module Spree
       end
 
       def load_order_with_lock
-        @order = current_order(lock: true)
+        @order = current_leema_order(lock: true)
         redirect_to spree.cart_path and return unless @order
 
         if params[:state]
@@ -175,7 +175,6 @@ module Spree
             shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first 
             # have to use .first to get a single object, otherwise returns an ActiveRecord
             # Association
-             
           end
 
           if li.product.allow_usps_express == 1
@@ -195,9 +194,49 @@ module Spree
             shipment.available_rates[1] << shipment.shipping_rates.where(name: "USPS Priority").first
           end
           shipment.available_rates[1].selected = true
-
         end
 
       end
+
+      def current_leema_order(options = {})
+        options[:create_order_if_necessary] ||= false
+        options[:lock] ||= false
+        return @current_order if @current_order
+        byebug
+        @current_order = find_leema_order_by_token_or_user(options)
+
+        if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
+          @current_order = Spree::Order.new(current_order_params)
+          @current_order.user ||= current_user
+          # See issue #3346 for reasons why this line is here
+          @current_order.created_by ||= current_user
+          @current_order.save!
+        end
+
+        if @current_order
+          return @current_order
+        end
+      end
+
+      def find_leema_order_by_token_or_user(options={})
+
+        # Find any incomplete orders for the guest_token
+        order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
+        byebug
+        # Find any incomplete orders for the current user
+        if order.nil? && current_user
+          order = Spree::Order.incomplete.order('id DESC').where({ currency: current_currency, user_id: current_user.try(:id)}).first
+          byebug
+          # If there is no prior order, find the latest in progress
+          # order from the guest and associate it with the newly logged in user
+          if !order
+            order = Spree::Order.incomplete.find_by({ currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: nil })
+            byebug
+          end
+        end
+
+        order
+      end
+
   end
 end

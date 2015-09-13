@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/store'
 
   devise_for :users, :controllers => { 
-    :omniauth_callbacks => "callbacks", 
+    :omniauth_callbacks => "callbacks",
     :registrations => "registrations" }
 
   devise_scope :user do

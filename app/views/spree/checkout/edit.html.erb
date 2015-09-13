@@ -15,9 +15,10 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <p class="field" style='clear: both'>
-                <%= form.label :email %><br />
+                <%= form.label :email %><span class="required"><br />
                 <%= form.text_field :email %>
               </p>
+              <%= render 'devise/sessions/fb_form.html.erb' %>
             </div>
           </div>
         <% end %>

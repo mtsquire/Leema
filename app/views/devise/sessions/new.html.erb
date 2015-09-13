@@ -5,7 +5,7 @@
         <div class="form-header logo-inverse">
           <a href="/"><%= image_tag "leema-logo-white.png", class: 'img-responsive signin-logo' %></a>
         </div>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'well'}) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'well'}) do |f| %>
         <%= devise_error_messages! %>
         <fieldset>
           <legend>

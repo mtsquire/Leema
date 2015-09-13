@@ -1,0 +1,12 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'well'}) do |f| %>
+  <%= devise_error_messages! %>
+  <%= bootstrap_flash %>
+  <div class="facebook-login">
+    <%= link_to omniauth_authorize_path(resource, :facebook) do %>
+      <i class="fa fa-facebook"></i> Sign in with Facebook
+    <% end %>
+  </div>
+  <div class="text-center">
+    <p><small>By submitting, I acknowledge that I have read, understand and agree to be bound by the leemaeats.com website <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.</small></p>
+  </div>
+<% end %>
