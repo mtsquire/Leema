@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825053614) do
+ActiveRecord::Schema.define(version: 20150910021014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -872,6 +872,8 @@ ActiveRecord::Schema.define(version: 20150825053614) do
     t.integer  "store_logo_file_size"
     t.datetime "store_logo_updated_at"
     t.integer  "allow_pickup",                                     default: 0
+    t.integer  "vacation_mode",                                    default: 0
+    t.date     "return_date"
   end
 
   add_index "spree_suppliers", ["active"], name: "index_spree_suppliers_on_active", using: :btree
@@ -1085,6 +1087,7 @@ ActiveRecord::Schema.define(version: 20150825053614) do
     t.datetime "store_logo_updated_at"
     t.string   "display_name"
     t.integer  "mailing_list"
+    t.string   "fb_photo"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
