@@ -43,7 +43,6 @@ module ApplicationHelper
     options[:create_order_if_necessary] ||= false
     options[:lock] ||= false
     return @current_order if @current_order
-    byebug
     @current_order = find_leema_order_by_token_or_user(options)
 
     if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
@@ -63,7 +62,6 @@ module ApplicationHelper
     options[:create_order_if_necessary] ||= false
     options[:lock] ||= false
     return @current_order if @current_order
-    byebug
     @current_order = find_leema_order_by_token_or_user(options)
 
     if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
@@ -79,49 +77,8 @@ module ApplicationHelper
     end
   end
 
-  def find_order_by_token_or_user(options={})
-
-    # Find any incomplete orders for the guest_token
-    order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
-    byebug
-    # Find any incomplete orders for the current user
-    if order.nil? && current_user
-      order = Spree::Order.incomplete.order('id DESC').where({ currency: current_currency, user_id: current_user.try(:id)}).first
-      byebug
-      # If there is no prior order, find the latest in progress
-      # order from the guest and associate it with the newly logged in user
-      if !order
-        order = Spree::Order.incomplete.find_by({ currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: nil })
-        byebug
-      end
-    end
-
-    order
-  end
-
-  def find_leema_order_by_token_or_user(options={})
-
-    # Find any incomplete orders for the guest_token
-    order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
-    byebug
-    # Find any incomplete orders for the current user
-    if order.nil? && current_user
-      order = Spree::Order.incomplete.order('id DESC').where({ currency: current_currency, user_id: current_user.try(:id)}).first
-      byebug
-      # If there is no prior order, find the latest in progress
-      # order from the guest and associate it with the newly logged in user
-      if !order
-        order = Spree::Order.incomplete.find_by({ currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: nil })
-        byebug
-      end
-    end
-
-    order
-  end
-
   def current_order_params
     { currency: current_currency, guest_token: cookies.signed[:guest_token], user_id: current_user.try(:id) }
-    byebug
   end
 
   def current_currency
