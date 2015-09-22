@@ -20,6 +20,11 @@ group :development do
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
   gem 'rb-fsevent', '>= 0.9.1'
 end
+
+# testing
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
