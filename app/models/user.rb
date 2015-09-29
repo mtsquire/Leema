@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.fb_photo = auth.info.image
+      #user.fb_photo = auth.info.image
     end
   end
 
