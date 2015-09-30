@@ -18,11 +18,11 @@ module ApplicationHelper
     text = text ? h(text) : Spree.t('cart')
     css_class = nil
 
-    if current_leema_order.nil? or current_leema_order.item_count.zero?
+    if current_order.nil? or current_order.item_count.zero?
       text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{Spree.t('0')})</span>".html_safe
       css_class = 'empty'
     else
-      text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{current_leema_order.item_count})</span>".html_safe
+      text = "<i class='fa fa-shopping-cart'></i> <span class='item-count'>(#{current_order.item_count})</span>".html_safe
       css_class = 'full'
     end
 
@@ -43,7 +43,7 @@ module ApplicationHelper
     options[:create_order_if_necessary] ||= false
     options[:lock] ||= false
     return @current_order if @current_order
-    @current_order = find_leema_order_by_token_or_user(options)
+    @current_order = find_order_by_token_or_user(options)
 
     if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
       @current_order = Spree::Order.new(current_order_params)
@@ -58,11 +58,11 @@ module ApplicationHelper
     end
   end
 
-  def current_leema_order(options = {})
+  def current_order(options = {})
     options[:create_order_if_necessary] ||= false
     options[:lock] ||= false
     return @current_order if @current_order
-    @current_order = find_leema_order_by_token_or_user(options)
+    @current_order = find_order_by_token_or_user(options)
 
     if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
       @current_order = Spree::Order.new(current_order_params)
@@ -94,7 +94,7 @@ module ApplicationHelper
     order
   end
 
-  def find_leema_order_by_token_or_user(options={})
+  def find_order_by_token_or_user(options={})
 
     # Find any incomplete orders for the guest_token
     order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)

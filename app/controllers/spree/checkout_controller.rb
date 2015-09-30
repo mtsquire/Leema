@@ -95,7 +95,7 @@ module Spree
       end
 
       def load_order_with_lock
-        @order = current_leema_order(lock: true)
+        @order = current_order(lock: true)
         redirect_to spree.cart_path and return unless @order
 
         if params[:state]
@@ -198,11 +198,11 @@ module Spree
 
       end
 
-      def current_leema_order(options = {})
+      def current_order(options = {})
         options[:create_order_if_necessary] ||= false
         options[:lock] ||= false
         return @current_order if @current_order
-        @current_order = find_leema_order_by_token_or_user(options)
+        @current_order = find_order_by_token_or_user(options)
 
         if options[:create_order_if_necessary] && (@current_order.nil? || @current_order.completed?)
           @current_order = Spree::Order.new(current_order_params)
@@ -217,7 +217,7 @@ module Spree
         end
       end
 
-      def find_leema_order_by_token_or_user(options={})
+      def find_order_by_token_or_user(options={})
 
         # Find any incomplete orders for the guest_token
         order = Spree::Order.incomplete.includes(:adjustments).lock(options[:lock]).find_by(current_order_params)
