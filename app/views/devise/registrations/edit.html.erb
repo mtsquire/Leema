@@ -62,11 +62,12 @@
             <%= f.label :profile_picture %>
             <%= f.file_field :avatar %>
             <p class="help-block">Upload a picture of yourself! We find that adding a photo of yourself creates trust between buyers and sellers. <strong>Recommended size 200px x 200px.</strong></p>
+            <p class="icon-title">Current Profile Photo:</p>
             <% if @user.avatar_file_name? %>
-              <p class="icon-title">Current Profile Photo:</p>
-              <%= image_tag @user.avatar.url(:medium), class: "img-responsive" %>
+              <%= image_tag @user.avatar.url(:medium), class: "img-thumbnail img-responsive profile-photo-admin" %>
+            <% elsif current_user.fb_photo? %>
+                <img src="<%= current_user.fb_photo %>?width=400" class="img-thumbnail img-responsive profile-photo-admin">
             <% else %>
-              <p class="icon-title">Current Profile Photo:</p>
               <%= image_tag "leema-logo-alt.png", class: 'img-thumbnail img-responsive profile-photo-admin' %>
             <% end %>
           </div>

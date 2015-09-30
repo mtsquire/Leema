@@ -47,6 +47,8 @@
           <%= image_tag @user.avatar.url(:medium), class: 'img-responsive' %>
         <% elsif @user.supplier? && @user.supplier.store_logo_file_name? %>
             <%= image_tag @user.supplier.store_logo, class: 'img-responsive' %>
+        <% elsif @user.fb_photo? %>
+            <img src="<%= @user.fb_photo %>?width=400" class="img-responsive">
         <% else %>
           <%= image_tag "leema-logo-alt.png", class: 'img-responsive' %>
         <% end %>
