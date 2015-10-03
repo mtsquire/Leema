@@ -15,11 +15,47 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rails'
+require 'capybara/rspec'
 require 'spree/testing_support/controller_requests'
+
+# Checks for pending migrations before tests are run.
+# If you are not using ActiveRecord, you can remove this line.
+ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  config.before(:suite) do
+    # First, in case the database contains data from a previous run (e.g.
+    # from a run that crashed), run a full clean using the truncation
+    # strategy.
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    # If the test is a Javascript test, set the strategy to truncation
+    # as transactional cleaning will not work due to the test runner
+    # and app not sharing the same process when testing from a browser.
+    # For non-Javascript tests use the transaction strategy as it is faster.
+    if example.metadata[:js]
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
+
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do |group|
+    DatabaseCleaner.clean
+    Apartment::Database.reset
+  end
+
   config.include Spree::TestingSupport::ControllerRequests, :type => :controller
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
