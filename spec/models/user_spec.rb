@@ -2,24 +2,16 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe User do
-  before(:each) do
-    user = User.create(
-      first_name: 'Brandon',
-      last_name: 'Hay',
-      email: 'brandon.a.hay@gmail.com',
-      password: 'password123',
-      password_confirmation: 'password123')
-  end
-  it "should successfully sign up a new user" do
+  it "should sign up as a new user" do
+    user = FactoryGirl.create(:user)
     expect(user.first_name).to eq('Brandon')
+    expect(user.display_name).to_not be_nil
   end
-  describe Spree::Supplier do
-    it "should succesfully sign up a new supplier" do
-      supplier = Spree::Supplier.create(
-        email: user.email,
-        name: user.full_name,
-        store_name: 'my store'
-        )
-    end
+
+  it "should sign the user up as a new supplier and update the display name" do
+    user = FactoryGirl.create(:user)
+    supplier = FactoryGirl.create(:supplier)
+    expect(supplier.name).to eq('Brandon Hay')
+    expect(supplier.users.first.display_name).to eq('brandons-bagels')
   end
 end

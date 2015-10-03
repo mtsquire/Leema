@@ -550,7 +550,7 @@ DEPENDENCIES
   database_cleaner (= 1.3.0)
   devise (= 3.2.4)
   easypost
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   fog
   jbuilder (~> 2.0)
   jquery-rails
