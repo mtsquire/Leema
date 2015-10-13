@@ -31,7 +31,11 @@
                 <%= f.label :return_date, Spree.t('select_return_date') %>:
                 <%= f.date_field :return_date, :class => 'form-control' %>
                 <br>
-                <%= button Spree.t('go_on_vacation') %>
+                <% if spree_current_user.supplier.vacation_mode == 0 %>
+                    <%= button Spree.t('go_on_vacation') %>
+                <% elsif spree_current_user.supplier.vacation_mode == 1 %>
+                    <%= button Spree.t('back_from_vacation') %>
+                <% end %>
             </div>
 
     <% end %>
