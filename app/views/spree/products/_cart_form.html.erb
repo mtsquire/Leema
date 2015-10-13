@@ -26,7 +26,12 @@
           <% end %>
         </div>
 
-          <% if @product.master.can_supply? && @product.out_of_stock == 0 %>
+          <% if @product.suppliers.first.vacation_mode == 1 %>
+            <div class="well">
+              <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
+            </div>
+
+          <% elsif @product.master.can_supply? && @product.out_of_stock == 0 %>
 
             <div class="add-to-cart">
               <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
