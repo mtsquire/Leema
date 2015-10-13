@@ -11,6 +11,12 @@
 <%= render 'spree/shared/error_messages', target: @object %>
 
 <%= form_for [:admin, @object] do |f| %>
+<h2>Going on vacation?</h2>
+  Vacation Mode
+  <%= f.check_box :vacation_mode %>
+  When are you returning?
+  <%= f.date_field :return_date %>
+  <%= button Spree.t('save') %>
   <%= render "form", form: f %>
 <% end %>
 
