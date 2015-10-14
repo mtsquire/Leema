@@ -1,8 +1,13 @@
 class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
+  before_filter :check_if_leema_admin
 
   def index
     unless spree_current_user.leema_admin?
-      not_found
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
+      end
     end
   end
 
@@ -33,6 +38,18 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
 
     def location_after_save
       spree.edit_admin_supplier_path(@object)
+    end
+
+    def check_if_leema_admin
+      if !spree_current_user.leema_admin?
+        if spree_current_user.supplier.id.to_s != params[:id]
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+            format.xml  { head :not_found }
+            format.any  { head :not_found }
+          end
+        end
+      end
     end
 
 end
