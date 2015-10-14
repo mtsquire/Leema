@@ -27,9 +27,16 @@
         </div>
 
           <% if @product.suppliers.first.vacation_mode == 1 %>
-            <div class="well">
-              <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
-            </div>
+            <% if @product.suppliers.first.return_date %>
+              <div class="well">
+                <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
+              </div>
+            <% else %>
+            <!-- in case the seller didnt specify a return date -->
+              <div class="well">
+                <p>This seller is currently on vacation. Please check back later to purchase this product!</p>
+              </div>
+            <% end %>
 
           <% elsif @product.master.can_supply? && @product.out_of_stock == 0 %>
 
