@@ -47,7 +47,7 @@ Spree::Admin::ProductsController.class_eval do
         @order_count = product.orders.where(state: "complete").count
       end
     else
-      @collection = @user.supplier.products.all
+      @collection = Spree::Product.joins(:suppliers).where('supplier_id = ?', @user.supplier.id)
     end
     respond_to do |format|
       format.html # index.html.erb
