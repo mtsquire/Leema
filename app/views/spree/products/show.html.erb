@@ -75,11 +75,9 @@
             <!-- Begin Custom Orders -->
             <!-- only show this button if supplier filled out order desc field and product is in stock or made to order -->
             <% if !@product.custom_order_description.blank? && @product.master.can_supply? && @product.out_of_stock == 0 %>
-              <% if @product.suppliers.first.vacation_mode == 1 %>
-                <div class="well">
-                  <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
-                </div>
-              <% else %>
+            <!-- dont show the custom order button if seller is on vacation -->
+              <% if @product.suppliers.first.vacation_mode &&
+                    @product.suppliers.first.vacation_mode == 0 %>
                 <div id="custom-order">
                   <a href="#" class="btn btn-info" data-toggle="modal" data-target="#<%= @product.slug %>">Custom Order</a>
 
