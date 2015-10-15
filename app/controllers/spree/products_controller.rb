@@ -19,6 +19,7 @@ module Spree
       @product_properties = @product.product_properties.includes(:property)
       @taxon = Spree::Taxon.find(params[:taxon_id]) if params[:taxon_id]
       @supplier = @product.suppliers.first
+      puts "supplier vacation #{@supplier.vacation_mode}"
     end
 
     private
