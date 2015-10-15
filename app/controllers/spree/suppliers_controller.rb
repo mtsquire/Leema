@@ -1,8 +1,8 @@
 class Spree::SuppliersController < Spree::StoreController
 
   before_filter :check_if_supplier, only: [:create, :new]
+  before_filter :check_if_leema_admin, except: [:create, :new]
   ssl_required
-
 
   def create
     authorize! :create, Spree::Supplier
@@ -50,6 +50,20 @@ class Spree::SuppliersController < Spree::StoreController
     if spree_current_user and spree_current_user.supplier?
       flash[:error] = Spree.t('supplier_registration.already_signed_up')
       redirect_to spree.account_path and return
+    end
+  end
+
+  def check_if_leema_admin
+    if !spree_current_user.leema_admin?
+      # the url can be accessed by either the id or the slug of the supplier so
+      # if either of these match we authenticate the user
+      if (spree_current_user.supplier.id.to_s != params[:id]) && (spree_current_user.supplier.slug != params[:id])
+        respond_to do |format|
+          format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+          format.xml  { head :not_found }
+          format.any  { head :not_found }
+        end
+      end
     end
   end
 

@@ -4,7 +4,8 @@
 
 <%= ogtype "product" %>
 
-<% cache [current_currency, @product] do %>
+<!-- Fragment caching. Invalidate the cache if supplier/product/current_currency get changed -->
+<% cache [current_currency, @product, @supplier] do %>
 
  <div id="product-brand" class="row">
     <div class="col-xs-12">
@@ -52,7 +53,6 @@
           <div data-hook="promotions">
             <%= render :partial => 'promotions' %>
           </div>
-          <!-- removed properties and promotions partials -->
 
         </div>
       </div>
@@ -75,35 +75,38 @@
             <!-- Begin Custom Orders -->
             <!-- only show this button if supplier filled out order desc field and product is in stock or made to order -->
             <% if !@product.custom_order_description.blank? && @product.master.can_supply? && @product.out_of_stock == 0 %>
+            <!-- dont show the custom order button if seller is on vacation -->
+              <% if @supplier.vacation_mode &&
+                    @supplier.vacation_mode == 0 %>
+                <div id="custom-order">
+                  <a href="#" class="btn btn-info" data-toggle="modal" data-target="#<%= @product.slug %>">Custom Order</a>
 
-              <div id="custom-order">
-                <a href="#" class="btn btn-info" data-toggle="modal" data-target="#<%= @product.slug %>">Custom Order</a>
+                  <div class="modal fade" id="<%= @product.slug %>" tabindex="-1" role="dialog" aria-labelledby="<%= @product.slug %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
 
-                <div class="modal fade" id="<%= @product.slug %>" tabindex="-1" role="dialog" aria-labelledby="<%= @product.slug %>" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Custom Order - <%= accurate_title %></h4>
+                          </div><!-- close modal header -->
 
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="exampleModalLabel">Custom Order - <%= accurate_title %></h4>
-                        </div><!-- close modal header -->
+                          <div class="modal-body">
+                            <strong><%= @product.suppliers.first.store_name %> says:</strong>
+                            <%= simple_format(@product.custom_order_description) %>
+                            <div id="cart-form" data-hook="cart_form">
+                              <%= render 'custom_order_cart_form' %>
+                            </div> <!-- close cart-form -->
+                          </div><!-- close modal body -->
 
-                        <div class="modal-body">
-                          <strong><%= @product.suppliers.first.store_name %> says:</strong>
-                          <%= simple_format(@product.custom_order_description) %>
-                          <div id="cart-form" data-hook="cart_form">
-                            <%= render 'custom_order_cart_form' %>
-                          </div> <!-- close cart-form -->
-                        </div><!-- close modal body -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div><!-- close modal-footer -->
 
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div><!-- close modal-footer -->
-
-                    </div><!-- close modal content -->
-                  </div><!-- close modal dialog -->
-                </div><!-- close modal -->
-              </div><!-- close #custom-order -->
+                      </div><!-- close modal content -->
+                    </div><!-- close modal dialog -->
+                  </div><!-- close modal -->
+                </div><!-- close #custom-order -->
+              <% end %>
             <% end %> <!-- Close Custom Orders -->
 
           </div><!-- close .product-description -->
@@ -146,4 +149,3 @@
     </div>
   </div>
 <% end %>
-
