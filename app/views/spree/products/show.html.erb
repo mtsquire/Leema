@@ -4,6 +4,7 @@
 
 <%= ogtype "product" %>
 
+<!-- Fragment caching. Invalidate the cache if supplier/product/current_currency get changed -->
 <% cache [current_currency, @product, @supplier] do %>
 
  <div id="product-brand" class="row">
