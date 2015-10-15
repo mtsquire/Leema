@@ -4,8 +4,6 @@
 
 <%= ogtype "product" %>
 
-<% cache [current_currency, @product] do %>
-
  <div id="product-brand" class="row">
     <div class="col-xs-12">
       <a href="/<%= @product.suppliers.first.users.first.display_name %>">
@@ -148,5 +146,3 @@
       </div>
     </div>
   </div>
-<% end %>
-
