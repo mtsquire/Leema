@@ -7,7 +7,6 @@
       <div data-hook="product_price">
 
         <div id="product-price">
-
           <div>
             <span class="price selling" itemprop="price">
               <%= display_price(@product) %>
@@ -26,29 +25,31 @@
           <% end %>
         </div>
 
-          <% if @product.suppliers.first.vacation_mode == 1 %>
-            <% if @product.suppliers.first.return_date %>
-              <div class="well">
-                <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
-              </div>
-            <% else %>
-            <!-- in case the seller didnt specify a return date -->
-              <div class="well">
-                <p>This seller is currently on vacation. Please check back later to purchase this product!</p>
-              </div>
-            <% end %>
+        <% if @product.suppliers.first.vacation_mode == 1 %>
 
-          <% elsif @product.master.can_supply? && @product.out_of_stock == 0 %>
-
-            <div class="add-to-cart">
-              <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
-              <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
-                <%= Spree.t(:add_to_cart) %>
-              <% end %>
+          <% if @product.suppliers.first.return_date %>
+            <div class="well">
+              <p>This seller is currently on vacation until <%= @product.suppliers.first.return_date.strftime("%B %d, %Y") %>. Please check back later to purchase this product!</p>
             </div>
-          <% elsif @product.variants.empty? %>
-
+          <% else %>
+          <!-- in case the seller didnt specify a return date -->
+            <div class="well">
+              <p>This seller is currently on vacation. Please check back later to purchase this product!</p>
+            </div>
           <% end %>
+
+        <% elsif @product.master.can_supply? && @product.out_of_stock == 0 %>
+
+          <div class="add-to-cart">
+            <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
+            <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
+              <%= Spree.t(:add_to_cart) %>
+            <% end %>
+          </div>
+
+        <% elsif @product.variants.empty? %>
+
+        <% end %>
       </div>
     <% else %>
         <div id="product-price">
