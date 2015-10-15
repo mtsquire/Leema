@@ -1,9 +1,8 @@
 class Spree::SuppliersController < Spree::StoreController
 
   before_filter :check_if_supplier, only: [:create, :new]
-  before_filter :check_if_leema_admin
+  before_filter :check_if_leema_admin, except: [:create, :new]
   ssl_required
-
 
   def create
     authorize! :create, Spree::Supplier
