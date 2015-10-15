@@ -41,7 +41,8 @@ Spree::Order.class_eval do
       shipments.each do |shipment|
         if SpreeDropShip::Config[:send_supplier_email] && shipment.supplier.present?
           begin
-            Spree::DropShipOrderMailer.supplier_order(shipment.id).deliver!
+            # 'delay' is from a gem which hopefully will solve our problem of emails timing out
+            Spree::DropShipOrderMailer.delay.supplier_order(shipment.id)
           rescue => ex #Errno::ECONNREFUSED => ex
             puts ex.message
             puts ex.backtrace.join("\n")

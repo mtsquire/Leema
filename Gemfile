@@ -16,15 +16,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-group :development do
-  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
-  gem 'rb-fsevent', '>= 0.9.1'
-end
 
 # testing
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
+
 gem 'capybara'
 
 # Use jquery as the JavaScript library
@@ -47,21 +44,17 @@ gem 'omniauth-facebook'
 gem 'money-rails'
 gem 'cancancan', '~> 1.9'
 
+# executing async tasks in the background
+gem 'delayed_job_active_record'
+
 group :development do
+  # speed up the local web server
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+  gem 'rb-fsevent', '>= 0.9.1'
+  # debugging
   gem 'xray-rails'
+  gem 'byebug'
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Debugging
-gem 'byebug', group: :development
 
 # New Relic for server monitoring
 gem 'newrelic_rpm'
