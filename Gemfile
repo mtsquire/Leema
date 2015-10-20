@@ -45,7 +45,7 @@ gem 'money-rails'
 gem 'cancancan', '~> 1.9'
 
 # executing async tasks in the background
-gem 'delayed_job_active_record'
+gem 'sidekiq'
 
 group :development do
   # speed up the local web server
