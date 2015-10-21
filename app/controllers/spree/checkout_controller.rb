@@ -172,9 +172,11 @@ module Spree
       def get_shipping_rates(shipment)
         shipment.line_items.each do |li| 
           if li.product.allow_usps_priority == 1
+            byebug
             shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first 
             # have to use .first to get a single object, otherwise returns an ActiveRecord
             # Association
+            byebug
           end
 
           if li.product.allow_usps_express == 1
@@ -191,7 +193,8 @@ module Spree
 
           # error handling in case no rate was checked by supplier, at least give one option
           if shipment.available_rates == {}
-            shipment.available_rates[1] << shipment.shipping_rates.where(name: "USPS Priority").first
+            # create a rate with (with key of 1). Bug fixed here when I added = instead of <<
+            shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first
           end
           shipment.available_rates[1].selected = true
         end
