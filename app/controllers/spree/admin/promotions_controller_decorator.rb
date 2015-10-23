@@ -1,6 +1,4 @@
 Spree::Admin::PromotionsController.class_eval do
-  include ApplicationHelper
-  before_filter :check_if_leema_admin
 
   protected
   def collection

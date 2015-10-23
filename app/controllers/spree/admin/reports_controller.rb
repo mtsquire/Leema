@@ -1,8 +1,6 @@
 module Spree
   module Admin
     class ReportsController < Spree::Admin::BaseController
-      include ApplicationHelper
-      before_filter :check_if_leema_admin
       respond_to :html
 
       class << self
