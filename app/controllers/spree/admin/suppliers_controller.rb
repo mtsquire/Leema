@@ -1,6 +1,6 @@
 class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
   include ApplicationHelper
-  before_filter :check_if_leema_admin, except: [:create, :new]
+  before_filter :check_if_leema_admin_or_seller, except: [:create, :new]
 
   def edit
     @object.address = Spree::Address.default unless @object.address.present?
