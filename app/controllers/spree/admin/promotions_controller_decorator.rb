@@ -1,4 +1,5 @@
 Spree::Admin::PromotionsController.class_eval do
+
   protected
   def collection
     return @collection if defined?(@collection)
@@ -13,4 +14,5 @@ Spree::Admin::PromotionsController.class_eval do
 
     @collection
   end
+
 end
