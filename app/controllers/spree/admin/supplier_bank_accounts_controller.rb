@@ -1,6 +1,6 @@
 class Spree::Admin::SupplierBankAccountsController < Spree::Admin::ResourceController
   include ApplicationHelper
-  before_filter :check_if_leema_admin_or_seller
+  before_filter :check_if_leema_admin_or_bank_account_owner
   before_filter :load_supplier
   create.before :set_supplier
 
