@@ -28,11 +28,20 @@ module ApplicationHelper
 
   def check_if_leema_admin_or_bank_account_owner
     if !spree_current_user.leema_admin?
-      if (spree_current_user.supplier.slug != params[:supplier_id])
+      if (params[:_method] != 'delete' && spree_current_user.supplier.slug != params[:supplier_id])
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
           format.xml  { head :not_found }
           format.any  { head :not_found }
+        end
+      else
+        # this block means that the user is trying to delete their bank account
+        if (spree_current_user.supplier.id.to_s != params[:supplier_id])
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+            format.xml  { head :not_found }
+            format.any  { head :not_found }
+          end
         end
       end
     end
