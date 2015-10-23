@@ -3,11 +3,7 @@ module ApplicationHelper
   # only allow leema admins to view a page
   def check_if_leema_admin
     if !spree_current_user.leema_admin?
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-        format.xml  { head :not_found }
-        format.any  { head :not_found }
-      end
+      show_404
     end
   end
 
@@ -17,33 +13,29 @@ module ApplicationHelper
       # the url can be accessed by either the id or the slug of the supplier so
       # if either of these match we authenticate the user
       if (spree_current_user.supplier.id.to_s != params[:id]) && (spree_current_user.supplier.slug != params[:id])
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-          format.xml  { head :not_found }
-          format.any  { head :not_found }
-        end
+        show_404
       end
     end
   end
 
   def check_if_leema_admin_or_bank_account_owner
     if !spree_current_user.leema_admin?
-      if (params[:_method] != 'delete' && spree_current_user.supplier.slug != params[:supplier_id])
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-          format.xml  { head :not_found }
-          format.any  { head :not_found }
-        end
-      else
-        # this block means that the user is trying to delete their bank account
-        if (spree_current_user.supplier.id.to_s != params[:supplier_id])
-          respond_to do |format|
-            format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-            format.xml  { head :not_found }
-            format.any  { head :not_found }
-          end
-        end
+      # for some reason the delete action takes the suppliers id as the param, the others take the slug
+      if (params[:_method] == 'delete' && spree_current_user.supplier.id.to_s != params[:supplier_id])
+        show_404
       end
+      # new/edit methods will trigger this block
+      if (params[:_method] != 'delete' && spree_current_user.supplier.slug != params[:supplier_id])
+        show_404
+      end
+    end
+  end
+
+  def show_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
     end
   end
 
