@@ -172,11 +172,9 @@ module Spree
       def get_shipping_rates(shipment)
         shipment.line_items.each do |li| 
           if li.product.allow_usps_priority == 1
-            byebug
             shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first 
             # have to use .first to get a single object, otherwise returns an ActiveRecord
             # Association
-            byebug
           end
 
           if li.product.allow_usps_express == 1
