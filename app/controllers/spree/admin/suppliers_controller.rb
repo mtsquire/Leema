@@ -1,4 +1,5 @@
 class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
+  include ApplicationHelper
   before_filter :check_if_leema_admin, except: [:create, :new]
 
   def edit
