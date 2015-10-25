@@ -41,7 +41,7 @@ Spree::Order.class_eval do
       shipments.each do |shipment|
         if SpreeDropShip::Config[:send_supplier_email] && shipment.supplier.present?
           begin
-            Spree::DropShipOrderMailer.supplier_order(shipment.id).deliver!
+            Spree::DropShipOrderMailer.delay_for(5.seconds).supplier_order(shipment.id)
           rescue => ex #Errno::ECONNREFUSED => ex
             puts ex.message
             puts ex.backtrace.join("\n")
