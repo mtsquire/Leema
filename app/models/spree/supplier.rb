@@ -124,7 +124,7 @@ class Spree::Supplier < Spree::Base
 
     def send_welcome
       begin
-        Spree::SupplierMailer.welcome(self.id).deliver!
+        Spree::SupplierMailer.delay_for(5.seconds).welcome(self.id)
         # Specs raise error for not being able to set default_url_options[:host]
       rescue => ex #Errno::ECONNREFUSED => ex
         Rails.logger.error ex.message
