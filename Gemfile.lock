@@ -35,13 +35,6 @@ GIT
       spree_core (~> 2.3.0)
 
 GIT
-  remote: git://github.com/thedarkone/rails-dev-boost.git
-  revision: 5e63d51f29426f06c96d7ff074beda56cf5f2369
-  specs:
-    rails-dev-boost (0.3.0)
-      railties (>= 3.0)
-
-GIT
   remote: https://github.com/spree/spree_gateway.git
   revision: 6ad5f6b82986f4cf1ddf8f9370f96e2e7501f24c
   branch: 2-3-stable
@@ -116,6 +109,23 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.17.2)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -130,6 +140,7 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     commonjs (0.2.7)
+    connection_pool (2.2.0)
     deface (1.0.1)
       colorize (>= 0.5.8)
       nokogiri (~> 1.6.0)
@@ -260,6 +271,7 @@ GEM
     hashie (3.4.1)
     highline (1.6.21)
     hike (1.2.3)
+    hitimes (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httparty (0.13.3)
@@ -389,6 +401,9 @@ GEM
     rb-fsevent (0.9.5)
     rdoc (4.2.0)
       json (~> 1.4)
+    redis (3.2.1)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -421,6 +436,12 @@ GEM
       rdoc (~> 4.0)
     select2-rails (3.5.9.3)
       thor (~> 0.14)
+    sidekiq (3.5.1)
+      celluloid (~> 0.17.2)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     spree (2.3.4)
       spree_api (= 2.3.4)
       spree_backend (= 2.3.4)
@@ -491,6 +512,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timers (4.1.1)
+      hitimes
     truncate_html (0.9.2)
     turbolinks (2.5.3)
       coffee-rails
@@ -545,12 +568,12 @@ DEPENDENCIES
   puma
   rack-timeout
   rails (= 4.1.6)
-  rails-dev-boost!
   rails_12factor
   rb-fsevent (>= 0.9.1)
   rspec-rails (~> 3.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  sidekiq
   spree (= 2.3.4)
   spree_drop_ship!
   spree_gateway!
