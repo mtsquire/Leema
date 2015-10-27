@@ -75,5 +75,7 @@ gem 'easypost'
 gem 'rails_12factor', group: :production
 ruby "2.1.2"
 
-# asnyc http calls
+# delayed emails using redis db
 gem 'sidekiq'
+# iamge processing interface between ruby and imagemagick
+gem 'mini_magick'
