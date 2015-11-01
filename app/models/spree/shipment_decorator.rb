@@ -3,12 +3,8 @@ Spree::Shipment.class_eval do
   state_machine.before_transition :to => :shipped, :do => :buy_easypost_rate
 
   has_many :products, class_name: Spree::Product.to_s
-  has_attached_file :leema_label
+  has_attached_file :leema_label, processors: [:custom], :styles => {:original => {}}
   validates_attachment_content_type :leema_label, :content_type => /\Aimage\/.*\Z/
-
-  def tracking_url
-    nil
-  end
 
   def send_shipped_email
     ShipmentMailer.delay_for(5.seconds).shipped_email(self.id)
@@ -41,11 +37,7 @@ Spree::Shipment.class_eval do
     easypost_shipment.buy(rate)
     self.tracking = easypost_shipment.tracking_code
     self.postage_label = easypost_shipment.postage_label.label_url
-    leema_label_from_url(self.postage_label)
-  end
-
-  def leema_label_from_url(url)
-    self.leema_label = URI.parse(url)
+    # leema_label_from_url(self.postage_label)
   end
 
   def add_leema_logo_to_label
