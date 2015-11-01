@@ -79,5 +79,6 @@ ruby "2.1.2"
 gem 'sidekiq'
 # script for adding/removing heroku workers
 gem 'hirefire'
+gem 'autoscaler'
 # iamge processing interface between ruby and imagemagick
 gem 'mini_magick'
