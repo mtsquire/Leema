@@ -78,8 +78,6 @@ ruby "2.1.2"
 # delayed emails using redis db
 gem 'sidekiq'
 # script for adding/removing heroku workers
-gem 'hirefire'
 gem 'autoscaler'
-gem "workless", "~> 1.1.3"
 # iamge processing interface between ruby and imagemagick
 gem 'mini_magick'
