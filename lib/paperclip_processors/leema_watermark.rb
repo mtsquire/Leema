@@ -1,5 +1,5 @@
 module Paperclip
-  class Leema_Watermark < Processor
+  class LeemaWatermark < Processor
     def make
       src = @file
       basename = File.basename(file.path, File.extname(file.path))
