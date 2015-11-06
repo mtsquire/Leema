@@ -3,11 +3,18 @@ Spree::Shipment.class_eval do
   state_machine.before_transition :to => :shipped, :do => :buy_easypost_rate
 
   has_many :products, class_name: Spree::Product.to_s
-  has_attached_file :leema_label, processors: [:custom], :styles => {:original => {}}
+  has_attached_file :leema_label, processors: [:leema_watermark], :styles => {:original => {}}
   validates_attachment_content_type :leema_label, :content_type => /\Aimage\/.*\Z/
 
   def send_shipped_email
     ShipmentMailer.delay_for(5.seconds).shipped_email(self.id)
+  end
+
+  # takes the postage label from easypost and stores it in our db. then our watermark processor
+  # is triggered
+  def leema_label_from_url(url)
+    self.leema_label = URI.parse(url)
+    self.save!
   end
 
   #override this method from spree_drop_ship
@@ -37,18 +44,7 @@ Spree::Shipment.class_eval do
     easypost_shipment.buy(rate)
     self.tracking = easypost_shipment.tracking_code
     self.postage_label = easypost_shipment.postage_label.label_url
-    # leema_label_from_url(self.postage_label)
-  end
-
-  def add_leema_logo_to_label
-    first_image = MiniMagick::Image.open(self.postage_label)
-    second_image = MiniMagick::Image.open("#{Rails.root}/app/assets/images/leema-ship.png")
-    second_image.resize('360x360')
-    result = first_image.composite(second_image) do |c|
-      c.compose "Over"    # OverCompositeOp
-      c.geometry "+650+580" # copy second_image onto first_image from (20, 20)
-    end
-    result.write "leemalabel.jpg"
+    leema_label_from_url(self.postage_label)
   end
 
   def easypost_tracker
