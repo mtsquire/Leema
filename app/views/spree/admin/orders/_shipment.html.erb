@@ -135,7 +135,7 @@
       <% if shipment.tracking.present? %>
         <tr>
           <td colspan="5">
-            <strong><%= Spree.t(:shipment_label) %>:</strong> <%= link_to 'Shipping Label', shipment.leema_label.url, :target => "_blank" %>
+            <strong><%= Spree.t(:postage_label) %>:</strong> <%= link_to 'Click here', shipment.leema_label.url, :target => "_blank" %>
           </td>
         </tr>
       <% end %>
