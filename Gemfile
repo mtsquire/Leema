@@ -77,7 +77,3 @@ ruby "2.1.2"
 
 # delayed emails using redis db
 gem 'sidekiq'
-# script for adding/removing heroku workers
-gem 'hirefire'
-# iamge processing interface between ruby and imagemagick
-gem 'mini_magick'
