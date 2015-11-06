@@ -6,10 +6,6 @@ Spree::Shipment.class_eval do
   has_attached_file :leema_label, processors: [:leema_watermark], :styles => {:original => {}}
   validates_attachment_content_type :leema_label, :content_type => /\Aimage\/.*\Z/
 
-  def send_shipped_email
-    ShipmentMailer.delay_for(5.seconds).shipped_email(self.id)
-  end
-
   # takes the postage label from easypost and stores it in our db. then our watermark processor
   # is triggered
   def leema_label_from_url(url)
