@@ -1,16 +1,10 @@
 Spree::Shipment.class_eval do
-  require "open-uri"
   state_machine.before_transition :to => :shipped, :do => :buy_easypost_rate
 
   has_many :products, class_name: Spree::Product.to_s
-  has_attached_file :leema_label, processors: [:leema_watermark], :styles => {:original => {}}
-  validates_attachment_content_type :leema_label, :content_type => /\Aimage\/.*\Z/
 
-  # takes the postage label from easypost and stores it in our db. then our watermark processor
-  # is triggered
-  def leema_label_from_url(url)
-    self.leema_label = URI.parse(url)
-    self.save!
+  def tracking_url
+    nil
   end
 
   #override this method from spree_drop_ship
@@ -40,7 +34,6 @@ Spree::Shipment.class_eval do
     easypost_shipment.buy(rate)
     self.tracking = easypost_shipment.tracking_code
     self.postage_label = easypost_shipment.postage_label.label_url
-    leema_label_from_url(self.postage_label)
   end
 
   def easypost_tracker
