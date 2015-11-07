@@ -28,8 +28,11 @@ Spree::Product.class_eval do
       # if we ever allow more than 1 custom variant.
       variant = self.variants.last
       if variant
-        variant.price = self.price_increase + self.price
-        variant.save!
+        # if supplier doesnt enter anything or if they entered 0, then do nothing with the variant price
+        if self.price_increase && self.price_increase > 0
+          variant.price = self.price_increase + self.price
+          variant.save!
+        end
       else
         # handle this so the app doesnt bomb out
         puts 'no variant found... woops!'

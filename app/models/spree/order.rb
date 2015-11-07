@@ -348,7 +348,7 @@ module Spree
     end
 
     def deliver_order_confirmation_email
-      OrderMailer.delay_for(5.seconds).confirm_email(self.id)
+      OrderMailer.delay.confirm_email(self.id)
       update_column(:confirmation_delivered, true)
     end
 

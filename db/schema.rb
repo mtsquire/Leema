@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910021014) do
+ActiveRecord::Schema.define(version: 20151027200942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -625,7 +625,7 @@ ActiveRecord::Schema.define(version: 20150910021014) do
   create_table "spree_shipments", force: true do |t|
     t.string   "tracking"
     t.string   "number"
-    t.decimal  "cost",                 precision: 10, scale: 2, default: 0.0
+    t.decimal  "cost",                     precision: 10, scale: 2, default: 0.0
     t.datetime "shipped_at"
     t.integer  "order_id"
     t.integer  "address_id"
@@ -633,16 +633,20 @@ ActiveRecord::Schema.define(version: 20150910021014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_location_id"
-    t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
-    t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0,   null: false
-    t.decimal  "pre_tax_amount",       precision: 8,  scale: 2, default: 0.0
-    t.decimal  "supplier_commission",  precision: 8,  scale: 2, default: 0.0,   null: false
+    t.decimal  "adjustment_total",         precision: 10, scale: 2, default: 0.0
+    t.decimal  "additional_tax_total",     precision: 10, scale: 2, default: 0.0
+    t.decimal  "promo_total",              precision: 10, scale: 2, default: 0.0
+    t.decimal  "included_tax_total",       precision: 10, scale: 2, default: 0.0,   null: false
+    t.decimal  "pre_tax_amount",           precision: 8,  scale: 2, default: 0.0
+    t.decimal  "supplier_commission",      precision: 8,  scale: 2, default: 0.0,   null: false
     t.string   "postage_label"
     t.string   "stripe_charge_id"
-    t.boolean  "transferred",                                   default: false
-    t.json     "available_rates",                               default: {},    null: false
+    t.boolean  "transferred",                                       default: false
+    t.json     "available_rates",                                   default: {},    null: false
+    t.string   "leema_label_file_name"
+    t.string   "leema_label_content_type"
+    t.integer  "leema_label_file_size"
+    t.datetime "leema_label_updated_at"
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id", using: :btree
