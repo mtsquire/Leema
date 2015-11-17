@@ -6,7 +6,7 @@ feature 'Supplier Signup', js: true do
     @user = FactoryGirl.create(:user)
     FactoryGirl.create(:supplier, email: @user.email, users: [@user])
     login_user @user
-    visit spree.new_supplier_path
+    visit '/store/admin/suppliers/new'
     page.current_path.should eql(spree.account_path)
     page.should have_content("You've already signed up to become a supplier.")
   end
@@ -19,7 +19,7 @@ feature 'Supplier Signup', js: true do
 
     before do
       SpreeMarketplace::Config.set(allow_signup: true)
-      visit spree.new_supplier_path
+      visit '/store/admin/suppliers/new'
       page.should have_content('LOGIN')
     end
 
@@ -79,7 +79,7 @@ feature 'Supplier Signup', js: true do
         within '#user-info' do
           page.should_not have_link 'Sign Up To Become A Supplier'
         end
-        visit spree.new_supplier_path
+        visit '/store/admin/suppliers/new'
         page.should have_content('Authorization Failure')
       end
 
