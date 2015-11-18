@@ -239,12 +239,15 @@ img {
                                     <td style="vertical-align:top; text-align:left;">Subtotal</td>
                                     <td style="vertical-align:top; text-align:right;"><%= @order.display_item_total %></td>
                                   </tr>
-                                  <% @order.adjustments.eligible.each do |adjustment| %>
-                                    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
-                                    <tr>
-                                      <td style="vertical-align:top; text-align:left;"><%= adjustment.label %>:</td>
-                                      <td style="vertical-align:top; text-align:right;"><%= adjustment.display_amount %></td>
-                                    </tr>
+                                  <% if @order.line_item_adjustments.exists? %>
+                                    <% if @order.all_adjustments.promotion.eligible.exists? %>
+                                      <% @order.all_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+                                          <tr>
+                                            <td style="vertical-align:top; text-align:left;"><%= label %>:</td>
+                                            <td style="vertical-align:top; text-align:right;"><%= adjustments.display_amount %></td>
+                                          </tr>
+                                      <% end %>
+                                    <% end %>
                                   <% end %>
 
                                   <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
