@@ -244,7 +244,7 @@ img {
                                       <% @order.all_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
                                           <tr>
                                             <td style="vertical-align:top; text-align:left;"><%= label %>:</td>
-                                            <td style="vertical-align:top; text-align:right;">price</td>
+                                            <td style="vertical-align:top; text-align:right;"><%= Spree::Money.new(adjustments.sum(&:amount)) %></td>
                                           </tr>
                                       <% end %>
                                     <% end %>
