@@ -2,7 +2,7 @@
 module Spree
   class Promotion
     module Rules
-      class Product < PromotionRule
+      class OneProduct < PromotionRule
         has_and_belongs_to_many :products, class_name: '::Spree::Product', join_table: 'spree_products_promotion_rules', foreign_key: 'promotion_rule_id'
 
         MATCH_POLICIES = %w(any all none)
