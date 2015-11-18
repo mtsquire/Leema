@@ -23,14 +23,17 @@
 
             <div class="links col-md-6 col-xs-12 pull-right alpha omega" data-hook="cart_buttons">
                 <div class="row">
-                  <div class="col-xs-6 text-left">
+                  <div class="col-sm-6 col-xs-12 coupon-code">
+                      <%= order_form.text_field :coupon_code, :class => 'form-control', :placeholder => Spree.t(:coupon_code) %>
+                  </div><!-- close col-xs-8 -->
+                  <div class="col-sm-3 col-xs-6">
                     <span class="input-group-btn">
                       <%= button_tag  :class => 'btn btn-primary', :id => 'update-button' do %>
                       <i class="fa fa-refresh"></i> <%= Spree.t(:update_cart) %>
                     </span>
                   <% end %>
                   </div>
-                  <div class="col-xs-6">
+                  <div class="col-sm-3 col-xs-6">
                     <%= button_tag :class => 'checkout btn btn-success button', :id => 'checkout-link', :name => 'checkout' do %>
                       <%= Spree.t(:checkout) %>
                     <% end %>
