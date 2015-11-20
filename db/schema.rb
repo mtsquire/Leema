@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027200942) do
+ActiveRecord::Schema.define(version: 20151120003223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -647,6 +647,7 @@ ActiveRecord::Schema.define(version: 20151027200942) do
     t.string   "leema_label_content_type"
     t.integer  "leema_label_file_size"
     t.datetime "leema_label_updated_at"
+    t.string   "easypost_id"
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id", using: :btree
