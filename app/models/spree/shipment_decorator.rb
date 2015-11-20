@@ -38,6 +38,7 @@ Spree::Shipment.class_eval do
     end
 
     easypost_shipment.buy(rate)
+    self.easypost_id = easypost_shipment.id
     self.tracking = easypost_shipment.tracking_code
     self.postage_label = easypost_shipment.postage_label.label_url
     leema_label_from_url(self.postage_label)
