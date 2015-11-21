@@ -16,7 +16,6 @@ Spree::Stock::Estimator.class_eval do
           :easy_post_delivery_days => rate.delivery_days
         )
       end
-
       # Set cheapest rate to be selected by default
       # package.shipping_rates.first.selected = true
       package.shipping_rates
@@ -50,8 +49,12 @@ Spree::Stock::Estimator.class_eval do
   def build_parcel(package)
     total_weight = package.contents.sum do |item|
       weight = item.variant.shipping_category.name.to_i
-      # shipping category is tied to the weight in lbs, convert to oz for easypost
-      item.quantity * (weight * 16)
+      # if shipping category selected was lbs we convert to oz for easypost
+      if item.variant.shipping_category.name.include?('lb')
+        item.quantity * (weight * 16)
+      else
+        item.quantity * (weight)
+      end
     end
 
     parcel = ::EasyPost::Parcel.create(
