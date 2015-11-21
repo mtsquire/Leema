@@ -194,7 +194,13 @@ module Spree
             # create a rate with (with key of 1). Bug fixed here when I added = instead of <<
             shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first
           end
-          shipment.available_rates[1].selected = true
+          # Here we are checking to see if we got the 'First' rate back, which only applies to shipments under a certain weight
+          if shipment.shipping_rates.where(name: "USPS First").first
+            shipment.available_rates[3] = shipment.shipping_rates.where(name: "USPS First").first
+            shipment.available_rates[3].selected = true
+          else
+            shipment.available_rates[1].selected = true
+          end
         end
 
       end

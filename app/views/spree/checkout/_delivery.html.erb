@@ -81,6 +81,8 @@
                       <span class="delivery-days">
                         <% if rate.name == "USPS Priority" %>
                           <a href="https://www.usps.com/ship/priority-mail.htm" target="_blank">1-3 Business Days</a>
+                        <% elsif rate.name == "USPS First" %>
+                          <a href="https://www.usps.com/ship/first-class-mail.htm" target="_blank">1-3 Business Days</a>
                         <% else %>
                           <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
                         <% end %>
