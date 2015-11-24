@@ -30,7 +30,7 @@ skip_before_filter  :verify_authenticity_token
       @shipment = Spree::Shipment.where(
         transferred: false,
         state: "shipped",
-        easypost_id: params[:result][:shipment_id]
+        tracking: params[:result][:tracking_code]
         ).first
       if !@shipment
         puts 'no shipment found'
