@@ -31,8 +31,12 @@ skip_before_filter  :verify_authenticity_token
         transferred: false,
         state: "shipped",
         easypost_id: params[:result][:shipment_id]
-        )
+        ).first
       item_total = 0
+      if !@shipment
+        puts 'no shipment found'
+        return
+      end
       @shipment.line_items.each do |item|
         item_total += item.product.price * item.quantity
       end
