@@ -77,3 +77,6 @@ ruby "2.1.2"
 
 # delayed emails using redis db
 gem 'sidekiq'
+
+# geolocation for delivery
+gem 'geocoder'

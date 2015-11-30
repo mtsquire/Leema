@@ -268,6 +268,7 @@ GEM
     formatador (0.2.5)
     friendly_id (5.0.5)
       activerecord (>= 4.0.0)
+    geocoder (1.2.12)
     hashie (3.4.1)
     highline (1.6.21)
     hike (1.2.3)
@@ -557,6 +558,7 @@ DEPENDENCIES
   devise (= 3.2.4)
   easypost
   fog
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
