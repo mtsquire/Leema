@@ -35,7 +35,11 @@
 						  	<div class="product-card">
 									<% if product.images.count > 0 %>
 
-										<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);"></div>
+										<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);">
+											<% if product.suppliers.first.announcement && !product.suppliers.first.announcement.empty? %>
+							                    <div class="product-announcement"><p><%= truncate(product.suppliers.first.announcement, :length => 65) %></p></div>
+							                  <% end %>
+										</div>
 
 									<% else %>
 
