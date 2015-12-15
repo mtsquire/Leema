@@ -20,6 +20,13 @@
       <% end %>
     </div>
 
+    <% if spree_current_user.leema_admin? %>
+      <div>
+        <%= f.label :available_on %>
+        <%= f.date_field :available_on %>
+      </div>
+    <% end %>
+
     <div data-hook="admin_product_form_description">
       <%= f.field_container :description do %>
         <div class="form-group">
