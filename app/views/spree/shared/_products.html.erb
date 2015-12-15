@@ -51,7 +51,7 @@
 
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
-              <p class="product-description" id="product-location"><i class="fa fa-map-marker"></i> Hoboken, NJ / B.Cakes Bakery</p>
+              <p class="product-description" id="product-location"><i class="fa fa-map-marker"></i> <%= product.suppliers.first.address.city %>, <%= product.suppliers.first.address.state %> / <%= link_to "#{product.suppliers.first.store_name}", "/#{product.suppliers.first.users.first.display_name}" %></p>
               <% if product.suppliers.first.store_logo_file_name? %>
 
                 <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
