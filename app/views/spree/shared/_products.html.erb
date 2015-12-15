@@ -46,13 +46,12 @@
             <div class="product-info">
 
 
-                <h3><%= truncate(product.name, :length => 50) %></h3>
-
+              <h3><%= truncate(product.name, :length => 50) %></h3>
               <p class="product-description"><%= truncate(product.leema_description, :length => 70) %></p>
 
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
-
+              <p class="product-description" id="product-location"><i class="fa fa-map-marker"></i> Hoboken, NJ / B.Cakes Bakery</p>
               <% if product.suppliers.first.store_logo_file_name? %>
 
                 <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>

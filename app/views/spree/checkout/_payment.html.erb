@@ -40,7 +40,9 @@
         <label>
           <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.available_payment_methods.first %>
           <% if method.name == "Stripe" %>
-           <%= link_to image_tag("stripe.png"), "http://www.stripe.com/" %>
+            <!-- add this back in here when we figure out cloudfront issue -->
+            <!-- link_to image_tag("stripe.png"), "http://www.stripe.com/" -->
+            <%= Spree.t(method.name, :scope => :payment_methods, :default => method.name) %>
           <% else %>
             <%= Spree.t(method.name, :scope => :payment_methods, :default => method.name) %>
           <% end %>
