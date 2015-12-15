@@ -62,6 +62,13 @@
 
           <h1 class="product-title" itemprop="name"><%= accurate_title %></h1>
 
+          <!-- seller announcement | check if its nil or empty ("")-->
+          <% if @product.suppliers.first.announcement && !@product.suppliers.first.announcement.empty? %>
+            <div class="well">
+              <strong><font color="#28c891"><%= @product.suppliers.first.announcement %></font></strong>
+            </div>
+          <% end %>
+
           <div id="product-description" data-hook="product_description">
 
             <div itemprop="description" data-hook="description">
