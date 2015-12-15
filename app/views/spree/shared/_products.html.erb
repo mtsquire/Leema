@@ -32,8 +32,8 @@
             <div class="product-image-container">
               <% if product.images.count > 0 %>
                 <div class="product-image background-image lazy" data-original="<%= image_url product.images.first.attachment.url(:large) %>" style="background-image: url(<%= image_url ("leema-lazy.jpg") %>);">
-                  <% if @supplier.announcement && !@supplier.announcement.empty? %>
-                    <div class="product-announcement"><p><%= truncate(@supplier.announcement, :length => 65) %></p></div>
+                  <% if product.suppliers.first.announcement && !product.suppliers.first.announcement.empty? %>
+                    <div class="product-announcement"><p><%= truncate(product.suppliers.first.announcement, :length => 65) %></p></div>
                   <% end %>
                 </div>
               <% else %>
