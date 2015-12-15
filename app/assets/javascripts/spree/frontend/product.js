@@ -7,7 +7,8 @@ $(document).ready(function() {
 
 	if ($('.lazy').length > 0) {
 		$("div.lazy").lazyload({
-	      effect : "fadeIn"
+	      effect : "fadeIn",
+          threshold : 200
 	  });
 	};
 });
