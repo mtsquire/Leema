@@ -78,5 +78,8 @@ ruby "2.1.2"
 # delayed emails using redis db
 gem 'sidekiq'
 
-# geolocation for delivery
+# geolocation/maps for delivery
 gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'geokit-rails' # for checking if a point is within bounding box

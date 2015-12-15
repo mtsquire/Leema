@@ -7,4 +7,4 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += ['admin.css', 'all.css', 'animate.css', 'application.css', 'bootstrap.js', 'custom_order.js', 'editprofile.css', 'editprofile.js', 'global.js', 'my_orders.js', 'my_orders.css', 'owl.carousel.min.js', 'products.css', 'profiles.css', 'profiles.js', 'ratings.css', 'signin.css', 'welcome.css', 'welcome.js']
+Rails.application.config.assets.precompile += ['admin.css', 'all.css', 'animate.css', 'application.css', 'bootstrap.js', 'custom_order.js', 'delivery.js', 'editprofile.css', 'editprofile.js', 'global.js', 'my_orders.js', 'my_orders.css', 'owl.carousel.min.js', 'products.css', 'profiles.css', 'profiles.js', 'ratings.css', 'signin.css', 'welcome.css', 'welcome.js']

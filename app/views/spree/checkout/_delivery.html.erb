@@ -68,6 +68,12 @@
           </table>
 
           <h4 class="stock-shipping-method-title"><%= Spree.t(:shipping_method) %></h4>
+          <!-- delivery method notification -->
+          <% if ship_form.object.available_rates[3] %>
+            <div class="alert alert-success" role="alert">
+              Congrats! You qualify for Manhattan delivery!
+            </div>
+          <% end %>
           <ul class="list-group shipping-methods" id="shipping-methods">
             <% ship_form.object.available_rates.each do |key, rate| %>
                 <% if rate.name != "USPS ParcelSelect" %>

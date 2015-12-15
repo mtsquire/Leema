@@ -18,6 +18,8 @@
 //= require spree
 //= require spree/backend/spree-select2
 //= require spree/backend/stock_management
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 

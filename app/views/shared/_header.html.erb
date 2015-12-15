@@ -69,6 +69,7 @@
                 <li><%= link_to "New Product", "/store/admin/products/new" %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Edit Store Details", "/store/admin/suppliers/" + current_user.supplier.id.to_s + "/edit" %></li>
+                <li><%= link_to "Delivery", "/store/admin/delivery/" + current_user.supplier.id.to_s %></li>
                 <li><%= link_to "Log Out", logout_path %></li>
               </ul>
             </li>
