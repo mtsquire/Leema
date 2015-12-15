@@ -1,16 +1,27 @@
 <% title "Welcome - " %>
 
-<section id="welcome">
-	<!-- <div id="instagram-feed" class="clearfix"></div> -->
-	<div class="gradient"></div>
-
-	<div class="welcome-info">
-		<h1>Let Everyone Eat My Art.</h1>
-		<p>Handcrafted, unique treats delivered direct to your doorstep.</p>
-		<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
+<div class="owl-carousel owl-theme">
+	<div class="item">
+		<div class="welcome" id="reindeer">
+			<div class="gradient"></div>
+			<div class="welcome-info">
+				<h1>Holiday Gift Guide</h1>
+				<p>Shop our curated selection of holiday treats!</p>
+				<%= link_to "Shop Now", spree_path, class: "btn btn-lg btn-primary" %>
+			</div>
+		</div>
 	</div>
-
-</section>
+	<div class="item">
+		<div class="welcome" id="macaroons">
+			<div class="gradient"></div>
+			<div class="welcome-info">
+				<h1>Let Everyone Eat My Art.</h1>
+				<p>Handcrafted, unique treats delivered direct to your doorstep.</p>
+				<%= link_to "Shop Our Products", spree_path, class: "btn btn-lg btn-primary" %>
+			</div>
+		</div>
+	</div>
+</div>
 
 <section id="welcome-product-grid">
 	<div class="container">

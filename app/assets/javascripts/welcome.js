@@ -22,7 +22,7 @@ $(document).ready(function() {
         var introMargin = $('.masthead').height() / 2,
             introHeight = $('.intro').height() / 2;
 
-        $(".intro").css("margin-top", Math.floor(introMargin - introHeight));     
+        $(".intro").css("margin-top", Math.floor(introMargin - introHeight));
     }
 
 
@@ -43,6 +43,13 @@ $(document).ready(function() {
             callback(elementVisibleAt,elementBottom);
         }
     }
+
+    $(".owl-carousel").owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem: true,
+        autoPlay: true
+    });
 
     if (widthIsWide) {
 
@@ -96,7 +103,7 @@ $(document).ready(function() {
                 } else {
                     imageUrl = instagram.images.low_resolution.url;
                 }
-                    
+
 
                 $('#instagram-feed').append('<img class="img-responsive" src="'+imageUrl+'">')
             }
@@ -117,7 +124,7 @@ $(document).ready(function() {
         welcomeSection.css('height', ((getViewport()[1] - headerHeight) * .666667));
     } else {
         welcomeSection.css('height', '250');
-    }   
+    }
 
     $(window).on('resize',function(){
         if($('.masthead')) {
@@ -137,7 +144,7 @@ $(document).ready(function() {
         } else {
             console.log('350');
             welcomeSection.css('height', '250');
-        }   
+        }
     });
 
     var newsletterCookie = Cookies.get('leemanewsletter');
