@@ -37,7 +37,7 @@
 
 										<div class="product-image background-image" style="background-image: url(<%= image_url product.images.first.attachment.url(:large) %>);">
 											<% if product.suppliers.first.announcement && !product.suppliers.first.announcement.empty? %>
-							                    <div class="product-announcement"><p><%= truncate(product.suppliers.first.announcement, :length => 65) %></p></div>
+							                    <div class="product-announcement"><p><%= truncate(product.suppliers.first.announcement, :length => 44) %></p></div>
 							                  <% end %>
 										</div>
 
@@ -80,7 +80,7 @@
 					<h4 class="seller-full-name">Emma Kantrowitz</h4>
 				</a>
 				<p class="location-store"><i class="fa fa-map-marker"></i> Hoboken, NJ / B.Cakes Bakery</p>
-				<a class="btn btn-primary" href="https://www.leemaeats.com/bcakesbakery">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
+				<a class="btn btn-primary" href="https://www.leemaeats.com/b-cakes-bakery">View Shop <i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
 
 			<!-- sweet e's -->
