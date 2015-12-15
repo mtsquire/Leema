@@ -68,6 +68,11 @@
           </table>
 
           <h4 class="stock-shipping-method-title"><%= Spree.t(:shipping_method) %></h4>
+          <!-- seller announcement | check if its nil or empty ("")-->
+          <% if ship_form.object.stock_location.supplier.announcement && !ship_form.object.stock_location.supplier.announcement.empty? %>
+              From <%= ship_form.object.stock_location.supplier.store_name %>: <strong><%= ship_form.object.stock_location.supplier.announcement %></strong>
+              <br>
+          <% end %>
           <ul class="list-group shipping-methods" id="shipping-methods">
             <% ship_form.object.available_rates.each do |key, rate| %>
                 <% if rate.name != "USPS ParcelSelect" %>

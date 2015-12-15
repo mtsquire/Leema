@@ -64,9 +64,8 @@
 
           <!-- seller announcement | check if its nil or empty ("")-->
           <% if @product.suppliers.first.announcement && !@product.suppliers.first.announcement.empty? %>
-            <div class="well">
-              <strong><font color="#28c891"><%= @product.suppliers.first.announcement %></font></strong>
-            </div>
+              <strong><font color="blue"><%= @product.suppliers.first.announcement %></font></strong>
+              <br>
           <% end %>
 
           <div id="product-description" data-hook="product_description">
