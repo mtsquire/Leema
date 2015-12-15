@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120003223) do
+ActiveRecord::Schema.define(version: 20151215032928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20151120003223) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "spree_addresses", ["country_id"], name: "index_spree_addresses_on_country_id", using: :btree
@@ -469,6 +471,8 @@ ActiveRecord::Schema.define(version: 20151120003223) do
     t.integer  "allow_usps_priority",                              default: 1
     t.integer  "allow_usps_express",                               default: 1
     t.integer  "sales_count",                                      default: 0
+    t.integer  "allow_delivery",                                   default: 0
+    t.decimal  "delivery_fee"
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree
@@ -775,6 +779,8 @@ ActiveRecord::Schema.define(version: 20151120003223) do
     t.boolean  "propagate_all_variants", default: true
     t.string   "admin_name"
     t.integer  "supplier_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "spree_stock_locations", ["active"], name: "index_spree_stock_locations_on_active", using: :btree
@@ -879,6 +885,9 @@ ActiveRecord::Schema.define(version: 20151120003223) do
     t.integer  "allow_pickup",                                     default: 0
     t.integer  "vacation_mode",                                    default: 0
     t.date     "return_date"
+    t.decimal  "delivery_fee"
+    t.text     "delivery_area"
+    t.text     "announcement"
   end
 
   add_index "spree_suppliers", ["active"], name: "index_spree_suppliers_on_active", using: :btree

@@ -19,24 +19,31 @@
 
 <div data-hook="supplier_right_column_wrapper" class="col-sm-4">
     <%= form_for [:admin, @object] do |f| %>
-            <legend class="title">Going on vacation?</legend>
-            <div class="checkbox">
-            <label>
-              <%= f.check_box :vacation_mode %> Turn on vacation mode
-            </label>
-            </div>
-            
+      <legend class="title">Going on vacation?</legend>
+      <div class="checkbox">
+      <label>
+        <%= f.check_box :vacation_mode %> Turn on vacation mode
+      </label>
+      </div>
 
-            <div class="form-group">
-                <%= f.label :return_date, Spree.t('select_return_date') %>:
-                <%= f.date_field :return_date, :class => 'form-control' %>
-                <br>
-                <% if spree_current_user.supplier.vacation_mode == 0 %>
-                    <%= button Spree.t('go_on_vacation') %>
-                <% elsif spree_current_user.supplier.vacation_mode == 1 %>
-                    <%= button Spree.t('back_from_vacation') %>
-                <% end %>
-            </div>
+      <div class="form-group">
+          <%= f.label :return_date, Spree.t('select_return_date') %>:
+          <%= f.date_field :return_date, :class => 'form-control' %>
+          <br>
+          <% if spree_current_user.supplier.vacation_mode == 0 %>
+              <%= button Spree.t('go_on_vacation') %>
+          <% elsif spree_current_user.supplier.vacation_mode == 1 %>
+              <%= button Spree.t('back_from_vacation') %>
+          <% end %>
+      </div>
+      <br>
+
+      <legend class="title">Announcement</legend>
+      <p>Make an announcement to your loyal customers! This will appear on your profile page and each of your product's page.</p>
+      <div class="form-group">
+        <%= f.label :announcement, Spree.t('announcement') %>:
+        <%= f.text_field :announcement, :class => 'form-control' %>
+      </div>
 
     <% end %>
 
