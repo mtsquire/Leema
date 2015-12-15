@@ -19,6 +19,13 @@
 
 <div data-hook="supplier_right_column_wrapper" class="col-sm-4">
     <%= form_for [:admin, @object] do |f| %>
+      <legend class="title">Announcement</legend>
+      <p>Make an announcement to your loyal customers! This will appear on your profile page and each of your product's page.</p>
+      <div class="form-group">
+        <%= f.text_area :announcement, :class => 'form-control' %>
+        <%= button Spree.t('save_announcement') %>
+      </div>
+
       <legend class="title">Going on vacation?</legend>
       <div class="checkbox">
       <label>
@@ -37,13 +44,6 @@
           <% end %>
       </div>
       <br>
-
-      <legend class="title">Announcement</legend>
-      <p>Make an announcement to your loyal customers! This will appear on your profile page and each of your product's page.</p>
-      <div class="form-group">
-        <%= f.label :announcement, Spree.t('announcement') %>:
-        <%= f.text_field :announcement, :class => 'form-control' %>
-      </div>
 
     <% end %>
 
