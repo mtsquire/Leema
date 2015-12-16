@@ -71,6 +71,8 @@
         </div>
 
         <% if spree_current_user.leema_admin? == true %>
+          <%= form.label :abbreviated_location %>
+          <%= form.text_field :abbreviated_location %>
           <%= form.field_container :users do %>
             <%= form.label :users %><br/>
             <%= hidden_field_tag 'supplier[user_ids_string]', form.object.user_ids.join(','), class: 'fullwidth user_picker' %>
