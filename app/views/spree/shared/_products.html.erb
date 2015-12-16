@@ -46,13 +46,14 @@
             <div class="product-info">
 
 
-                <h3><%= truncate(product.name, :length => 50) %></h3>
-
+              <h3><%= truncate(product.name, :length => 50) %></h3>
               <p class="product-description"><%= truncate(product.leema_description, :length => 70) %></p>
 
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
-
+              <% if product.suppliers.first.abbreviated_location %>
+                <p class="product-description"><i class="fa fa-map-marker"></i> <%= product.suppliers.first.abbreviated_location %> </p>
+              <% end %>
               <% if product.suppliers.first.store_logo_file_name? %>
 
                 <%= image_tag product.suppliers.first.store_logo(:default), :class => 'seller-logo-mini' %>
