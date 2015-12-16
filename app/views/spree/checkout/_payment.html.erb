@@ -42,7 +42,7 @@
           <% if method.name == "Stripe" %>
             <!-- add this back in here when we figure out cloudfront issue -->
             <!-- link_to image_tag("stripe.png"), "http://www.stripe.com/" -->
-            <%= Spree.t(method.name, :scope => :payment_methods, :default => method.name) %>
+            <%= link_to image_tag("stripe.png"), "http://www.stripe.com/" %>
           <% else %>
             <%= Spree.t(method.name, :scope => :payment_methods, :default => method.name) %>
           <% end %>
