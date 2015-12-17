@@ -16,7 +16,13 @@ skip_before_filter  :verify_authenticity_token
       end
       item_total = 0
       @shipment.line_items.each do |item|
-        item_total += item.product.price * item.quantity
+        # if shipping was included in cost then transfer from the
+        # cost_price field
+        if item.product.shipping_included == 1
+          item total += item.product.cost_price * item.quantity
+        else
+          item_total += item.product.price * item.quantity
+        end
       end
       transfer = Stripe::Transfer.create(
         # Take 10% for ourselves from the total cost
