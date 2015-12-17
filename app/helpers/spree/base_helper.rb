@@ -41,7 +41,7 @@ module Spree
       end
 
       if meta[:description].blank?
-        meta[:description] = 'The online marketplace for buying and selling small batch and craft foods.'
+        meta[:description] = 'Handcrafted, unique treats delivered direct to your doorstep.'
       end
 
       meta.reverse_merge!({
