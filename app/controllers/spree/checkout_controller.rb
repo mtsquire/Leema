@@ -198,6 +198,15 @@ module Spree
             # create a rate with (with key of 1). Bug fixed here when I added = instead of <<
             shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Priority").first
           end
+
+          # for products with free shipping zero out the cheapest shipment rate option
+          if li.product.shipping_included == 1
+            if shipment.available_rates[0]
+              shipment.available_rates[0].cost = 0.00
+            elsif shipment.available_rates[1]
+              shipment.available_rates[1].cost = 0.00
+            end
+          end
         end
 
       end

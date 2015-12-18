@@ -25,6 +25,12 @@
         <%= f.label :available_on %>
         <%= f.date_field :available_on %>
       </div>
+
+      <div>
+        <%= f.label :shipping_included %>
+        <p>This is for products where we want the cost of shipping to be included in the price so we can advertise it as 'free shipping'</p>
+        <%= f.check_box :shipping_included %>
+      </div>
     <% end %>
 
     <div data-hook="admin_product_form_description">
@@ -142,14 +148,16 @@
       </div>
     <% end %>
     </div>
-
-    <div data-hook="admin_product_form_cost_price" class="alpha two columns">
-      <%= f.hidden_field :cost_price do %>
-        <%= f.label :cost_price, Spree.t(:cost_price) %>
-        <%= f.text_field :cost_price, :value => number_to_currency(@product.cost_price, :unit => '') %>
-        <%= f.error_message_on :cost_price %>
-      <% end %>
-    </div>
+    <% if spree_current_user.leema_admin? %>
+      <div data-hook="admin_product_form_cost_price" class="alpha two columns">
+        <%= f.field_container :cost_price do %>
+          <%= f.label :cost_price, Spree.t(:cost_price) %>
+          <p>This is the actual cost of the product without shipping. Important for when we transfer money to the bank accounts</p>
+          <%= f.text_field :cost_price, :value => number_to_currency(@product.cost_price, :unit => '') %>
+          <%= f.error_message_on :cost_price %>
+        <% end %>
+      </div>
+    <% end %>
     <div data-hook="admin_product_form_cost_currency" class="omega two columns">
       <%= f.hidden_field :cost_currency do %>
         <%= f.label :cost_currency, Spree.t(:cost_currency) %>
