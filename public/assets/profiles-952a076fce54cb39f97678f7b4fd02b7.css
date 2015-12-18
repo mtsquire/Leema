@@ -1,0 +1,112 @@
+/* Profile Page Section Covers */
+/* line 8, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.section-cover {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  -webkit-backface-visibility: hidden;
+}
+
+/* line 15, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.section-cover .section-cover-image {
+  width: 100%;
+  display: block;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+/* line 25, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.section-cover h1 {
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+  padding: 0px;
+  color: #fff;
+  background: #000;
+  font-size: 45px;
+  padding: 15px;
+  -webkit-backface-visibility: hidden;
+}
+
+/* line 38, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.edit-profile {
+  float: right;
+  margin-bottom: 15px;
+}
+
+/* line 43, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.profile-image {
+  width: 175px;
+  height: 175px;
+  border: 2px solid #3a89ff;
+  overflow: hidden;
+}
+/* line 49, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.profile-image img {
+  width: 100%;
+}
+
+/* line 55, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+#profile-about p.lead {
+  font-size: 19px;
+}
+
+@media (max-width: 767px) {
+  /* line 62, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  .section-cover h1 {
+    font-size: 36px;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  /* line 68, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  #profile-about {
+    padding-top: 15px;
+  }
+
+  /* line 72, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  .profile-image {
+    margin-top: 0px;
+  }
+
+  /* line 76, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  .edit-profile {
+    float: none;
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 540px) {
+  /* line 84, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  .section-cover h1 {
+    font-size: 26px;
+    padding: 10px;
+  }
+}
+@media (max-width: 380px) {
+  /* line 91, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+  .section-cover h1 {
+    font-size: 18px;
+    padding: 7px;
+  }
+}
+/* line 97, /Users/bhay/Code/Leema_Stable/leema/app/assets/stylesheets/profiles/profiles.css.scss */
+.no-bio {
+  padding-bottom: 30px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+ */
+
