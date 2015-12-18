@@ -16,7 +16,7 @@ skip_before_filter  :verify_authenticity_token
       end
       item_total = 0
       @shipment.line_items.each do |item|
-        item_total += item.product.price * item.quantity
+        item_total += item.variant.price * item.quantity
       end
       transfer = Stripe::Transfer.create(
         # Take 10% for ourselves from the total cost
