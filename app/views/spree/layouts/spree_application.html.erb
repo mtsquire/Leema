@@ -9,7 +9,7 @@
     <script type="text/javascript">
     //fixed facebook login adding weird route to url
     if (window.location.hash == '#_=_'){
-        history.replaceState 
+        history.replaceState
             ? history.replaceState(null, null, window.location.href.split('#')[0])
             : window.location.hash = '';
     }
@@ -30,9 +30,9 @@
     <!-- End Facebook Pixel Code -->
   </head>
   <body class="<%= body_class %> spree" id="<%= @body_id || 'default' %>" data-hook="body">
-
     <%= render :partial => 'spree/shared/header' %>
     <div class="row-offcanvas row-offcanvas-right">
+      <%= render :partial => 'shared/announcement' %>
       <div class="flash-msg">
         <%= flash_messages %>
       </div>
