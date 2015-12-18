@@ -28,5 +28,8 @@ skip_before_filter  :verify_authenticity_token
       @shipment.transferred = true
       @shipment.save!
     end
+    when 'delivered'
+      @delivered_shipment = Spree::Shipment.find_by_tracking(params[:result][:tracking_code])
+      Spree::ShipmentMailer.order_delivered_email(@delivered_shipment.id).deliver!
   end
 end
