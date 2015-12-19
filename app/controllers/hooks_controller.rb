@@ -19,7 +19,7 @@ skip_before_filter  :verify_authenticity_token
         # if shipping was included in cost then transfer from the
         # cost_price field
         if item.product.shipping_included == 1
-          item total += item.product.cost_price * item.quantity
+          item_total += item.product.cost_price * item.quantity
         else
           item_total += item.variant.price * item.quantity
         end
