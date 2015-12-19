@@ -203,8 +203,10 @@ module Spree
           if li.product.shipping_included == 1
             if shipment.available_rates[0]
               shipment.available_rates[0].cost = 0.00
+              shipment.shipping_rates.find_by_name("USPS First").update_attribute(:cost, 0.00)
             elsif shipment.available_rates[1]
               shipment.available_rates[1].cost = 0.00
+              shipment.shipping_rates.find_by_name("USPS Priority").update_attribute(:cost, 0.00)
             end
           end
         end
