@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151212204728) do
+ActiveRecord::Schema.define(version: 20160109185441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -329,6 +329,7 @@ ActiveRecord::Schema.define(version: 20151212204728) do
     t.string   "custom_product_image_content_type"
     t.integer  "custom_product_image_file_size"
     t.datetime "custom_product_image_updated_at"
+    t.date     "delivery_date"
   end
 
   add_index "spree_orders", ["approver_id"], name: "index_spree_orders_on_approver_id", using: :btree
@@ -473,6 +474,7 @@ ActiveRecord::Schema.define(version: 20151212204728) do
     t.integer  "sales_count",                                      default: 0
     t.integer  "allow_delivery",                                   default: 0
     t.decimal  "delivery_fee"
+    t.integer  "shipping_included",                                default: 0
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree
@@ -887,6 +889,9 @@ ActiveRecord::Schema.define(version: 20151212204728) do
     t.date     "return_date"
     t.decimal  "delivery_fee"
     t.text     "delivery_area"
+    t.text     "announcement"
+    t.string   "abbreviated_location"
+    t.integer  "minimum_days_notice",                              default: 0
   end
 
   add_index "spree_suppliers", ["active"], name: "index_spree_suppliers_on_active", using: :btree

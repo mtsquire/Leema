@@ -66,7 +66,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
     end
 
     def delivery_params
-      params.require(:supplier).permit(:delivery_fee, :delivery_area)
+      params.require(:supplier).permit(:delivery_fee, :delivery_area, :minimum_days_notice)
     end
 
 end

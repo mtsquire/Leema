@@ -19,11 +19,6 @@
 
 <div data-hook="supplier_right_column_wrapper" class="col-sm-4">
   <%= form_for [:admin, @object] do |f| %>
-    <legend class="title">Delivery!</legend>
-    <div>
-      <%= f.label :delivery_fee %>
-      <%= f.text_field :delivery_fee, :value => number_to_currency(@object.delivery_fee, :unit => ''), :class => 'form-control' %>
-    </div>
     <legend class="title">Going on vacation?</legend>
     <div class="checkbox">
     <label>
