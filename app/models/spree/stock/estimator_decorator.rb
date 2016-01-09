@@ -19,6 +19,8 @@ Spree::Stock::Estimator.class_eval do
         )
       end
 
+      byebug
+
       if order.ship_address.geocoded? && delivery_area
         # strip out () from the coords data and turn it into a comma separated array
         # ex: ["41, 70.3, 40, 70, 41, 83, 41, 82"]
@@ -31,29 +33,22 @@ Spree::Stock::Estimator.class_eval do
           floatCoords << coord.to_f
         end
 
-        # splits the floatCoords array into lat/lng paired subarrays then pushes them
-        # as object key/values to fit the google maps api
-        chunk = 2
+        # splits the floatCoords array into lat/lng paired subarrays
         finalCoords = []
-        for (i = 0, i < floatCoords.length; i += chunk) {
-          latLng = floatCoords.slice(i,i+chunk)
-          finalCoords << {
-            lat: latLng[0],
-            lng: latLng[1]
-          }
-        }
+        floatCoords.each_slice(2) do |lat, lng|
+          finalCoords << [lat, lng]
+        end
 
-        # construct the bounding box polygon
+        # construct the delivery area polygon
         polygonArray = []
         finalCoords.each do |pairs|
-          polygonArray << Geokit::LatLng.new(pairs.first,pairs.second)
+          polygonArray << Geokit::LatLng.new(pairs[0],pairs[1])
         end
         polygon = Geokit::Polygon.new(polygonArray)
-
-        px = order.ship_address.latitude # 40.784575
-        py = order.ship_address.longitude # -73.9488803
-        # if true then the coordinates are within nyc below 96th street
-        if gmaps
+        delivery_location = Geokit::LatLng.new(order.ship_address.latitude, order.ship_address.longitude)
+        byebug
+        if polygon.contains?(delivery_location)
+          byebug
           package.shipping_rates << Spree::ShippingRate.new(
             :name => "Delivery",
             :cost => (package.stock_location.supplier.delivery_fee.to_f)
