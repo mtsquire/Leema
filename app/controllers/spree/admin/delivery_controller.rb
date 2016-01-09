@@ -3,7 +3,9 @@ module Spree
     class DeliveryController < Spree::Admin::BaseController
       def edit
         @supplier = Spree::Supplier.friendly.find(params[:id])
-        @delivery_area = @supplier.delivery_area.tr('() ', '')
+        if @supplier.delivery_area
+          @delivery_area = @supplier.delivery_area.tr('() ', '')
+        end
       end
 
       private
