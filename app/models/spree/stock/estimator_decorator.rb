@@ -19,8 +19,6 @@ Spree::Stock::Estimator.class_eval do
         )
       end
 
-      byebug
-
       if order.ship_address.geocoded? && delivery_area
         # strip out () from the coords data and turn it into a comma separated array
         # ex: ["41, 70.3, 40, 70, 41, 83, 41, 82"]
@@ -46,9 +44,7 @@ Spree::Stock::Estimator.class_eval do
         end
         polygon = Geokit::Polygon.new(polygonArray)
         delivery_location = Geokit::LatLng.new(order.ship_address.latitude, order.ship_address.longitude)
-        byebug
         if polygon.contains?(delivery_location)
-          byebug
           package.shipping_rates << Spree::ShippingRate.new(
             :name => "Delivery",
             :cost => (package.stock_location.supplier.delivery_fee.to_f)
