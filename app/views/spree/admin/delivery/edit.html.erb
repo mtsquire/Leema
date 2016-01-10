@@ -9,7 +9,7 @@
 
     Thanks!<br><br>
 
-    - Brandon</p>
+    - Team Leema</p>
   </div>
 </div>
 
@@ -46,7 +46,10 @@
 <script>
 var drawingManager;
 var newShape;
-var previousCoords = $('.temp_information').data('temp').split(',');
+var previousCoords = [];
+if ($('.temp_information').data('temp')) {
+  previousCoords = $('.temp_information').data('temp').split(',');
+}
 var floats = [];
 var finalArray = [];
 var coordinate = new google.maps.LatLng(40, -90);
