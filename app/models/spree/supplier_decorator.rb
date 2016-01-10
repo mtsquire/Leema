@@ -15,7 +15,7 @@ Spree::Supplier.class_eval do
 
   def update_display_name_to_store_name
     puts "updating display name with store name: #{self.store_name}"
-    self.users.first.update_attribute(:display_name, self.store_name.downcase.gsub(" ","-").gsub("'",""))
+    self.users.first.update_attribute(:display_name, self.store_name.downcase.gsub(" ","-").gsub("'","").gsub(".",""))
     puts "new display name = #{self.users.first.display_name}"
   end
 
