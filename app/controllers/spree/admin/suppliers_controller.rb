@@ -62,7 +62,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
     end
 
     def location_after_delivery_save
-      'store/admin/delivery/' + @object.id.to_s
+      '/store/admin/delivery/' + @object.id.to_s
     end
 
     def delivery_params
