@@ -9,11 +9,6 @@ module Spree
           @delivery_area = @supplier.delivery_area.tr('() ', '')
         end
       end
-
-      private
-        def location_after_save
-          delivery_path(@supplier)
-        end
     end
   end
 end
