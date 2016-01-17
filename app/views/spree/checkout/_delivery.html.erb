@@ -71,7 +71,7 @@
           <!-- delivery method notification -->
           <% if ship_form.object.available_rates[3] %>
             <div class="alert alert-success" role="alert">
-              Lucky you! You are within the <strong><%= ship_form.object.supplier.store_name %></strong> delivery zone! The next availble delivery date is <strong><%= (Date.today + ship_form.object.supplier.minimum_days_notice).strftime('%A, %B %d') %></strong>
+              Lucky you! You are within the <strong><%= ship_form.object.supplier.store_name %></strong> delivery zone! This product can be hand delivered to you by <strong><%= (Date.today + ship_form.object.supplier.minimum_days_notice).strftime('%A, %B %d') %>.</strong>
             </div>
           <% end %>
           <ul class="list-group shipping-methods" id="shipping-methods">
@@ -90,9 +90,9 @@
                         <% elsif rate.name == "USPS First" %>
                           <a href="https://www.usps.com/ship/first-class-mail.htm" target="_blank">1-3 Business Days</a>
                         <% elsif rate.name == "Delivery" %>
-
-                          <label>Select Delivery Date</label>
-                          <%= ship_form.date_field :minimum_days_notice, :min => Date.today + ship_form.object.supplier.minimum_days_notice, :value => 'mm/dd/yyyy'%>
+                        
+                          <label>Pick your delivery date<span class="required">*</span></label>
+                          <%= ship_form.date_field :delivery_date, :min => Date.today + ship_form.object.supplier.minimum_days_notice, :value => 'mm/dd/yyyy'%>
                         <% else %>
                           <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
                         <% end %>
