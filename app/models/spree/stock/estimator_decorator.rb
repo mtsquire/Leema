@@ -19,6 +19,8 @@ Spree::Stock::Estimator.class_eval do
         )
       end
 
+      # Personal Delivery Rate
+
       if order.ship_address.geocoded? && delivery_area
         # strip out () from the coords data and turn it into a comma separated array
         # ex: ["41, 70.3, 40, 70, 41, 83, 41, 82"]
