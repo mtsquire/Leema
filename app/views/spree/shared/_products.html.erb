@@ -52,7 +52,10 @@
 
               <p class="product-price" itemprop="price"><%= display_price(product) %></p>
               <% if product.suppliers.first.abbreviated_location %>
-                <p class="product-description"><i class="fa fa-map-marker"></i> <%= product.suppliers.first.abbreviated_location %> </p>
+                <p class="product-description"><i class="fa fa-map-marker"></i> <%= product.suppliers.first.abbreviated_location %></p>
+              <% end %>
+              <% if product.shipping_included == 1%>
+                <p class="product-description"><i class="fa fa-truck"></i> Free Shipping</p>
               <% end %>
               <% if product.suppliers.first.store_logo_file_name? %>
 
