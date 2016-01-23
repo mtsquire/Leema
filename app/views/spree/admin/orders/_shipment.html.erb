@@ -11,9 +11,10 @@
       <% if shipment.ready? and can? :update, shipment and shipment.selected_shipping_rate %>
         -
         <% if shipment.selected_shipping_rate.name.include?("Delivery") %>
-          <%= link_to Spree.t(:confirm_delivery), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
+          <%= link_to Spree.t(:out_for_delivery), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
+          <br><br>
           <% if shipment.delivery_date %>
-            <p class="description">By clicking this button you agree to deliver your product(s) by <%= shipment.delivery_date %></p>
+            <h1 class="description">By clicking this button you agree to deliver your product(s) by <%= shipment.delivery_date %></p>
           <% end %>
         <% else %>
           <%= link_to Spree.t(:ship), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
