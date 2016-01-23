@@ -92,7 +92,7 @@
                         <% elsif rate.name == "Personal Delivery" %>
                         
                           <label>Pick your delivery date<span class="required">*</span></label>
-                          <%= ship_form.date_field :delivery_date, :min => Date.today + ship_form.object.supplier.minimum_days_notice, :value => 'mm/dd/yyyy'%>
+                          <%= ship_form.date_field :delivery_date, :min => Date.today + ship_form.object.supplier.minimum_days_notice, :value => Date.today + ship_form.object.supplier.minimum_days_notice %>
                         <% else %>
                           <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
                         <% end %>
