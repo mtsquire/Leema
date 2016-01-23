@@ -14,7 +14,7 @@
           <%= link_to Spree.t(:out_for_delivery), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
           <br><br>
           <% if shipment.delivery_date %>
-            <h1 class="description">By clicking this button you agree to deliver your product(s) by <%= shipment.delivery_date %></p>
+            <h1>Delivery Date: <strong><%= shipment.delivery_date %></strong></h1>
           <% end %>
         <% else %>
           <%= link_to Spree.t(:ship), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
