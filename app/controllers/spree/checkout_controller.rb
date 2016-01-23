@@ -183,8 +183,8 @@ module Spree
           end
 
           # Delivery rate
-          if shipment.shipping_rates.find_by_name("Delivery")
-            shipment.available_rates[3] = shipment.shipping_rates.find_by_name("Delivery")
+          if shipment.shipping_rates.find_by_name("Personal Delivery")
+            shipment.available_rates[3] = shipment.shipping_rates.find_by_name("Personal Delivery")
           end
 
           if li.product.allow_usps_priority == 1

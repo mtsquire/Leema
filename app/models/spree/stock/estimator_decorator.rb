@@ -48,7 +48,7 @@ Spree::Stock::Estimator.class_eval do
         delivery_location = Geokit::LatLng.new(order.ship_address.latitude, order.ship_address.longitude)
         if polygon.contains?(delivery_location)
           package.shipping_rates << Spree::ShippingRate.new(
-            :name => "Delivery",
+            :name => "Personal Delivery",
             :cost => (package.stock_location.supplier.delivery_fee.to_f)
             )
         end
