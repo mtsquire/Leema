@@ -15,7 +15,7 @@
           <p>By clicking this button you are confirming that your product(s) will be delivered by <strong><%= shipment.delivery_date.strftime("%A, %b %d") %></strong>.</p>
           <br><br>
           <% if shipment.delivery_date %>
-            <h3>Delivery Date: <strong><%= shipment.delivery_date %></strong></h3>
+            <h3>Delivery Date: <strong><%= shipment.delivery_date.strftime("%A, %b %d") %></strong></h3>
           <% end %>
         <% else %>
           <%= link_to Spree.t(:ship), '#', :class => 'ship button fa fa-arrow-right', :data => {'shipment-number' => shipment.number} %>
