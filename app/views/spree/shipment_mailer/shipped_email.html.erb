@@ -175,7 +175,7 @@
                               <p style="white-space: pre-line;"><%= @shipment.order.shipping_address.firstname %> <%= @shipment.order.shipping_address.lastname %><br><%= @shipment.order.shipping_address.address1 %> <% if @shipment.order.shipping_address.address2 %><%= @shipment.order.shipping_address.address2 %><% end %><br><%= @shipment.order.shipping_address.city %>, <%= @shipment.order.shipping_address.state.abbr %> <%= @shipment.order.shipping_address.zipcode %></p>
                               <!-- delivery only -->
                               <% if @shipment.delivery_date %>
-                                <p><strong>Shipment will be delivered by <%= @shipment.supplier.store_name %> on <%= @shipment.delivery_date.strftime("%A, %b %d") %></strong></p>
+                                <p>Shipment will be delivered by <strong><%= @shipment.supplier.store_name %> on <%= @shipment.delivery_date.strftime("%A, %b %d") %></strong></p>
                               <% else %>
                                 <p><strong>Tracking Number:</strong> <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= @shipment.tracking.to_s %>" target="_blank" style="color:#3a89ff"><%= @shipment.tracking %></a></p>
                               <% end %>
