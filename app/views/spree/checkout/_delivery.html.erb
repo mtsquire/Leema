@@ -73,6 +73,12 @@
               From <%= ship_form.object.stock_location.supplier.store_name %>: <strong><%= ship_form.object.stock_location.supplier.announcement %></strong>
               <br>
           <% end %>
+          <!-- delivery method notification -->
+          <% if ship_form.object.available_rates[3] %>
+            <div class="alert alert-success" role="alert">
+              Lucky you! You are within the <strong><%= ship_form.object.supplier.store_name %></strong> delivery zone! This product can be hand delivered to you by <strong><%= (Date.today + ship_form.object.supplier.minimum_days_notice).strftime('%A, %B %d') %>.</strong>
+            </div>
+          <% end %>
           <ul class="list-group shipping-methods" id="shipping-methods">
             <% ship_form.object.available_rates.each do |key, rate| %>
                 <% if rate.name != "USPS ParcelSelect" %>
@@ -88,6 +94,10 @@
                           <a href="https://www.usps.com/ship/priority-mail.htm" target="_blank">1-3 Business Days</a>
                         <% elsif rate.name == "USPS First" %>
                           <a href="https://www.usps.com/ship/first-class-mail.htm" target="_blank">1-3 Business Days</a>
+                        <% elsif rate.name == "Personal Delivery" %>
+                        
+                          <label>Pick your delivery date<span class="required">*</span></label>
+                          <%= ship_form.date_field :delivery_date, :min => Date.today + ship_form.object.supplier.minimum_days_notice, :value => Date.today + ship_form.object.supplier.minimum_days_notice %>
                         <% else %>
                           <a href="https://www.usps.com/ship/priority-mail-express.htm" target="_blank">1 Day Delivery</a>
                         <% end %>

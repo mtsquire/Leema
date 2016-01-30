@@ -9,7 +9,9 @@ Spree::Admin::BaseController.class_eval do
         'products',
         'supplier_bank_accounts',
         'images',
-        'prototypes']
+        'prototypes',
+        'delivery'
+      ]
         # need prototypes otherwise products wont populate a variant id and custom orders wont work
         # this is hacky because we dont want suppliers being able to tamper with the
         # store/admin/prototypes page and we should find a way to make this more secure

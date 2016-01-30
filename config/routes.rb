@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   # for setting up the stripe webhook
   post '/hooks/stripe' => 'hooks#stripe'
 
+  get '/store/admin/delivery/:id', :to => 'spree/admin/delivery#edit', :as => :delivery
+
 
 end

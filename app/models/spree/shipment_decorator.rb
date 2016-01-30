@@ -33,14 +33,19 @@ Spree::Shipment.class_eval do
   end
 
   def buy_easypost_rate
-    rate = easypost_shipment.rates.find do |rate|
-      rate.id == selected_easy_post_rate_id
-    end
+    # don't buy easypost rate if the shipment is to be hand delivered
+    if self.selected_shipping_rate.name.include?("Delivery")
+      return
+    else
+      rate = easypost_shipment.rates.find do |rate|
+        rate.id == selected_easy_post_rate_id
+      end
 
-    easypost_shipment.buy(rate)
-    self.tracking = easypost_shipment.tracking_code
-    self.postage_label = easypost_shipment.postage_label.label_url
-    leema_label_from_url(self.postage_label)
+      easypost_shipment.buy(rate)
+      self.tracking = easypost_shipment.tracking_code
+      self.postage_label = easypost_shipment.postage_label.label_url
+      leema_label_from_url(self.postage_label)
+    end
   end
 
   def easypost_tracker

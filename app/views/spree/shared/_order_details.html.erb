@@ -22,6 +22,9 @@
             <div>
               <i class='fa fa-truck'></i>
               <%= Spree.t(:shipment_details, :stock_location => shipment.stock_location.name, :shipping_method => shipment.selected_shipping_rate.name) %>
+              <% if shipment.selected_shipping_rate.name == "Personal Delivery" && shipment.delivery_date %>
+                <br>on <strong><%= shipment.delivery_date.strftime("%b %e, %Y") %></strong>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -81,6 +84,7 @@
           <% end %>
           <% if item.deliver_by_date != nil %>
             <p><strong>Desired delivery date:</strong> <%= item.deliver_by_date.strftime("%b %e, %Y") %></p>
+
           <% end %>
         </td>
         <td data-hook="order_item_price" class="lead text-primary price"><span><%= item.single_money.to_html %></span></td>
