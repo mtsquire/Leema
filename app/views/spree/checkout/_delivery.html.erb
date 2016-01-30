@@ -72,6 +72,7 @@
           <% if ship_form.object.stock_location.supplier.announcement && !ship_form.object.stock_location.supplier.announcement.empty? %>
               From <%= ship_form.object.stock_location.supplier.store_name %>: <strong><%= ship_form.object.stock_location.supplier.announcement %></strong>
               <br>
+          <% end %>
           <!-- delivery method notification -->
           <% if ship_form.object.available_rates[3] %>
             <div class="alert alert-success" role="alert">
