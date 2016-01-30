@@ -1,0 +1,221 @@
+<h1>Delivery</h1><br>
+
+<div>
+  <h3>Message from Leema:</h3>
+  <div class="well">
+    <p>Hello, sellers! We here at Leema are proud to offer you our new service of managing deliveries to your customers. On this page you can specify a precise zone of delivery using the map below, setup your delivery fee and the minimum number of days notice that you require to make a delivery. We hope this feature will help satisfy a requirement that customers want their products fresh and don't want to wait for the post office.<br><br>
+
+    As always, your feedback is crucial to our success so please reach out to me at <a href="mailto:brandon@leemaeats.com?Subject=Delivery%20feedback" target="_top">brandon@leemaeats.com</a> and let me know how we can improve this.<br><br>
+
+    Thanks!<br><br>
+
+    - Team Leema</p>
+  </div>
+</div>
+
+<%= form_for [:admin, @supplier] do |f| %>
+  <div class="form-group">
+    <%= f.label :delivery_fee %>
+    <%= f.text_field :delivery_fee, :value => number_to_currency(@supplier.delivery_fee, :unit => ''), :class => 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :minimum_days_notice %>
+    <p>If a customer wants your product asap, how soon can you prepare your product and deliver to them?</p>
+    <%= f.number_field :minimum_days_notice, :class => 'form-control' %>
+  </div>
+
+  <h4>Your Delivery Area</h4>
+  <div style='width: 800px;'>
+    <div id="geolocation" style='width: 800px; height: 400px;'></div>
+  </div>
+
+  <%= f.hidden_field :delivery_area ,:id=>"delivery_area" %>
+  <div class="form-group">
+    <%= f.submit "Save Delivery Information"%>
+  </div>
+
+  <!-- Pass ruby data to google maps js api -->
+  <%= content_tag :div, class: "temp_information", data: {temp: @delivery_area} do %>
+  <% end %>
+<% end %>
+<div class="form-group">
+  <button id="delete-button">Reset Delivery Area</button>
+</div>
+
+<script>
+var drawingManager;
+var newShape;
+var previousCoords = [];
+if ($('.temp_information').data('temp')) {
+  previousCoords = $('.temp_information').data('temp').split(',');
+}
+var floats = [];
+var finalArray = [];
+var coordinate = new google.maps.LatLng(40, -90);
+
+var mapArea = new google.maps.Map(document.getElementById('geolocation'), {
+  zoom: 11,
+  center: new google.maps.LatLng(40.758904, -73.982163),
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  disableDefaultUI: true,
+  zoomControl: true
+});
+
+// Creates a drawing manager attached to the map that allows the user to draw
+// markers, lines, and shapes.
+drawingManager = new google.maps.drawing.DrawingManager({
+  drawingControl: false,
+  drawingMode: google.maps.drawing.OverlayType.POLYGON,
+  polygonOptions: polyOptions,
+  map: mapArea
+});
+
+var polyOptions = {
+  strokeWeight: 0,
+  fillOpacity: 0.45,
+  editable: true
+};
+
+// only run the following code if the user had previously selected
+// a delivery area
+if (previousCoords.length > 1) {
+  for(i = 0; i < previousCoords.length; i ++) {
+    // convert the coordinate strings to floats
+    floats.push(parseFloat(previousCoords[i]));
+  }
+
+  // splits the array into lat/lng paired subarrays then pushes them
+  // as object key/values to fit the google maps api
+  var i,j,chunk = 2;
+  for (i=0,j=floats.length; i<j; i+=chunk) {
+    var latLng = floats.slice(i,i+chunk);
+    finalArray.push({
+      lat: latLng[0],
+      lng: latLng[1]
+    });
+  }
+
+  // draw the polygon from users previous coordinates
+  var previousBoundingBox = new google.maps.Polygon({
+    paths: finalArray,
+    strokeWeight: 0,
+    fillOpacity: 0.45,
+  });
+  previousBoundingBox.setMap(mapArea);
+  drawingManager.setDrawingMode(null);
+}
+
+function deleteShape() {
+  if (newShape) {
+    newShape.setMap(null);
+  } else if (previousBoundingBox) {
+    previousBoundingBox.setMap(null);
+  }
+  drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON)
+}
+
+google.maps.event.addListener(drawingManager, 'overlaycomplete', function(e) {
+  if (e.type != google.maps.drawing.OverlayType.MARKER) {
+    // Switch back to non-drawing mode after drawing a shape.
+    drawingManager.setDrawingMode(null);
+
+    newShape = e.overlay;
+    newShape.type = e.type;
+
+    var boundingBoxCoords=[];
+    newShape.getPath().forEach(function(latLng){boundingBoxCoords.push(latLng.toString());})
+    $("#delivery_area").val(boundingBoxCoords);
+  }
+});
+
+google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', deleteShape);
+
+// Polygon getBounds extension - google-maps-extensions
+// https://github.com/tparkin/Google-Maps-Point-in-Polygon
+// http://code.google.com/p/google-maps-extensions/source/browse/google.maps.Polygon.getBounds.js
+if (!google.maps.Polygon.prototype.getBounds) {
+  google.maps.Polygon.prototype.getBounds = function(latLng) {
+    var bounds = new google.maps.LatLngBounds(),
+      paths = this.getPaths(),
+      path,
+      p, i;
+
+    for (p = 0; p < paths.getLength(); p++) {
+      path = paths.getAt(p);
+      for (i = 0; i < path.getLength(); i++) {
+        bounds.extend(path.getAt(i));
+      }
+    }
+
+    return bounds;
+  };
+}
+
+// Polygon containsLatLng - method to determine if a latLng is within a polygon
+google.maps.Polygon.prototype.containsLatLng = function(latLng) {
+  // Exclude points outside of bounds as there is no way they are in the poly
+
+  var inPoly = false,
+    bounds, lat, lng,
+    numPaths, p, path, numPoints,
+    i, j, vertex1, vertex2;
+
+  // Arguments are a pair of lat, lng variables
+  if (arguments.length == 2) {
+    if (
+      typeof arguments[0] == "number" &&
+      typeof arguments[1] == "number"
+    ) {
+      lat = arguments[0];
+      lng = arguments[1];
+    }
+  } else if (arguments.length == 1) {
+    bounds = this.getBounds();
+
+    if (!bounds && !bounds.contains(latLng)) {
+      return false;
+    }
+    lat = latLng.lat();
+    lng = latLng.lng();
+  } else {
+    console.log("Wrong number of inputs in google.maps.Polygon.prototype.contains.LatLng");
+  }
+
+  // Raycast point in polygon method
+
+  numPaths = this.getPaths().getLength();
+  for (p = 0; p < numPaths; p++) {
+    path = this.getPaths().getAt(p);
+    numPoints = path.getLength();
+    j = numPoints - 1;
+
+    for (i = 0; i < numPoints; i++) {
+      vertex1 = path.getAt(i);
+      vertex2 = path.getAt(j);
+
+      if (
+        vertex1.lng() <  lng &&
+        vertex2.lng() >= lng ||
+        vertex2.lng() <  lng &&
+        vertex1.lng() >= lng
+      ) {
+        if (
+          vertex1.lat() +
+          (lng - vertex1.lng()) /
+          (vertex2.lng() - vertex1.lng()) *
+          (vertex2.lat() - vertex1.lat()) <
+          lat
+        ) {
+          inPoly = !inPoly;
+        }
+      }
+
+      j = i;
+    }
+  }
+
+  return inPoly;
+};
+
+</script>

@@ -128,15 +128,25 @@
             </td>
           </tr>
           <!-- message -->
-          <tr>
-            <td style="padding:40px 20px; background:#3a89ff; text-align:center;">
+          <!-- for delivery shipments -->
+          <% if @shipment.delivery_date %>
+            <tr>
+              <td style="padding:40px 20px; background:#3a89ff; text-align:center;">
+              <h2 style="margin:0 0 20px; font-size:24px; font-family:Arial, sans-serif; line-height:36px; color:#fff; letter-spacing: .5px">Your delivery order has been confirmed!</h2>
+              </td>
+            </tr>
+          <!-- for mailed shipments -->
+          <% else %>
+            <tr>
+              <td style="padding:40px 20px; background:#3a89ff; text-align:center;">
               <h2 style="margin:0 0 20px; font-size:24px; font-family:Arial, sans-serif; line-height:36px; color:#fff; letter-spacing: .5px">Your order has Shipped!</h2>
               <div style="font-family: Georgia, serif; font-size:16px; line-height:26px; color:#fff;">
                 <p style="margin:0 0 20px;">It may take up to 24 hours for your tracking number to work.<br>
                   <p><a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= @shipment.tracking.to_s %>" style="font-family:Arial, sans-serif; font-size:12px; line-height:21px; text-transform:uppercase; color:#F0F0F0; text-decoration:none; font-weight:bold; letter-spacing:.5px;">Track my order</a> </p>
-                </div>
+              </div>
               </td>
             </tr>
+          <% end %>
             <tr>
               <td class="content" align="left" style="padding-top:12px;padding-bottom:12px;background-color:#ffffff">
 
@@ -161,10 +171,15 @@
 
                           <tr style="text-align:left; height: 200px;" valign="top">
                             <td colspan="2">
-                              <h4 style="font-size:12px; margin-bottom:10px; letter-spacing:.5px;">SHIPPED TO:</h4>
+                              <h4 style="font-size:12px; margin-bottom:10px; letter-spacing:.5px;">Shipped to:</h4>
                               <p style="white-space: pre-line;"><%= @shipment.order.shipping_address.firstname %> <%= @shipment.order.shipping_address.lastname %><br><%= @shipment.order.shipping_address.address1 %> <% if @shipment.order.shipping_address.address2 %><%= @shipment.order.shipping_address.address2 %><% end %><br><%= @shipment.order.shipping_address.city %>, <%= @shipment.order.shipping_address.state.abbr %> <%= @shipment.order.shipping_address.zipcode %></p>
-                              <p><strong>Tracking Number:</strong> <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= @shipment.tracking.to_s %>" target="_blank" style="color:#3a89ff"><%= @shipment.tracking %></a></p>
-                              </td>
+                              <!-- delivery only -->
+                              <% if @shipment.delivery_date %>
+                                <p>Shipment will be delivered by <strong><%= @shipment.supplier.store_name %> on <%= @shipment.delivery_date.strftime("%A, %b %d") %></strong></p>
+                              <% else %>
+                                <p><strong>Tracking Number:</strong> <a href="https://tools.usps.com/go/TrackConfirmAction.action?tLabels=<%= @shipment.tracking.to_s %>" target="_blank" style="color:#3a89ff"><%= @shipment.tracking %></a></p>
+                              <% end %>
+                            </td>
                             </tr>
                               <tr><td colspan="5" style="border-bottom:1px solid #e5e5e5; margin-top: 40px" height="1"></td></tr>
 

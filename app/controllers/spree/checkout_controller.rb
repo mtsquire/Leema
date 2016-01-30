@@ -36,11 +36,14 @@ module Spree
       @order.shipments.each do |shipment|
         get_shipping_rates(shipment)
       end
+
     end
 
 
     # Updates the order and advances to the next state (when possible.)
     def update
+      # Update the permitted params to include our new delivery_date attribute
+      permitted_checkout_attributes[5][:shipments_attributes] << :delivery_date
       if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         unless @order.next
@@ -169,11 +172,19 @@ module Spree
         authorize!(:edit, current_order, cookies.signed[:guest_token])
       end
 
+      # The whole point of this method is to accommodate a seller who must ship certain products
+      # with expedited shipping. It's convoluted and probably should be ripped apart or deleted
       def get_shipping_rates(shipment)
         shipment.line_items.each do |li|
           # Here we are checking to see if we got the 'First' rate back, which only applies to shipments under a certain weight
           if shipment.shipping_rates.where(name: "USPS First").first
+            # no rhyme or reason to the key names here (0, 1, 2, etc.)
             shipment.available_rates[0] = shipment.shipping_rates.where(name: "USPS First").first
+          end
+
+          # Delivery rate
+          if shipment.shipping_rates.find_by_name("Personal Delivery")
+            shipment.available_rates[3] = shipment.shipping_rates.find_by_name("Personal Delivery")
           end
 
           if li.product.allow_usps_priority == 1
@@ -189,7 +200,6 @@ module Spree
               # express then we force the buyer to select that option regardless of
               # what the other products' shipping options were.
               shipment.available_rates = {}
-              
               shipment.available_rates[1] = shipment.shipping_rates.where(name: "USPS Express").first and return shipment.available_rates
             end
           end
@@ -210,7 +220,6 @@ module Spree
             end
           end
         end
-
       end
 
       def current_order(options = {})

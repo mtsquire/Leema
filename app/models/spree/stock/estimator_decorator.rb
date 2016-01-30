@@ -6,6 +6,8 @@ Spree::Stock::Estimator.class_eval do
     parcel = build_parcel(package)
     shipment = build_shipment(from_address, to_address, parcel)
     rates = shipment.rates.sort_by { |r| r.rate.to_i }
+    delivery_area = package.stock_location.supplier.delivery_area
+
     if rates.any?
       rates.each do |rate|
         package.shipping_rates << Spree::ShippingRate.new(
@@ -16,8 +18,42 @@ Spree::Stock::Estimator.class_eval do
           :easy_post_delivery_days => rate.delivery_days
         )
       end
-      # Set cheapest rate to be selected by default
-      # package.shipping_rates.first.selected = true
+
+      # Personal Delivery Rate
+
+      if order.ship_address.geocoded? && delivery_area
+        # strip out () from the coords data and turn it into a comma separated array
+        # ex: ["41, 70.3, 40, 70, 41, 83, 41, 82"]
+        coordsArray = delivery_area.tr('() ', '').split(',')
+
+        # store our coords here after we convert them to floats
+        floatCoords = []
+        coordsArray.each do |coord|
+          # convert the coordinate strings to floats
+          floatCoords << coord.to_f
+        end
+
+        # splits the floatCoords array into lat/lng paired subarrays
+        finalCoords = []
+        floatCoords.each_slice(2) do |lat, lng|
+          finalCoords << [lat, lng]
+        end
+
+        # construct the delivery area polygon
+        polygonArray = []
+        finalCoords.each do |pairs|
+          polygonArray << Geokit::LatLng.new(pairs[0],pairs[1])
+        end
+        polygon = Geokit::Polygon.new(polygonArray)
+        delivery_location = Geokit::LatLng.new(order.ship_address.latitude, order.ship_address.longitude)
+        if polygon.contains?(delivery_location)
+          package.shipping_rates << Spree::ShippingRate.new(
+            :name => "Personal Delivery",
+            :cost => (package.stock_location.supplier.delivery_fee.to_f)
+            )
+        end
+      end
+
       package.shipping_rates
     else
       []

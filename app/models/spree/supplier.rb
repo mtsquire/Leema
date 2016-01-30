@@ -47,7 +47,7 @@ class Spree::Supplier < Spree::Base
   after_create :send_welcome, if: -> { SpreeDropShip::Config[:send_supplier_email] }
   before_create :set_commission
   after_save :update_stock_location
-  before_validation :check_url
+  before_validation :check_url, :clean_phone_number
 
   #==========================================
   # Instance Methods
@@ -140,6 +140,12 @@ class Spree::Supplier < Spree::Base
       unless changes.has_key?(:commission_percentage)
         self.commission_percentage = SpreeDropShip::Config[:default_commission_percentage]
       end
+    end
+
+    def clean_phone_number
+      clean_phone = self.address.phone.tr('()-','')
+      puts "clean phone = #{clean_phone}"
+      self.address.phone = clean_phone
     end
 
 end
