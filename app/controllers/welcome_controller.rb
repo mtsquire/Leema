@@ -10,6 +10,9 @@ class WelcomeController < ApplicationController
     @users = User.all
     @suppliers = Spree::Supplier.all
 
+    #show food categories on the front page
+    @categories = Spree::Taxonomy.first.taxons.where(depth: 1)
+
     # predictive search shizzz
     @product_names = []
     @allProducts = Spree::Product.all

@@ -293,6 +293,20 @@ section {
     background-size: 140% !important;
 }
 
+#category {
+    display: table;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 2em auto 1.5em;
+    text-align: left;
+    letter-spacing: -0.02em;
+}
+
+#btn-categories {
+    margin-left: 5px;
+    margin-right: 5px; 
+}
+
 #reindeer {
     background: image-url("pretzel-reindeer.jpg") center center no-repeat;
     background-size: 100% !important;
