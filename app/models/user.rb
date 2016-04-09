@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   def leema_admin?
     if email == "brandon.a.hay@gmail.com"
       true
-    elsif email == "mtsquire@gmail.com"
+    elsif email == "joseph.johann@gmail.com"
       true
     elsif email == "scottlevy89@gmail.com"
       true
