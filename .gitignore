@@ -17,6 +17,8 @@
 
 dump.rdb
 .DS_Store
+bin/
+.idea/
 
 public/productnames.json
 
