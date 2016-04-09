@@ -7,15 +7,6 @@
 			<div class="welcome-info">
 				<h1>Let Everyone Eat My Art</h1>
 				<p>Handcrafted, unique treats delivered direct to your doorstep.</p>
-				<div class="row" id="category">
-					<div class="container">
-						<% if @categories.count %>
-							<% @categories.each do |t| %>
-								<%= link_to "#{t.name}", spree.nested_taxons_path(t.permalink), class: "btn btn-lg btn-default", id: "btn-categories" %>
-							<% end %>
-						<% end %>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
